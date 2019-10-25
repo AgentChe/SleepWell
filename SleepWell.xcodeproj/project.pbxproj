@@ -57,6 +57,22 @@
 		96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29F6C2363527100E93CB1 /* PaygateScreen.storyboard */; };
 		96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29F6E2363535100E93CB1 /* OnboardingScreen.storyboard */; };
 		96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29F70236353E300E93CB1 /* MainScreen.storyboard */; };
+		96C29F77236386BF00E93CB1 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F76236386BF00E93CB1 /* Scene.swift */; };
+		96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F782363875E00E93CB1 /* SceneSound.swift */; };
+		96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F7A236387C700E93CB1 /* SceneDetail.swift */; };
+		96C29F7E2363889200E93CB1 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F7D2363889200E93CB1 /* Story.swift */; };
+		96C29F802363894F00E93CB1 /* StorySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F7F2363894F00E93CB1 /* StorySound.swift */; };
+		96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F81236389A800E93CB1 /* StoryDetail.swift */; };
+		96C29F85236389FF00E93CB1 /* Meditation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F84236389FF00E93CB1 /* Meditation.swift */; };
+		96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F8623638A8300E93CB1 /* MeditationSound.swift */; };
+		96C29F8923638AB900E93CB1 /* MeditationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F8823638AB900E93CB1 /* MeditationDetail.swift */; };
+		96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F8A23638B1000E93CB1 /* MeditationTag.swift */; };
+		96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F8C23638B4700E93CB1 /* Sound.swift */; };
+		96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F8E23638C0900E93CB1 /* Recording.swift */; };
+		96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9023638CC200E93CB1 /* RecordingDetail.swift */; };
+		96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9223638F3900E93CB1 /* SceneService.swift */; };
+		96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9423638F5A00E93CB1 /* MeditationService.swift */; };
+		96C29F9723638F7000E93CB1 /* StoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9623638F7000E93CB1 /* StoryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +128,22 @@
 		96C29F6C2363527100E93CB1 /* PaygateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaygateScreen.storyboard; sourceTree = "<group>"; };
 		96C29F6E2363535100E93CB1 /* OnboardingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingScreen.storyboard; sourceTree = "<group>"; };
 		96C29F70236353E300E93CB1 /* MainScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainScreen.storyboard; sourceTree = "<group>"; };
+		96C29F76236386BF00E93CB1 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		96C29F782363875E00E93CB1 /* SceneSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSound.swift; sourceTree = "<group>"; };
+		96C29F7A236387C700E93CB1 /* SceneDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetail.swift; sourceTree = "<group>"; };
+		96C29F7D2363889200E93CB1 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		96C29F7F2363894F00E93CB1 /* StorySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySound.swift; sourceTree = "<group>"; };
+		96C29F81236389A800E93CB1 /* StoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetail.swift; sourceTree = "<group>"; };
+		96C29F84236389FF00E93CB1 /* Meditation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meditation.swift; sourceTree = "<group>"; };
+		96C29F8623638A8300E93CB1 /* MeditationSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationSound.swift; sourceTree = "<group>"; };
+		96C29F8823638AB900E93CB1 /* MeditationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetail.swift; sourceTree = "<group>"; };
+		96C29F8A23638B1000E93CB1 /* MeditationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationTag.swift; sourceTree = "<group>"; };
+		96C29F8C23638B4700E93CB1 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		96C29F8E23638C0900E93CB1 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		96C29F9023638CC200E93CB1 /* RecordingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDetail.swift; sourceTree = "<group>"; };
+		96C29F9223638F3900E93CB1 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
+		96C29F9423638F5A00E93CB1 /* MeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationService.swift; sourceTree = "<group>"; };
+		96C29F9623638F7000E93CB1 /* StoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryService.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +253,9 @@
 			children = (
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
 				96C29F4B2363462100E93CB1 /* PurchaseService.swift */,
+				96C29F9223638F3900E93CB1 /* SceneService.swift */,
+				96C29F9423638F5A00E93CB1 /* MeditationService.swift */,
+				96C29F9623638F7000E93CB1 /* StoryService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -276,8 +311,14 @@
 		96C29EE723625AFC00E93CB1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				96C29F83236389EA00E93CB1 /* Meditations */,
+				96C29F7C2363888300E93CB1 /* Story */,
+				96C29F75236386B300E93CB1 /* Scene */,
 				96C29F3C2363398200E93CB1 /* Session.swift */,
 				96C29F3E236339B400E93CB1 /* Model.swift */,
+				96C29F8C23638B4700E93CB1 /* Sound.swift */,
+				96C29F8E23638C0900E93CB1 /* Recording.swift */,
+				96C29F9023638CC200E93CB1 /* RecordingDetail.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -377,6 +418,37 @@
 				96C29F6A23634D9900E93CB1 /* MainAssembly.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		96C29F75236386B300E93CB1 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				96C29F76236386BF00E93CB1 /* Scene.swift */,
+				96C29F782363875E00E93CB1 /* SceneSound.swift */,
+				96C29F7A236387C700E93CB1 /* SceneDetail.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		96C29F7C2363888300E93CB1 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				96C29F7D2363889200E93CB1 /* Story.swift */,
+				96C29F7F2363894F00E93CB1 /* StorySound.swift */,
+				96C29F81236389A800E93CB1 /* StoryDetail.swift */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
+		96C29F83236389EA00E93CB1 /* Meditations */ = {
+			isa = PBXGroup;
+			children = (
+				96C29F84236389FF00E93CB1 /* Meditation.swift */,
+				96C29F8623638A8300E93CB1 /* MeditationSound.swift */,
+				96C29F8823638AB900E93CB1 /* MeditationDetail.swift */,
+				96C29F8A23638B1000E93CB1 /* MeditationTag.swift */,
+			);
+			path = Meditations;
 			sourceTree = "<group>";
 		};
 		9DC2D87A62BE4923A2F99F36 /* Pods */ = {
@@ -515,6 +587,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */,
+				96C29F8923638AB900E93CB1 /* MeditationDetail.swift in Sources */,
+				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
@@ -525,26 +600,38 @@
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
+				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
 				96C29F1C236264D900E93CB1 /* View.swift in Sources */,
 				96C29F01236260F600E93CB1 /* UILabelExtension.swift in Sources */,
 				96C29F6B23634D9900E93CB1 /* MainAssembly.swift in Sources */,
+				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
 				96C29F6923634D8C00E93CB1 /* MainRouter.swift in Sources */,
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
+				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
+				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
+				96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */,
+				96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */,
 				96C29EED23625D0A00E93CB1 /* ApiError.swift in Sources */,
+				96C29F9723638F7000E93CB1 /* StoryService.swift in Sources */,
+				96C29F85236389FF00E93CB1 /* Meditation.swift in Sources */,
 				96C29EFD236260D200E93CB1 /* UIBarButtonItemExtension.swift in Sources */,
 				96C29EFF236260F100E93CB1 /* UIButtonExtension.swift in Sources */,
 				96C29F4123633B0400E93CB1 /* PaymentError.swift in Sources */,
+				96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
+				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
+				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
 				96C29EF123625DB600E93CB1 /* GlobalDefinitions.swift in Sources */,
+				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
@@ -554,6 +641,7 @@
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,
+				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
