@@ -21,12 +21,12 @@ extension ScreenAssembly where VC.ViewModel.Dependencies == Void {
 }
 
 extension ScreenAssembly {
-    func assemble(_ input: VC.Input) -> (vc: VC, output: VC.Output) {
+    func assemble(input: VC.Input) -> (vc: VC, output: VC.Output) {
         let vc = VC.make()
         
         var vm = VC.ViewModel()
         let interface = vm.configure(
-            router: VC.ViewModel.Router(vc),
+            router: VC.ViewModel.Router(transitionHandler: vc),
             dependecies: assembleDependencies()
         )
         

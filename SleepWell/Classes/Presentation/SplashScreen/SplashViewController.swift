@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import RxSwift
 
 class SplashViewController: UIViewController {
-    
+    private lazy var router = Router(transitionHandler: self)
+    private let viewModel = SplashViewModel()
 }

@@ -11,8 +11,8 @@ import Alamofire
 import UIKit
 
 class RestAPITransport {
-    func callServerApi(requestBody: APIRequestBody) -> Observable<Any> {
-        return Observable.create { observer in
+    func callServerApi(requestBody: APIRequestBody) -> Single<Any> {
+        return Single.create { single in
             let manager = Alamofire.SessionManager.default
             manager.session.configuration.timeoutIntervalForRequest = 30
             
@@ -27,10 +27,9 @@ class RestAPITransport {
                 .responseJSON(completionHandler: { response in
                     switch response.result {
                     case .success(let json):
-                        observer.onNext(json)
-                        observer.onCompleted()
+                        single(.success(json))
                     case .failure(_):
-                        observer.onError((response.response?.statusCode ?? -1) == 401 ? ApiError.unauthorized : ApiError.serverNotAvailable)
+                        single(.error((response.response?.statusCode ?? -1) == 401 ? ApiError.unauthorized : ApiError.serverNotAvailable))
                     }
                 })
             

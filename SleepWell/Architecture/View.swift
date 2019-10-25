@@ -40,6 +40,6 @@ extension EmptyViewModel: BindableViewModel, EmptyViewModelInterface {
     typealias Interface = EmptyViewModelInterface
     
     final class Router: Routing {
-        init(_ vc: UIViewController) {}
+        init(transitionHandler: UIViewController) {}
     }
 }

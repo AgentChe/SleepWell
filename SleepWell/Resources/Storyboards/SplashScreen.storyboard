@@ -15,6 +15,7 @@
                     <view key="view" contentMode="scaleToFill" id="87o-JS-srm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cDR-L5-gDV"/>
                     </view>
                 </viewController>
