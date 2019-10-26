@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Player Screen View Controller-->
+        <scene sceneID="Cqd-bR-AYg">
+            <objects>
+                <viewController storyboardIdentifier="PlayerScreenViewController" id="ULi-0Q-Eu3" customClass="PlayerScreenViewController" customModule="SleepWell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Llh-Lx-nN3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="F7U-pt-W3H">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="1z7-Nw-fL2" appends="YES" id="9cU-FM-K7l"/>
+                                    </connections>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="kCu-lx-LIJ" firstAttribute="trailing" secondItem="AgN-KF-nXC" secondAttribute="trailing" id="C38-3l-sGa"/>
+                            <constraint firstItem="AgN-KF-nXC" firstAttribute="top" secondItem="kCu-lx-LIJ" secondAttribute="top" id="fMI-ME-ogp"/>
+                            <constraint firstItem="AgN-KF-nXC" firstAttribute="leading" secondItem="kCu-lx-LIJ" secondAttribute="leading" id="pfC-d7-yNx"/>
+                            <constraint firstItem="kCu-lx-LIJ" firstAttribute="bottom" secondItem="AgN-KF-nXC" secondAttribute="bottom" id="sRE-Mi-BYU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kCu-lx-LIJ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1z7-Nw-fL2" appends="YES" id="eOL-kP-vLp"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="panGesture" destination="1z7-Nw-fL2" id="CKP-8f-C7J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KsE-zk-dVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="1z7-Nw-fL2"/>
+            </objects>
+            <point key="canvasLocation" x="53.000000000000007" y="-91"/>
+        </scene>
+    </scenes>
+</document>
