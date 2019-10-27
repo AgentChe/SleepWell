@@ -14,6 +14,11 @@ protocol OnboardingViewModelInterface {
 }
 
 final class OnboardingViewModel: BindableViewModel {
+    enum Behave {
+        case simple
+        case requirePersonalData
+    }
+    
     typealias Interface = OnboardingViewModelInterface
     
     lazy var router: OnboardingRouter = deferred()

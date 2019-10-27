@@ -73,6 +73,7 @@
 		96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9223638F3900E93CB1 /* SceneService.swift */; };
 		96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9423638F5A00E93CB1 /* MeditationService.swift */; };
 		96C29F9723638F7000E93CB1 /* StoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9623638F7000E93CB1 /* StoryService.swift */; };
+		96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C572366352E004DC76A /* PersonalDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		96C29F9223638F3900E93CB1 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
 		96C29F9423638F5A00E93CB1 /* MeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationService.swift; sourceTree = "<group>"; };
 		96C29F9623638F7000E93CB1 /* StoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryService.swift; sourceTree = "<group>"; };
+		96DC8C572366352E004DC76A /* PersonalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataService.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,6 +258,7 @@
 				96C29F9223638F3900E93CB1 /* SceneService.swift */,
 				96C29F9423638F5A00E93CB1 /* MeditationService.swift */,
 				96C29F9623638F7000E93CB1 /* StoryService.swift */,
+				96DC8C572366352E004DC76A /* PersonalDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
 				96C29F6923634D8C00E93CB1 /* MainRouter.swift in Sources */,
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
+				96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */,
 				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
 				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
@@ -789,7 +793,8 @@
 			baseConfigurationReference = 89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -797,8 +802,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.akonst.SleepWell;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sz.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "SleepWell Development Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -809,7 +815,8 @@
 			baseConfigurationReference = F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -817,8 +824,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.akonst.SleepWell;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sz.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "SleepWell AppStore Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

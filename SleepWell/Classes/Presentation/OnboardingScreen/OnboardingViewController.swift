@@ -16,12 +16,16 @@ final class OnboardingViewController: UIViewController {
 extension OnboardingViewController: BindsToViewModel {
     typealias ViewModel = OnboardingViewModel
     
+    struct Input {
+        let behave: OnboardingViewModel.Behave
+    }
+    
     static func make() -> OnboardingViewController {
         let storyboard = UIStoryboard(name: "OnboardingScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController
     }
     
-    func bind(to viewModel: OnboardingViewModelInterface, with input: ()) -> () {
+    func bind(to viewModel: OnboardingViewModelInterface, with input: Input) -> () {
         
     }
 }

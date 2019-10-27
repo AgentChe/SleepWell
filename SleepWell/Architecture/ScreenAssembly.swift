@@ -25,10 +25,7 @@ extension ScreenAssembly {
         let vc = VC.make()
         
         var vm = VC.ViewModel()
-        let interface = vm.configure(
-            router: VC.ViewModel.Router(transitionHandler: vc),
-            dependecies: assembleDependencies()
-        )
+        let interface = vm.configure(router: VC.ViewModel.Router(transitionHandler: vc), dependecies: assembleDependencies())
         
         let output = vc.bind(to: interface, with: input)
         
