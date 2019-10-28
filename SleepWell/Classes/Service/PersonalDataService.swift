@@ -36,4 +36,8 @@ class PersonalDataService {
     func hasPersonalData() -> Bool {
         return UserDefaults.standard.string(forKey: PersonalDataService.personalDataKey) != nil
     }
+    
+    func sendPersonalData() -> Single<Void> {
+        return .just(Void())
+    }
 }

@@ -10,7 +10,15 @@ import UIKit
 import RxSwift
 
 final class OnboardingViewController: UIViewController {
+    @IBOutlet weak var startView: OnboardingStartView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
+    private let disposeBag = DisposeBag()
 }
 
 extension OnboardingViewController: BindsToViewModel {
@@ -26,6 +34,16 @@ extension OnboardingViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: OnboardingViewModelInterface, with input: Input) -> () {
+        startView.show()
         
+        startView.start
+            .subscribe(onNext: { [weak self] in
+                viewModel.goToPaygate { _ in
+                    self?.startView.hide {
+                        
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

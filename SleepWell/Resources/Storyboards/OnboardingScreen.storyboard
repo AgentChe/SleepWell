@@ -16,21 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol0-VB-wfc">
-                                <rect key="frame" x="177" y="279" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_background" translatesAutoresizingMaskIntoConstraints="NO" id="Ygd-9a-wJG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yS2-eG-qpn" customClass="OnboardingStartView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ygd-9a-wJG" secondAttribute="trailing" id="5Li-lS-HvF"/>
+                            <constraint firstAttribute="trailing" secondItem="yS2-eG-qpn" secondAttribute="trailing" id="CXx-k1-OZ5"/>
+                            <constraint firstItem="yS2-eG-qpn" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="Hai-dG-Nlf"/>
+                            <constraint firstAttribute="bottom" secondItem="yS2-eG-qpn" secondAttribute="bottom" id="a0H-BU-Ly7"/>
+                            <constraint firstAttribute="bottom" secondItem="Ygd-9a-wJG" secondAttribute="bottom" id="bPn-wv-oUf"/>
+                            <constraint firstItem="Ygd-9a-wJG" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="gpN-h2-dbw"/>
+                            <constraint firstItem="yS2-eG-qpn" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="rWu-lR-urb"/>
+                            <constraint firstItem="Ygd-9a-wJG" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="zub-o7-oFQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="J50-bt-Uv1"/>
                     </view>
+                    <connections>
+                        <outlet property="startView" destination="yS2-eG-qpn" id="oc2-49-AaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skP-9F-gW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20" y="160"/>
+            <point key="canvasLocation" x="-20.289855072463769" y="159.375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="onboarding_background" width="375" height="812"/>
+    </resources>
 </document>

@@ -5,3 +5,12 @@
   Created by Andrey Chernyshev on 25/10/2019.
   Copyright © 2019 Andrey Chernyshev. All rights reserved.
 */
+
+"unlock_all_scenes_and_sounds" = "Unlock all Scenes and Sounds";
+"guided_meditations" = "Guided Meditations";
+"stories_for_sleep" = "Stories for Sleep";
+"continue" = "Continue";
+"restore_purchases" = "Restore Purchases";
+"try_again" = "Try again";
+"welcome" = "Welcome";
+"get_started" = "Get Started";
