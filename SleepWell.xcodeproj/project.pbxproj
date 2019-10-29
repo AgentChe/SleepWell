@@ -79,11 +79,6 @@
 		96DC8C702367460D004DC76A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6B236745CE004DC76A /* OpenSans-Light.ttf */; };
 		96DC8C712367460D004DC76A /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6A236745C8004DC76A /* OpenSans-Italic.ttf */; };
 		96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C69236745C2004DC76A /* OpenSans-Bold.ttf */; };
-		96DC8C7323674614004DC76A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6323674570004DC76A /* Poppins-SemiBold.ttf */; };
-		96DC8C7423674614004DC76A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6623674571004DC76A /* Poppins-Regular.ttf */; };
-		96DC8C7523674614004DC76A /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6723674571004DC76A /* Poppins-Light.ttf */; };
-		96DC8C7623674614004DC76A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6523674571004DC76A /* Poppins-Bold.ttf */; };
-		96DC8C7723674614004DC76A /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6423674571004DC76A /* Poppins-Medium.ttf */; };
 		96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */; };
 		96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7A23674CB3004DC76A /* PaygateService.swift */; };
 		96DC8C7F23674EC5004DC76A /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7E23674EC5004DC76A /* PaygateMapper.swift */; };
@@ -92,6 +87,16 @@
 		96DC8C8623675E08004DC76A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C8523675E07004DC76A /* StringExtension.swift */; };
 		96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C892367639F004DC76A /* OnboardingStartView.swift */; };
 		96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C8B236763FF004DC76A /* OnboardingStartView.xib */; };
+		96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C8E23679010004DC76A /* OnboardingAimsView.swift */; };
+		96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C9023679025004DC76A /* OnboardingAimsView.xib */; };
+		96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C9523679960004DC76A /* OnboardingAimTableCell.swift */; };
+		96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C9723679974004DC76A /* OnboardingAimTableCell.xib */; };
+		96DC8C9D23684298004DC76A /* OnboardingAimTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C9C23684298004DC76A /* OnboardingAimTableHeader.swift */; };
+		96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA023684CFB004DC76A /* Poppins-Bold.ttf */; };
+		96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA423684CFC004DC76A /* Poppins-Light.ttf */; };
+		96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA323684CFC004DC76A /* Poppins-Medium.ttf */; };
+		96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA123684CFC004DC76A /* Poppins-Regular.ttf */; };
+		96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,11 +169,6 @@
 		96C29F9423638F5A00E93CB1 /* MeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationService.swift; sourceTree = "<group>"; };
 		96C29F9623638F7000E93CB1 /* StoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryService.swift; sourceTree = "<group>"; };
 		96DC8C572366352E004DC76A /* PersonalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataService.swift; sourceTree = "<group>"; };
-		96DC8C6323674570004DC76A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		96DC8C6423674571004DC76A /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
-		96DC8C6523674571004DC76A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		96DC8C6623674571004DC76A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		96DC8C6723674571004DC76A /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		96DC8C69236745C2004DC76A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		96DC8C6A236745C8004DC76A /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		96DC8C6B236745CE004DC76A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -182,6 +182,16 @@
 		96DC8C8523675E07004DC76A /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		96DC8C892367639F004DC76A /* OnboardingStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStartView.swift; sourceTree = "<group>"; };
 		96DC8C8B236763FF004DC76A /* OnboardingStartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingStartView.xib; sourceTree = "<group>"; };
+		96DC8C8E23679010004DC76A /* OnboardingAimsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAimsView.swift; sourceTree = "<group>"; };
+		96DC8C9023679025004DC76A /* OnboardingAimsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingAimsView.xib; sourceTree = "<group>"; };
+		96DC8C9523679960004DC76A /* OnboardingAimTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAimTableCell.swift; sourceTree = "<group>"; };
+		96DC8C9723679974004DC76A /* OnboardingAimTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingAimTableCell.xib; sourceTree = "<group>"; };
+		96DC8C9C23684298004DC76A /* OnboardingAimTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAimTableHeader.swift; sourceTree = "<group>"; };
+		96DC8CA023684CFB004DC76A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		96DC8CA123684CFC004DC76A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		96DC8CA323684CFC004DC76A /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		96DC8CA423684CFC004DC76A /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -509,11 +519,11 @@
 		96DC8C6223674569004DC76A /* Poppins */ = {
 			isa = PBXGroup;
 			children = (
-				96DC8C6323674570004DC76A /* Poppins-SemiBold.ttf */,
-				96DC8C6623674571004DC76A /* Poppins-Regular.ttf */,
-				96DC8C6723674571004DC76A /* Poppins-Light.ttf */,
-				96DC8C6523674571004DC76A /* Poppins-Bold.ttf */,
-				96DC8C6423674571004DC76A /* Poppins-Medium.ttf */,
+				96DC8CA023684CFB004DC76A /* Poppins-Bold.ttf */,
+				96DC8CA423684CFC004DC76A /* Poppins-Light.ttf */,
+				96DC8CA323684CFC004DC76A /* Poppins-Medium.ttf */,
+				96DC8CA123684CFC004DC76A /* Poppins-Regular.ttf */,
+				96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */,
 			);
 			path = Poppins;
 			sourceTree = "<group>";
@@ -542,6 +552,7 @@
 		96DC8C8723676389004DC76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96DC8C8D23678FC1004DC76A /* OnboardingAimsView */,
 				96DC8C882367638E004DC76A /* OnboardingStartView */,
 			);
 			path = Views;
@@ -554,6 +565,26 @@
 				96DC8C8B236763FF004DC76A /* OnboardingStartView.xib */,
 			);
 			path = OnboardingStartView;
+			sourceTree = "<group>";
+		};
+		96DC8C8D23678FC1004DC76A /* OnboardingAimsView */ = {
+			isa = PBXGroup;
+			children = (
+				96DC8C922367984F004DC76A /* TableView */,
+				96DC8C8E23679010004DC76A /* OnboardingAimsView.swift */,
+				96DC8C9023679025004DC76A /* OnboardingAimsView.xib */,
+			);
+			path = OnboardingAimsView;
+			sourceTree = "<group>";
+		};
+		96DC8C922367984F004DC76A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				96DC8C9523679960004DC76A /* OnboardingAimTableCell.swift */,
+				96DC8C9723679974004DC76A /* OnboardingAimTableCell.xib */,
+				96DC8C9C23684298004DC76A /* OnboardingAimTableHeader.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		9DC2D87A62BE4923A2F99F36 /* Pods */ = {
@@ -633,13 +664,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
+				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
+				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
+				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
+				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
-				96DC8C7323674614004DC76A /* Poppins-SemiBold.ttf in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
-				96DC8C7423674614004DC76A /* Poppins-Regular.ttf in Resources */,
-				96DC8C7523674614004DC76A /* Poppins-Light.ttf in Resources */,
-				96DC8C7623674614004DC76A /* Poppins-Bold.ttf in Resources */,
-				96DC8C7723674614004DC76A /* Poppins-Medium.ttf in Resources */,
 				96DC8C6E2367460D004DC76A /* OpenSans-Semibold.ttf in Resources */,
 				96DC8C6F2367460D004DC76A /* OpenSans-Regular.ttf in Resources */,
 				96DC8C702367460D004DC76A /* OpenSans-Light.ttf in Resources */,
@@ -650,8 +681,10 @@
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
+				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
+				96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +752,9 @@
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
+				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
+				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
@@ -754,6 +789,7 @@
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
 				96C29EF123625DB600E93CB1 /* GlobalDefinitions.swift in Sources */,
+				96DC8C9D23684298004DC76A /* OnboardingAimTableHeader.swift in Sources */,
 				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,

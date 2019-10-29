@@ -1,0 +1,73 @@
+%PDF-1.7
+
+1 0 obj
+  << >>
+endobj
+
+2 0 obj
+  << /Length 3 0 R >>
+stream
+/DeviceRGB CS
+/DeviceRGB cs
+q
+1.000000 0.000000 -0.000000 1.000000 0.000000 0.000000 cm
+0.541176 0.498039 0.525490 scn
+12.403645 10.506836 m
+4.559166 3.047140 l
+1.552744 5.852926 l
+0.000000 4.308273 l
+4.512863 -0.000163 l
+4.532246 -0.000163 l
+13.979001 8.993685 l
+12.403645 10.506836 l
+h
+f*
+n
+Q
+
+endstream
+endobj
+
+3 0 obj
+  295
+endobj
+
+4 0 obj
+  << /MediaBox [ 0.000000 0.000000 13.979004 10.506836 ]
+     /Resources 1 0 R
+     /Contents 2 0 R
+     /Parent 5 0 R
+     /Type /Page
+  >>
+endobj
+
+5 0 obj
+  << /Kids [ 4 0 R ]
+     /Count 1
+     /Type /Pages
+  >>
+endobj
+
+6 0 obj
+  << /Type /Catalog
+     /Pages 5 0 R
+  >>
+endobj
+
+xref
+0 7
+0000000000 65535 f 
+0000000010 00000 n 
+0000000034 00000 n 
+0000000385 00000 n 
+0000000407 00000 n 
+0000000564 00000 n 
+0000000638 00000 n 
+trailer
+<< /ID [ (some) (id) ]
+   /Root 6 0 R
+   /Size 7
+>>
+startxref
+697
+%%EOF

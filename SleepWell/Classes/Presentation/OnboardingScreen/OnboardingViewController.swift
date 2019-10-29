@@ -11,12 +11,7 @@ import RxSwift
 
 final class OnboardingViewController: UIViewController {
     @IBOutlet weak var startView: OnboardingStartView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
+    @IBOutlet weak var aimsView: OnboardingAimsView!
     
     private let disposeBag = DisposeBag()
 }
@@ -40,8 +35,16 @@ extension OnboardingViewController: BindsToViewModel {
             .subscribe(onNext: { [weak self] in
                 viewModel.goToPaygate { _ in
                     self?.startView.hide {
-                        
+                        self?.aimsView.show()
                     }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        aimsView.nextWithAims
+            .subscribe(onNext: { [weak self] aims in
+                self?.aimsView.hide {
+                    
                 }
             })
             .disposed(by: disposeBag)
