@@ -29,10 +29,10 @@ extension ScreenAssembly {
             router: VC.ViewModel.Router(transitionHandler: vc),
             dependecies: assembleDependencies()
         )
-        
+        vc.loadViewIfNeeded()
         let output = vc.bind(to: interface, with: input)
         
-        vc.loadViewIfNeeded()
+        
         
         return (vc: vc, output: output)
     }

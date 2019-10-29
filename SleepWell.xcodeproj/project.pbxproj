@@ -8,6 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		4E11B3BE0E63C7A8C09FF4AE /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */; };
+		86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */; };
+		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
+		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
+		86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AD2366EC8300BC6EDA /* TagCellModel.swift */; };
+		86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */; };
+		86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848B22366F13900BC6EDA /* HeaderTitleView.xib */; };
+		86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C848B52367001000BC6EDA /* StoriesScreen.storyboard */; };
+		86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848B62367001000BC6EDA /* StoriesRouter.swift */; };
+		86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848B72367001000BC6EDA /* StoriesViewController.swift */; };
+		86C848BD2367001000BC6EDA /* StoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848B82367001000BC6EDA /* StoriesAssembly.swift */; };
+		86C848BE2367001000BC6EDA /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848B92367001000BC6EDA /* StoriesViewModel.swift */; };
+		86C848C12367007C00BC6EDA /* StoriesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848C02367007C00BC6EDA /* StoriesHeaderView.swift */; };
+		86C848C32367008A00BC6EDA /* StoriesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848C22367008A00BC6EDA /* StoriesHeaderView.xib */; };
+		86C848C72367027900BC6EDA /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848C52367027900BC6EDA /* StoryCell.swift */; };
+		86C848C82367027900BC6EDA /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848C62367027900BC6EDA /* StoryCell.xib */; };
+		86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA8C8023678A5300692EE5 /* StoriesCellType.swift */; };
+		86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */; };
+		86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */; };
+		86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB423645C3B00B0F5EA /* MeditateViewController.swift */; };
+		86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB523645C3B00B0F5EA /* MeditateAssembly.swift */; };
+		86F98CBB23645C3B00B0F5EA /* MeditateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB623645C3B00B0F5EA /* MeditateViewModel.swift */; };
+		86F98CBE23645F7800B0F5EA /* MeditateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CBD23645F7800B0F5EA /* MeditateHeaderView.swift */; };
+		86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CBF236460CD00B0F5EA /* MeditateHeaderView.xib */; };
+		86F98CC4236463AE00B0F5EA /* MeditateTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CC2236463AE00B0F5EA /* MeditateTagCell.swift */; };
+		86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CC3236463AE00B0F5EA /* MeditateTagCell.xib */; };
+		86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CCD23646A3500B0F5EA /* MeditateCell.swift */; };
+		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
+		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -76,6 +104,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateCellType.swift; sourceTree = "<group>"; };
+		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
+		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
+		86C848AD2366EC8300BC6EDA /* TagCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellModel.swift; sourceTree = "<group>"; };
+		86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
+		86C848B22366F13900BC6EDA /* HeaderTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTitleView.xib; sourceTree = "<group>"; };
+		86C848B52367001000BC6EDA /* StoriesScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoriesScreen.storyboard; sourceTree = "<group>"; };
+		86C848B62367001000BC6EDA /* StoriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesRouter.swift; sourceTree = "<group>"; };
+		86C848B72367001000BC6EDA /* StoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		86C848B82367001000BC6EDA /* StoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesAssembly.swift; sourceTree = "<group>"; };
+		86C848B92367001000BC6EDA /* StoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
+		86C848C02367007C00BC6EDA /* StoriesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesHeaderView.swift; sourceTree = "<group>"; };
+		86C848C22367008A00BC6EDA /* StoriesHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesHeaderView.xib; sourceTree = "<group>"; };
+		86C848C52367027900BC6EDA /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		86C848C62367027900BC6EDA /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
+		86CA8C8023678A5300692EE5 /* StoriesCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCellType.swift; sourceTree = "<group>"; };
+		86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeditateScreen.storyboard; sourceTree = "<group>"; };
+		86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateRouter.swift; sourceTree = "<group>"; };
+		86F98CB423645C3B00B0F5EA /* MeditateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateViewController.swift; sourceTree = "<group>"; };
+		86F98CB523645C3B00B0F5EA /* MeditateAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateAssembly.swift; sourceTree = "<group>"; };
+		86F98CB623645C3B00B0F5EA /* MeditateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateViewModel.swift; sourceTree = "<group>"; };
+		86F98CBD23645F7800B0F5EA /* MeditateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateHeaderView.swift; sourceTree = "<group>"; };
+		86F98CBF236460CD00B0F5EA /* MeditateHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateHeaderView.xib; sourceTree = "<group>"; };
+		86F98CC2236463AE00B0F5EA /* MeditateTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateTagCell.swift; sourceTree = "<group>"; };
+		86F98CC3236463AE00B0F5EA /* MeditateTagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateTagCell.xib; sourceTree = "<group>"; };
+		86F98CCD23646A3500B0F5EA /* MeditateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateCell.swift; sourceTree = "<group>"; };
+		86F98CCE23646A3500B0F5EA /* MeditateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateCell.xib; sourceTree = "<group>"; };
+		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +216,114 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86152F6D2365A5220006FF56 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		86B2BFF22366396F00AF2B33 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */,
+				86C848AD2366EC8300BC6EDA /* TagCellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86C848B12366F12300BC6EDA /* HeaderTitleView */ = {
+			isa = PBXGroup;
+			children = (
+				86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */,
+				86C848B22366F13900BC6EDA /* HeaderTitleView.xib */,
+			);
+			path = HeaderTitleView;
+			sourceTree = "<group>";
+		};
+		86C848B42366FFF300BC6EDA /* StoriesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				86CA8C7F23678A2F00692EE5 /* Model */,
+				86C848C42367023C00BC6EDA /* Cell */,
+				86C848BF2367005900BC6EDA /* View */,
+				86C848B62367001000BC6EDA /* StoriesRouter.swift */,
+				86C848B72367001000BC6EDA /* StoriesViewController.swift */,
+				86C848B82367001000BC6EDA /* StoriesAssembly.swift */,
+				86C848B92367001000BC6EDA /* StoriesViewModel.swift */,
+			);
+			path = StoriesScreen;
+			sourceTree = "<group>";
+		};
+		86C848BF2367005900BC6EDA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				86C848C02367007C00BC6EDA /* StoriesHeaderView.swift */,
+				86C848C22367008A00BC6EDA /* StoriesHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		86C848C42367023C00BC6EDA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				86C848C52367027900BC6EDA /* StoryCell.swift */,
+				86C848C62367027900BC6EDA /* StoryCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		86CA8C7E2367894B00692EE5 /* PremiumUnlockCell */ = {
+			isa = PBXGroup;
+			children = (
+				86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */,
+				86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */,
+			);
+			path = PremiumUnlockCell;
+			sourceTree = "<group>";
+		};
+		86CA8C7F23678A2F00692EE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86CA8C8023678A5300692EE5 /* StoriesCellType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		86F98C832364589C00B0F5EA /* MeditateScreen */ = {
+			isa = PBXGroup;
+			children = (
+				86B2BFF22366396F00AF2B33 /* Models */,
+				86F98CC12364639200B0F5EA /* Cell */,
+				86F98CBC23645F5F00B0F5EA /* View */,
+				86F98CB623645C3B00B0F5EA /* MeditateViewModel.swift */,
+				86F98CB423645C3B00B0F5EA /* MeditateViewController.swift */,
+				86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */,
+				86F98CB523645C3B00B0F5EA /* MeditateAssembly.swift */,
+			);
+			path = MeditateScreen;
+			sourceTree = "<group>";
+		};
+		86F98CBC23645F5F00B0F5EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				86F98CBD23645F7800B0F5EA /* MeditateHeaderView.swift */,
+				86F98CBF236460CD00B0F5EA /* MeditateHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		86F98CC12364639200B0F5EA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				86F98CC2236463AE00B0F5EA /* MeditateTagCell.swift */,
+				86F98CC3236463AE00B0F5EA /* MeditateTagCell.xib */,
+				86F98CCD23646A3500B0F5EA /* MeditateCell.swift */,
+				86F98CCE23646A3500B0F5EA /* MeditateCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		96C29EBC2362564000E93CB1 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +369,7 @@
 		96C29EDD236259E300E93CB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				86152F6D2365A5220006FF56 /* Fonts */,
 				96C29EC82362564000E93CB1 /* AppDelegate.swift */,
 				96C29EDE23625A4900E93CB1 /* Storyboards */,
 				96C29F112362649100E93CB1 /* Strings */,
@@ -217,6 +382,8 @@
 		96C29EDE23625A4900E93CB1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				86C848B52367001000BC6EDA /* StoriesScreen.storyboard */,
+				86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */,
 				96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */,
 				96C29F0F2362633200E93CB1 /* SplashScreen.storyboard */,
 				96C29F6C2363527100E93CB1 /* PaygateScreen.storyboard */,
@@ -229,6 +396,8 @@
 		96C29EDF23625A8C00E93CB1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				86C848B42366FFF300BC6EDA /* StoriesScreen */,
+				86F98C832364589C00B0F5EA /* MeditateScreen */,
 				96C29F5323634D0000E93CB1 /* MainScreen */,
 				96C29F5223634CB400E93CB1 /* OnboardingScreen */,
 				96C29F5123634CA600E93CB1 /* PaygateScreen */,
@@ -295,6 +464,9 @@
 		96C29EE523625AC000E93CB1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				86CA8C7E2367894B00692EE5 /* PremiumUnlockCell */,
+				86C848B12366F12300BC6EDA /* HeaderTitleView */,
+				86F98CD123646A9C00B0F5EA /* GradientView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -528,13 +700,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
+				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
+				86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
+				86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */,
+				86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */,
+				86C848C32367008A00BC6EDA /* StoriesHeaderView.xib in Resources */,
+				86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */,
+				86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
+				86C848C82367027900BC6EDA /* StoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,28 +770,38 @@
 			files = (
 				96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */,
 				96C29F8923638AB900E93CB1 /* MeditationDetail.swift in Sources */,
+				86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */,
 				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
 				96C29F502363483000E93CB1 /* PurchaseError.swift in Sources */,
+				86F98CBB23645C3B00B0F5EA /* MeditateViewModel.swift in Sources */,
 				96C29F6323634D6C00E93CB1 /* OnboardingAssembly.swift in Sources */,
 				96C29F452363421800E93CB1 /* CheckUserTokenRequest.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
+				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
+				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
+				86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */,
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
 				96C29F1C236264D900E93CB1 /* View.swift in Sources */,
+				86C848BD2367001000BC6EDA /* StoriesAssembly.swift in Sources */,
 				96C29F01236260F600E93CB1 /* UILabelExtension.swift in Sources */,
 				96C29F6B23634D9900E93CB1 /* MainAssembly.swift in Sources */,
 				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
+				86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */,
 				96C29F6923634D8C00E93CB1 /* MainRouter.swift in Sources */,
+				86C848C12367007C00BC6EDA /* StoriesHeaderView.swift in Sources */,
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
 				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
+				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
+				86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */,
 				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
@@ -630,21 +821,30 @@
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
+				86F98CBE23645F7800B0F5EA /* MeditateHeaderView.swift in Sources */,
+				86C848BE2367001000BC6EDA /* StoriesViewModel.swift in Sources */,
 				96C29EF123625DB600E93CB1 /* GlobalDefinitions.swift in Sources */,
+				86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */,
 				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
+				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
+				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
+				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,
 				96C29F03236260FA00E93CB1 /* UINavigationItemExtension.swift in Sources */,
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
+				86F98CC4236463AE00B0F5EA /* MeditateTagCell.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,
+				86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */,
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
+				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,7 +990,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SC7MZ85J68;
+				DEVELOPMENT_TEAM = YN599PDANN;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -810,7 +1010,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SC7MZ85J68;
+				DEVELOPMENT_TEAM = YN599PDANN;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

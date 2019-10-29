@@ -12,4 +12,9 @@ import RxSwift
 class SplashViewController: UIViewController {
     private lazy var router = Router(transitionHandler: self)
     private let viewModel = SplashViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        router.presentChild(type: StoriesAssembly.self)
+    }
 }
