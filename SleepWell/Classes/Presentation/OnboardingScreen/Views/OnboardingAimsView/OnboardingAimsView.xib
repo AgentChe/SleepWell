@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingAimsView" customModule="SleepWell" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="iN0-l3-epB" id="YqL-2f-PDY"/>
+                <outlet property="nextButton" destination="51H-aT-zTh" id="OiH-0x-P72"/>
+                <outlet property="tableView" destination="1pg-ec-ey8" id="hfu-84-fER"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="150" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1pg-ec-ey8">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="751"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51H-aT-zTh">
+                    <rect key="frame" x="34" y="776" width="346" height="56"/>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.89411764705882346" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="ONr-eT-ERr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                    <state key="normal" title="next">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="28"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="next"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="51H-aT-zTh" secondAttribute="trailing" constant="34" id="Eup-mJ-CUE"/>
+                <constraint firstItem="1pg-ec-ey8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OV6-Mp-ov7"/>
+                <constraint firstAttribute="trailing" secondItem="1pg-ec-ey8" secondAttribute="trailing" id="a9H-bw-HtQ"/>
+                <constraint firstItem="1pg-ec-ey8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="evY-yh-aK8"/>
+                <constraint firstItem="51H-aT-zTh" firstAttribute="top" secondItem="1pg-ec-ey8" secondAttribute="bottom" constant="25" id="h9d-C3-a7h"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="51H-aT-zTh" secondAttribute="bottom" constant="30" id="qfJ-6O-gVh"/>
+                <constraint firstItem="51H-aT-zTh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="34" id="val-i4-O4I"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

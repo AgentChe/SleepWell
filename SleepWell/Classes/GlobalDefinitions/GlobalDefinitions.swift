@@ -3,8 +3,8 @@
 //
 
 final class GlobalDefinitions {
-    static let domainUrl = "http://test.sleepwell.app" // http://sleepwell.app - prod, http://test.sleepwell.app - dev
-    static let apiKey = #"zP(m(\a)*Rj4(h{r"# // 2m:vGJb5bQ5A)N,M - prod, #"zP(m(\a)*Rj4(h{r"# - dev
+    static let domainUrl = "http://test.s1eep.app" // https://s1eep.app - prod, http://test.s1eep.app - dev
+    static let apiKey = "1yyl1WBNrlD2MVK" // xPh20WC5EYuboYQ - prod, 1yyl1WBNrlD2MVK - dev
     static let privacyPolicyUrl = ""
     static let termsOfServiceUrl = ""
     static let contactUsUrl = ""

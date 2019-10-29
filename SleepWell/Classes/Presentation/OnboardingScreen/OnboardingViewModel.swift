@@ -10,10 +10,15 @@ import RxSwift
 import RxCocoa
 
 protocol OnboardingViewModelInterface {
-    
+    func goToPaygate(paygateCompletion: @escaping (PaygateCompletionResult) -> ())
 }
 
 final class OnboardingViewModel: BindableViewModel {
+    enum Behave {
+        case simple
+        case requirePersonalData
+    }
+    
     typealias Interface = OnboardingViewModelInterface
     
     lazy var router: OnboardingRouter = deferred()
@@ -23,5 +28,7 @@ final class OnboardingViewModel: BindableViewModel {
 }
 
 extension OnboardingViewModel: OnboardingViewModelInterface {
-    
+    func goToPaygate(paygateCompletion: @escaping (PaygateCompletionResult) -> ()) {
+        router.goToPaygate(completion: paygateCompletion)
+    }
 }

@@ -9,11 +9,11 @@
 import Alamofire
 
 struct PurchaseValidateRequest: APIRequestBody {
-    private let receipt: String?
+    private let receipt: String
     private let userToken: String?
     private let version: String?
     
-    init(receipt: String?, userToken: String?, version: String?) {
+    init(receipt: String, userToken: String?, version: String?) {
         self.receipt = receipt
         self.userToken = userToken
         self.version = version
@@ -32,7 +32,7 @@ struct PurchaseValidateRequest: APIRequestBody {
     }
     
     var parameters: Parameters? {
-        return ["receipt": receipt ?? "null",
+        return ["receipt": receipt,
                 "version": version ?? "1"]
     }
 }
