@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		4E11B3BE0E63C7A8C09FF4AE /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */; };
 		8441FB7923636932001DC085 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7823636932001DC085 /* AudioPlayerService.swift */; };
-		8441FB7E2363732C001DC085 /* PlayerScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7D2363732C001DC085 /* PlayerScreenViewController.swift */; };
-		8441FB8023637341001DC085 /* PlayerScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7F23637341001DC085 /* PlayerScreenViewModel.swift */; };
-		8441FB8223637355001DC085 /* PlayerScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8123637355001DC085 /* PlayerScreenRouter.swift */; };
-		8441FB8423637366001DC085 /* PlayerScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8323637366001DC085 /* PlayerScreenAssembly.swift */; };
+		8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7D2363732C001DC085 /* PlayerViewController.swift */; };
+		8441FB8023637341001DC085 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7F23637341001DC085 /* PlayerViewModel.swift */; };
+		8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8123637355001DC085 /* PlayerRouter.swift */; };
+		8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8323637366001DC085 /* PlayerAssembly.swift */; };
 		8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB85236374CA001DC085 /* PlayerScreen.storyboard */; };
 		8441FB8823639684001DC085 /* image97.png in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB8723639684001DC085 /* image97.png */; };
+		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
+		84643EE12364A2E100C0462E /* testSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84643EE02364A2E100C0462E /* testSound.mp3 */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -84,12 +86,14 @@
 
 /* Begin PBXFileReference section */
 		8441FB7823636932001DC085 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
-		8441FB7D2363732C001DC085 /* PlayerScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScreenViewController.swift; sourceTree = "<group>"; };
-		8441FB7F23637341001DC085 /* PlayerScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScreenViewModel.swift; sourceTree = "<group>"; };
-		8441FB8123637355001DC085 /* PlayerScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScreenRouter.swift; sourceTree = "<group>"; };
-		8441FB8323637366001DC085 /* PlayerScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScreenAssembly.swift; sourceTree = "<group>"; };
+		8441FB7D2363732C001DC085 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		8441FB7F23637341001DC085 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		8441FB8123637355001DC085 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		8441FB8323637366001DC085 /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
 		8441FB85236374CA001DC085 /* PlayerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerScreen.storyboard; sourceTree = "<group>"; };
 		8441FB8723639684001DC085 /* image97.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image97.png; sourceTree = "<group>"; };
+		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
+		84643EE02364A2E100C0462E /* testSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSound.mp3; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,10 +181,10 @@
 		8441FB7C23637306001DC085 /* PlayerScreen */ = {
 			isa = PBXGroup;
 			children = (
-				8441FB7D2363732C001DC085 /* PlayerScreenViewController.swift */,
-				8441FB7F23637341001DC085 /* PlayerScreenViewModel.swift */,
-				8441FB8123637355001DC085 /* PlayerScreenRouter.swift */,
-				8441FB8323637366001DC085 /* PlayerScreenAssembly.swift */,
+				8441FB7D2363732C001DC085 /* PlayerViewController.swift */,
+				8441FB7F23637341001DC085 /* PlayerViewModel.swift */,
+				8441FB8123637355001DC085 /* PlayerRouter.swift */,
+				8441FB8323637366001DC085 /* PlayerAssembly.swift */,
 			);
 			path = PlayerScreen;
 			sourceTree = "<group>";
@@ -278,6 +282,7 @@
 		96C29EE123625A9E00E93CB1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				84643EE02364A2E100C0462E /* testSound.mp3 */,
 				8441FB8723639684001DC085 /* image97.png */,
 				8441FB7823636932001DC085 /* AudioPlayerService.swift */,
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
@@ -324,6 +329,7 @@
 		96C29EE523625AC000E93CB1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				845424692364896D002862D9 /* AudioSlider.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 			files = (
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
+				84643EE12364A2E100C0462E /* testSound.mp3 in Resources */,
 				8441FB8823639684001DC085 /* image97.png in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
@@ -619,19 +626,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */,
+				8454246A2364896D002862D9 /* AudioSlider.swift in Sources */,
 				96C29F8923638AB900E93CB1 /* MeditationDetail.swift in Sources */,
 				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
-				8441FB8223637355001DC085 /* PlayerScreenRouter.swift in Sources */,
+				8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */,
 				96C29F502363483000E93CB1 /* PurchaseError.swift in Sources */,
 				96C29F6323634D6C00E93CB1 /* OnboardingAssembly.swift in Sources */,
 				96C29F452363421800E93CB1 /* CheckUserTokenRequest.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
-				8441FB8423637366001DC085 /* PlayerScreenAssembly.swift in Sources */,
+				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
@@ -649,7 +657,7 @@
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
-				8441FB7E2363732C001DC085 /* PlayerScreenViewController.swift in Sources */,
+				8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */,
 				96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */,
 				96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */,
 				96C29EED23625D0A00E93CB1 /* ApiError.swift in Sources */,
@@ -674,7 +682,7 @@
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,
 				96C29F03236260FA00E93CB1 /* UINavigationItemExtension.swift in Sources */,
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
-				8441FB8023637341001DC085 /* PlayerScreenViewModel.swift in Sources */,
+				8441FB8023637341001DC085 /* PlayerViewModel.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,

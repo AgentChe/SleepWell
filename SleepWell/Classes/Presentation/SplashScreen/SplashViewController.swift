@@ -12,4 +12,14 @@ import RxSwift
 class SplashViewController: UIViewController {
     private lazy var router = Router(transitionHandler: self)
     private let viewModel = SplashViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let test = MeditationDetail()
+        
+        router.presentChild(type: PlayerAssembly.self, input: .init(
+            recording: test
+        ))
+    }
 }
