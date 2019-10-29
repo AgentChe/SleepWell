@@ -15,13 +15,47 @@
                     <view key="view" contentMode="scaleToFill" id="4pa-J4-lw2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_background" translatesAutoresizingMaskIntoConstraints="NO" id="Ygd-9a-wJG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yS2-eG-qpn" customClass="OnboardingStartView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crm-rv-6io" customClass="OnboardingAimsView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="crm-rv-6io" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="2rB-Ls-3sb"/>
+                            <constraint firstAttribute="trailing" secondItem="Ygd-9a-wJG" secondAttribute="trailing" id="5Li-lS-HvF"/>
+                            <constraint firstItem="crm-rv-6io" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="8kG-z0-0NQ"/>
+                            <constraint firstAttribute="trailing" secondItem="yS2-eG-qpn" secondAttribute="trailing" id="CXx-k1-OZ5"/>
+                            <constraint firstItem="yS2-eG-qpn" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="Hai-dG-Nlf"/>
+                            <constraint firstAttribute="bottom" secondItem="yS2-eG-qpn" secondAttribute="bottom" id="a0H-BU-Ly7"/>
+                            <constraint firstAttribute="bottom" secondItem="Ygd-9a-wJG" secondAttribute="bottom" id="bPn-wv-oUf"/>
+                            <constraint firstItem="Ygd-9a-wJG" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="gpN-h2-dbw"/>
+                            <constraint firstAttribute="bottom" secondItem="crm-rv-6io" secondAttribute="bottom" id="oQ1-Lu-q7Y"/>
+                            <constraint firstItem="yS2-eG-qpn" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="rWu-lR-urb"/>
+                            <constraint firstAttribute="trailing" secondItem="crm-rv-6io" secondAttribute="trailing" id="s0w-gK-GD8"/>
+                            <constraint firstItem="Ygd-9a-wJG" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="zub-o7-oFQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="J50-bt-Uv1"/>
                     </view>
+                    <connections>
+                        <outlet property="aimsView" destination="crm-rv-6io" id="1Zq-ei-5mr"/>
+                        <outlet property="startView" destination="yS2-eG-qpn" id="oc2-49-AaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skP-9F-gW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20" y="160"/>
+            <point key="canvasLocation" x="-20.289855072463769" y="159.375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="onboarding_background" width="375" height="812"/>
+    </resources>
 </document>

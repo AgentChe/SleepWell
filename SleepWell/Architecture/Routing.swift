@@ -111,7 +111,6 @@ extension Router {
 }
 
 extension Router {
-    
     @discardableResult
     func presentChild<Assembly: ScreenAssembly>(type: Assembly.Type) -> Assembly.VC.Output where Assembly.VC.Input == Void {
         return presentChild(type: type, input: ())

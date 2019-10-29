@@ -14,4 +14,9 @@ final class OnboardingRouter: Routing {
     required init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
     }
+    
+    func goToPaygate(completion: @escaping (PaygateCompletionResult) -> ()) {
+        router.present(type: PaygateAssembly.self,
+                       input: PaygateViewController.Input(openedFrom: .onboarding, completion: completion))
+    }
 }

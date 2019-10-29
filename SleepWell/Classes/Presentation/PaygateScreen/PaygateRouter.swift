@@ -14,4 +14,8 @@ final class PaygateRouter: Routing {
     required init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
     }
+    
+    func dismiss() {
+        router.dismiss()
+    }
 }

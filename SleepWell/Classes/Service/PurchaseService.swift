@@ -21,19 +21,16 @@ class PurchaseService {
         }
     }
     
-    func paymentValidate() -> Single<Session?> {
+    func paymentValidate(receipt: String) -> Single<Session?> {
         let userToken = SessionService.userToken
         
-        return receipt
-            .flatMap { receipt -> Single<Session?> in
-                let request = PurchaseValidateRequest(receipt: receipt,
-                                                      userToken: userToken,
-                                                      version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String)
-                
-                return RestAPITransport()
-                    .callServerApi(requestBody: request)
-                    .map { Session.parseFromDictionary(any: $0) }
-            }
+        let request = PurchaseValidateRequest(receipt: receipt,
+                                              userToken: userToken,
+                                              version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { Session.parseFromDictionary(any: $0) }
             .do(onSuccess: { session in
                 SessionService.store(userToken: session?.userToken)
             })
@@ -86,7 +83,7 @@ class PurchaseService {
         }
     }
     
-    private var receipt: Single<String?> {
+    var receipt: Single<String?> {
         return Single<String?>.create { single in
             let receipt = SwiftyStoreKit.localReceiptData?.base64EncodedString()
             

@@ -10,6 +10,10 @@ final class PaygateAssembly: ScreenAssembly {
     typealias VC = PaygateViewController
     
     func assembleDependencies() -> VC.ViewModel.Dependencies {
-        return VC.ViewModel.Dependencies()
+        return VC.ViewModel.Dependencies(
+            paygateService: PaygateService(),
+            purchaseService: PurchaseService(),
+            personalDataService: PersonalDataService()
+        )
     }
 }
