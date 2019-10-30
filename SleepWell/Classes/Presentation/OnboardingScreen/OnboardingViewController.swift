@@ -12,6 +12,7 @@ import RxSwift
 final class OnboardingViewController: UIViewController {
     @IBOutlet weak var startView: OnboardingStartView!
     @IBOutlet weak var aimsView: OnboardingAimsView!
+    @IBOutlet weak var personalDataView: OnboardingPersonalDataView!
     
     private let disposeBag = DisposeBag()
 }
@@ -44,6 +45,14 @@ extension OnboardingViewController: BindsToViewModel {
         aimsView.nextWithAims
             .subscribe(onNext: { [weak self] aims in
                 self?.aimsView.hide {
+                    self?.personalDataView.show()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        personalDataView.nextWithPersonalData
+            .subscribe(onNext: { [weak self] personalData in
+                self?.personalDataView.hide {
                     
                 }
             })

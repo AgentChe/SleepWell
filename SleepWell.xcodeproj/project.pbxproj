@@ -15,6 +15,10 @@
 		8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8323637366001DC085 /* PlayerAssembly.swift */; };
 		8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB85236374CA001DC085 /* PlayerScreen.storyboard */; };
 		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
+		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
+		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
+		9685528623688C1100A22E21 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528523688C1100A22E21 /* CheckView.swift */; };
+		968552882368FB1300A22E21 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552872368FB1300A22E21 /* PickerView.swift */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -115,6 +119,10 @@
 		8441FB85236374CA001DC085 /* PlayerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerScreen.storyboard; sourceTree = "<group>"; };
 		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
+		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
+		9685528523688C1100A22E21 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
+		968552872368FB1300A22E21 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96C29ED12362564200E93CB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -231,6 +239,15 @@
 				8441FB8323637366001DC085 /* PlayerAssembly.swift */,
 			);
 			path = PlayerScreen;
+            sourceTree = "<group>";
+        };
+		968552802368875200A22E21 /* OnboardingPersonalDataView */ = {
+			isa = PBXGroup;
+			children = (
+				968552812368877000A22E21 /* OnboardingPersonalDataView.swift */,
+				968552832368878000A22E21 /* OnboardingPersonalDataView.xib */,
+			);
+			path = OnboardingPersonalDataView;
 			sourceTree = "<group>";
 		};
 		96C29EBC2362564000E93CB1 = {
@@ -378,6 +395,7 @@
 			children = (
 				845424692364896D002862D9 /* AudioSlider.swift */,
 				96DC8C8023675D51004DC76A /* ErrorView */,
+				968552872368FB1300A22E21 /* PickerView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -581,8 +599,10 @@
 		96DC8C8723676389004DC76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				968552802368875200A22E21 /* OnboardingPersonalDataView */,
 				96DC8C8D23678FC1004DC76A /* OnboardingAimsView */,
 				96DC8C882367638E004DC76A /* OnboardingStartView */,
+				9685528523688C1100A22E21 /* CheckView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -707,6 +727,7 @@
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
+				968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
@@ -818,6 +839,7 @@
 				96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
+				968552882368FB1300A22E21 /* PickerView.swift in Sources */,
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
@@ -839,8 +861,10 @@
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
+				968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
+				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@ enum Gender: Int {
 struct PersonalData {
     let aims: [Aim]
     let gender: Gender
+    let birthYear: Int 
     let pushToken: String?
     let pushTime: String?
 }

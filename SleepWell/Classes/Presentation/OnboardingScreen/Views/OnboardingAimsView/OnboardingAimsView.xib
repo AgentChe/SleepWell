@@ -26,11 +26,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="150" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1pg-ec-ey8">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="751"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="761"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51H-aT-zTh">
-                    <rect key="frame" x="34" y="776" width="346" height="56"/>
+                    <rect key="frame" x="34" y="786" width="346" height="56"/>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.89411764705882346" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="ONr-eT-ERr"/>
@@ -54,7 +54,7 @@
                 <constraint firstAttribute="trailing" secondItem="1pg-ec-ey8" secondAttribute="trailing" id="a9H-bw-HtQ"/>
                 <constraint firstItem="1pg-ec-ey8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="evY-yh-aK8"/>
                 <constraint firstItem="51H-aT-zTh" firstAttribute="top" secondItem="1pg-ec-ey8" secondAttribute="bottom" constant="25" id="h9d-C3-a7h"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="51H-aT-zTh" secondAttribute="bottom" constant="30" id="qfJ-6O-gVh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="51H-aT-zTh" secondAttribute="bottom" constant="20" id="qfJ-6O-gVh"/>
                 <constraint firstItem="51H-aT-zTh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="34" id="val-i4-O4I"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
