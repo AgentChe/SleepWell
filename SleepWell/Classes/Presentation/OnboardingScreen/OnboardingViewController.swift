@@ -49,5 +49,13 @@ extension OnboardingViewController: BindsToViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        personalDataView.nextWithPersonalData
+            .subscribe(onNext: { [weak self] personalData in
+                self?.personalDataView.hide {
+                    
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
