@@ -29,3 +29,7 @@
 "female" = "Female";
 "other" = "Other";
 "i_was_born_in" = "I was born in";
+"skip" = "Skip";
+"set_your_bedtime" = "Set Your Bedtime";
+"bedtime_info" = "We can send you a reminder to go to sleep. Having a consistent bedtime is key to better sleep.";
+"swipe_left_or_right_to_change_scene" = "Swipe left or right\nto change scene";

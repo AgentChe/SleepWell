@@ -31,6 +31,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8Z-CY-6US" customClass="OnboardingBedtimeView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbB-SJ-omc" customClass="OnboardingWelcomeView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -39,24 +47,34 @@
                             <constraint firstAttribute="trailing" secondItem="Ygd-9a-wJG" secondAttribute="trailing" id="5Li-lS-HvF"/>
                             <constraint firstItem="crm-rv-6io" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="8kG-z0-0NQ"/>
                             <constraint firstAttribute="trailing" secondItem="yS2-eG-qpn" secondAttribute="trailing" id="CXx-k1-OZ5"/>
+                            <constraint firstAttribute="bottom" secondItem="EbB-SJ-omc" secondAttribute="bottom" id="FRT-nQ-GZ0"/>
+                            <constraint firstAttribute="trailing" secondItem="EbB-SJ-omc" secondAttribute="trailing" id="GaQ-eM-WjK"/>
                             <constraint firstItem="yS2-eG-qpn" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="Hai-dG-Nlf"/>
+                            <constraint firstAttribute="bottom" secondItem="M8Z-CY-6US" secondAttribute="bottom" id="Ssa-wF-nbT"/>
+                            <constraint firstItem="EbB-SJ-omc" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="YHT-xt-ZgL"/>
                             <constraint firstAttribute="bottom" secondItem="yS2-eG-qpn" secondAttribute="bottom" id="a0H-BU-Ly7"/>
                             <constraint firstAttribute="bottom" secondItem="Ygd-9a-wJG" secondAttribute="bottom" id="bPn-wv-oUf"/>
+                            <constraint firstItem="EbB-SJ-omc" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="bha-81-I3l"/>
                             <constraint firstAttribute="bottom" secondItem="SOb-g3-lmr" secondAttribute="bottom" id="cYK-u0-PUs"/>
+                            <constraint firstItem="M8Z-CY-6US" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="fzi-rJ-y4p"/>
                             <constraint firstItem="Ygd-9a-wJG" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="gpN-h2-dbw"/>
+                            <constraint firstItem="M8Z-CY-6US" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="hJy-gO-lXO"/>
                             <constraint firstAttribute="trailing" secondItem="SOb-g3-lmr" secondAttribute="trailing" id="l0B-D8-dr5"/>
                             <constraint firstAttribute="bottom" secondItem="crm-rv-6io" secondAttribute="bottom" id="oQ1-Lu-q7Y"/>
                             <constraint firstItem="SOb-g3-lmr" firstAttribute="top" secondItem="4pa-J4-lw2" secondAttribute="top" id="rCc-2l-5eS"/>
                             <constraint firstItem="yS2-eG-qpn" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="rWu-lR-urb"/>
                             <constraint firstAttribute="trailing" secondItem="crm-rv-6io" secondAttribute="trailing" id="s0w-gK-GD8"/>
+                            <constraint firstAttribute="trailing" secondItem="M8Z-CY-6US" secondAttribute="trailing" id="ywc-5w-jPF"/>
                             <constraint firstItem="Ygd-9a-wJG" firstAttribute="leading" secondItem="4pa-J4-lw2" secondAttribute="leading" id="zub-o7-oFQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J50-bt-Uv1"/>
                     </view>
                     <connections>
                         <outlet property="aimsView" destination="crm-rv-6io" id="1Zq-ei-5mr"/>
+                        <outlet property="bedtimeView" destination="M8Z-CY-6US" id="i5k-0P-wco"/>
                         <outlet property="personalDataView" destination="SOb-g3-lmr" id="dQy-J0-ggL"/>
                         <outlet property="startView" destination="yS2-eG-qpn" id="oc2-49-AaB"/>
+                        <outlet property="welcomeView" destination="EbB-SJ-omc" id="U08-aL-edL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skP-9F-gW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
