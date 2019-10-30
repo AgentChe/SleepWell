@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class OnboardingViewController: UIViewController {
     @IBOutlet weak var startView: OnboardingStartView!
@@ -98,23 +99,18 @@ extension OnboardingViewController: BindsToViewModel {
         
         welcomeView.nextUpWithSwipeDirection
             .subscribe(onNext: { [weak self] swipeDirection in
-                guard let `self` = self else {
-                    return
-                }
-                
-                self.welcomeView.hide(swipeDirection: swipeDirection) {
-                    guard let paygateCompletionResult = paygateResult else {
-                        return
-                    }
-                    
-                    viewModel
-                        .complete(with: paygateCompletionResult, behave: input.behave)
-                        .subscribe(onSuccess: { behave in
+                self?.welcomeView.hide(swipeDirection: swipeDirection) {
+                    viewModel.complete(with: paygateResult!, behave: input.behave)
+                        .emit(onNext: { behave in
                             viewModel.goToMainScreen(behave: behave)
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: self!.disposeBag)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.buildPersonalData()
+            .emit()
             .disposed(by: disposeBag)
     }
 }

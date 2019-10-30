@@ -18,6 +18,6 @@ class CheckResponseForCodeError {
             throw RxError.noElements
         }
         
-        return code >= 200 && code < 300
+        return code < 200 && code > 299
     }
 }

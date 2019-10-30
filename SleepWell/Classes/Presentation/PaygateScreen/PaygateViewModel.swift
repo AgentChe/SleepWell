@@ -73,13 +73,17 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
         let purchase = dependencies.purchaseService
             .buySubscription(productId: productId)
             .flatMap { [dependencies, openedFrom] _ -> Single<Void> in
-                switch openedFrom! {
-                case .onboarding:
-                    return .just(Void())
-                case .paidContent:
-                    return dependencies.personalDataService
-                        .sendPersonalData()
-                }
+                return dependencies.purchaseService
+                    .paymentValidate()
+                    .flatMap { _ -> Single<Void> in
+                        switch openedFrom! {
+                        case .onboarding:
+                            return .just(Void())
+                        case .paidContent:
+                            return dependencies.personalDataService
+                                .sendPersonalData()
+                        }
+                    }
             }
         
         return purchase
@@ -96,13 +100,17 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
         let purchase = dependencies.purchaseService
             .restoreSubscription(productId: productId)
             .flatMap { [dependencies, openedFrom] _ -> Single<Void> in
-                switch openedFrom! {
-                case .onboarding:
-                    return .just(Void())
-                case .paidContent:
-                    return dependencies.personalDataService
-                        .sendPersonalData()
-                }
+                return dependencies.purchaseService
+                    .paymentValidate()
+                    .flatMap { _ -> Single<Void> in
+                        switch openedFrom! {
+                        case .onboarding:
+                            return .just(Void())
+                        case .paidContent:
+                            return dependencies.personalDataService
+                                .sendPersonalData()
+                        }
+                    }
             }
         
         return purchase

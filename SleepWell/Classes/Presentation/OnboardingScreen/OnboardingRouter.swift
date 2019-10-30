@@ -20,7 +20,7 @@ final class OnboardingRouter: Routing {
                        input: PaygateViewController.Input(openedFrom: .onboarding, completion: completion))
     }
     
-    func goToMainScreen() {
+    func goToMainScreen(behave: MainScreenBehave) {
         router.setRootVC(type: MainAssembly.self)
     }
 }
