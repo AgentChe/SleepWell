@@ -13,8 +13,11 @@ protocol PlayerViewModelInterface {
     var setTime: Binder<TimeInterval> { get }
     var play: Binder<Void> { get }
     var reset: Binder<Void> { get }
+    var stop: Binder<Void> { get }
     var time: Driver<Int> { get }
-    func add(url: URL)
+    var isPlaying: Driver<Bool> { get }
+    func add(recording: RecordingDetail)
+    func dismiss()
 }
 
 final class PlayerViewModel: BindableViewModel {
@@ -42,11 +45,23 @@ extension PlayerViewModel: PlayerViewModelInterface {
         dependencies.audioService.rx.reset
     }
     
+    var stop: Binder<Void> {
+        dependencies.audioService.rx.stop
+    }
+    
     var time: Driver<Int> {
         dependencies.audioService.time
     }
     
-    func add(url: URL) {
-        dependencies.audioService.add(url: url)
+    var isPlaying: Driver<Bool> {
+        dependencies.audioService.isPlaying
+    }
+    
+    func add(recording: RecordingDetail) {
+        dependencies.audioService.add(recording: recording)
+    }
+    
+    func dismiss() {
+        router.dismiss()
     }
 }

@@ -14,4 +14,8 @@ final class PlayerRouter: Routing {
     required init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
     }
+    
+    func dismiss() {
+        router.dismiss()
+    }
 }

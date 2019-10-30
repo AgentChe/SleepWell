@@ -14,9 +14,7 @@
 		8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8123637355001DC085 /* PlayerRouter.swift */; };
 		8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8323637366001DC085 /* PlayerAssembly.swift */; };
 		8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB85236374CA001DC085 /* PlayerScreen.storyboard */; };
-		8441FB8823639684001DC085 /* image97.png in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB8723639684001DC085 /* image97.png */; };
 		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
-		84643EE12364A2E100C0462E /* testSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84643EE02364A2E100C0462E /* testSound.mp3 */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -115,9 +113,7 @@
 		8441FB8123637355001DC085 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
 		8441FB8323637366001DC085 /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
 		8441FB85236374CA001DC085 /* PlayerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerScreen.storyboard; sourceTree = "<group>"; };
-		8441FB8723639684001DC085 /* image97.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image97.png; sourceTree = "<group>"; };
 		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
-		84643EE02364A2E100C0462E /* testSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = testSound.mp3; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -331,8 +327,6 @@
 		96C29EE123625A9E00E93CB1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				84643EE02364A2E100C0462E /* testSound.mp3 */,
-				8441FB8723639684001DC085 /* image97.png */,
 				8441FB7823636932001DC085 /* AudioPlayerService.swift */,
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
 				96C29F4B2363462100E93CB1 /* PurchaseService.swift */,
@@ -713,8 +707,6 @@
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
-				84643EE12364A2E100C0462E /* testSound.mp3 in Resources */,
-				8441FB8823639684001DC085 /* image97.png in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,

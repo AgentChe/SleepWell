@@ -14,26 +14,92 @@ final class AudioPlayerService: ReactiveCompatible {
     
     static let shared = AudioPlayerService()
     
-    func add(url: URL) {
-        guard let newPlayer = try? AVAudioPlayer(contentsOf: url) else {
+    func add(recording: RecordingDetail) {
+        guard let mainPlayer = try? AVAudioPlayer(contentsOf: recording.readingSound.soundUrl) else {
             return
         }
-        newPlayer.prepareToPlay()
-        players.accept(players.value.appending(newPlayer))
+        let ambientPlayer: AVAudioPlayer?
+        if let ambientUrl = recording.ambientSound?.soundUrl {
+            ambientPlayer = try? AVAudioPlayer(contentsOf: ambientUrl)
+        } else {
+            ambientPlayer = nil
+        }
+        
+        let audio = Audio(
+            mainPlayer: mainPlayer,
+            ambientPlayer: ambientPlayer,
+            recording: recording
+        )
+        audio.prepareToPlay()
+        audioRelay.accept(audio)
     }
     
     var time: Driver<Int> {
         
-        //change for main audio
-        return players.asDriver()
-            .map { $0.first }
+        audioRelay.asDriver()
             .filter { $0 != nil }
             .map { $0! }
             .flatMapLatest { $0.rx.currentTime }
     }
     
-    fileprivate var players = BehaviorRelay<[AVAudioPlayer]>(value: [])
+    var isPlaying: Driver<Bool> {
+        
+        audioRelay.asDriver()
+            .flatMapLatest {
+                $0?.rx.isPlaying ?? .just(false)
+            }
+    }
+    
+    fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
     private init() {}
+}
+
+private final class Audio: ReactiveCompatible {
+    let mainPlayer: AVAudioPlayer
+    let ambientPlayer: AVAudioPlayer?
+    let recording: RecordingDetail
+    
+    init(
+        mainPlayer: AVAudioPlayer,
+        ambientPlayer: AVAudioPlayer?,
+        recording: RecordingDetail
+    ) {
+        self.mainPlayer = mainPlayer
+        self.ambientPlayer = ambientPlayer
+        self.recording = recording
+    }
+    
+    var currentTime: TimeInterval {
+        set {
+            mainPlayer.currentTime = newValue
+        }
+        get {
+            return mainPlayer.currentTime
+        }
+    }
+    
+    func prepareToPlay() {
+        mainPlayer.prepareToPlay()
+        mainPlayer.volume = 0.01
+        ambientPlayer?.prepareToPlay()
+        ambientPlayer?.numberOfLoops = -1
+    }
+    
+    func play() {
+        mainPlayer.play()
+        ambientPlayer?.play()
+    }
+    
+    func stop() {
+        mainPlayer.stop()
+        ambientPlayer?.stop()
+    }
+    
+    func reset() {
+        stop()
+        mainPlayer.currentTime = 0
+        ambientPlayer?.currentTime = 0
+    }
 }
 
 extension Reactive where Base: AudioPlayerService {
@@ -41,76 +107,61 @@ extension Reactive where Base: AudioPlayerService {
     var play: Binder<Void> {
         
         Binder(base) { base, _ in
-            base.players.value.forEach { $0.play() }
+            base.audioRelay.value?.play()
         }
     }
     
     var stop: Binder<Void> {
         
         Binder(base) { base, _ in
-            base.players.value.forEach { $0.stop() }
-        }
-    }
-    
-    var reset: Binder<Void> {
-        
-        Binder(base) { base, _ in
-            base.players.value.forEach {
-                $0.stop()
-                $0.currentTime = 0
-            }
+            base.audioRelay.value?.stop()
         }
     }
     
     var clear: Binder<Void> {
         
         Binder(base) { base, _ in
-            base.players.accept([])
-        }
-    }
-    
-    var add: Binder<URL> {
-        
-        Binder(base) { base, url in
-            guard let newPlayer = try? AVAudioPlayer(contentsOf: url) else {
-                return
-            }
-            newPlayer.prepareToPlay()
-            newPlayer.play()
-            base.players.accept(base.players.value.appending(newPlayer))
+            base.audioRelay.accept(nil)
         }
     }
     
     var setTime: Binder<TimeInterval> {
         
         Binder(base) { base, time in
-            //change for main audio
-            guard let audio = base.players.value.first else {
+            guard let audio = base.audioRelay.value else {
                 return
             }
             audio.currentTime = time
         }
     }
-}
-
-private extension Reactive where Base: AVAudioPlayer {
     
-    var currentTime: Driver<Int> {
+    var reset: Binder<Void> {
         
-        //currentTime не поддерживает KVO, поэтому через таймер
-        Driver<Int>.interval(.milliseconds(100))
-            .map { [base] _ in
-                Int(round(base.currentTime))
-            }
-            .distinctUntilChanged()
+        Binder(base) { base, _ in
+            base.audioRelay.value?.reset()
+        }
     }
 }
 
-private extension Array {
+private extension Reactive where Base: Audio {
     
-    func appending(_ element: Element) -> Array<Element> {
-        var result = self
-        result.append(element)
-        return result
+    //Не поддерживает KVO, поэтому через таймер
+    
+    var currentTime: Driver<Int> {
+        
+        Driver<Int>.interval(.milliseconds(100))
+            .map { [base] _ in
+                Int(round(base.mainPlayer.currentTime))
+            }
+            .distinctUntilChanged()
+    }
+    
+    var isPlaying: Driver<Bool> {
+        
+        Driver<Int>.interval(.milliseconds(100))
+            .map { [base] _ in
+                base.mainPlayer.isPlaying
+            }
+            .distinctUntilChanged()
     }
 }

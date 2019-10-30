@@ -12,8 +12,11 @@ import RxCocoa
 
 final class PlayerViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var panGesture: UIPanGestureRecognizer!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var playerImageView: UIImageView!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var rewindButton: UIButton!
@@ -23,8 +26,6 @@ final class PlayerViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var volumeButton: UIButton!
     
-    var input: Input!
-    var viewModel: PlayerViewModelInterface!
     private let disposeBag = DisposeBag()
 }
 
@@ -43,33 +44,20 @@ extension PlayerViewController: BindsToViewModel {
     
     func bind(to viewModel: PlayerViewModelInterface, with input: Input) {
         
-        self.input = input
-        self.viewModel = viewModel
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        if let imagePreview = input.recording.recording.imagePreviewUrl,
+            let data = try? Data(contentsOf: imagePreview) {
+            
+            backgroundImageView.image = UIImage(data: data)
+            playerImageView.image = UIImage(data: data)
+        }
         
-        //firstInit
-        [currentTimeLabel,
-         remainingTimeLabel,
-         rewindButton,
-         pauseButton,
-         fastForwardButton,
-         audioSlider,
-         volumeButton
-        ].forEach { $0.alpha = 0 }
+        titleLabel.text = input.recording.recording.name
         
-        
-        //doesnt work for unknown reason
-        let screenHeight = UIScreen.main.bounds.height
-        let viewHeight = pauseButton.frame.maxY + CGFloat(28)
-        view.frame = .init(
-            x: view.frame.minX,
-            y: screenHeight - viewHeight,
-            width: view.frame.width,
-            height: view.frame.height
-        )
+        rx.methodInvoked(#selector(UIViewController.viewDidDisappear))
+            .take(1)
+            .map { _ in () }
+            .bind(to: viewModel.stop)
+            .disposed(by: disposeBag)
         
         let panEvent = panGesture.rx.event
             .filter { $0.state == .changed }
@@ -82,27 +70,43 @@ extension PlayerViewController: BindsToViewModel {
         let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
             .take(1)
         
-        let isPlaying = Signal
-            .merge(
-                playButton.rx.tap.asSignal().map { true },
-                pauseButton.rx.tap.asSignal().map { false }
-            )
-            .asDriver(onErrorDriveWith: .empty())
+        let isPlaying = viewModel.isPlaying
         
         isPlaying
             .drive(rx.playingState)
             .disposed(by: disposeBag)
         
-        let yPosition = isPlaying.map { [weak self] state -> CGFloat in
-            guard let self = self, !state else {
-                return 0
-            }
-
-            let screenHeight = UIScreen.main.bounds.height
-            let lastViewY = self.pauseButton.frame.maxY
-            let viewHeight = lastViewY + CGFloat(28)
-            return screenHeight - viewHeight
+        let subtitleWithDuration = input.recording.recording.reader
+            + " · "
+            + input.recording.readingSound.soundSecs.subtitleDescription
+        
+        isPlaying.map {
+            $0 ? input.recording.recording.reader : subtitleWithDuration
         }
+        .drive(subtitleLabel.rx.text)
+        .disposed(by: disposeBag)
+        
+        let viewWillLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
+            .take(1)
+            .map { _ in false }
+        
+        let skippingIsPlaying = isPlaying.asObservable()
+            .skipUntil(viewWillLayoutSubviews)
+        
+        let yPosition = Observable
+            .merge(skippingIsPlaying, viewWillLayoutSubviews)
+            .distinctUntilChanged()
+            .map { [weak self] state -> CGFloat in
+                guard let self = self, !state else {
+                    return 0
+                }
+
+                let screenHeight = UIScreen.main.bounds.height
+                let lastViewY = self.pauseButton.frame.maxY
+                let viewHeight = lastViewY + CGFloat(28)
+                return screenHeight - viewHeight
+            }
+            .asDriver(onErrorDriveWith: .empty())
         
         yPosition.drive(rx.updateViewPosition)
             .disposed(by: disposeBag)
@@ -153,15 +157,14 @@ extension PlayerViewController: BindsToViewModel {
                         )
                     },
                     completion: { _ in
-                        base.removeFromParent()
+                        viewModel.dismiss()
                     }
                 )
             })
             .disposed(by: disposeBag)
         
-        let url = input.recording.readingSound.soundUrl
-        let maxSeconds = 255
-        viewModel.add(url: url)
+        let maxSeconds = input.recording.readingSound.soundSecs
+        viewModel.add(recording: input.recording)
         
         playButton.rx.tap
             .asSignal()
@@ -170,6 +173,13 @@ extension PlayerViewController: BindsToViewModel {
         
         pauseButton.rx.tap
             .asSignal()
+            .emit(to: viewModel.reset)
+            .disposed(by: disposeBag)
+        
+        isPlaying
+            .asSignal(onErrorSignalWith: .empty())
+            .filter { !$0 }
+            .map { _ in () }
             .emit(to: viewModel.reset)
             .disposed(by: disposeBag)
         
@@ -265,6 +275,7 @@ private extension Int {
     var timeDescription: String {
         
         let hours = self / 3600
+        let minutes = (self % 3600) / 60
         let seconds = self % 60
         
         let hoursString = hours == 0 ? "" : "\(hours):"
@@ -272,6 +283,22 @@ private extension Int {
             ? "0\(seconds)"
             : String(seconds)
         
-        return "\(hoursString)\(self / 60):\(secondsString)"
+        return "\(hoursString)\(minutes):\(secondsString)"
+    }
+    
+    var subtitleDescription: String {
+        
+        let hours = self / 3600
+        let minutes = (self % 3600) / 60
+        
+        guard hours != 0 else {
+            return "\(minutes) min"
+        }
+        
+        guard minutes != 0 else {
+            return "\(hours) hours"
+        }
+        
+        return "\(hours) hours \(minutes) min"
     }
 }
