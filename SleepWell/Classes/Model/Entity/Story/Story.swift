@@ -18,3 +18,34 @@ struct Story: Recording {
     let hash: String
     let length_sec: Int
 }
+
+extension Story {
+    private enum DataKeys: String, CodingKey {
+        case id
+        case name
+        case paid
+        case reader
+        case imagePreview = "image_story_url"
+        case imageReader = "image_reader_url"
+        case hash = "story_hash"
+        case length_sec = "length_secs"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let data = try decoder.container(keyedBy: DataKeys.self)
+        
+        let readerImage = try data.decode(String?.self, forKey: .imageReader)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let preview = try data.decode(String?.self, forKey: .imagePreview)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+        id = try data.decode(Int.self, forKey: .id)
+        name = try data.decode(String.self, forKey: .name)
+        paid = try data.decode(Bool.self, forKey: .paid)
+        reader = try data.decode(String.self, forKey: .reader)
+        imagePreviewUrl = URL(string: preview)
+        imageReaderURL = URL(string: readerImage)
+        hash = try data.decode(String.self, forKey: .hash)
+        length_sec = try data.decode(Int.self, forKey: .length_sec)
+    }
+
+    func encode(to encoder: Encoder) throws {}
+}

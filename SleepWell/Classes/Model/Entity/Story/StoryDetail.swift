@@ -13,18 +13,45 @@ struct StoryDetail: RecordingDetail {
     let readingSound: Sound
     let ambientSound: Sound?
     
+    private enum DataKeys: String, CodingKey {
+        case data = "_data"
+    }
+    
+    private enum StoryKeys: String, CodingKey {
+        case recording = "story"
+        case hash = "story_hash"
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case readingSound = "reading_sound"
+        case ambientSound = "ambient_sound"
+        case id
+        case name
+        case paid
+        case reader
+        case imagePreview = "image_story_url"
+        case imageReader = "image_reader_url"
+    }
+    
     init(from decoder: Decoder) throws {
-        recording = Story(id: 0,
-                               name: "",
-                               paid: false,
-                               reader: "",
-                               imagePreviewUrl: nil,
-                               imageReaderURL: nil,
-                               hash: "",
-                               length_sec: 0)
+        let container = try decoder.container(keyedBy: DataKeys.self)
+        let data = try container.nestedContainer(keyedBy: StoryKeys.self, forKey: .data)
+        let story = try data.nestedContainer(keyedBy: CodingKeys.self, forKey: .recording)
         
-        readingSound = StorySound(id: 0, soundUrl: URL(string: "www.google.com")!, soundSecs: 0)
-        ambientSound = nil
+        let preview = try story.decode(String?.self, forKey: .imagePreview)?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        let reader = try story.decode(String?.self, forKey: .imageReader)?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+
+        recording = Story(id: try story.decode(Int.self, forKey: .id),
+                          name: try story.decode(String.self, forKey: .name),
+                          paid: try story.decode(Bool.self, forKey: .paid),
+                          reader: try story.decode(String.self, forKey: .reader),
+                          imagePreviewUrl: URL(string: preview),
+                          imageReaderURL: URL(string: reader),
+                          hash: try data.decode(String.self, forKey: .hash),
+                          length_sec: 0)
+        
+        readingSound = try story.decode(StorySound.self, forKey: .readingSound)
+        ambientSound = try story.decode(StorySound?.self, forKey: .ambientSound)
     }
 
     func encode(to encoder: Encoder) throws {

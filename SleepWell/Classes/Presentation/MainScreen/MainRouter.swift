@@ -9,9 +9,26 @@
 import UIKit
 
 final class MainRouter: Routing {
+    enum Route {
+        case meditate
+        case stories
+        case scenes
+    }
+    
     private let router: Router
     
     init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
+    }
+    
+    func trigger(_ route: Route) {
+        switch route {
+        case .meditate:
+            break
+        case .stories:
+            router.presentChild(type: StoriesAssembly.self)
+        case .scenes:
+            break
+        }
     }
 }

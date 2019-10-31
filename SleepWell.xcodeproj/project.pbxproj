@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4E11B3BE0E63C7A8C09FF4AE /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */; };
+		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
 		86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */; };
 		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
 		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
+		86B5F39B236B5CD7000E43A0 /* StoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */; };
 		86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AD2366EC8300BC6EDA /* TagCellModel.swift */; };
 		86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */; };
 		86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848B22366F13900BC6EDA /* HeaderTitleView.xib */; };
@@ -24,6 +26,8 @@
 		86C848C72367027900BC6EDA /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848C52367027900BC6EDA /* StoryCell.swift */; };
 		86C848C82367027900BC6EDA /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848C62367027900BC6EDA /* StoryCell.xib */; };
 		86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA8C8023678A5300692EE5 /* StoriesCellType.swift */; };
+		86CFBCC62368BA790017CFE6 /* StoriesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */; };
+		86CFBCC82368BD550017CFE6 /* StoryDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */; };
 		86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */; };
 		86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */; };
 		86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB423645C3B00B0F5EA /* MeditateViewController.swift */; };
@@ -128,9 +132,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
 		86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateCellType.swift; sourceTree = "<group>"; };
 		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
 		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
+		86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModel.swift; sourceTree = "<group>"; };
 		86C848AD2366EC8300BC6EDA /* TagCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellModel.swift; sourceTree = "<group>"; };
 		86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
 		86C848B22366F13900BC6EDA /* HeaderTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTitleView.xib; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 		86C848C52367027900BC6EDA /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		86C848C62367027900BC6EDA /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
 		86CA8C8023678A5300692EE5 /* StoriesCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCellType.swift; sourceTree = "<group>"; };
+		86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesListRequest.swift; sourceTree = "<group>"; };
+		86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailRequest.swift; sourceTree = "<group>"; };
 		86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeditateScreen.storyboard; sourceTree = "<group>"; };
 		86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateRouter.swift; sourceTree = "<group>"; };
 		86F98CB423645C3B00B0F5EA /* MeditateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateViewController.swift; sourceTree = "<group>"; };
@@ -295,10 +303,10 @@
 				86CA8C7F23678A2F00692EE5 /* Model */,
 				86C848C42367023C00BC6EDA /* Cell */,
 				86C848BF2367005900BC6EDA /* View */,
-				86C848B62367001000BC6EDA /* StoriesRouter.swift */,
 				86C848B72367001000BC6EDA /* StoriesViewController.swift */,
-				86C848B82367001000BC6EDA /* StoriesAssembly.swift */,
 				86C848B92367001000BC6EDA /* StoriesViewModel.swift */,
+				86C848B62367001000BC6EDA /* StoriesRouter.swift */,
+				86C848B82367001000BC6EDA /* StoriesAssembly.swift */,
 			);
 			path = StoriesScreen;
 			sourceTree = "<group>";
@@ -334,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				86CA8C8023678A5300692EE5 /* StoriesCellType.swift */,
+				86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -485,6 +494,7 @@
 			children = (
 				96C29F4223633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift */,
 				96DC8C7E23674EC5004DC76A /* PaygateMapper.swift */,
+				862783F92369DFF60065A436 /* StoriesMapper.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -574,6 +584,8 @@
 				96C29F442363421800E93CB1 /* CheckUserTokenRequest.swift */,
 				96C29F4D2363467C00E93CB1 /* PurchaseValidateRequest.swift */,
 				96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */,
+				86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */,
+				86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -989,18 +1001,22 @@
 				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,
+				86CFBCC82368BD550017CFE6 /* StoryDetailRequest.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
 				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,
+				86B5F39B236B5CD7000E43A0 /* StoryCellModel.swift in Sources */,
+				862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */,
 				96C29F03236260FA00E93CB1 /* UINavigationItemExtension.swift in Sources */,
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
 				86F98CC4236463AE00B0F5EA /* MeditateTagCell.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,
 				86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */,
+				86CFBCC62368BA790017CFE6 /* StoriesListRequest.swift in Sources */,
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
@@ -1151,11 +1167,9 @@
 			baseConfigurationReference = 89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YN599PDANN;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1164,7 +1178,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sz.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "SleepWell Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1175,8 +1189,6 @@
 			baseConfigurationReference = F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YN599PDANN;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = SC7MZ85J68;

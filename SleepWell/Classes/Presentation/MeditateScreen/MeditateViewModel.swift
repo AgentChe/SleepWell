@@ -23,32 +23,7 @@ final class MeditateViewModel: BindableViewModel {
     struct Dependencies {}
     
     let test: [Meditation] = [
-        Meditation(id: 1, name: "Anxiety Meditation", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1]),
-        Meditation(id: 2, name: "Honor Emotions", paid: false, reader: "Elizabeth Klett", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1]),
-        Meditation(id: 3, name: "Honor Emotions", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1]),
-        Meditation(id: 4, name: "Anxiety Meditation", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1]),
-        Meditation(id: 5, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 6, name: "Anxiety Meditation", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 7, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [3]),
-        Meditation(id: 8, name: "Anxiety Meditation", paid: false, reader: "Elizabeth Klett", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 9, name: "Honor Emotions", paid: false, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 3, 4]),
-        Meditation(id: 10, name: "Anxiety Meditation", paid: false, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2, 3, 4]),
-        Meditation(id: 11, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2, 3]),
-        Meditation(id: 12, name: "Anxiety Meditation", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [3]),
-        Meditation(id: 13, name: "Honor Emotions", paid: true, reader: "Elizabeth Klett", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [2]),
-        Meditation(id: 14, name: "Anxiety Meditation", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [2]),
-        Meditation(id: 15, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [2]),
-        Meditation(id: 16, name: "Honor Emotions", paid: true, reader: "Elizabeth Klett", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [3]),
-        Meditation(id: 17, name: "Anxiety Meditation", paid: false, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 18, name: "The Power of Gratitude", paid: false, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 4]),
-        Meditation(id: 19, name: "Anxiety Meditation", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 20, name: "Honor Emotions", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 21, name: "Anxiety Meditation", paid: false, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 3]),
-        Meditation(id: 22, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [4, 2]),
-        Meditation(id: 23, name: "Anxiety Meditation", paid: true, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 2]),
-        Meditation(id: 24, name: "The Power of Gratitude", paid: true, reader: "Mil Nicholson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [3, 2]),
-        Meditation(id: 25, name: "Anxiety Meditation", paid: true, reader: "SElizabeth Klett", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [1, 4]),
-        Meditation(id: 26, name: "Honor Emotions", paid: false, reader: "Jina Anderson", imagePreviewUrl: nil, imageReaderURL: nil, hash: "", tags: [4])]
+        ]
 }
 
 extension MeditateViewModel: MeditateViewModelInterface {

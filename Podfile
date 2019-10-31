@@ -9,6 +9,7 @@ target 'SleepWell' do
   pod 'lottie-ios'
   pod 'SwiftyStoreKit'
   pod 'RealmSwift'
+  pod 'Kingfisher'
 end
 
 post_install do |installer|

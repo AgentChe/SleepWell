@@ -10,8 +10,22 @@ import UIKit
 
 final class StoriesRouter: Routing {
     private let router: Router
+    
+    enum Route {
+        case details
+        case paygate
+    }
   
     init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
+    }
+    
+    func trigger(_ route: Route) {
+        switch route {
+        case .details:
+            break
+        case .paygate:
+            break
+        }
     }
 }

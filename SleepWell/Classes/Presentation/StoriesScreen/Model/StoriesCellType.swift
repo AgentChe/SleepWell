@@ -9,14 +9,14 @@
 import Foundation
 
 enum StoriesCellType {
-    case story(Story)
+    case story(StoryCellModel)
     case premiumUnlock
 }
 
 extension StoriesCellType {
     static func map(items: [Story], isSubscription: Bool) -> [StoriesCellType] {
-        var elements: [StoriesCellType] = items.map { .story($0) }
-        if !isSubscription {
+        var elements: [StoriesCellType] = items.map { .story(.init(story: $0, isActiveSubscription: isSubscription)) }
+        if !isSubscription && elements.count >= 1 {
             elements.insert(.premiumUnlock, at: 1)
         }
         return elements

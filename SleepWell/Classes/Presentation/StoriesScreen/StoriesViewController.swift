@@ -54,33 +54,42 @@ extension StoriesViewController: BindsToViewModel {
                 switch item {
                 case let .story(element):
                     let cell = table.dequeueReusableCell(withIdentifier: "StoryCell") as! StoryCell
-                    let model = StoryCell.Model(image: "Image6",
-                                                name: element.name,
-                                                avatar: "avatar",
-                                                reader: element.reader,
-                                                time: element.length_sec,
-                                                isAvailble: element.paid)
-                    cell.setup(model: model)
+                    cell.setup(model: element)
                     return cell
                 case .premiumUnlock:
                     let cell = table.dequeueReusableCell(withIdentifier: "PremiumUnlockCell") as! PremiumUnlockCell
                     return cell
                 }
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
         let randomElement = tableHeaderView.didTapRandom
             .withLatestFrom(elements)
             .flatMapFirst { viewModel.randomElement(items: $0) }
         
-        Signal
-            .merge(
-                randomElement,
-                tableView.rx.modelSelected(StoriesCellType.self).asSignal()
-            )
-            .emit(onNext: {
-                viewModel.selectedElement(item: $0)
-            })
-            .disposed(by: disposeBag)
+       Signal
+        .merge(
+           randomElement,
+           tableView.rx.modelSelected(StoriesCellType.self).asSignal()
+        )
+        .flatMapFirst { cellType -> Signal<StoriesViewModel.Route> in
+            guard case let .story(story) = cellType else {
+                return Signal.just(.paygate)
+            }
+            
+            return viewModel
+                .getStoryDetails(id: story.id)
+                .map { detail -> StoriesViewModel.Route in
+                    guard let details = detail else {
+                        return .paygate
+                    }
+                    return .details(details)
+                }
+        }
+       .emit(onNext: {
+            viewModel.didTapCell(type: $0)
+       })
+        .disposed(by: disposeBag)
+        
     }
 }

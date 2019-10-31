@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class StoryCell: UITableViewCell {
     @IBOutlet private var backgroundImage: UIImageView!
@@ -15,21 +16,21 @@ class StoryCell: UITableViewCell {
     @IBOutlet private var avatarImage: UIImageView!
     @IBOutlet private var lockedImage: UIImageView!
     
-    struct Model {
-        let image: String
-        let name: String
-        let avatar: String
-        let reader: String
-        let time: Int
-        let isAvailble: Bool
-    }
-
-    func setup(model: Model) {
-        backgroundImage.image = UIImage(named: model.image)
+    
+    func setup(model: StoryCellModel) {
+        if let backgroundUrl = model.image {
+            backgroundImage.kf.indicatorType = .activity
+            backgroundImage.kf.setImage(with: backgroundUrl, options: [.transition(.fade(0.2))])
+        }
+        
+        if let avatarUrl = model.avatar {
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: avatarUrl, options: [.transition(.fade(0.2))])
+            
+        }
+        
         titleLabel.text = model.name
-        avatarImage.image = UIImage(named: model.avatar)
-        lockedImage.isHidden = model.isAvailble
-        isUserInteractionEnabled = model.isAvailble
+        lockedImage.isHidden = model.paid
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .short

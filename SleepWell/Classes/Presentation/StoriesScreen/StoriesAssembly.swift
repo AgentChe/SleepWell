@@ -11,6 +11,6 @@ final class StoriesAssembly: ScreenAssembly {
     typealias VC = StoriesViewController
     
     func assembleDependencies() -> StoriesViewModel.Dependencies {
-        return VC.ViewModel.Dependencies()
+        return VC.ViewModel.Dependencies(storyService: StoryService())
     }
 }
