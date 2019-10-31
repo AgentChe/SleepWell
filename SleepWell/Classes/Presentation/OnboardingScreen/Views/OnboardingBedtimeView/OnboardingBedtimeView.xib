@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingBedtimeView" customModule="SleepWell" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="6cM-YI-NLO" id="lTO-VK-W7d"/>
+                <outlet property="hourPickerView" destination="liv-n1-7G5" id="Wv7-v4-ABl"/>
+                <outlet property="minutePickerView" destination="9Ce-GI-YWK" id="yMP-5G-eg3"/>
+                <outlet property="nextButton" destination="3zP-lI-uyW" id="ma9-Ry-IQL"/>
+                <outlet property="skipButton" destination="Ohe-pj-hbk" id="eza-vX-QNF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6cM-YI-NLO">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohe-pj-hbk">
+                    <rect key="frame" x="353" y="40" width="45" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="2yG-g9-9ET"/>
+                        <constraint firstAttribute="height" constant="36" id="6Ze-S4-gqb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                    <state key="normal" title="skip">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="skip"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bedtime_info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD4-hk-fpu">
+                    <rect key="frame" x="35" y="84" width="344" height="48"/>
+                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="34"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="set_your_bedtime"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bedtime_info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2h-IU-WdB">
+                    <rect key="frame" x="35" y="140" width="344" height="24"/>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="bedtime_info"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liv-n1-7G5" customClass="PickerView" customModule="SleepWell" customModuleProvider="target">
+                    <rect key="frame" x="32" y="196" width="159" height="558"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="aligment">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </pickerView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-GI-YWK" customClass="PickerView" customModule="SleepWell" customModuleProvider="target">
+                    <rect key="frame" x="223" y="196" width="159" height="558"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="aligment">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zP-lI-uyW">
+                    <rect key="frame" x="34" y="786" width="346" height="56"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.89411764709999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="68K-XK-M6H"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                    <state key="normal" title="next">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="28"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="next"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="trailing" secondItem="9Ce-GI-YWK" secondAttribute="trailing" constant="32" id="3QP-Rk-Z6a"/>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="trailing" secondItem="3zP-lI-uyW" secondAttribute="trailing" constant="34" id="G3V-HA-a4v"/>
+                <constraint firstItem="liv-n1-7G5" firstAttribute="leading" secondItem="xNu-BG-ZGP" secondAttribute="leading" constant="32" id="JgJ-m8-6RA"/>
+                <constraint firstItem="j2h-IU-WdB" firstAttribute="top" secondItem="gD4-hk-fpu" secondAttribute="bottom" constant="8" id="KYs-5Q-RNV"/>
+                <constraint firstItem="gD4-hk-fpu" firstAttribute="top" secondItem="Ohe-pj-hbk" secondAttribute="bottom" constant="8" id="L35-8P-Wat"/>
+                <constraint firstItem="3zP-lI-uyW" firstAttribute="top" secondItem="liv-n1-7G5" secondAttribute="bottom" constant="32" id="L42-BN-fVJ"/>
+                <constraint firstItem="j2h-IU-WdB" firstAttribute="leading" secondItem="xNu-BG-ZGP" secondAttribute="leading" constant="35" id="MIy-eU-zKu"/>
+                <constraint firstItem="3zP-lI-uyW" firstAttribute="leading" secondItem="xNu-BG-ZGP" secondAttribute="leading" constant="34" id="MQc-hj-dWb"/>
+                <constraint firstItem="9Ce-GI-YWK" firstAttribute="width" secondItem="liv-n1-7G5" secondAttribute="width" id="QPI-wp-vR3"/>
+                <constraint firstItem="9Ce-GI-YWK" firstAttribute="leading" secondItem="liv-n1-7G5" secondAttribute="trailing" constant="32" id="Qa3-3O-FaS"/>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="trailing" secondItem="Ohe-pj-hbk" secondAttribute="trailing" constant="16" id="Sy9-J8-kZO"/>
+                <constraint firstItem="9Ce-GI-YWK" firstAttribute="top" secondItem="j2h-IU-WdB" secondAttribute="bottom" constant="32" id="VFv-ls-c0f"/>
+                <constraint firstItem="gD4-hk-fpu" firstAttribute="top" secondItem="xNu-BG-ZGP" secondAttribute="top" constant="40" id="VOq-ia-ToK"/>
+                <constraint firstItem="3zP-lI-uyW" firstAttribute="top" secondItem="9Ce-GI-YWK" secondAttribute="bottom" constant="32" id="d8N-7L-NzL"/>
+                <constraint firstItem="liv-n1-7G5" firstAttribute="top" secondItem="j2h-IU-WdB" secondAttribute="bottom" constant="32" id="fit-SC-Q0W"/>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="trailing" secondItem="j2h-IU-WdB" secondAttribute="trailing" constant="35" id="imj-O2-pKu"/>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="bottom" secondItem="3zP-lI-uyW" secondAttribute="bottom" constant="20" id="jkh-lj-LOq"/>
+                <constraint firstItem="gD4-hk-fpu" firstAttribute="leading" secondItem="xNu-BG-ZGP" secondAttribute="leading" constant="35" id="pAr-8Z-QRc"/>
+                <constraint firstItem="xNu-BG-ZGP" firstAttribute="trailing" secondItem="gD4-hk-fpu" secondAttribute="trailing" constant="35" id="uZE-Yz-TAT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="xNu-BG-ZGP"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

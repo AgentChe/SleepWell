@@ -70,11 +70,14 @@ extension PaygateViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        Driver<Bool>
-            .merge(buyButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.buy() },
-                   restorePurchaseButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.restore() })
-            .drive(onNext: { [weak self] isSuccess in
+        Driver<(Bool, PaygateCompletionResult)>
+            .merge(buyButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.buy() }.map { ($0, PaygateCompletionResult.purchased) },
+                   restorePurchaseButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.restore() }.map { ($0, PaygateCompletionResult.restored) })
+            .drive(onNext: { [weak self] stub in
+                let (isSuccess, result) = stub
+                
                 if isSuccess {
+                    input.completion?(result)
                     viewModel.dismiss()
                 } else {
                     self?.errorView.show(with: "Failed purchase")

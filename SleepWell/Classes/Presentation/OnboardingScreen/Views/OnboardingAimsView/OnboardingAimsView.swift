@@ -25,7 +25,7 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     
-    let nextWithAims = PublishRelay<[Aim]>()
+    let nextUpWithAims = PublishRelay<[Aim]>()
     
     private let disposeBag = DisposeBag()
     
@@ -54,7 +54,7 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
             .map { [weak self] _ -> [Aim] in
                 return self?.items.filter { $0.isSelected }.map { $0.aim } ?? []
             }
-            .bind(to: nextWithAims)
+            .bind(to: nextUpWithAims)
             .disposed(by: disposeBag)
     }
     

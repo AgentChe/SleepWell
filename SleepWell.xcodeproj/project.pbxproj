@@ -40,6 +40,18 @@
 		86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CCD23646A3500B0F5EA /* MeditateCell.swift */; };
 		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
 		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
+		962A7778236A0662000E2683 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962A7777236A0661000E2683 /* GoogleService-Info.plist */; };
+		962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */; };
+		962A777D236A2A09000E2683 /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777C236A2A09000E2683 /* SetRequest.swift */; };
+		962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */; };
+		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
+		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
+		9685528623688C1100A22E21 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528523688C1100A22E21 /* CheckView.swift */; };
+		968552882368FB1300A22E21 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552872368FB1300A22E21 /* PickerView.swift */; };
+		9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528A23690F5300A22E21 /* OnboardingBedtimeView.swift */; };
+		9685528D23690F5C00A22E21 /* OnboardingBedtimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9685528C23690F5C00A22E21 /* OnboardingBedtimeView.xib */; };
+		9685528F236985EE00A22E21 /* PushMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528E236985EE00A22E21 /* PushMessageService.swift */; };
+		968552912369871000A22E21 /* AppStateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552902369871000A22E21 /* AppStateProxy.swift */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -165,6 +177,19 @@
 		86F98CCE23646A3500B0F5EA /* MeditateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateCell.xib; sourceTree = "<group>"; };
 		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		962A777623698EB2000E2683 /* SleepWell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepWell.entitlements; sourceTree = "<group>"; };
+		962A7777236A0661000E2683 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
+		962A777C236A2A09000E2683 /* SetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRequest.swift; sourceTree = "<group>"; };
+		962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckResponseForCodeError.swift; sourceTree = "<group>"; };
+		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
+		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
+		9685528523688C1100A22E21 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
+		968552872368FB1300A22E21 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		9685528A23690F5300A22E21 /* OnboardingBedtimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingBedtimeView.swift; sourceTree = "<group>"; };
+		9685528C23690F5C00A22E21 /* OnboardingBedtimeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingBedtimeView.xib; sourceTree = "<group>"; };
+		9685528E236985EE00A22E21 /* PushMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMessageService.swift; sourceTree = "<group>"; };
+		968552902369871000A22E21 /* AppStateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateProxy.swift; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96C29ED12362564200E93CB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -381,6 +406,32 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		962A7779236A0893000E2683 /* OnboardingWelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */,
+			);
+			path = OnboardingWelcomeView;
+			sourceTree = "<group>";
+		};
+		968552802368875200A22E21 /* OnboardingPersonalDataView */ = {
+			isa = PBXGroup;
+			children = (
+				968552812368877000A22E21 /* OnboardingPersonalDataView.swift */,
+				968552832368878000A22E21 /* OnboardingPersonalDataView.xib */,
+			);
+			path = OnboardingPersonalDataView;
+			sourceTree = "<group>";
+		};
+		9685528923690F3D00A22E21 /* OnboardingBedtimeView */ = {
+			isa = PBXGroup;
+			children = (
+				9685528A23690F5300A22E21 /* OnboardingBedtimeView.swift */,
+				9685528C23690F5C00A22E21 /* OnboardingBedtimeView.xib */,
+			);
+			path = OnboardingBedtimeView;
+			sourceTree = "<group>";
+		};
 		96C29EBC2362564000E93CB1 = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +453,7 @@
 		96C29EC72362564000E93CB1 /* SleepWell */ = {
 			isa = PBXGroup;
 			children = (
+				962A777623698EB2000E2683 /* SleepWell.entitlements */,
 				96C29F17236264D900E93CB1 /* Architecture */,
 				96C29EDC236259DD00E93CB1 /* Classes */,
 				96C29EDD236259E300E93CB1 /* Resources */,
@@ -432,6 +484,7 @@
 				96C29F112362649100E93CB1 /* Strings */,
 				96DC8C612367444C004DC76A /* Fonts */,
 				96C29ED12362564200E93CB1 /* Assets.xcassets */,
+				962A7777236A0661000E2683 /* GoogleService-Info.plist */,
 				96C29ED62362564200E93CB1 /* Info.plist */,
 			);
 			path = Resources;
@@ -485,6 +538,8 @@
 				96C29F9623638F7000E93CB1 /* StoryService.swift */,
 				96DC8C572366352E004DC76A /* PersonalDataService.swift */,
 				96DC8C7A23674CB3004DC76A /* PaygateService.swift */,
+				9685528E236985EE00A22E21 /* PushMessageService.swift */,
+				968552902369871000A22E21 /* AppStateProxy.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -495,6 +550,7 @@
 				96C29F4223633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift */,
 				96DC8C7E23674EC5004DC76A /* PaygateMapper.swift */,
 				862783F92369DFF60065A436 /* StoriesMapper.swift */,
+				962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -531,6 +587,7 @@
 				86C848B12366F12300BC6EDA /* HeaderTitleView */,
 				86F98CD123646A9C00B0F5EA /* GradientView.swift */,
 				96DC8C8023675D51004DC76A /* ErrorView */,
+				968552872368FB1300A22E21 /* PickerView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -586,6 +643,7 @@
 				96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */,
 				86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */,
 				86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */,
+				962A777C236A2A09000E2683 /* SetRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -736,8 +794,12 @@
 		96DC8C8723676389004DC76A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				962A7779236A0893000E2683 /* OnboardingWelcomeView */,
+				9685528923690F3D00A22E21 /* OnboardingBedtimeView */,
+				968552802368875200A22E21 /* OnboardingPersonalDataView */,
 				96DC8C8D23678FC1004DC76A /* OnboardingAimsView */,
 				96DC8C882367638E004DC76A /* OnboardingStartView */,
+				9685528523688C1100A22E21 /* CheckView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -858,6 +920,7 @@
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
 				96DC8C6E2367460D004DC76A /* OpenSans-Semibold.ttf in Resources */,
 				96DC8C6F2367460D004DC76A /* OpenSans-Regular.ttf in Resources */,
+				9685528D23690F5C00A22E21 /* OnboardingBedtimeView.xib in Resources */,
 				96DC8C702367460D004DC76A /* OpenSans-Light.ttf in Resources */,
 				96DC8C712367460D004DC76A /* OpenSans-Italic.ttf in Resources */,
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
@@ -866,6 +929,10 @@
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
 				86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */,
+				968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */,
+				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
+				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
+				962A7778236A0662000E2683 /* GoogleService-Info.plist in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
 				86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */,
@@ -949,6 +1016,9 @@
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
+				968552912369871000A22E21 /* AppStateProxy.swift in Sources */,
+				9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */,
+				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
@@ -972,10 +1042,12 @@
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
 				86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */,
+				9685528F236985EE00A22E21 /* PushMessageService.swift in Sources */,
 				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
+				962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */,
 				96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */,
 				96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */,
 				96C29EED23625D0A00E93CB1 /* ApiError.swift in Sources */,
@@ -988,6 +1060,7 @@
 				96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
+				968552882368FB1300A22E21 /* PickerView.swift in Sources */,
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
@@ -1020,9 +1093,12 @@
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
+				962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */,
+				968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
+				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,9 +1243,10 @@
 			baseConfigurationReference = 89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YN599PDANN;
+				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1189,6 +1266,7 @@
 			baseConfigurationReference = F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = SC7MZ85J68;

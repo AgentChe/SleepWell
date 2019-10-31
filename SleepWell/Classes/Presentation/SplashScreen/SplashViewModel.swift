@@ -11,7 +11,7 @@ import RxCocoa
 
 class SplashViewModel {
     enum Step {
-        case main
+        case main(MainScreenBehave)
         case onboarding(OnboardingViewModel.Behave)
     }
     
@@ -34,7 +34,7 @@ class SplashViewModel {
             .catchErrorJustReturn(nil)
             .flatMap { [unowned self] session -> Single<Step> in
                 if session?.userToken != nil {
-                    return .just(.main)
+                    return .just(.main(session?.activeSubscription == true ? .withActiveSubscription : .withoutActiveSubscription))
                 } else {
                     return self.validate()
                 }
@@ -50,7 +50,7 @@ class SplashViewModel {
                         .catchErrorJustReturn(nil)
                         .map { session -> Step in
                             if session?.userToken != nil {
-                                return .main
+                                return .main(session?.activeSubscription == true ? .withActiveSubscription : .withoutActiveSubscription)
                             } else {
                                 return self.checkPersonalData()
                             }

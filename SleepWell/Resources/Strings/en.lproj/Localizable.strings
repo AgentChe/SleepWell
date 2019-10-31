@@ -23,3 +23,13 @@
 "build_self_esteem" = "Build Self Esteem";
 "what_to_help_you_with" = "What to help\nyou with?";
 "select_that_are_the_most_relevant_to_you" = "Select that are the most\nrelevant to you.";
+"make_it_your_own" = "Make it your own";
+"get_recommended_content_based_on_your_gender_and_age" = "Get recommended content based on your gender and age.";
+"male" = "Male";
+"female" = "Female";
+"other" = "Other";
+"i_was_born_in" = "I was born in";
+"skip" = "Skip";
+"set_your_bedtime" = "Set Your Bedtime";
+"bedtime_info" = "We can send you a reminder to go to sleep. Having a consistent bedtime is key to better sleep.";
+"swipe_left_or_right_to_change_scene" = "Swipe left or right\nto change scene";
