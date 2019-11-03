@@ -12,7 +12,7 @@ final class StoriesRouter: Routing {
     private let router: Router
     
     enum Route {
-        case details
+        case details(StoryDetail)
         case paygate(_ completion: (PaygateCompletionResult) -> ())
     }
   
@@ -22,8 +22,8 @@ final class StoriesRouter: Routing {
     
     func trigger(_ route: Route) {
         switch route {
-        case .details:
-            break
+        case let .details(detail):
+            router.present(type: PlayerAssembly.self, input: .init(recording: detail))
         case let .paygate(completion):
             router.present(type: PaygateAssembly.self, input: PaygateViewController.Input(openedFrom: .paidContent, completion: completion))
         }

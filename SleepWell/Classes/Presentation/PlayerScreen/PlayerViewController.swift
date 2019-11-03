@@ -44,11 +44,12 @@ extension PlayerViewController: BindsToViewModel {
     
     func bind(to viewModel: PlayerViewModelInterface, with input: Input) {
         
-        if let imagePreview = input.recording.recording.imagePreviewUrl,
-            let data = try? Data(contentsOf: imagePreview) {
-            
-            backgroundImageView.image = UIImage(data: data)
-            playerImageView.image = UIImage(data: data)
+        if let imagePreview = input.recording.recording.imagePreviewUrl {
+            backgroundImageView.kf.indicatorType = .activity
+            backgroundImageView.kf.setImage(with: imagePreview, options: [.transition(.fade(0.2))])
+print("image:: \(imagePreview)")
+            playerImageView.kf.indicatorType = .activity
+            playerImageView.kf.setImage(with: imagePreview, options: [.transition(.fade(0.2))])
         }
         
         titleLabel.text = input.recording.recording.name
@@ -56,7 +57,7 @@ extension PlayerViewController: BindsToViewModel {
         rx.methodInvoked(#selector(UIViewController.viewDidDisappear))
             .take(1)
             .map { _ in () }
-            .bind(to: viewModel.stop)
+            .bind(to: viewModel.reset)
             .disposed(by: disposeBag)
         
         let panEvent = panGesture.rx.event
@@ -88,13 +89,12 @@ extension PlayerViewController: BindsToViewModel {
         
         let viewWillLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
             .take(1)
-            .map { _ in false }
         
         let skippingIsPlaying = isPlaying.asObservable()
             .skipUntil(viewWillLayoutSubviews)
         
         let yPosition = Observable
-            .merge(skippingIsPlaying, viewWillLayoutSubviews)
+            .merge(skippingIsPlaying, viewWillLayoutSubviews.map { _ in false })
             .distinctUntilChanged()
             .map { [weak self] state -> CGFloat in
                 guard let self = self, !state else {
@@ -204,7 +204,7 @@ extension PlayerViewController: BindsToViewModel {
             .disposed(by: disposeBag)
         
         audioSlider.rx.userSetsValue
-            .map { Double($0 * Float(maxSeconds)) }
+            .map { Int(round($0 * Float(maxSeconds))) }
             .emit(to: viewModel.setTime)
             .disposed(by: disposeBag)
         
@@ -212,7 +212,6 @@ extension PlayerViewController: BindsToViewModel {
             .asSignal()
             .withLatestFrom(currentSeconds)
             .map { min($0 + 15, maxSeconds) }
-            .map(Double.init)
             .emit(to: viewModel.setTime)
             .disposed(by: disposeBag)
         
@@ -220,7 +219,6 @@ extension PlayerViewController: BindsToViewModel {
             .asSignal()
             .withLatestFrom(currentSeconds)
             .map { max($0 - 15, 0) }
-            .map(Double.init)
             .emit(to: viewModel.setTime)
             .disposed(by: disposeBag)
     }
@@ -288,17 +286,9 @@ private extension Int {
     
     var subtitleDescription: String {
         
-        let hours = self / 3600
-        let minutes = (self % 3600) / 60
-        
-        guard hours != 0 else {
-            return "\(minutes) min"
-        }
-        
-        guard minutes != 0 else {
-            return "\(hours) hours"
-        }
-        
-        return "\(hours) hours \(minutes) min"
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.unitsStyle = .short
+        return formatter.string(from: TimeInterval(self)) ?? ""
     }
 }

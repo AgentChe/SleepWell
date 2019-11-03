@@ -10,10 +10,9 @@ import RxSwift
 import RxCocoa
 
 protocol PlayerViewModelInterface {
-    var setTime: Binder<TimeInterval> { get }
+    var setTime: Binder<Int> { get }
     var play: Binder<Void> { get }
     var reset: Binder<Void> { get }
-    var stop: Binder<Void> { get }
     var time: Driver<Int> { get }
     var isPlaying: Driver<Bool> { get }
     func add(recording: RecordingDetail)
@@ -33,7 +32,7 @@ final class PlayerViewModel: BindableViewModel {
 
 extension PlayerViewModel: PlayerViewModelInterface {
     
-    var setTime: Binder<TimeInterval> {
+    var setTime: Binder<Int> {
         dependencies.audioService.rx.setTime
     }
     
@@ -43,10 +42,6 @@ extension PlayerViewModel: PlayerViewModelInterface {
     
     var reset: Binder<Void> {
         dependencies.audioService.rx.reset
-    }
-    
-    var stop: Binder<Void> {
-        dependencies.audioService.rx.stop
     }
     
     var time: Driver<Int> {

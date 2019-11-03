@@ -38,8 +38,10 @@ struct StoryDetail: RecordingDetail {
         let data = try container.nestedContainer(keyedBy: StoryKeys.self, forKey: .data)
         let story = try data.nestedContainer(keyedBy: CodingKeys.self, forKey: .recording)
         
-        let preview = try story.decode(String?.self, forKey: .imagePreview)?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-        let reader = try story.decode(String?.self, forKey: .imageReader)?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        let preview = try story.decode(String?.self, forKey: .imagePreview)?
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let reader = try story.decode(String?.self, forKey: .imageReader)?
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
         recording = Story(id: try story.decode(Int.self, forKey: .id),
                           name: try story.decode(String.self, forKey: .name),

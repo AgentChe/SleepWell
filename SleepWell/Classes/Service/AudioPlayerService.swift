@@ -15,12 +15,10 @@ final class AudioPlayerService: ReactiveCompatible {
     static let shared = AudioPlayerService()
     
     func add(recording: RecordingDetail) {
-        guard let mainPlayer = try? AVAudioPlayer(contentsOf: recording.readingSound.soundUrl) else {
-            return
-        }
-        let ambientPlayer: AVAudioPlayer?
+        let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
+        let ambientPlayer: AVPlayer?
         if let ambientUrl = recording.ambientSound?.soundUrl {
-            ambientPlayer = try? AVAudioPlayer(contentsOf: ambientUrl)
+            ambientPlayer = AVPlayer(url: ambientUrl)
         } else {
             ambientPlayer = nil
         }
@@ -55,13 +53,13 @@ final class AudioPlayerService: ReactiveCompatible {
 }
 
 private final class Audio: ReactiveCompatible {
-    let mainPlayer: AVAudioPlayer
-    let ambientPlayer: AVAudioPlayer?
+    let mainPlayer: AVPlayer
+    let ambientPlayer: AVPlayer?
     let recording: RecordingDetail
     
     init(
-        mainPlayer: AVAudioPlayer,
-        ambientPlayer: AVAudioPlayer?,
+        mainPlayer: AVPlayer,
+        ambientPlayer: AVPlayer?,
         recording: RecordingDetail
     ) {
         self.mainPlayer = mainPlayer
@@ -69,20 +67,27 @@ private final class Audio: ReactiveCompatible {
         self.recording = recording
     }
     
-    var currentTime: TimeInterval {
+    var currentTime: CMTime {
         set {
-            mainPlayer.currentTime = newValue
+            mainPlayer.seek(to: newValue, completionHandler: { _ in })
         }
         get {
-            return mainPlayer.currentTime
+            return mainPlayer.currentTime()
         }
     }
     
     func prepareToPlay() {
-        mainPlayer.prepareToPlay()
-        mainPlayer.volume = 0.01
-        ambientPlayer?.prepareToPlay()
-        ambientPlayer?.numberOfLoops = -1
+        
+        if let ambient = ambientPlayer {
+            NotificationCenter.default.addObserver(
+                forName: .AVPlayerItemDidPlayToEndTime,
+                object: ambient.currentItem,
+                queue: .main
+            ) { _ in
+                ambient.seek(to: CMTime.zero)
+                ambient.play()
+            }
+        }
     }
     
     func play() {
@@ -90,15 +95,14 @@ private final class Audio: ReactiveCompatible {
         ambientPlayer?.play()
     }
     
-    func stop() {
-        mainPlayer.stop()
-        ambientPlayer?.stop()
+    func pause() {
+        mainPlayer.pause()
+        ambientPlayer?.pause()
     }
     
     func reset() {
-        stop()
-        mainPlayer.currentTime = 0
-        ambientPlayer?.currentTime = 0
+        pause()
+        currentTime = CMTime.zero
     }
 }
 
@@ -111,10 +115,10 @@ extension Reactive where Base: AudioPlayerService {
         }
     }
     
-    var stop: Binder<Void> {
+    var pause: Binder<Void> {
         
         Binder(base) { base, _ in
-            base.audioRelay.value?.stop()
+            base.audioRelay.value?.pause()
         }
     }
     
@@ -125,13 +129,13 @@ extension Reactive where Base: AudioPlayerService {
         }
     }
     
-    var setTime: Binder<TimeInterval> {
+    var setTime: Binder<Int> {
         
         Binder(base) { base, time in
             guard let audio = base.audioRelay.value else {
                 return
             }
-            audio.currentTime = time
+            audio.currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
         }
     }
     
@@ -151,7 +155,7 @@ private extension Reactive where Base: Audio {
         
         Driver<Int>.interval(.milliseconds(100))
             .map { [base] _ in
-                Int(round(base.mainPlayer.currentTime))
+                Int(round(base.mainPlayer.currentTime().seconds))
             }
             .distinctUntilChanged()
     }
@@ -160,7 +164,7 @@ private extension Reactive where Base: Audio {
         
         Driver<Int>.interval(.milliseconds(100))
             .map { [base] _ in
-                base.mainPlayer.isPlaying
+                base.mainPlayer.rate != 0 && base.mainPlayer.error == nil
             }
             .distinctUntilChanged()
     }
