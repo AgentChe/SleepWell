@@ -13,6 +13,11 @@ protocol PickerViewItem {}
 class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     var didSelectItem: ((PickerViewItem) -> ())?
     
+    // 0 - label.textAlignment = .center
+    // 1 - label.textAlignment = .left
+    // 2 - label.textAlignment = .right
+    @IBInspectable var aligment: Int = 0
+    
     private var items: [PickerViewItem] = []
     private var mapItemToPresentation: ((PickerViewItem) -> (String))!
     
@@ -50,7 +55,14 @@ class PickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
             label = UILabel()
             label.textColor = .white
             label.font = UIFont(name: "Poppins-SemiBold", size: 17)
-            label.textAlignment = .center
+            
+            if aligment == 0 {
+                label.textAlignment = .center
+            } else if aligment == 1 {
+                label.textAlignment = .left
+            } else if aligment == 2 {
+                label.textAlignment = .right
+            }
         }
         
         label.text = mapItemToPresentation(items[row])

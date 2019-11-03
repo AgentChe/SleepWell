@@ -10,6 +10,8 @@ final class OnboardingAssembly: ScreenAssembly {
     typealias VC = OnboardingViewController
     
     func assembleDependencies() -> OnboardingViewModel.Dependencies {
-        return VC.ViewModel.Dependencies()
+        return VC.ViewModel.Dependencies(
+            personalDataService: PersonalDataService()
+        )
     }
 }

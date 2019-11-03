@@ -20,7 +20,7 @@ class OnboardingPersonalDataView: UIView {
     @IBOutlet weak var pickerView: PickerView!
     @IBOutlet weak var nextButton: UIButton!
     
-    let nextWithPersonalData = PublishRelay<(Gender, Int)>()
+    let nextUpWithPersonalData = PublishRelay<(Gender, Int)>()
     
     private lazy var source: [Int] = {
         var array: [Int] = []
@@ -36,7 +36,7 @@ class OnboardingPersonalDataView: UIView {
     
     private lazy var nextButtonColor = UIColor(red: 0.921, green: 0.894, blue: 0.909, alpha: 1)
     
-    private var items: [Int] = []
+    private var years: [Int] = []
     
     private var selectedYear: Int? {
         didSet {
@@ -65,7 +65,7 @@ class OnboardingPersonalDataView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(containerView)
         
-        items = source
+        years = source
         
         pickerView.didSelectItem = { [weak self] item in
             guard let year = item as? Int else {
@@ -75,7 +75,7 @@ class OnboardingPersonalDataView: UIView {
             self?.selectedYear = year
         }
         
-        pickerView.bind(items: items, map: { "\($0)" })
+        pickerView.bind(items: years, map: { "\($0)" })
         
         maleCheckView.changedCheck = { [weak self] _ in self?.selectedGender = .male }
         femaleCheckView.changedCheck = { [weak self] _ in self?.selectedGender = .female }
@@ -93,7 +93,7 @@ class OnboardingPersonalDataView: UIView {
                 
                 return .just((gender, year))
             }
-            .bind(to: nextWithPersonalData)
+            .bind(to: nextUpWithPersonalData)
             .disposed(by: disposeBag)
     }
     

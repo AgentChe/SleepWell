@@ -36,6 +36,17 @@ class PurchaseService {
             })
     }
     
+    func paymentValidate() -> Single<Session?> {
+        return receipt
+            .flatMap { [weak self] receiptBase64 -> Single<Session?> in
+                guard let `self` = self, let receipt = receiptBase64 else {
+                    return .just(nil)
+                }
+                
+                return self.paymentValidate(receipt: receipt)
+            }
+    }
+    
     func buySubscription(productId: String) -> Single<Void> {
         return Single<Void>.create { single in
             SwiftyStoreKit.purchaseProduct(productId, quantity: 1, atomically: true) { result in

@@ -22,8 +22,8 @@ class SplashViewController: UIViewController {
             .delaySubscription(RxTimeInterval.seconds(2), scheduler: MainScheduler.asyncInstance)
             .subscribe(onSuccess: { [weak self] step in
                 switch step {
-                case .main:
-                    self?.goToMainScreen()
+                case .main(let behave):
+                    self?.goToMainScreen(behave: behave)
                 case .onboarding(let behave):
                     self?.goToOnboardingScreen(behave: behave)
                 }
@@ -38,7 +38,10 @@ class SplashViewController: UIViewController {
                          duration: 0.3)
     }
     
-    private func goToMainScreen() {
-        router.setRootVC(type: MainAssembly.self)
+    private func goToMainScreen(behave: MainScreenBehave) {
+        router.setRootVC(type: MainAssembly.self,
+                         input: .init(behave: behave),
+                         animationOptions: .transitionCrossDissolve,
+                         duration: 0.3)
     }
 }

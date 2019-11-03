@@ -19,4 +19,11 @@ final class OnboardingRouter: Routing {
         router.present(type: PaygateAssembly.self,
                        input: PaygateViewController.Input(openedFrom: .onboarding, completion: completion))
     }
+    
+    func goToMainScreen(behave: MainScreenBehave) {
+        router.setRootVC(type: MainAssembly.self,
+                         input: .init(behave: behave),
+                         animationOptions: .transitionCrossDissolve,
+                         duration: 0.3)
+    }
 }

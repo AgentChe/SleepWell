@@ -27,6 +27,12 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>sf-pro-text-semibold.ttf</string>
+		<string>sf-pro-text-regular.ttf</string>
+		<string>sf-pro-text-medium.ttf</string>
+		<string>sf-pro-text-light.ttf</string>
+		<string>sf-pro-text-heavy.ttf</string>
+		<string>sf-pro-text-bold.ttf</string>
 		<string>Poppins-Bold.ttf</string>
 		<string>Poppins-SemiBold.ttf</string>
 		<string>Poppins-Light.ttf</string>

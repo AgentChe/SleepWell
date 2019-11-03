@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeditateHeaderView" customModule="SleepWell" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Imv-3m-9Z2" id="buR-yU-Lga"/>
+                <outlet property="conteinerView" destination="iN0-l3-epB" id="rw0-9l-Z7M"/>
+                <outlet property="flowLayout" destination="82K-4d-hPr" id="kLa-I9-rOs"/>
+                <outlet property="titleView" destination="bvU-Pa-HC9" id="sQW-YD-8nw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="454" height="226"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvU-Pa-HC9" customClass="HeaderTitleView" customModule="SleepWell" customModuleProvider="target">
+                    <rect key="frame" x="24" y="60" width="406" height="96"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Imv-3m-9Z2">
+                    <rect key="frame" x="20" y="156" width="414" height="70"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="btb-8C-yXp"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="82K-4d-hPr">
+                        <size key="itemSize" width="50" height="30"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bvU-Pa-HC9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="5lu-sR-N0r"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bvU-Pa-HC9" secondAttribute="trailing" constant="24" id="9Vf-kq-xoK"/>
+                <constraint firstItem="bvU-Pa-HC9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="D5b-GG-a1I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Imv-3m-9Z2" secondAttribute="bottom" id="E0a-z1-cls"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Imv-3m-9Z2" secondAttribute="trailing" constant="20" id="M6K-mC-kJX"/>
+                <constraint firstItem="Imv-3m-9Z2" firstAttribute="top" secondItem="bvU-Pa-HC9" secondAttribute="bottom" id="kDV-OR-qtE"/>
+                <constraint firstItem="Imv-3m-9Z2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="pYY-xF-JQb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-44.799999999999997" y="301.34932533733138"/>
+        </view>
+    </objects>
+</document>

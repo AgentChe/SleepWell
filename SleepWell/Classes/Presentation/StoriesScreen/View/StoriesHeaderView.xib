@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoriesHeaderView" customModule="SleepWell" customModuleProvider="target">
+            <connections>
+                <outlet property="conteinerView" destination="iN0-l3-epB" id="lUn-EP-ntf"/>
+                <outlet property="randomButton" destination="NrK-lO-ax5" id="Af3-6b-nXV"/>
+                <outlet property="titleView" destination="IEs-jJ-5vO" id="j2Y-R2-aac"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="205"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-jJ-5vO" customClass="HeaderTitleView" customModule="SleepWell" customModuleProvider="target">
+                    <rect key="frame" x="24" y="60" width="388" height="69"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrK-lO-ax5">
+                    <rect key="frame" x="20" y="145" width="396" height="40"/>
+                    <color key="backgroundColor" red="0.72156862745098038" green="0.71372549019607845" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Xdf-A2-N1f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                    <state key="normal" title="Play Random Story">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IEs-jJ-5vO" secondAttribute="trailing" constant="24" id="DkS-Q9-IhX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NrK-lO-ax5" secondAttribute="trailing" constant="20" id="GhU-bN-05w"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="NrK-lO-ax5" secondAttribute="bottom" constant="20" id="Hzh-dW-NvO"/>
+                <constraint firstItem="NrK-lO-ax5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="brI-qD-P1c"/>
+                <constraint firstItem="NrK-lO-ax5" firstAttribute="top" secondItem="IEs-jJ-5vO" secondAttribute="bottom" constant="16" id="iOS-q0-qTg"/>
+                <constraint firstItem="IEs-jJ-5vO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="rnJ-EV-SJm"/>
+                <constraint firstItem="IEs-jJ-5vO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="yEU-NS-hMC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="147.19999999999999" y="370.16491754122939"/>
+        </view>
+    </objects>
+</document>

@@ -14,7 +14,7 @@ class OnboardingStartView: UIView {
     @IBOutlet var containerView: UIView!
     @IBOutlet weak var getStartedButton: UIButton!
     
-    let start = PublishRelay<Void>()
+    let nextUp = PublishRelay<Void>()
     
     private let disposeBag = DisposeBag()
     
@@ -31,7 +31,7 @@ class OnboardingStartView: UIView {
         addSubview(containerView)
         
         getStartedButton.rx.tap
-            .bind(to: start)
+            .bind(to: nextUp)
             .disposed(by: disposeBag)
     }
     

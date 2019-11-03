@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="woJ-BK-SnQ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Meditate View Controller-->
+        <scene sceneID="YKC-9D-fGX">
+            <objects>
+                <viewController storyboardIdentifier="MeditateViewController" automaticallyAdjustsScrollViewInsets="NO" id="woJ-BK-SnQ" customClass="MeditateViewController" customModule="SleepWell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kKr-70-3MS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgMeditate" translatesAutoresizingMaskIntoConstraints="NO" id="X2X-nm-Z5e">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="192" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SAV-ci-1o8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SAV-ci-1o8" firstAttribute="leading" secondItem="IPU-ZT-f8S" secondAttribute="leading" id="7O4-AS-4gg"/>
+                            <constraint firstItem="X2X-nm-Z5e" firstAttribute="top" secondItem="kKr-70-3MS" secondAttribute="top" id="9zF-DJ-suQ"/>
+                            <constraint firstItem="X2X-nm-Z5e" firstAttribute="leading" secondItem="IPU-ZT-f8S" secondAttribute="leading" id="DM6-ND-asV"/>
+                            <constraint firstAttribute="bottom" secondItem="X2X-nm-Z5e" secondAttribute="bottom" id="Tgu-2H-n4Y"/>
+                            <constraint firstItem="IPU-ZT-f8S" firstAttribute="trailing" secondItem="SAV-ci-1o8" secondAttribute="trailing" id="eQG-sG-WJn"/>
+                            <constraint firstAttribute="bottom" secondItem="SAV-ci-1o8" secondAttribute="bottom" id="pfA-CH-h4y"/>
+                            <constraint firstItem="IPU-ZT-f8S" firstAttribute="trailing" secondItem="X2X-nm-Z5e" secondAttribute="trailing" id="s6p-hw-InL"/>
+                            <constraint firstItem="SAV-ci-1o8" firstAttribute="top" secondItem="kKr-70-3MS" secondAttribute="top" id="yNB-0b-INB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IPU-ZT-f8S"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="SAV-ci-1o8" id="HFB-0z-d54"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yJM-GT-hGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-97" y="161"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bgMeditate" width="375" height="812"/>
+    </resources>
+</document>
