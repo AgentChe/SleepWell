@@ -21,6 +21,9 @@ final class OnboardingRouter: Routing {
     }
     
     func goToMainScreen(behave: MainScreenBehave) {
-        router.setRootVC(type: MainAssembly.self)
+        router.setRootVC(type: MainAssembly.self,
+                         input: .init(behave: behave),
+                         animationOptions: .transitionCrossDissolve,
+                         duration: 0.3)
     }
 }

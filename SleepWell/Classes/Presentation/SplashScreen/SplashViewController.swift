@@ -9,11 +9,6 @@
 import UIKit
 import RxSwift
 
-// TODO: move to main screen
-enum MainScreenBehave {
-    case withActiveSubscription, withoutActiveSubscription
-}
-
 class SplashViewController: UIViewController {
     private lazy var router = Router(transitionHandler: self)
     private let viewModel = SplashViewModel()
@@ -44,6 +39,9 @@ class SplashViewController: UIViewController {
     }
     
     private func goToMainScreen(behave: MainScreenBehave) {
-        router.setRootVC(type: MainAssembly.self)
+        router.setRootVC(type: MainAssembly.self,
+                         input: .init(behave: behave),
+                         animationOptions: .transitionCrossDissolve,
+                         duration: 0.3)
     }
 }

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol MainViewModelInterface {
-    func selectTab(_ tab: MainViewModel.Tab)
+    func selectTab(_ tab: MainViewModel.Tab, behave: MainScreenBehave)
 }
 
 final class MainViewModel: BindableViewModel {
@@ -28,12 +28,12 @@ final class MainViewModel: BindableViewModel {
 }
 
 extension MainViewModel: MainViewModelInterface {
-    func selectTab(_ tab: MainViewModel.Tab) {
+    func selectTab(_ tab: MainViewModel.Tab, behave: MainScreenBehave) {
         switch tab {
         case .meditate:
             break
         case .stories:
-            router.trigger(.stories)
+            router.trigger(.stories(behave == .withActiveSubscription))
         case .scenes:
             break
         }

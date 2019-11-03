@@ -13,7 +13,7 @@ final class StoriesRouter: Routing {
     
     enum Route {
         case details
-        case paygate
+        case paygate(_ completion: (PaygateCompletionResult) -> ())
     }
   
     init(transitionHandler: UIViewController) {
@@ -24,8 +24,8 @@ final class StoriesRouter: Routing {
         switch route {
         case .details:
             break
-        case .paygate:
-            break
+        case let .paygate(completion):
+            router.present(type: PaygateAssembly.self, input: PaygateViewController.Input(openedFrom: .paidContent, completion: completion))
         }
     }
 }

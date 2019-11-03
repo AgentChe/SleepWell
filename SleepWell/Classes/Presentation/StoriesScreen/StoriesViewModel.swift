@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol StoriesViewModelInterface {
-    func elements() -> Driver<[StoriesCellType]>
+    func elements(subscription: Bool) -> Driver<[StoriesCellType]>
     func randomElement(items: [StoriesCellType]) -> Signal<StoriesCellType>
     func getStoryDetails(id: Int) -> Signal<StoryDetail?>
     func didTapCell(type: StoriesViewModel.Route)
@@ -29,19 +29,38 @@ final class StoriesViewModel: BindableViewModel {
     
     struct Dependencies {
         let storyService: StoryService
+        let personalDataService: PersonalDataService
     }
 
     let storyLoading = RxActivityIndicator()
+    private let paygateResult = PublishRelay<PaygateCompletionResult>()
 }
 
 extension StoriesViewModel: StoriesViewModelInterface {
     
-    private func isActiveSubscription() -> Observable<Bool> {
-        return .just(true)
+    private func isActiveSubscription(subscription: Bool) -> Signal<Bool> {
+        let isActiveSubscription = Signal.just(subscription)
+        let result = paygateResult
+            .asSignal()
+            .flatMapLatest { [weak self] paygateResult -> Signal<Bool> in
+                guard let this = self else {
+                    return .never()
+                }
+                switch paygateResult {
+                case .purchased, .restored:
+                    return this.dependencies.personalDataService
+                        .sendPersonalData()
+                        .map { true }
+                        .asSignal(onErrorSignalWith: .never())
+                case .closed:
+                    return .just(false)
+                }
+            }
+        return Signal.merge(isActiveSubscription, result)
     }
     
-    func elements() -> Driver<[StoriesCellType]> {
-        return Observable.combineLatest(isActiveSubscription(), dependencies.storyService.stories().asObservable())
+    func elements(subscription: Bool) -> Driver<[StoriesCellType]> {
+        return Signal.combineLatest(isActiveSubscription(subscription: subscription), dependencies.storyService.stories().asSignal(onErrorJustReturn: []))
             .map { StoriesCellType.map(items: $1, isSubscription: $0) }
             .asDriver(onErrorJustReturn: [])
     }
@@ -73,7 +92,10 @@ extension StoriesViewModel: StoriesViewModelInterface {
         case let .details(detail):
             router.trigger(.details)
         case .paygate:
-            router.trigger(.paygate)
+            router.trigger(.paygate({ [weak self] result in
+                self?.paygateResult.accept(result)
+                print(result)
+            }))
         }
     }
    

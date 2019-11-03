@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4E11B3BE0E63C7A8C09FF4AE /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
+		86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */; };
+		86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */; };
+		86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C62236ED0B300D50C32 /* sf-pro-text-light.ttf */; };
+		86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */; };
+		86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */; };
+		86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */; };
 		86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */; };
 		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
 		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
@@ -145,6 +151,12 @@
 
 /* Begin PBXFileReference section */
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
+		86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-regular.ttf"; sourceTree = "<group>"; };
+		86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-medium.ttf"; sourceTree = "<group>"; };
+		86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-heavy.ttf"; sourceTree = "<group>"; };
+		86836C62236ED0B300D50C32 /* sf-pro-text-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-light.ttf"; sourceTree = "<group>"; };
+		86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-semibold.ttf"; sourceTree = "<group>"; };
+		86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-bold.ttf"; sourceTree = "<group>"; };
 		86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateCellType.swift; sourceTree = "<group>"; };
 		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
 		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
@@ -302,6 +314,19 @@
 			children = (
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		86836C5E236ED09300D50C32 /* SFProText */ = {
+			isa = PBXGroup;
+			children = (
+				86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */,
+				86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */,
+				86836C62236ED0B300D50C32 /* sf-pro-text-light.ttf */,
+				86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */,
+				86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */,
+				86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */,
+			);
+			path = SFProText;
 			sourceTree = "<group>";
 		};
 		86B2BFF22366396F00AF2B33 /* Models */ = {
@@ -752,6 +777,7 @@
 		96DC8C612367444C004DC76A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				86836C5E236ED09300D50C32 /* SFProText */,
 				96DC8C68236745B8004DC76A /* OpenSans */,
 				96DC8C6223674569004DC76A /* Poppins */,
 			);
@@ -913,8 +939,11 @@
 				86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */,
 				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
+				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
+				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
 				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
 				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
+				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
 				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
@@ -922,10 +951,12 @@
 				96DC8C6F2367460D004DC76A /* OpenSans-Regular.ttf in Resources */,
 				9685528D23690F5C00A22E21 /* OnboardingBedtimeView.xib in Resources */,
 				96DC8C702367460D004DC76A /* OpenSans-Light.ttf in Resources */,
+				86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */,
 				96DC8C712367460D004DC76A /* OpenSans-Italic.ttf in Resources */,
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
 				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
+				86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
 				86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */,
@@ -943,6 +974,7 @@
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
 				86C848C82367027900BC6EDA /* StoryCell.xib in Resources */,
+				86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */,
 				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,

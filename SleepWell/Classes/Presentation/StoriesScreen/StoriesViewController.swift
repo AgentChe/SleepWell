@@ -40,14 +40,18 @@ final class StoriesViewController: UIViewController {
 
 extension StoriesViewController: BindsToViewModel {
     typealias ViewModel = StoriesViewModel
+    
+    struct Input {
+        let isActiveSubscription: Bool
+    }
 
     static func make() -> StoriesViewController {
         let storyboard = UIStoryboard(name: "StoriesScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "StoriesViewController") as! StoriesViewController
     }
     
-    func bind(to viewModel: StoriesViewModelInterface, with input: ()) -> () {
-        let elements = viewModel.elements()
+    func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> () {
+        let elements = viewModel.elements(subscription: input.isActiveSubscription)
         
         elements
             .drive(tableView.rx.items) { table, index, item in

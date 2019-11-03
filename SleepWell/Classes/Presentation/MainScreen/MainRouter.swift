@@ -11,7 +11,7 @@ import UIKit
 final class MainRouter: Routing {
     enum Route {
         case meditate
-        case stories
+        case stories(Bool)
         case scenes
     }
     
@@ -25,8 +25,9 @@ final class MainRouter: Routing {
         switch route {
         case .meditate:
             break
-        case .stories:
-            router.presentChild(type: StoriesAssembly.self)
+        case let .stories(element):
+            router.presentChild(type: StoriesAssembly.self,
+                                input: .init(isActiveSubscription: element))
         case .scenes:
             break
         }
