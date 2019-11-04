@@ -123,7 +123,7 @@
                                             <state key="normal" image="play_button"/>
                                         </button>
                                         <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-kt-37O">
-                                            <rect key="frame" x="299" y="781" width="24" height="24"/>
+                                            <rect key="frame" x="299" y="785" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="LXJ-lm-mms"/>
                                                 <constraint firstAttribute="height" constant="24" id="yhp-j4-E8x"/>
@@ -139,7 +139,7 @@
                                         <constraint firstAttribute="trailing" secondItem="8qE-yo-Rws" secondAttribute="trailing" constant="30" id="815-QR-0mU"/>
                                         <constraint firstItem="8qE-yo-Rws" firstAttribute="leading" secondItem="F7U-pt-W3H" secondAttribute="leading" constant="30" id="9uU-DB-EVe"/>
                                         <constraint firstItem="vRn-eF-q5C" firstAttribute="top" secondItem="8qE-yo-Rws" secondAttribute="bottom" constant="30" id="Fm3-iF-fL6"/>
-                                        <constraint firstItem="aIY-kt-37O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pbM-7e-Sij" secondAttribute="bottom" constant="47" id="HJK-X8-lnJ"/>
+                                        <constraint firstItem="aIY-kt-37O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pbM-7e-Sij" secondAttribute="bottom" priority="750" constant="43" id="HJK-X8-lnJ"/>
                                         <constraint firstItem="L5Q-Rg-s1y" firstAttribute="centerX" secondItem="F7U-pt-W3H" secondAttribute="centerX" id="Icm-E6-b04"/>
                                         <constraint firstItem="Ovh-DS-QYv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Z3t-C5-iox" secondAttribute="trailing" id="Iyy-PV-NhA"/>
                                         <constraint firstItem="8qE-yo-Rws" firstAttribute="top" secondItem="Ke3-pN-aq9" secondAttribute="bottom" constant="12" id="JTu-nL-Oyy"/>
@@ -147,7 +147,7 @@
                                         <constraint firstItem="aIY-kt-37O" firstAttribute="centerX" secondItem="pbM-7e-Sij" secondAttribute="centerX" id="O78-Ac-zBl"/>
                                         <constraint firstItem="8qE-yo-Rws" firstAttribute="centerX" secondItem="F7U-pt-W3H" secondAttribute="centerX" id="OBO-Ej-zkG"/>
                                         <constraint firstItem="Z3t-C5-iox" firstAttribute="leading" secondItem="F7U-pt-W3H" secondAttribute="leading" constant="32" id="QIl-8N-dFi"/>
-                                        <constraint firstAttribute="bottom" secondItem="aIY-kt-37O" secondAttribute="bottom" constant="47" id="TY3-Cd-r7g"/>
+                                        <constraint firstAttribute="bottom" secondItem="aIY-kt-37O" secondAttribute="bottom" constant="43" id="TY3-Cd-r7g"/>
                                         <constraint firstItem="B8Y-0p-8SQ" firstAttribute="leading" secondItem="F7U-pt-W3H" secondAttribute="leading" constant="29" id="UmK-NO-OV5"/>
                                         <constraint firstAttribute="trailing" secondItem="vRn-eF-q5C" secondAttribute="trailing" constant="29" id="XB6-o8-WBi"/>
                                         <constraint firstItem="oqk-m6-XR5" firstAttribute="centerX" secondItem="F7U-pt-W3H" secondAttribute="centerX" id="XZG-AJ-Inx"/>
@@ -179,10 +179,10 @@
                             <constraint firstItem="WzL-Ky-Sq7" firstAttribute="leading" secondItem="kCu-lx-LIJ" secondAttribute="leading" id="DAU-aE-XhN"/>
                             <constraint firstItem="WzL-Ky-Sq7" firstAttribute="top" secondItem="kCu-lx-LIJ" secondAttribute="top" id="Hbs-CA-jRf"/>
                             <constraint firstAttribute="bottom" secondItem="WzL-Ky-Sq7" secondAttribute="bottom" id="KkS-aE-Wuf"/>
-                            <constraint firstItem="AgN-KF-nXC" firstAttribute="top" secondItem="kCu-lx-LIJ" secondAttribute="top" id="fMI-ME-ogp"/>
+                            <constraint firstItem="AgN-KF-nXC" firstAttribute="top" secondItem="WzL-Ky-Sq7" secondAttribute="top" id="fMI-ME-ogp"/>
                             <constraint firstItem="kCu-lx-LIJ" firstAttribute="trailing" secondItem="WzL-Ky-Sq7" secondAttribute="trailing" id="jZU-2o-B2F"/>
                             <constraint firstItem="AgN-KF-nXC" firstAttribute="leading" secondItem="kCu-lx-LIJ" secondAttribute="leading" id="pfC-d7-yNx"/>
-                            <constraint firstAttribute="bottom" secondItem="AgN-KF-nXC" secondAttribute="bottom" id="sRE-Mi-BYU"/>
+                            <constraint firstItem="WzL-Ky-Sq7" firstAttribute="bottom" secondItem="AgN-KF-nXC" secondAttribute="bottom" id="sRE-Mi-BYU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kCu-lx-LIJ"/>
                         <connections>
@@ -192,6 +192,7 @@
                     <connections>
                         <outlet property="audioSlider" destination="gBM-LX-919" id="z07-mH-OoV"/>
                         <outlet property="backgroundImageView" destination="WzL-Ky-Sq7" id="aJJ-Yj-Lwq"/>
+                        <outlet property="bottomConstraint" destination="KkS-aE-Wuf" id="uwM-TX-Ivd"/>
                         <outlet property="currentTimeLabel" destination="Z3t-C5-iox" id="8ie-yZ-3Gm"/>
                         <outlet property="fastForwardButton" destination="pbM-7e-Sij" id="Gqf-RZ-Jyx"/>
                         <outlet property="panGesture" destination="1z7-Nw-fL2" id="CKP-8f-C7J"/>
@@ -202,6 +203,7 @@
                         <outlet property="rewindButton" destination="0S3-xM-nhb" id="Ilz-ji-yTm"/>
                         <outlet property="subtitleLabel" destination="B8Y-0p-8SQ" id="Luc-3L-vaH"/>
                         <outlet property="titleLabel" destination="vRn-eF-q5C" id="3oO-jh-kWq"/>
+                        <outlet property="topConstraint" destination="Hbs-CA-jRf" id="Jwf-vK-Sjo"/>
                         <outlet property="volumeButton" destination="aIY-kt-37O" id="bvg-g6-toS"/>
                     </connections>
                 </viewController>

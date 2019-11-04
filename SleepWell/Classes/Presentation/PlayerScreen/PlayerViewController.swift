@@ -25,6 +25,8 @@ final class PlayerViewController: UIViewController {
     @IBOutlet weak var audioSlider: AudioSlider!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var volumeButton: UIButton!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
 }
@@ -47,7 +49,7 @@ extension PlayerViewController: BindsToViewModel {
         if let imagePreview = input.recording.recording.imagePreviewUrl {
             backgroundImageView.kf.indicatorType = .activity
             backgroundImageView.kf.setImage(with: imagePreview, options: [.transition(.fade(0.2))])
-print("image:: \(imagePreview)")
+            
             playerImageView.kf.indicatorType = .activity
             playerImageView.kf.setImage(with: imagePreview, options: [.transition(.fade(0.2))])
         }
@@ -81,20 +83,32 @@ print("image:: \(imagePreview)")
             + " · "
             + input.recording.readingSound.soundSecs.subtitleDescription
         
-        isPlaying.map {
-            $0 ? input.recording.recording.reader : subtitleWithDuration
-        }
-        .drive(subtitleLabel.rx.text)
-        .disposed(by: disposeBag)
+        isPlaying
+            .map {
+                $0 ? input.recording.recording.reader : subtitleWithDuration
+            }
+            .drive(subtitleLabel.rx.text)
+            .disposed(by: disposeBag)
         
-        let viewWillLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
+        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
         
         let skippingIsPlaying = isPlaying.asObservable()
-            .skipUntil(viewWillLayoutSubviews)
+            .skipUntil(viewDidAppear)
         
-        let yPosition = Observable
-            .merge(skippingIsPlaying, viewWillLayoutSubviews.map { _ in false })
+        rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
+            .take(1)
+            .asSignal(onErrorSignalWith: .empty())
+            .emit(to: Binder(self) { base, _ in
+                let maxY = UIScreen.main.bounds.maxY
+                UIView.performWithoutAnimation {
+                    base.topConstraint.constant = maxY
+                    base.bottomConstraint.constant = -maxY
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        let yPosition = skippingIsPlaying
             .distinctUntilChanged()
             .map { [weak self] state -> CGFloat in
                 guard let self = self, !state else {
@@ -116,16 +130,7 @@ print("image:: \(imagePreview)")
             .withLatestFrom(beingDissmissed.map { _ in true }.startWith(false))
             .filter { !$0 }
             .withLatestFrom(yPosition)
-            .bind(to: Binder(self) { base, y in
-                UIView.animate(withDuration: 0.5, animations: {
-                    base.view.frame = .init(
-                        x: base.view.frame.minX,
-                        y: y,
-                        width: base.view.frame.width,
-                        height: base.view.frame.height
-                    )
-                })
-            })
+            .bind(to: rx.updateViewPosition)
             .disposed(by: disposeBag)
         
         panEvent
@@ -135,12 +140,8 @@ print("image:: \(imagePreview)")
             .map { $0.0 }
             .withLatestFrom(yPosition) { $0 + $1 }
             .bind(to: Binder(self) { base, y in
-                 base.view.frame = .init(
-                    x: base.view.frame.minX,
-                    y: y,
-                    width: base.view.frame.width,
-                    height: base.view.frame.height
-                )
+                base.topConstraint.constant = y
+                base.bottomConstraint.constant = -y
             })
             .disposed(by: disposeBag)
         
@@ -253,15 +254,12 @@ private extension Reactive where Base: PlayerViewController {
     var updateViewPosition: Binder<CGFloat> {
         
         Binder(base) { base, y in
+            base.topConstraint.constant = y
+            base.bottomConstraint.constant = -y
             UIView.animate(
                 withDuration: 0.5,
                 animations: {
-                    base.view.frame = .init(
-                        x: base.view.frame.minX,
-                        y: y,
-                        width: base.view.frame.width,
-                        height: base.view.frame.height
-                    )
+                    base.view.layoutIfNeeded()
                 }
             )
         }
