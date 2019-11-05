@@ -72,7 +72,7 @@ private final class Audio: ReactiveCompatible {
             mainPlayer.seek(to: newValue, completionHandler: { _ in })
         }
         get {
-            return mainPlayer.currentTime()
+            mainPlayer.currentTime()
         }
     }
     
