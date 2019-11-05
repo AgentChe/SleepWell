@@ -10,39 +10,59 @@ import RxSwift
 import RxCocoa
 
 protocol MeditateViewModelInterface {
-    func elements(selectedTag: Signal<Int>) -> Driver<[MeditateCellType]>
-    func tags(selectedTag: Signal<Int>) -> Driver<[TagCellModel]>
+    func elements(subscription: Bool, selectedTag: Signal<Int?>) -> Driver<[MeditateCellType]>
+    func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]>
+    func getMeditationDetails(meditationId: Int) -> Signal<MeditationDetail?>
     func didTapCell(model: MeditateCellType)
 }
 
 final class MeditateViewModel: BindableViewModel {
+    enum Route {
+        case details(MeditationDetail)
+        case paygate
+    }
+
     typealias Interface = MeditateViewModelInterface
     
     lazy var router: MeditateRouter = deferred()
     lazy var dependencies: Dependencies = deferred()
-    struct Dependencies {}
+
+    struct Dependencies {
+        let meditatationService: MeditationService
+        let personalDataService: PersonalDataService
+    }
     
-    let test: [Meditation] = [
-        ]
+    private let paygateResult = PublishRelay<PaygateCompletionResult>()
 }
 
-extension MeditateViewModel: MeditateViewModelInterface {
-    private func isActiveSubscription() -> Observable<Bool> {
-        return .just(false)
+extension MeditateViewModel: MeditateViewModelInterface {    
+    private func isActiveSubscription(subscription: Bool) -> Signal<Bool> {
+        let isActiveSubscription = Signal.just(subscription)
+        let result = paygateResult
+            .asSignal()
+            .flatMapLatest { [weak self] paygateResult -> Signal<Bool> in
+                guard let this = self else {
+                    return .never()
+                }
+                switch paygateResult {
+                case .purchased, .restored:
+                    return this.dependencies.personalDataService
+                        .sendPersonalData()
+                        .map { true }
+                        .asSignal(onErrorSignalWith: .never())
+                case .closed:
+                    return .just(false)
+                }
+            }
+        return Signal.merge(isActiveSubscription, result)
     }
 
-    func elements(selectedTag: Signal<Int>) -> Driver<[MeditateCellType]> {
-        let elements = Observable.combineLatest(
-        Observable<[Meditation]>.just(test),
-        isActiveSubscription())
-        return selectedTag
-            .asObservable()
-            .map { $0 }
-            .startWith(nil)
-            .withLatestFrom(elements) { ($0, $1) }
-            .map { id, args -> [MeditateCellType] in
-                let (elements, isActiveSubscription) = args
-                guard let id = id else {
+    func elements(subscription: Bool, selectedTag: Signal<Int?>) -> Driver<[MeditateCellType]> {
+        let meditations = dependencies.meditatationService.meditations().asSignal(onErrorJustReturn: [])
+        let isActive = isActiveSubscription(subscription: subscription)
+        return Signal.combineLatest(selectedTag, meditations, isActive)
+            .map { tag, elements, isActiveSubscription -> [MeditateCellType] in
+                guard let id = tag else {
                     return MeditateCellType.map(items: elements, isSubscription: isActiveSubscription)
                 }
                 return MeditateCellType.map(
@@ -50,21 +70,21 @@ extension MeditateViewModel: MeditateViewModelInterface {
                     isSubscription: isActiveSubscription
                 )
             }
-        .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [])
     }
     
-    func tags(selectedTag: Signal<Int>) -> Driver<[TagCellModel]> {
-        let elements = Observable<[MeditationTag]>.just([
-            MeditationTag(id: 1, name: "All"),
-            MeditationTag(id: 2, name: "Sleep"),
-            MeditationTag(id: 3, name: "Anxiety"),
-            MeditationTag(id: 4, name: "Beginners")])
-        return selectedTag
-            .asObservable()
-            .map { $0 }
-            .startWith(nil)
-            .withLatestFrom(elements) { TagCellModel.map(items: $1, selectedId: $0) }
+    func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]> {
+        let tags = dependencies.meditatationService.getTags()
+        return Observable
+            .combineLatest(selectedTag.asObservable(), tags.asObservable())
+            .map { TagCellModel.map(items: $1, selectedId: $0) }
             .asDriver(onErrorJustReturn: [])
+    }
+    
+    func getMeditationDetails(meditationId: Int) -> Signal<MeditationDetail?> {
+        return dependencies.meditatationService
+            .getMeditation(meditationId: meditationId)
+            .asSignal(onErrorJustReturn: nil)
     }
     
     func didTapCell(model: MeditateCellType) {

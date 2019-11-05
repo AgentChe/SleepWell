@@ -32,7 +32,6 @@ final class StoriesViewModel: BindableViewModel {
         let personalDataService: PersonalDataService
     }
 
-    let storyLoading = RxActivityIndicator()
     private let paygateResult = PublishRelay<PaygateCompletionResult>()
 }
 
@@ -83,7 +82,6 @@ extension StoriesViewModel: StoriesViewModelInterface {
     func getStoryDetails(id: Int) -> Signal<StoryDetail?> {
         return dependencies.storyService
             .getStory(storyId: id)
-            .trackActivity(storyLoading)
             .asSignal(onErrorJustReturn: nil)
     }
     

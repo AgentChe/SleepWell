@@ -19,6 +19,16 @@
 		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
 		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
 		86B5F39B236B5CD7000E43A0 /* StoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */; };
+		86B7A985237012EF007A36BA /* MeditationsListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A984237012EF007A36BA /* MeditationsListRequest.swift */; };
+		86B7A9872370132C007A36BA /* MeditationDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */; };
+		86B7A98923701501007A36BA /* MeditationTagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98823701501007A36BA /* MeditationTagsRequest.swift */; };
+		86B7A98B23701843007A36BA /* MeditationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98A23701843007A36BA /* MeditationCellModel.swift */; };
+		86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98C23701F85007A36BA /* MeditationsMapper.swift */; };
+		86B7A98F23702760007A36BA /* TagsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98E23702760007A36BA /* TagsMapper.swift */; };
+		86B7A99223702ADE007A36BA /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A99123702ADE007A36BA /* TabBarView.swift */; };
+		86B7A99423702AED007A36BA /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B7A99323702AED007A36BA /* TabBarView.xib */; };
+		86B7A99723702CA3007A36BA /* TabBarItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B7A99623702CA3007A36BA /* TabBarItem.xib */; };
+		86B7A99923702CB1007A36BA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A99823702CB1007A36BA /* TabBarItem.swift */; };
 		86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AD2366EC8300BC6EDA /* TagCellModel.swift */; };
 		86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */; };
 		86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848B22366F13900BC6EDA /* HeaderTitleView.xib */; };
@@ -161,6 +171,17 @@
 		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
 		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
 		86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModel.swift; sourceTree = "<group>"; };
+		86B7A984237012EF007A36BA /* MeditationsListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsListRequest.swift; sourceTree = "<group>"; };
+		86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailRequest.swift; sourceTree = "<group>"; };
+		86B7A98823701501007A36BA /* MeditationTagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationTagsRequest.swift; sourceTree = "<group>"; };
+		86B7A98A23701843007A36BA /* MeditationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCellModel.swift; sourceTree = "<group>"; };
+		86B7A98C23701F85007A36BA /* MeditationsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsMapper.swift; sourceTree = "<group>"; };
+		86B7A98E23702760007A36BA /* TagsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsMapper.swift; sourceTree = "<group>"; };
+		86B7A99123702ADE007A36BA /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		86B7A99323702AED007A36BA /* TabBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
+		86B7A99623702CA3007A36BA /* TabBarItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarItem.xib; sourceTree = "<group>"; };
+		86B7A99823702CB1007A36BA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		86B7A99D23702D4B007A36BA /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		86C848AD2366EC8300BC6EDA /* TagCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellModel.swift; sourceTree = "<group>"; };
 		86C848AF2366F11C00BC6EDA /* HeaderTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleView.swift; sourceTree = "<group>"; };
 		86C848B22366F13900BC6EDA /* HeaderTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTitleView.xib; sourceTree = "<group>"; };
@@ -334,8 +355,36 @@
 			children = (
 				86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */,
 				86C848AD2366EC8300BC6EDA /* TagCellModel.swift */,
+				86B7A98A23701843007A36BA /* MeditationCellModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		86B7A99023702ABF007A36BA /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				86B7A99523702BAC007A36BA /* TabBarItem */,
+				86B7A99123702ADE007A36BA /* TabBarView.swift */,
+				86B7A99323702AED007A36BA /* TabBarView.xib */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		86B7A99523702BAC007A36BA /* TabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				86B7A99823702CB1007A36BA /* TabBarItem.swift */,
+				86B7A99623702CA3007A36BA /* TabBarItem.xib */,
+			);
+			path = TabBarItem;
+			sourceTree = "<group>";
+		};
+		86B7A99A23702D2A007A36BA /* Montserrat */ = {
+			isa = PBXGroup;
+			children = (
+				86B7A99D23702D4B007A36BA /* Montserrat-Regular.ttf */,
+			);
+			path = Montserrat;
 			sourceTree = "<group>";
 		};
 		86C848B12366F12300BC6EDA /* HeaderTitleView */ = {
@@ -576,6 +625,8 @@
 				96DC8C7E23674EC5004DC76A /* PaygateMapper.swift */,
 				862783F92369DFF60065A436 /* StoriesMapper.swift */,
 				962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */,
+				86B7A98C23701F85007A36BA /* MeditationsMapper.swift */,
+				86B7A98E23702760007A36BA /* TagsMapper.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -608,6 +659,7 @@
 		96C29EE523625AC000E93CB1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				86B7A99023702ABF007A36BA /* TabBarView */,
 				86CA8C7E2367894B00692EE5 /* PremiumUnlockCell */,
 				86C848B12366F12300BC6EDA /* HeaderTitleView */,
 				86F98CD123646A9C00B0F5EA /* GradientView.swift */,
@@ -669,6 +721,9 @@
 				86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */,
 				86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */,
 				962A777C236A2A09000E2683 /* SetRequest.swift */,
+				86B7A984237012EF007A36BA /* MeditationsListRequest.swift */,
+				86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */,
+				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -777,6 +832,7 @@
 		96DC8C612367444C004DC76A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				86B7A99A23702D2A007A36BA /* Montserrat */,
 				86836C5E236ED09300D50C32 /* SFProText */,
 				96DC8C68236745B8004DC76A /* OpenSans */,
 				96DC8C6223674569004DC76A /* Poppins */,
@@ -941,11 +997,13 @@
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
 				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
 				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
+				86B7A99723702CA3007A36BA /* TabBarItem.xib in Resources */,
 				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
 				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
 				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
 				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
+				86B7A99423702AED007A36BA /* TabBarView.xib in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
 				96DC8C6E2367460D004DC76A /* OpenSans-Semibold.ttf in Resources */,
 				96DC8C6F2367460D004DC76A /* OpenSans-Regular.ttf in Resources */,
@@ -1044,6 +1102,7 @@
 				86F98CBB23645C3B00B0F5EA /* MeditateViewModel.swift in Sources */,
 				96C29F6323634D6C00E93CB1 /* OnboardingAssembly.swift in Sources */,
 				96C29F452363421800E93CB1 /* CheckUserTokenRequest.swift in Sources */,
+				86B7A98F23702760007A36BA /* TagsMapper.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
@@ -1052,6 +1111,7 @@
 				9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */,
 				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
+				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
@@ -1089,12 +1149,16 @@
 				96C29EFD236260D200E93CB1 /* UIBarButtonItemExtension.swift in Sources */,
 				96C29EFF236260F100E93CB1 /* UIButtonExtension.swift in Sources */,
 				96C29F4123633B0400E93CB1 /* PaymentError.swift in Sources */,
+				86B7A99223702ADE007A36BA /* TabBarView.swift in Sources */,
 				96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */,
+				86B7A98B23701843007A36BA /* MeditationCellModel.swift in Sources */,
+				86B7A98923701501007A36BA /* MeditationTagsRequest.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
 				968552882368FB1300A22E21 /* PickerView.swift in Sources */,
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
+				86B7A985237012EF007A36BA /* MeditationsListRequest.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
@@ -1110,6 +1174,7 @@
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
 				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
+				86B7A9872370132C007A36BA /* MeditationDetailRequest.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,
@@ -1126,6 +1191,7 @@
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
 				962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */,
+				86B7A99923702CB1007A36BA /* TabBarItem.swift in Sources */,
 				968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,

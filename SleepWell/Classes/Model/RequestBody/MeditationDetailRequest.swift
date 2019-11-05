@@ -1,24 +1,26 @@
 //
-//  StoriesListRequest.swift
+//  MeditationDetailRequest.swift
 //  SleepWell
 //
-//  Created by Vitaliy Zagorodnov on 29/10/2019.
+//  Created by Vitaliy Zagorodnov on 04/11/2019.
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
 import Alamofire
 
-struct StoriesListRequest: APIRequestBody {
+struct MeditationDetailRequest: APIRequestBody {
     private let userToken: String?
     private let apiKey: String
+    private let meditationId: Int
     
-    init(userToken: String?, apiKey: String) {
+    init(meditationId: Int, userToken: String?, apiKey: String) {
+        self.meditationId = meditationId
         self.userToken = userToken
         self.apiKey = apiKey
     }
     
     var url: String {
-        return GlobalDefinitions.domainUrl + "/api/stories/list"
+        return GlobalDefinitions.domainUrl + "/api/meditations/get"
     }
 
     var method: HTTPMethod {
@@ -26,7 +28,8 @@ struct StoriesListRequest: APIRequestBody {
     }
     
     var parameters: Parameters? {
-        var params: [String : Any] = ["_api_key": apiKey]
+        var params: [String : Any] = ["_api_key": apiKey,
+                                      "meditation_id": meditationId]
         if let token = userToken {
             params["_user_token"] = token
         }

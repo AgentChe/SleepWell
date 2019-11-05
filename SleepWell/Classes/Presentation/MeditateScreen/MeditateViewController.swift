@@ -39,21 +39,21 @@ final class MeditateViewController: UIViewController {
 
 extension MeditateViewController: BindsToViewModel {
     typealias ViewModel = MeditateViewModel
+    typealias Input = (isActiveSubscription: Bool, completion: ((MainRoute) -> (Void))?)
 
     static func make() -> MeditateViewController {
         let storyboard = UIStoryboard(name: "MeditateScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "MeditateViewController") as! MeditateViewController
     }
     
-    func bind(to viewModel: MeditateViewModelInterface, with input: ()) -> () {
+    func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> () {
         
-        viewModel.elements(selectedTag: tableHeaderView.selectTag)
+        viewModel.elements(subscription: input.isActiveSubscription, selectedTag: tableHeaderView.selectTag)
             .drive(tableView.rx.items) { table, index, item in
                 switch item {
                 case let .meditate(element):
                     let cell = table.dequeueReusableCell(withIdentifier: "MeditateCell") as! MeditateCell
-                    let model = MeditateCell.Model(image: "Image1", title: element.name, subtitle: element.reader, avatar: "avatar", isAvailable: element.paid)
-                    cell.setup(model: model)
+                    cell.setup(model: element)
                     return cell
                 case .premiumUnlock:
                     let cell = table.dequeueReusableCell(withIdentifier: "PremiumUnlockCell") as! PremiumUnlockCell
@@ -67,7 +67,30 @@ extension MeditateViewController: BindsToViewModel {
             .disposed(by: disposeBag)
 
         tableView.rx.modelSelected(MeditateCellType.self)
-            .bind { viewModel.didTapCell(model: $0) }
+            .asSignal()
+            .flatMapFirst { cellType -> Signal<MeditateViewModel.Route> in
+                guard case let .meditate(meditate) = cellType else {
+                    return Signal.just(.paygate)
+                }
+                
+                return viewModel
+                    .getMeditationDetails(meditationId: meditate.id)
+                    .map { detail -> MeditateViewModel.Route in
+                        guard let details = detail else {
+                            return .paygate
+                        }
+                        return .details(details)
+                    }
+            }
+            .emit(onNext: { item in
+                switch item  {
+                case .paygate:
+                    input.completion?(.paygate)
+                case let .details(details):
+                    input.completion?(.play(details))
+                }
+            })
             .disposed(by: disposeBag)
+        
     }
 }

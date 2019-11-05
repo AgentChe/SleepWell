@@ -40,10 +40,7 @@ final class StoriesViewController: UIViewController {
 
 extension StoriesViewController: BindsToViewModel {
     typealias ViewModel = StoriesViewModel
-    
-    struct Input {
-        let isActiveSubscription: Bool
-    }
+    typealias Input = (isActiveSubscription: Bool, completion: ((MainRoute) -> (Void))?)
 
     static func make() -> StoriesViewController {
         let storyboard = UIStoryboard(name: "StoriesScreen", bundle: nil)
@@ -90,8 +87,13 @@ extension StoriesViewController: BindsToViewModel {
                     return .details(details)
                 }
         }
-       .emit(onNext: {
-            viewModel.didTapCell(type: $0)
+       .emit(onNext: { item in
+            switch item  {
+            case .paygate:
+                input.completion?(.paygate)
+            case let .details(details):
+                input.completion?(.play(details))
+            }
        })
         .disposed(by: disposeBag)
         

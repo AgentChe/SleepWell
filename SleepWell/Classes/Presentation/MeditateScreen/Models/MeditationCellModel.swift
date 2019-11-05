@@ -1,14 +1,14 @@
 //
-//  StoryCellModel.swift
+//  MeditationCellModel.swift
 //  SleepWell
 //
-//  Created by Vitaliy Zagorodnov on 31/10/2019.
+//  Created by Vitaliy Zagorodnov on 04/11/2019.
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
 import Foundation
 
-struct StoryCellModel {
+struct MeditationCellModel {
     let id: Int
     let image: URL?
     let name: String
@@ -18,8 +18,8 @@ struct StoryCellModel {
     let paid: Bool
 }
 
-extension StoryCellModel {
-    init(story: Story, isActiveSubscription: Bool) {
+extension MeditationCellModel {
+    init(story: Meditation, isActiveSubscription: Bool) {
         self.id = story.id
         self.image = story.imagePreviewUrl
         self.name = story.name
