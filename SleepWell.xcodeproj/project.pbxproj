@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4E11B3BE0E63C7A8C09FF4AE /* Pods_SleepWell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */; };
+		8441FB7923636932001DC085 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7823636932001DC085 /* AudioPlayerService.swift */; };
+		8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7D2363732C001DC085 /* PlayerViewController.swift */; };
+		8441FB8023637341001DC085 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB7F23637341001DC085 /* PlayerViewModel.swift */; };
+		8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8123637355001DC085 /* PlayerRouter.swift */; };
+		8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8441FB8323637366001DC085 /* PlayerAssembly.swift */; };
+		8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8441FB85236374CA001DC085 /* PlayerScreen.storyboard */; };
+		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
 		86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */; };
 		86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */; };
@@ -160,6 +167,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8441FB7823636932001DC085 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
+		8441FB7D2363732C001DC085 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		8441FB7F23637341001DC085 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		8441FB8123637355001DC085 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		8441FB8323637366001DC085 /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
+		8441FB85236374CA001DC085 /* PlayerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerScreen.storyboard; sourceTree = "<group>"; };
+		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
 		86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-regular.ttf"; sourceTree = "<group>"; };
 		86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-medium.ttf"; sourceTree = "<group>"; };
@@ -330,6 +344,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8441FB7C23637306001DC085 /* PlayerScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8441FB7D2363732C001DC085 /* PlayerViewController.swift */,
+				8441FB7F23637341001DC085 /* PlayerViewModel.swift */,
+				8441FB8123637355001DC085 /* PlayerRouter.swift */,
+				8441FB8323637366001DC085 /* PlayerAssembly.swift */,
+			);
+			path = PlayerScreen;
+            sourceTree = "<group>";
+        };
 		86152F6D2365A5220006FF56 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +599,7 @@
 				96C29F6C2363527100E93CB1 /* PaygateScreen.storyboard */,
 				96C29F6E2363535100E93CB1 /* OnboardingScreen.storyboard */,
 				96C29F70236353E300E93CB1 /* MainScreen.storyboard */,
+				8441FB85236374CA001DC085 /* PlayerScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -581,6 +607,7 @@
 		96C29EDF23625A8C00E93CB1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				8441FB7C23637306001DC085 /* PlayerScreen */,
 				86C848B42366FFF300BC6EDA /* StoriesScreen */,
 				86F98C832364589C00B0F5EA /* MeditateScreen */,
 				96C29F5323634D0000E93CB1 /* MainScreen */,
@@ -605,6 +632,7 @@
 		96C29EE123625A9E00E93CB1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8441FB7823636932001DC085 /* AudioPlayerService.swift */,
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
 				96C29F4B2363462100E93CB1 /* PurchaseService.swift */,
 				96C29F9223638F3900E93CB1 /* SceneService.swift */,
@@ -660,6 +688,7 @@
 			isa = PBXGroup;
 			children = (
 				86B7A99023702ABF007A36BA /* TabBarView */,
+				845424692364896D002862D9 /* AudioSlider.swift */,
 				86CA8C7E2367894B00692EE5 /* PremiumUnlockCell */,
 				86C848B12366F12300BC6EDA /* HeaderTitleView */,
 				86F98CD123646A9C00B0F5EA /* GradientView.swift */,
@@ -1013,6 +1042,7 @@
 				96DC8C712367460D004DC76A /* OpenSans-Italic.ttf in Resources */,
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
+				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
 				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
 				86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
@@ -1090,6 +1120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */,
+				8454246A2364896D002862D9 /* AudioSlider.swift in Sources */,
 				96C29F8923638AB900E93CB1 /* MeditationDetail.swift in Sources */,
 				86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */,
 				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
@@ -1097,6 +1128,7 @@
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96DC8C7F23674EC5004DC76A /* PaygateMapper.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
+				8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */,
 				96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */,
 				96C29F502363483000E93CB1 /* PurchaseError.swift in Sources */,
 				86F98CBB23645C3B00B0F5EA /* MeditateViewModel.swift in Sources */,
@@ -1112,12 +1144,14 @@
 				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
+				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
+				8441FB7923636932001DC085 /* AudioPlayerService.swift in Sources */,
 				86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */,
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
 				96C29F1C236264D900E93CB1 /* View.swift in Sources */,
@@ -1139,6 +1173,7 @@
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
+				8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */,
 				962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */,
 				96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */,
 				96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */,
@@ -1182,6 +1217,7 @@
 				862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */,
 				96C29F03236260FA00E93CB1 /* UINavigationItemExtension.swift in Sources */,
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
+				8441FB8023637341001DC085 /* PlayerViewModel.swift in Sources */,
 				86F98CC4236463AE00B0F5EA /* MeditateTagCell.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,

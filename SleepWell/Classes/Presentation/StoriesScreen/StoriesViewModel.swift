@@ -88,7 +88,7 @@ extension StoriesViewModel: StoriesViewModelInterface {
     func didTapCell(type: StoriesViewModel.Route) {
         switch type {
         case let .details(detail):
-            router.trigger(.details)
+            router.trigger(.details(detail))
         case .paygate:
             router.trigger(.paygate({ [weak self] result in
                 self?.paygateResult.accept(result)
