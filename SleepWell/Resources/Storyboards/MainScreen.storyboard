@@ -31,7 +31,7 @@
                         <constraints>
                             <constraint firstItem="WEQ-I2-KZT" firstAttribute="top" secondItem="DFH-cd-wZt" secondAttribute="top" id="65T-bL-SRw"/>
                             <constraint firstItem="WEQ-I2-KZT" firstAttribute="leading" secondItem="vnC-KW-rOL" secondAttribute="leading" id="B3r-xx-qX8"/>
-                            <constraint firstItem="vnC-KW-rOL" firstAttribute="bottom" secondItem="5lQ-Uq-GGq" secondAttribute="bottom" id="D67-sN-2VC"/>
+                            <constraint firstAttribute="bottom" secondItem="5lQ-Uq-GGq" secondAttribute="bottom" id="D67-sN-2VC"/>
                             <constraint firstItem="5lQ-Uq-GGq" firstAttribute="leading" secondItem="vnC-KW-rOL" secondAttribute="leading" id="EjA-Kf-cpw"/>
                             <constraint firstItem="vnC-KW-rOL" firstAttribute="trailing" secondItem="5lQ-Uq-GGq" secondAttribute="trailing" id="FV3-KD-0I8"/>
                             <constraint firstItem="5lQ-Uq-GGq" firstAttribute="top" secondItem="WEQ-I2-KZT" secondAttribute="bottom" id="Wxl-1g-qTh"/>

@@ -10,6 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol PlaySoundProtocol: class {
+    func isPlaying(isPlaying: Bool)
+    func dismiss()
+}
+
 final class PlayerViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -29,6 +34,7 @@ final class PlayerViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
+    weak var delegate: PlaySoundProtocol?
 }
 
 extension PlayerViewController: BindsToViewModel {
@@ -75,6 +81,16 @@ extension PlayerViewController: BindsToViewModel {
         
         let isPlaying = viewModel.isPlaying
         
+            Driver
+                .merge(
+                    beingDissmissed.map { _ in false }.asDriver(onErrorJustReturn: false),
+                    isPlaying
+                )
+                .drive(onNext: { [weak self] isPlaying in
+                    self?.delegate?.isPlaying(isPlaying: isPlaying)
+                })
+                .disposed(by: disposeBag)
+
         isPlaying
             .drive(rx.playingState)
             .disposed(by: disposeBag)
@@ -158,7 +174,7 @@ extension PlayerViewController: BindsToViewModel {
                         )
                     },
                     completion: { _ in
-                        viewModel.dismiss()
+                        self.delegate?.dismiss()
                     }
                 )
             })

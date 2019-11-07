@@ -39,16 +39,17 @@ final class MeditateViewController: UIViewController {
 
 extension MeditateViewController: BindsToViewModel {
     typealias ViewModel = MeditateViewModel
-    typealias Input = (isActiveSubscription: Bool, completion: ((MainRoute) -> (Void))?)
+    typealias Input = Observable<Bool>
+    typealias Output = Signal<MainRoute>
 
     static func make() -> MeditateViewController {
         let storyboard = UIStoryboard(name: "MeditateScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "MeditateViewController") as! MeditateViewController
     }
     
-    func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> () {
+    func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> Output {
         
-        viewModel.elements(subscription: input.isActiveSubscription, selectedTag: tableHeaderView.selectTag)
+        viewModel.elements(subscription: input, selectedTag: tableHeaderView.selectTag)
             .drive(tableView.rx.items) { table, index, item in
                 switch item {
                 case let .meditate(element):
@@ -66,31 +67,22 @@ extension MeditateViewController: BindsToViewModel {
             .drive(tableHeaderView.rx.tags)
             .disposed(by: disposeBag)
 
-        tableView.rx.modelSelected(MeditateCellType.self)
+        return tableView.rx.modelSelected(MeditateCellType.self)
             .asSignal()
-            .flatMapFirst { cellType -> Signal<MeditateViewModel.Route> in
+            .flatMapFirst { cellType -> Signal<MainRoute> in
                 guard case let .meditate(meditate) = cellType else {
                     return Signal.just(.paygate)
                 }
                 
                 return viewModel
                     .getMeditationDetails(meditationId: meditate.id)
-                    .map { detail -> MeditateViewModel.Route in
+                    .map { detail -> MainRoute in
                         guard let details = detail else {
                             return .paygate
                         }
-                        return .details(details)
+                        return .play(details)
                     }
             }
-            .emit(onNext: { item in
-                switch item  {
-                case .paygate:
-                    input.completion?(.paygate)
-                case let .details(details):
-                    input.completion?(.play(details))
-                }
-            })
-            .disposed(by: disposeBag)
         
     }
 }

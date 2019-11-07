@@ -40,16 +40,17 @@ final class StoriesViewController: UIViewController {
 
 extension StoriesViewController: BindsToViewModel {
     typealias ViewModel = StoriesViewModel
-    typealias Input = (isActiveSubscription: Bool, completion: ((MainRoute) -> (Void))?)
+    typealias Input = Observable<Bool>
+    typealias Output = Signal<MainRoute>
 
     static func make() -> StoriesViewController {
         let storyboard = UIStoryboard(name: "StoriesScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "StoriesViewController") as! StoriesViewController
     }
     
-    func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> () {
-        let elements = viewModel.elements(subscription: input.isActiveSubscription)
-        
+    func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
+        let elements = viewModel.elements(subscription: input)
+
         elements
             .drive(tableView.rx.items) { table, index, item in
                 switch item {
@@ -68,34 +69,24 @@ extension StoriesViewController: BindsToViewModel {
             .withLatestFrom(elements)
             .flatMapFirst { viewModel.randomElement(items: $0) }
         
-       Signal
+       return Signal
         .merge(
            randomElement,
            tableView.rx.modelSelected(StoriesCellType.self).asSignal()
         )
-        .flatMapFirst { cellType -> Signal<StoriesViewModel.Route> in
+        .flatMapFirst { cellType -> Signal<MainRoute> in
             guard case let .story(story) = cellType else {
                 return Signal.just(.paygate)
             }
             
             return viewModel
                 .getStoryDetails(id: story.id)
-                .map { detail -> StoriesViewModel.Route in
+                .map { detail -> MainRoute in
                     guard let details = detail else {
                         return .paygate
                     }
-                    return .details(details)
+                    return .play(details)
                 }
         }
-       .emit(onNext: { item in
-            switch item  {
-            case .paygate:
-                input.completion?(.paygate)
-            case let .details(details):
-                input.completion?(.play(details))
-            }
-       })
-        .disposed(by: disposeBag)
-        
     }
 }

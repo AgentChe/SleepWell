@@ -30,7 +30,7 @@ class TabBarItem: UIView {
         didSet {
             let opacity = isSelected ? 1 : 0.7
             selectedImage.isHidden = !isSelected
-            containerView.alpha = CGFloat(opacity)
+            buttonTab.alpha = CGFloat(opacity)
         }
     }
     

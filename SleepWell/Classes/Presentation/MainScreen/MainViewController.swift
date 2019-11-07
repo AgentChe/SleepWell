@@ -24,37 +24,16 @@ final class MainViewController: UIViewController {
     @IBOutlet private var tabBarView: TabBarView!
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
-    private var storiesController: StoriesViewController!
-    private var meditateController: MeditateViewController!
-    private var paygateController: PaygateViewController!
-    
-    private let storiesTabItem = TabBarItem()
-    private let meditateTabItem = TabBarItem()
-    private let sceneTabItem = TabBarItem()
     
     private lazy var router = Router(transitionHandler: self)
+    lazy var personalDataService: PersonalDataService = deferred()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabs()
     }
-    
-    private func setStories(behave: MainScreenBehave, completion: ((MainRoute) -> Void)?) {
-        if storiesController == nil {
-            storiesController = StoriesAssembly().assemble(input: StoriesViewController.Input(isActiveSubscription: behave == .withActiveSubscription, completion: completion)).vc
-        }
-        storiesController.view.frame = containerView.bounds
-        add(storiesController)
-    }
-    
-    private func setMeditate(behave: MainScreenBehave, completion: ((MainRoute) -> Void)?) {
-        if meditateController == nil {
-            meditateController = MeditateAssembly().assemble(input: MeditateViewController.Input(isActiveSubscription: behave == .withActiveSubscription, completion: completion)).vc
-        }
-        meditateController.view.frame = containerView.bounds
-        add(meditateController)
-    }
-    
+
     private func setupTabs() {
         storiesTabItem.title = "Stroies"
         meditateTabItem.title = "Meditate"
@@ -63,37 +42,12 @@ final class MainViewController: UIViewController {
         tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem]
     }
     
-    func showTabBar(shouldMove: Bool) {
-        if shouldMove {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0,
-                           usingSpringWithDamping: 0.8,
-                           initialSpringVelocity: 0,
-                           options: .curveEaseIn,
-                           animations: {
-                            self.view.frame.size.height += self.tabBarView.bounds.height
-                            
-                            self.view.layoutIfNeeded()
-            }) { (finished) in
-                
-            }
-        } else {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0,
-                           usingSpringWithDamping: 0.8,
-                           initialSpringVelocity: 0,
-                           options: .curveEaseOut,
-                           animations: {
-                            print(self.tabBarView.frame.origin.y)
-                            self.view.frame.size.height -= self.tabBarView.bounds.height
-                            
-                            self.view.layoutIfNeeded()
-            }) { (finished) in
-
-            }
-        }
-    }
+    private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
+    private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     
+    private let storiesTabItem = TabBarItem()
+    private let meditateTabItem = TabBarItem()
+    private let sceneTabItem = TabBarItem()
     private let disposeBag = DisposeBag()
 }
 
@@ -116,47 +70,96 @@ extension MainViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: MainViewModelInterface, with input: Input) -> () {
+        let paygateRelay = PublishRelay<PaygateCompletionResult>()
+        
+        let behaveSignal = Observable.deferred { .just(input.behave == .withActiveSubscription) }
+        let paygateSignal = paygateRelay
+            .flatMapLatest { [weak self] paygateResult -> Signal<Bool> in
+                guard let self = self else {
+                    return .never()
+                }
+                switch paygateResult {
+                case .purchased, .restored:
+                    return self.personalDataService
+                        .sendPersonalData()
+                        .map { true }
+                        .asSignal(onErrorSignalWith: .never())
+                case .closed:
+                    return .just(false)
+                }
+            }
+            .asObservable()
+        
+        let isActiveSubscription = Observable
+            .merge(behaveSignal, paygateSignal)
+            .share(replay: 1, scope: .forever)
+
         tabBarView.selectIndex
             .map { Tab(rawValue: $0) ?? .scene }
-            .emit(onNext: { [weak self] tab in
+            .flatMapLatest { [weak self] tab -> Signal<MainRoute> in
+                guard let self = self else { return .empty() }
                 switch tab {
                 case .meditate:
-                    self?.setMeditate(behave: input.behave, completion: { [weak self] route in
-                        switch route {
-                        case .paygate:
-                            self?.router.present(type: PaygateAssembly.self, input: (openedFrom: .paidContent, completion: { result in
-                                print(result)
-                            }))
-                        case let .play(recording):
-                            print(recording)
-                        }
-                    })
+                    return self.meditate(behave: isActiveSubscription)
                 case .stories:
-                    self?.setStories(behave: input.behave, completion: { [weak self] route in
-                        switch route {
-                        case .paygate:
-                            self?.router.present(type: PaygateAssembly.self, input: (openedFrom: .paidContent, completion: { result in
-                                print(result)
-                            }))
-                        case let .play(recording):
-                            print(recording)
-                        }
-
-                    })
+                    return self.stories(behave: isActiveSubscription)
                 case .scene:
-                    break
+                    return .empty()
+                }
+            }
+            .emit(to: Binder(self) { base, route in
+                switch route {
+                case .paygate:
+                    base.router.present(type: PaygateAssembly.self, input: (openedFrom: .paidContent, completion: { result in
+                        paygateRelay.accept(result)
+                    }))
+                case let .play(detail):
+                    base.setPlayer(detail)
                 }
             })
             .disposed(by: disposeBag)
-        
-//        Signal<Bool>.just(true).delay(.seconds(5)).emit(onNext: { [weak self] state in
-//            self?.showTabBar(shouldMove: state)
-//        }).disposed(by: disposeBag)
-//
-//        Signal<Bool>.just(false).delay(.seconds(10)).emit(onNext: { [weak self] state in
-//            self?.showTabBar(shouldMove: state)
-//        }).disposed(by: disposeBag)
-        
+    }
+}
+
+extension MainViewController: PlaySoundProtocol {
+    func isPlaying(isPlaying: Bool) {
+        showTabBar(show: isPlaying)
+    }
+    func dismiss() {
+        if let child = children.last {
+            willMove(toParent: nil)
+            view.subviews.first(where: { $0 === child.view })?.removeFromSuperview()
+            child.removeFromParent()
+        }
+    }
+}
+
+private extension MainViewController {
+    func setPlayer(_ detail: RecordingDetail) {
+        let playerController = PlayerAssembly().assemble(input: .init(recording: detail)).vc
+        playerController.view.frame = view.bounds
+        playerController.delegate = self
+        addChild(playerController)
+        view.insertSubview(playerController.view, at: 1)
+        didMove(toParent: self)
+    }
+    
+    func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
+        if meditateAssambly == nil {
+            meditateAssambly = MeditateAssembly().assemble(input: behave)
+        }
+        meditateAssambly.vc.view.frame = containerView.bounds
+        add(meditateAssambly.vc)
+        return meditateAssambly.output
+    }
+    
+    func stories(behave: Observable<Bool>) -> Signal<MainRoute> {
+        if storiesAssambly == nil {
+            storiesAssambly = StoriesAssembly().assemble(input: behave)
+        }
+        storiesAssambly.vc.view.frame = containerView.bounds
+        add(storiesAssambly.vc)
+        return storiesAssambly.output
     }
 }
 
@@ -171,8 +174,27 @@ private extension MainViewController {
     func remove() {
         if let child = children.last {
             willMove(toParent: nil)
-            containerView.subviews.last?.removeFromSuperview()
+            containerView.subviews.first(where: { $0 === child.view })?.removeFromSuperview()
             child.removeFromParent()
         }
     }
+
+    func showTabBar(show: Bool) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: show ? .curveEaseOut : .curveEaseIn,
+            animations: {
+                self.tabBarHeight.constant = show ? 0 : 69
+                self.tabBarView.alpha = show ? 0 : 1
+                self.view.layoutIfNeeded()
+        }) { _ in
+            
+        }
+    }
 }
+
+
+

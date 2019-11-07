@@ -10,15 +10,11 @@ import RxSwift
 import RxCocoa
 
 protocol MainViewModelInterface {
-    func selectTab(_ tab: MainViewModel.Tab, behave: MainScreenBehave)
+
 }
 
 final class MainViewModel: BindableViewModel {
-    enum Tab {
-        case meditate
-        case stories
-        case scenes
-    }
+
     typealias Interface = MainViewModelInterface
     
     lazy var router: MainRouter = deferred()
@@ -28,14 +24,5 @@ final class MainViewModel: BindableViewModel {
 }
 
 extension MainViewModel: MainViewModelInterface {
-    func selectTab(_ tab: MainViewModel.Tab, behave: MainScreenBehave) {
-        switch tab {
-        case .meditate:
-            break
-        case .stories:
-            router.trigger(.stories(behave == .withActiveSubscription))
-        case .scenes:
-            break
-        }
-    }
+
 }

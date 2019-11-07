@@ -11,9 +11,6 @@ final class MeditateAssembly: ScreenAssembly {
     typealias VC = MeditateViewController
     
     func assembleDependencies() -> MeditateViewModel.Dependencies {
-        return VC.ViewModel.Dependencies(
-            meditatationService: MeditationService(),
-            personalDataService: PersonalDataService()
-        )
+        return VC.ViewModel.Dependencies(meditatationService: MeditationService())
     }
 }
