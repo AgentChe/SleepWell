@@ -157,8 +157,8 @@ extension PlayerViewController: BindsToViewModel {
                             height: base.view.frame.height
                         )
                     },
-                    completion: { _ in
-                        viewModel.dismiss()
+                    completion: { [weak self] _ in
+                        self?.removeFromParent()
                     }
                 )
             })
