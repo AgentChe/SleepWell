@@ -69,12 +69,6 @@ extension PlayerViewController: BindsToViewModel {
         
         let isCurrentRecordingPlaying = viewModel.isPlaying(recording: input.recording)
         
-        let isOtherRecordingPlaying = Driver
-            .combineLatest(
-                isCurrentRecordingPlaying,
-                viewModel.isPlaying
-            ) { !$0 && $1 }
-        
         isCurrentRecordingPlaying
             .drive(rx.playingState)
             .disposed(by: disposeBag)
@@ -170,28 +164,43 @@ extension PlayerViewController: BindsToViewModel {
         
         let maxSeconds = input.recording.readingSound.soundSecs
         
-        let isSilence = isCurrentRecordingPlaying
-            .withLatestFrom(isOtherRecordingPlaying) { !$0 && !$1 }
-            .filter { $0 }
-            .map { _ in () }
+        let isSilence = viewModel.isPlaying.map(!)
         
         isSilence
+            .filter { $0 }
+            .map { _ in input.recording }
             .take(1)
-            .drive(onNext: { viewModel.add(recording: input.recording) })
+            .drive(onNext: viewModel.add)
             .disposed(by: disposeBag)
         
-        playButton.rx.tap
+        isSilence
+            .filter { $0 }
+            .map { _ in () }
+            .drive(viewModel.reset)
+            .disposed(by: disposeBag)
+        
+        let didTapPlayButton = playButton.rx.tap
             .asSignal()
+        
+        didTapPlayButton
+            .withLatestFrom(isSilence)
+            .filter { $0 }
+            .map { _ in () }
+            .emit(to: viewModel.play)
+            .disposed(by: disposeBag)
+        
+        didTapPlayButton
+            .withLatestFrom(isSilence)
+            .filter { !$0 }
+            .map { _ in () }
+            .do(onNext: {
+                viewModel.add(recording: input.recording)
+            })
             .emit(to: viewModel.play)
             .disposed(by: disposeBag)
         
         pauseButton.rx.tap
             .asSignal()
-            .emit(to: viewModel.reset)
-            .disposed(by: disposeBag)
-        
-        isSilence
-            .asSignal(onErrorSignalWith: .empty())
             .emit(to: viewModel.reset)
             .disposed(by: disposeBag)
         
@@ -236,9 +245,8 @@ extension PlayerViewController: BindsToViewModel {
         
         volumeButton.rx.tap
             .asSignal()
-            .emit(onNext: {
-                viewModel.goToVolumeScreen(recording: input.recording)
-            })
+            .map { input.recording }
+            .emit(onNext: viewModel.goToVolumeScreen)
             .disposed(by: disposeBag)
     }
 }

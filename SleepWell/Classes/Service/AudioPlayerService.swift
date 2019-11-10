@@ -15,6 +15,11 @@ final class AudioPlayerService: ReactiveCompatible {
     static let shared = AudioPlayerService()
     
     func add(recording: RecordingDetail) {
+        
+        guard recording.recording.id != audioRelay.value?.recording.recording.id else {
+            return
+        }
+        
         let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
         let ambientPlayer: AVPlayer?
         if let ambientUrl = recording.ambientSound?.soundUrl {
@@ -77,6 +82,7 @@ final class AudioPlayerService: ReactiveCompatible {
 }
 
 private final class Audio: ReactiveCompatible {
+    
     let mainPlayer: AVPlayer
     let ambientPlayer: AVPlayer?
     let recording: RecordingDetail
@@ -125,14 +131,17 @@ private final class Audio: ReactiveCompatible {
     func prepareToPlay() {
         
         if let ambient = ambientPlayer {
-            NotificationCenter.default.addObserver(
-                forName: .AVPlayerItemDidPlayToEndTime,
-                object: ambient.currentItem,
-                queue: .main
-            ) { _ in
-                ambient.seek(to: CMTime.zero)
-                ambient.play()
-            }
+            
+            NotificationCenter.default.rx
+                .notification(
+                    .AVPlayerItemDidPlayToEndTime,
+                    object: ambient.currentItem
+                )
+                .bind(to: Binder(ambient) { player, _ in
+                    player.seek(to: CMTime.zero)
+                    player.play()
+                })
+                .disposed(by: disposeBag)
         }
     }
     
@@ -150,6 +159,8 @@ private final class Audio: ReactiveCompatible {
         pause()
         currentTime = CMTime.zero
     }
+    
+    private let disposeBag = DisposeBag()
 }
 
 extension Reactive where Base: AudioPlayerService {
