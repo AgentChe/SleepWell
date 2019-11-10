@@ -17,46 +17,68 @@ final class VolumeSliderView: UIView {
         let initialValue: Float
     }
     
+    var volume: Signal<Float> {
+        _volume.asSignal()
+    }
+    
     func configure(input: Input) {
         
+        disposeBag = DisposeBag()
+        
         backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
-        cornerRadius = 18
         clipsToBounds = true
+        cornerRadius = 18
         
-        let initialVolumeValue = frame.width * CGFloat(input.initialValue)
-        volumeView.frame = .init(
-            x: 0,
-            y: 0,
-            width: initialVolumeValue,
-            height: frame.height
-        )
+        let width = rx.methodInvoked(#selector(UIView.layoutSubviews))
+            .take(1)
+            .asSignal(onErrorSignalWith: .empty())
+            .map { [weak self] _ in
+                self?.frame.width ?? 0.0
+            }
         
-        textLabel.text = input.text
-        textLabel.frame = .init(
-            x: 16,
-            y: 14,
-            width: textLabel.intrinsicContentSize.width,
-            height: textLabel.intrinsicContentSize.height
-        )
+        let initialVolumeValue = width.map { $0 * CGFloat(input.initialValue) }
         
-        let currentVolumeValue = gesture.rx.event
+        initialVolumeValue
+            .emit(to: Binder(self) { view, width in
+                view.volumeView.frame = .init(
+                    x: 0,
+                    y: 0,
+                    width: width,
+                    height: view.frame.height
+                )
+                
+                view.textLabel.text = input.text
+                view.textLabel.frame = .init(
+                    x: 16,
+                    y: 14,
+                    width: view.textLabel.intrinsicContentSize.width,
+                    height: view.textLabel.intrinsicContentSize.height
+                )
+            })
+            .disposed(by: disposeBag)
+        
+        let volumeWidth = gesture.rx.event
             .filter { $0.state == .ended }
             .map { [volumeView] _ in
                 volumeView.frame.width
             }
-            .startWith(initialVolumeValue)
             .asSignal(onErrorSignalWith: .empty())
         
-        gesture.rx.event
+        let currentVolumeValue = Signal.merge(volumeWidth, initialVolumeValue)
+        
+        let volumeChangeEvent = gesture.rx.event
             .asSignal(onErrorSignalWith: .empty())
             .filter { $0.state == .changed }
             .map { [weak self] pan in
                 pan.translation(in: self).x
             }
             .withLatestFrom(currentVolumeValue, resultSelector: +)
-            .map { [frame] value in
-                max(CGFloat(0), min(value, frame.width))
+            .withLatestFrom(width) { (value: $0, width: $1) }
+            .map { tuple in
+                max(CGFloat(0), min(tuple.value, tuple.width))
             }
+        
+        volumeChangeEvent
             .emit(to: Binder(self) { view, volume in
                 view.volumeView.frame = .init(
                     x: 0,
@@ -65,6 +87,11 @@ final class VolumeSliderView: UIView {
                     height: view.frame.height
                 )
             })
+            .disposed(by: disposeBag)
+        
+        volumeChangeEvent
+            .withLatestFrom(width) { Float($0 / $1) }
+            .emit(to: _volume)
             .disposed(by: disposeBag)
     }
     
@@ -85,5 +112,6 @@ final class VolumeSliderView: UIView {
         addGestureRecognizer($0)
     }
     
-    private let disposeBag = DisposeBag()
+    private let _volume = PublishRelay<Float>()
+    private var disposeBag = DisposeBag()
 }

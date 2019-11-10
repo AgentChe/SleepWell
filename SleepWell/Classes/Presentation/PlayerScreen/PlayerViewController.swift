@@ -56,12 +56,6 @@ extension PlayerViewController: BindsToViewModel {
         
         titleLabel.text = input.recording.recording.name
         
-        rx.methodInvoked(#selector(UIViewController.viewDidDisappear))
-            .take(1)
-            .map { _ in () }
-            .bind(to: viewModel.reset)
-            .disposed(by: disposeBag)
-        
         let panEvent = panGesture.rx.event
             .filter { $0.state == .changed }
             .map { [view] pan in
@@ -221,6 +215,13 @@ extension PlayerViewController: BindsToViewModel {
             .withLatestFrom(currentSeconds)
             .map { max($0 - 15, 0) }
             .emit(to: viewModel.setTime)
+            .disposed(by: disposeBag)
+        
+        volumeButton.rx.tap
+            .asSignal()
+            .emit(onNext: {
+                viewModel.goToVolumeScreen(recording: input.recording)
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -16,6 +16,7 @@ protocol PlayerViewModelInterface {
     var time: Driver<Int> { get }
     var isPlaying: Driver<Bool> { get }
     func add(recording: RecordingDetail)
+    func goToVolumeScreen(recording: RecordingDetail)
 }
 
 final class PlayerViewModel: BindableViewModel {
@@ -53,5 +54,9 @@ extension PlayerViewModel: PlayerViewModelInterface {
     
     func add(recording: RecordingDetail) {
         dependencies.audioService.add(recording: recording)
+    }
+    
+    func goToVolumeScreen(recording: RecordingDetail) {
+        router.goToVolumeScreen(recording: recording)
     }
 }

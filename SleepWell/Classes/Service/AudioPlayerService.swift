@@ -48,6 +48,14 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    var currentMainPlayerVolume: Float? {
+        audioRelay.value?.mainPlayerVolume
+    }
+    
+    var currentAmbientPlayerVolume: Float? {
+        audioRelay.value?.ambientPlayerVolume
+    }
+    
     fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
     private init() {}
 }
@@ -74,6 +82,28 @@ private final class Audio: ReactiveCompatible {
         get {
             mainPlayer.currentTime()
         }
+    }
+    
+    var mainPlayerVolume: Float {
+        mainPlayer.volume
+    }
+    
+    var ambientPlayerVolume: Float? {
+        ambientPlayer?.volume
+    }
+    
+    func setMainPlayerVolume(value: Float) {
+        guard value >= 0.0 && value <= 1.0 else {
+            return
+        }
+        mainPlayer.volume = value
+    }
+    
+    func setAmbientPlayerVolume(value: Float) {
+        guard value >= 0.0 && value <= 1.0 else {
+            return
+        }
+        ambientPlayer?.volume = value
     }
     
     func prepareToPlay() {
@@ -143,6 +173,20 @@ extension Reactive where Base: AudioPlayerService {
         
         Binder(base) { base, _ in
             base.audioRelay.value?.reset()
+        }
+    }
+    
+    var mainPlayerVolume: Binder<Float> {
+        
+        Binder(base) { base, value in
+            base.audioRelay.value?.setMainPlayerVolume(value: value)
+        }
+    }
+    
+    var ambientPlayerVolume: Binder<Float> {
+        
+        Binder(base) { base, value in
+            base.audioRelay.value?.setAmbientPlayerVolume(value: value)
         }
     }
 }

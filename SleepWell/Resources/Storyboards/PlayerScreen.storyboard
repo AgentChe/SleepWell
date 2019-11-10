@@ -212,7 +212,7 @@
                         <outlet property="subtitleLabel" destination="B8Y-0p-8SQ" id="Luc-3L-vaH"/>
                         <outlet property="titleLabel" destination="vRn-eF-q5C" id="3oO-jh-kWq"/>
                         <outlet property="topConstraint" destination="Hbs-CA-jRf" id="Jwf-vK-Sjo"/>
-                        <outlet property="volumeButton" destination="aIY-kt-37O" id="bvg-g6-toS"/>
+                        <outlet property="volumeButton" destination="aIY-kt-37O" id="tr9-24-OhD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsE-zk-dVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
