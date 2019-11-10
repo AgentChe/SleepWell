@@ -32,12 +32,28 @@ final class AudioPlayerService: ReactiveCompatible {
         audioRelay.accept(audio)
     }
     
+    func isPlaying(recording: RecordingDetail) -> Bool {
+        
+        audioRelay.value?.recording.recording.id == recording.recording.id
+    }
+    
     var time: Driver<Int> {
         
         audioRelay.asDriver()
             .filter { $0 != nil }
             .map { $0! }
             .flatMapLatest { $0.rx.currentTime }
+    }
+    
+    func isPlaying(recording: RecordingDetail) -> Driver<Bool> {
+        
+        audioRelay.asDriver()
+            .flatMapLatest {
+                guard let value = $0, value.recording.recording.id == recording.recording.id else {
+                    return .just(false)
+                }
+                return value.rx.isPlaying
+            }
     }
     
     var isPlaying: Driver<Bool> {

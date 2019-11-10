@@ -67,9 +67,15 @@ extension PlayerViewController: BindsToViewModel {
         let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
             .take(1)
         
-        let isPlaying = viewModel.isPlaying
+        let isCurrentRecordingPlaying = viewModel.isPlaying(recording: input.recording)
         
-        isPlaying
+        let isOtherRecordingPlaying = Driver
+            .combineLatest(
+                isCurrentRecordingPlaying,
+                viewModel.isPlaying
+            ) { !$0 && $1 }
+        
+        isCurrentRecordingPlaying
             .drive(rx.playingState)
             .disposed(by: disposeBag)
         
@@ -77,18 +83,22 @@ extension PlayerViewController: BindsToViewModel {
             + " · "
             + input.recording.readingSound.soundSecs.subtitleDescription
         
-        isPlaying
+        isCurrentRecordingPlaying
             .map {
                 $0 ? input.recording.recording.reader : subtitleWithDuration
             }
             .drive(subtitleLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+        let viewDidLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
+            .map { _ in () }
         
-        let skippingIsPlaying = isPlaying.asObservable()
-            .skipUntil(viewDidAppear)
+        let skippingIsPlaying = Driver
+            .combineLatest(
+                viewDidLayoutSubviews.asDriver(onErrorDriveWith: .empty()),
+                isCurrentRecordingPlaying
+            ) { $1 }
         
         rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
             .take(1)
@@ -159,7 +169,16 @@ extension PlayerViewController: BindsToViewModel {
             .disposed(by: disposeBag)
         
         let maxSeconds = input.recording.readingSound.soundSecs
-        viewModel.add(recording: input.recording)
+        
+        let isSilence = isCurrentRecordingPlaying
+            .withLatestFrom(isOtherRecordingPlaying) { !$0 && !$1 }
+            .filter { $0 }
+            .map { _ in () }
+        
+        isSilence
+            .take(1)
+            .drive(onNext: { viewModel.add(recording: input.recording) })
+            .disposed(by: disposeBag)
         
         playButton.rx.tap
             .asSignal()
@@ -171,10 +190,8 @@ extension PlayerViewController: BindsToViewModel {
             .emit(to: viewModel.reset)
             .disposed(by: disposeBag)
         
-        isPlaying
+        isSilence
             .asSignal(onErrorSignalWith: .empty())
-            .filter { !$0 }
-            .map { _ in () }
             .emit(to: viewModel.reset)
             .disposed(by: disposeBag)
         

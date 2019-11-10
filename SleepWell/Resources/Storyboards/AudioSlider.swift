@@ -50,6 +50,7 @@ extension Reactive where Base: UISlider {
                 }
                 return .just(value)
             }
+            .skip(1)
             .debounce(.milliseconds(50))
     }
 }
