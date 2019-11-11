@@ -9,11 +9,30 @@
 import RxSwift
 
 class MeditationService {
-    func meditations() -> Single<[Meditation]> {
+    func meditations() -> Observable<[Meditation]> {
+        let catchMeditations = RealmDBTransport()
+            .loadData(realmType: RealmMeditation.self) {
+                MeditationRealmMapper.map(from: $0)
+            }
+
         let request = MeditationsListRequest(userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
-        return RestAPITransport()
+
+        let meditations = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { MeditationsMapper.parse(response: $0) }
+            .flatMap {
+                RealmDBTransport()
+                    .saveData(entities: $0) {
+                        MeditationRealmMapper.map(from: $0)}
+            }
+            .flatMap {
+                catchMeditations
+            }
+            .catchError { _ in
+                catchMeditations
+            }
+
+        return Observable.concat(catchMeditations.asObservable(), meditations.asObservable())
     }
     
     func getMeditation(meditationId: Int) -> Single<MeditationDetail?> {
@@ -23,10 +42,29 @@ class MeditationService {
             .map { MeditationDetail.parseFromDictionary(any: $0) }
     }
     
-    func getTags() -> Single<[MeditationTag]> {
+    func getTags() -> Observable<[MeditationTag]> {
+        let cacheTags = RealmDBTransport()
+            .loadData(realmType: RealmMeditationTag.self) {
+                MeditationTagRealmMapper.map(from: $0)
+            }
+
         let request = MeditationTagsRequest(userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
-        return RestAPITransport()
+        
+        let tags = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { TagsMapper.parse(response: $0) }
+            .flatMap {
+                RealmDBTransport().saveData(entities: $0) {
+                    MeditationTagRealmMapper.map(from: $0)
+                }
+            }
+            .flatMap {
+                cacheTags
+            }
+            .catchError { _ in
+                cacheTags
+            }
+
+        return Observable.concat(cacheTags.asObservable(), tags.asObservable())
     }
 }

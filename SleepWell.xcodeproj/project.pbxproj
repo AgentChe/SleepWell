@@ -22,6 +22,12 @@
 		86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */; };
 		86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */; };
 		86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */; };
+		86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3122379BBEF00C60158 /* RealmMeditation.swift */; };
+		86B0C3152379BF1400C60158 /* RealmStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3142379BF1400C60158 /* RealmStory.swift */; };
+		86B0C3192379DB7300C60158 /* RealmMeditationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3182379DB7300C60158 /* RealmMeditationTag.swift */; };
+		86B0C31D2379DE0300C60158 /* MeditationRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C31C2379DE0300C60158 /* MeditationRealmMapper.swift */; };
+		86B0C31F2379DE0D00C60158 /* MeditationTagRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C31E2379DE0D00C60158 /* MeditationTagRealmMapper.swift */; };
+		86B0C3212379DEB600C60158 /* StoryRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3202379DEB600C60158 /* StoryRealmMapper.swift */; };
 		86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */; };
 		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
 		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
@@ -181,6 +187,12 @@
 		86836C62236ED0B300D50C32 /* sf-pro-text-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-light.ttf"; sourceTree = "<group>"; };
 		86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-semibold.ttf"; sourceTree = "<group>"; };
 		86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-bold.ttf"; sourceTree = "<group>"; };
+		86B0C3122379BBEF00C60158 /* RealmMeditation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditation.swift; sourceTree = "<group>"; };
+		86B0C3142379BF1400C60158 /* RealmStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStory.swift; sourceTree = "<group>"; };
+		86B0C3182379DB7300C60158 /* RealmMeditationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditationTag.swift; sourceTree = "<group>"; };
+		86B0C31C2379DE0300C60158 /* MeditationRealmMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeditationRealmMapper.swift; sourceTree = "<group>"; };
+		86B0C31E2379DE0D00C60158 /* MeditationTagRealmMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeditationTagRealmMapper.swift; sourceTree = "<group>"; };
+		86B0C3202379DEB600C60158 /* StoryRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRealmMapper.swift; sourceTree = "<group>"; };
 		86B2BFF32366398D00AF2B33 /* MeditateCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateCellType.swift; sourceTree = "<group>"; };
 		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
 		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
@@ -353,8 +365,8 @@
 				8441FB8323637366001DC085 /* PlayerAssembly.swift */,
 			);
 			path = PlayerScreen;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		86152F6D2365A5220006FF56 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +385,16 @@
 				86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */,
 			);
 			path = SFProText;
+			sourceTree = "<group>";
+		};
+		86B0C3112379BBDA00C60158 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				86B0C3122379BBEF00C60158 /* RealmMeditation.swift */,
+				86B0C3142379BF1400C60158 /* RealmStory.swift */,
+				86B0C3182379DB7300C60158 /* RealmMeditationTag.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		86B2BFF22366396F00AF2B33 /* Models */ = {
@@ -621,8 +643,8 @@
 		96C29EE023625A9700E93CB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				86B0C3112379BBDA00C60158 /* Realm */,
 				96C29EEA23625B0B00E93CB1 /* RequestBody */,
-				96C29EE923625B0600E93CB1 /* Realm */,
 				96C29EE823625B0100E93CB1 /* Error */,
 				96C29EE723625AFC00E93CB1 /* Entity */,
 			);
@@ -655,6 +677,9 @@
 				962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */,
 				86B7A98C23701F85007A36BA /* MeditationsMapper.swift */,
 				86B7A98E23702760007A36BA /* TagsMapper.swift */,
+				86B0C31C2379DE0300C60158 /* MeditationRealmMapper.swift */,
+				86B0C31E2379DE0D00C60158 /* MeditationTagRealmMapper.swift */,
+				86B0C3202379DEB600C60158 /* StoryRealmMapper.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -731,13 +756,6 @@
 				96C29F4F2363483000E93CB1 /* PurchaseError.swift */,
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		96C29EE923625B0600E93CB1 /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Realm;
 			sourceTree = "<group>";
 		};
 		96C29EEA23625B0B00E93CB1 /* RequestBody */ = {
@@ -1127,6 +1145,7 @@
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96DC8C7F23674EC5004DC76A /* PaygateMapper.swift in Sources */,
+				86B0C31D2379DE0300C60158 /* MeditationRealmMapper.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
 				8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */,
 				96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */,
@@ -1156,7 +1175,9 @@
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
 				96C29F1C236264D900E93CB1 /* View.swift in Sources */,
 				86C848BD2367001000BC6EDA /* StoriesAssembly.swift in Sources */,
+				86B0C31F2379DE0D00C60158 /* MeditationTagRealmMapper.swift in Sources */,
 				96C29F01236260F600E93CB1 /* UILabelExtension.swift in Sources */,
+				86B0C3212379DEB600C60158 /* StoryRealmMapper.swift in Sources */,
 				96C29F6B23634D9900E93CB1 /* MainAssembly.swift in Sources */,
 				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
 				86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */,
@@ -1192,6 +1213,7 @@
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
 				968552882368FB1300A22E21 /* PickerView.swift in Sources */,
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
+				86B0C3152379BF1400C60158 /* RealmStory.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
 				86B7A985237012EF007A36BA /* MeditationsListRequest.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
@@ -1227,12 +1249,14 @@
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,
 				962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */,
+				86B0C3192379DB7300C60158 /* RealmMeditationTag.swift in Sources */,
 				86B7A99923702CB1007A36BA /* TabBarItem.swift in Sources */,
 				968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
 				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
+				86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

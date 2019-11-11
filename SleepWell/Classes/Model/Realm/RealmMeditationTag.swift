@@ -1,0 +1,25 @@
+//
+//  RealmMeditationTag.swift
+//  SleepWell
+//
+//  Created by Vitaliy Zagorodnov on 11/11/2019.
+//  Copyright © 2019 Andrey Chernyshev. All rights reserved.
+//
+
+import Foundation
+import RealmSwift
+
+class RealmMeditationTag: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    
+    convenience init(id: Int, name: String) {
+        self.init()
+        self.id = id
+        self.name = name
+    }
+
+    @objc open override class func primaryKey() -> String? {
+        return "id"
+    }
+}
