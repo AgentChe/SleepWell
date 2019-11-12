@@ -15,6 +15,11 @@ final class AudioPlayerService: ReactiveCompatible {
     static let shared = AudioPlayerService()
     
     func add(recording: RecordingDetail) {
+        
+        guard recording.recording.id != audioRelay.value?.recording.recording.id else {
+            return
+        }
+        
         let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
         let ambientPlayer: AVPlayer?
         if let ambientUrl = recording.ambientSound?.soundUrl {
@@ -32,12 +37,28 @@ final class AudioPlayerService: ReactiveCompatible {
         audioRelay.accept(audio)
     }
     
+    func isPlaying(recording: RecordingDetail) -> Bool {
+        
+        audioRelay.value?.recording.recording.id == recording.recording.id
+    }
+    
     var time: Driver<Int> {
         
         audioRelay.asDriver()
             .filter { $0 != nil }
             .map { $0! }
             .flatMapLatest { $0.rx.currentTime }
+    }
+    
+    func isPlaying(recording: RecordingDetail) -> Driver<Bool> {
+        
+        audioRelay.asDriver()
+            .flatMapLatest {
+                guard let value = $0, value.recording.recording.id == recording.recording.id else {
+                    return .just(false)
+                }
+                return value.rx.isPlaying
+            }
     }
     
     var isPlaying: Driver<Bool> {
@@ -48,11 +69,20 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    var currentMainPlayerVolume: Float? {
+        audioRelay.value?.mainPlayerVolume
+    }
+    
+    var currentAmbientPlayerVolume: Float? {
+        audioRelay.value?.ambientPlayerVolume
+    }
+    
     fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
     private init() {}
 }
 
 private final class Audio: ReactiveCompatible {
+    
     let mainPlayer: AVPlayer
     let ambientPlayer: AVPlayer?
     let recording: RecordingDetail
@@ -72,21 +102,46 @@ private final class Audio: ReactiveCompatible {
             mainPlayer.seek(to: newValue, completionHandler: { _ in })
         }
         get {
-            return mainPlayer.currentTime()
+            mainPlayer.currentTime()
         }
+    }
+    
+    var mainPlayerVolume: Float {
+        mainPlayer.volume
+    }
+    
+    var ambientPlayerVolume: Float? {
+        ambientPlayer?.volume
+    }
+    
+    func setMainPlayerVolume(value: Float) {
+        guard value >= 0.0 && value <= 1.0 else {
+            return
+        }
+        mainPlayer.volume = value
+    }
+    
+    func setAmbientPlayerVolume(value: Float) {
+        guard value >= 0.0 && value <= 1.0 else {
+            return
+        }
+        ambientPlayer?.volume = value
     }
     
     func prepareToPlay() {
         
         if let ambient = ambientPlayer {
-            NotificationCenter.default.addObserver(
-                forName: .AVPlayerItemDidPlayToEndTime,
-                object: ambient.currentItem,
-                queue: .main
-            ) { _ in
-                ambient.seek(to: CMTime.zero)
-                ambient.play()
-            }
+            
+            NotificationCenter.default.rx
+                .notification(
+                    .AVPlayerItemDidPlayToEndTime,
+                    object: ambient.currentItem
+                )
+                .bind(to: Binder(ambient) { player, _ in
+                    player.seek(to: CMTime.zero)
+                    player.play()
+                })
+                .disposed(by: disposeBag)
         }
     }
     
@@ -104,6 +159,8 @@ private final class Audio: ReactiveCompatible {
         pause()
         currentTime = CMTime.zero
     }
+    
+    private let disposeBag = DisposeBag()
 }
 
 extension Reactive where Base: AudioPlayerService {
@@ -143,6 +200,20 @@ extension Reactive where Base: AudioPlayerService {
         
         Binder(base) { base, _ in
             base.audioRelay.value?.reset()
+        }
+    }
+    
+    var mainPlayerVolume: Binder<Float> {
+        
+        Binder(base) { base, value in
+            base.audioRelay.value?.setMainPlayerVolume(value: value)
+        }
+    }
+    
+    var ambientPlayerVolume: Binder<Float> {
+        
+        Binder(base) { base, value in
+            base.audioRelay.value?.setAmbientPlayerVolume(value: value)
         }
     }
 }

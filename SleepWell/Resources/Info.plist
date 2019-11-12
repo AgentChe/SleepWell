@@ -27,6 +27,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Montserrat-Regular.ttf</string>
 		<string>sf-pro-text-semibold.ttf</string>
 		<string>sf-pro-text-regular.ttf</string>
 		<string>sf-pro-text-medium.ttf</string>

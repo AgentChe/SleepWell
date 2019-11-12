@@ -25,7 +25,7 @@ extension StoryCellModel {
         self.name = story.name
         self.avatar = story.imageReaderURL
         self.reader = story.reader
-        self.time = story.length_sec
+        self.time = story.length
         self.paid = isActiveSubscription ? true : !story.paid
     }
 }

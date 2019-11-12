@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Volume View Controller-->
+        <scene sceneID="l41-Ts-2oG">
+            <objects>
+                <viewController storyboardIdentifier="VolumeViewController" id="EYw-gV-GDU" customClass="VolumeViewController" customModule="SleepWell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1rO-lH-eQm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ek-JX-S2o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-cV-INo">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Aj8-kt-F3b">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMX-dU-hVt" customClass="VolumeSliderView" customModule="SleepWell" customModuleProvider="target">
+                                            <rect key="frame" x="40" y="443" width="334" height="48"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="c59-H4-4XR"/>
+                                            </constraints>
+                                        </view>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kwh-a2-n5d" customClass="VolumeSliderView" customModule="SleepWell" customModuleProvider="target">
+                                            <rect key="frame" x="40" y="515" width="334" height="48"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="OcQ-YE-juH"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UMX-dU-hVt" firstAttribute="leading" secondItem="Aj8-kt-F3b" secondAttribute="leading" constant="40" id="MQI-aI-T7A"/>
+                                        <constraint firstItem="Kwh-a2-n5d" firstAttribute="top" secondItem="UMX-dU-hVt" secondAttribute="bottom" constant="24" id="TgC-lI-a8j"/>
+                                        <constraint firstAttribute="trailing" secondItem="UMX-dU-hVt" secondAttribute="trailing" constant="40" id="mXD-08-o46"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kwh-a2-n5d" secondAttribute="trailing" constant="40" id="pff-Y8-LNq"/>
+                                        <constraint firstItem="Kwh-a2-n5d" firstAttribute="leading" secondItem="Aj8-kt-F3b" secondAttribute="leading" constant="40" id="pi8-vn-nlA"/>
+                                    </constraints>
+                                </view>
+                                <gestureRecognizers/>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Dr2-OE-43f" firstAttribute="trailing" secondItem="yhd-cV-INo" secondAttribute="trailing" id="3Bx-E9-qT6"/>
+                            <constraint firstAttribute="bottom" secondItem="yhd-cV-INo" secondAttribute="bottom" id="Dvc-IP-wU7"/>
+                            <constraint firstItem="yhd-cV-INo" firstAttribute="top" secondItem="1rO-lH-eQm" secondAttribute="top" id="HBe-Dq-wwq"/>
+                            <constraint firstItem="UMX-dU-hVt" firstAttribute="centerY" secondItem="Dr2-OE-43f" secondAttribute="centerY" constant="14" id="P65-eM-bLc"/>
+                            <constraint firstItem="9Ek-JX-S2o" firstAttribute="top" secondItem="1rO-lH-eQm" secondAttribute="top" id="Vdw-RU-8Mw"/>
+                            <constraint firstItem="Dr2-OE-43f" firstAttribute="trailing" secondItem="9Ek-JX-S2o" secondAttribute="trailing" id="a9B-S9-hiO"/>
+                            <constraint firstAttribute="bottom" secondItem="9Ek-JX-S2o" secondAttribute="bottom" id="a9n-m2-Af9"/>
+                            <constraint firstItem="9Ek-JX-S2o" firstAttribute="leading" secondItem="Dr2-OE-43f" secondAttribute="leading" id="hOF-83-8pK"/>
+                            <constraint firstItem="yhd-cV-INo" firstAttribute="leading" secondItem="Dr2-OE-43f" secondAttribute="leading" id="nKT-ux-InA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dr2-OE-43f"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="vyn-4l-6g2" appends="YES" id="qqQ-YK-Ktg"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="ambientVolumeSlider" destination="Kwh-a2-n5d" id="QTU-NH-j9f"/>
+                        <outlet property="backgroundImageView" destination="9Ek-JX-S2o" id="1eW-ar-VX1"/>
+                        <outlet property="backgroundView" destination="Aj8-kt-F3b" id="IOJ-Vq-OCe"/>
+                        <outlet property="tapGesture" destination="vyn-4l-6g2" id="FvM-e9-kuY"/>
+                        <outlet property="voiceVolumeSlider" destination="UMX-dU-hVt" id="w5z-Zq-WX6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mdx-oD-3X9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vyn-4l-6g2"/>
+            </objects>
+            <point key="canvasLocation" x="84" y="80"/>
+        </scene>
+    </scenes>
+</document>

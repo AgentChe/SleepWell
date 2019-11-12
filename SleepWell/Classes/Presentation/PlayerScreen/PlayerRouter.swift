@@ -15,7 +15,7 @@ final class PlayerRouter: Routing {
         router = Router(transitionHandler: transitionHandler)
     }
     
-    func dismiss() {
-        router.dismiss()
+    func goToVolumeScreen(recording: RecordingDetail) {
+        router.present(type: VolumeAssembly.self, input: .init(recording: recording))
     }
 }

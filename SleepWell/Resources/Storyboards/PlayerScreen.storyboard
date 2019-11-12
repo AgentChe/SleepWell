@@ -7,6 +7,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Player View Controller-->
         <scene sceneID="Cqd-bR-AYg">
@@ -19,7 +27,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Ky-Sq7">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="F7U-pt-W3H">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
@@ -55,7 +63,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="U3V-Mj-z3S"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -64,7 +72,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="E9N-if-c9x"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -192,6 +200,7 @@
                     <connections>
                         <outlet property="audioSlider" destination="gBM-LX-919" id="z07-mH-OoV"/>
                         <outlet property="backgroundImageView" destination="WzL-Ky-Sq7" id="aJJ-Yj-Lwq"/>
+                        <outlet property="blurView" destination="AgN-KF-nXC" id="N42-hc-ldh"/>
                         <outlet property="bottomConstraint" destination="KkS-aE-Wuf" id="uwM-TX-Ivd"/>
                         <outlet property="currentTimeLabel" destination="Z3t-C5-iox" id="8ie-yZ-3Gm"/>
                         <outlet property="fastForwardButton" destination="pbM-7e-Sij" id="Gqf-RZ-Jyx"/>
@@ -204,7 +213,7 @@
                         <outlet property="subtitleLabel" destination="B8Y-0p-8SQ" id="Luc-3L-vaH"/>
                         <outlet property="titleLabel" destination="vRn-eF-q5C" id="3oO-jh-kWq"/>
                         <outlet property="topConstraint" destination="Hbs-CA-jRf" id="Jwf-vK-Sjo"/>
-                        <outlet property="volumeButton" destination="aIY-kt-37O" id="bvg-g6-toS"/>
+                        <outlet property="volumeButton" destination="aIY-kt-37O" id="tr9-24-OhD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsE-zk-dVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -217,7 +226,7 @@
         <image name="fast_forward_button" width="40" height="40"/>
         <image name="pause_button" width="40" height="40"/>
         <image name="play_button" width="70" height="70"/>
-        <image name="rewind_button" width="30" height="33.5"/>
+        <image name="rewind_button" width="40" height="40"/>
         <image name="volume_button" width="24" height="24"/>
     </resources>
 </document>

@@ -18,15 +18,18 @@ struct StoriesListRequest: APIRequestBody {
     }
     
     var url: String {
-        var path = GlobalDefinitions.domainUrl + "/api/stories/list?_api_key=\(GlobalDefinitions.apiKey)"
-        if let userToken = self.userToken {
-            path += "&_user_token=\(userToken)"
-        }
-        
-        return path
+        return GlobalDefinitions.domainUrl + "/api/stories/list"
     }
 
     var method: HTTPMethod {
         return .post
+    }
+    
+    var parameters: Parameters? {
+        var params: [String : Any] = ["_api_key": apiKey]
+        if let token = userToken {
+            params["_user_token"] = token
+        }
+        return params
     }
 }

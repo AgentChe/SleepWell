@@ -45,12 +45,12 @@ final class MeditateHeaderView: UIView {
     }
     
     fileprivate var _elements: [TagCellModel] = []
-    fileprivate let didTapCell = PublishRelay<Int>()
+    fileprivate let didTapCell = BehaviorRelay<Int?>(value: nil)
 }
 
 extension MeditateHeaderView {
-    var selectTag: Signal<Int> {
-        return didTapCell.asSignal()
+    var selectTag: Signal<Int?> {
+        return didTapCell.asSignal(onErrorJustReturn: nil)
     }
 }
 
