@@ -1,6 +1,8 @@
 //
-// © ООО "СимбирСофт", 2019 г. «insuranceSimbirsoft Platform» - Интеллектуальная собственность ООО «СимбирСофт»
+// © ООО "Андрей Чернышев", 2019 г. «SleepWell» - Интеллектуальная собственность ООО «Андрей Чернышев»
 //
+
+import UIKit
 
 final class GlobalDefinitions {
     static let domainUrl = "http://test.s1eep.app" // https://s1eep.app - prod, http://test.s1eep.app - dev
@@ -8,5 +10,7 @@ final class GlobalDefinitions {
     static let privacyPolicyUrl = ""
     static let termsOfServiceUrl = ""
     static let contactUsUrl = ""
+    
+    static let tabBarHeight = CGFloat(69)
 }
 

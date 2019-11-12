@@ -12,8 +12,10 @@ struct StorySound: Sound {
     let id: Int
     let soundUrl: URL
     let soundSecs: Int
-    
-    enum CodingKeys: String, CodingKey {
+}
+
+extension StorySound {
+    private enum CodingKeys: String, CodingKey {
         case id
         case soundUrl = "sound_url"
         case soundSecs = "sound_secs"
@@ -29,6 +31,4 @@ struct StorySound: Sound {
         soundUrl = URL(string: sound)!
         soundSecs = try container.decode(Int.self, forKey: .soundSecs)
     }
-
-    func encode(to encoder: Encoder) throws {}
 }

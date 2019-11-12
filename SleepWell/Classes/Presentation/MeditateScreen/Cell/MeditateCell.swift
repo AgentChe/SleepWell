@@ -16,20 +16,19 @@ class MeditateCell: UITableViewCell {
     @IBOutlet private var avatarImage: UIImageView!
     @IBOutlet private var lockedImage: UIImageView!
     
-    struct Model {
-        let image: String
-        let title: String
-        let subtitle: String
-        let avatar: String
-        let isAvailable: Bool
-    }
-    
-    func setup(model: Model) {
-        backgroundImage.image = UIImage(named: model.image)
-        titleLabel.text = model.title
-        subtitleLabel.text = model.subtitle
-        avatarImage.image = UIImage(named: model.avatar)
-        lockedImage.isHidden = model.isAvailable
-        isUserInteractionEnabled = model.isAvailable
+    func setup(model: MeditationCellModel) {
+         if let backgroundUrl = model.image {
+            backgroundImage.kf.indicatorType = .activity
+            backgroundImage.kf.setImage(with: backgroundUrl, options: [.transition(.fade(0.2))])
+        }
+               
+         if let avatarUrl = model.avatar {
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: avatarUrl, options: [.transition(.fade(0.2))])
+        }
+
+        titleLabel.text = model.name
+        lockedImage.isHidden = model.paid
+        subtitleLabel.text = model.reader
     }
 }

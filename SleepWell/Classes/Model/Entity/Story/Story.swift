@@ -16,7 +16,7 @@ struct Story: Recording {
     let imagePreviewUrl: URL?
     let imageReaderURL: URL?
     let hash: String
-    let length_sec: Int
+    let length: Int
 }
 
 extension Story {
@@ -28,7 +28,7 @@ extension Story {
         case imagePreview = "image_story_url"
         case imageReader = "image_reader_url"
         case hash = "story_hash"
-        case length_sec = "length_secs"
+        case length = "length_secs"
     }
     
     init(from decoder: Decoder) throws {
@@ -44,7 +44,7 @@ extension Story {
         imagePreviewUrl = URL(string: preview)
         imageReaderURL = URL(string: readerImage)
         hash = try data.decode(String.self, forKey: .hash)
-        length_sec = try data.decode(Int.self, forKey: .length_sec)
+        length = try data.decode(Int.self, forKey: .length)
     }
 
     func encode(to encoder: Encoder) throws {}

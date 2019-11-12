@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderTitleView" customModule="SleepWell" customModuleProvider="target">
             <connections>
-                <outlet property="conteinerView" destination="iN0-l3-epB" id="Sq6-Bd-Ukc"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="Sq6-Bd-Ukc"/>
                 <outlet property="descriptionLabel" destination="HG1-4s-oJL" id="euf-rj-rVG"/>
                 <outlet property="titleLabel" destination="dVb-ce-eWs" id="W5q-0u-dTA"/>
             </connections>
@@ -29,13 +27,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-ce-eWs">
-                    <rect key="frame" x="0.0" y="0.0" width="446" height="48"/>
+                    <rect key="frame" x="0.0" y="0.0" width="446" height="40"/>
                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="34"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Описание, что дают пользователю материалы представленные в этом разделе." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HG1-4s-oJL">
-                    <rect key="frame" x="0.0" y="58" width="446" height="173"/>
+                    <rect key="frame" x="0.0" y="50" width="446" height="181"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

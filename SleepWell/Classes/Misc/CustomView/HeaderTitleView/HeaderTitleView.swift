@@ -11,7 +11,7 @@ import UIKit
 class HeaderTitleView: UIView {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet private var conteinerView: UIView!
+    @IBOutlet private var containerView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +31,7 @@ class HeaderTitleView: UIView {
     
     private func initialize() {
         UINib(nibName: "HeaderTitleView", bundle: nil).instantiate(withOwner: self, options: nil)
-        conteinerView.frame = bounds
-        addSubview(conteinerView)
+        containerView.frame = bounds
+        addSubview(containerView)
     }
 }

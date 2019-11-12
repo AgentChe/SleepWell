@@ -1,14 +1,14 @@
 //
-//  StoriesListRequest.swift
+//  MeditationTagsRequest.swift
 //  SleepWell
 //
-//  Created by Vitaliy Zagorodnov on 29/10/2019.
+//  Created by Vitaliy Zagorodnov on 04/11/2019.
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
 import Alamofire
 
-struct StoriesListRequest: APIRequestBody {
+struct MeditationTagsRequest: APIRequestBody {
     private let userToken: String?
     private let apiKey: String
     
@@ -18,7 +18,7 @@ struct StoriesListRequest: APIRequestBody {
     }
     
     var url: String {
-        return GlobalDefinitions.domainUrl + "/api/stories/list"
+        return GlobalDefinitions.domainUrl + "/api/meditations/tags"
     }
 
     var method: HTTPMethod {

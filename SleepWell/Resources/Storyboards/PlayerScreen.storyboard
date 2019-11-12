@@ -27,7 +27,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Ky-Sq7">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="F7U-pt-W3H">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
@@ -200,6 +200,7 @@
                     <connections>
                         <outlet property="audioSlider" destination="gBM-LX-919" id="z07-mH-OoV"/>
                         <outlet property="backgroundImageView" destination="WzL-Ky-Sq7" id="aJJ-Yj-Lwq"/>
+                        <outlet property="blurView" destination="AgN-KF-nXC" id="N42-hc-ldh"/>
                         <outlet property="bottomConstraint" destination="KkS-aE-Wuf" id="uwM-TX-Ivd"/>
                         <outlet property="currentTimeLabel" destination="Z3t-C5-iox" id="8ie-yZ-3Gm"/>
                         <outlet property="fastForwardButton" destination="pbM-7e-Sij" id="Gqf-RZ-Jyx"/>

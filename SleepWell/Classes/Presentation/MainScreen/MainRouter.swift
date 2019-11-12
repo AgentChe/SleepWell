@@ -25,9 +25,9 @@ final class MainRouter: Routing {
         switch route {
         case .meditate:
             break
-        case let .stories(element):
-            router.presentChild(type: StoriesAssembly.self,
-                                input: .init(isActiveSubscription: element))
+        case let .stories(element): break
+//            router.presentChild(type: StoriesAssembly.self,
+//                                input: .init(isActiveSubscription: element))
         case .scenes:
             break
         }
