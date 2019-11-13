@@ -26,7 +26,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
     
     private lazy var router = Router(transitionHandler: self)
-    lazy var personalDataService: PersonalDataService = deferred()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,16 +74,10 @@ extension MainViewController: BindsToViewModel {
         
         let behaveSignal = Observable.deferred { .just(input.behave == .withActiveSubscription) }
         let paygateSignal = paygateRelay
-            .flatMapLatest { [weak self] paygateResult -> Signal<Bool> in
-                guard let self = self else {
-                    return .never()
-                }
+            .flatMapLatest { paygateResult -> Signal<Bool> in
                 switch paygateResult {
                 case .purchased, .restored:
-                    return self.personalDataService
-                        .sendPersonalData()
-                        .map { true }
-                        .asSignal(onErrorSignalWith: .never())
+                    return viewModel.sendPersonalData()
                 case .closed:
                     return .just(false)
                 }

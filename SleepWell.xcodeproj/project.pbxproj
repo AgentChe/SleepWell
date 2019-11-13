@@ -1453,7 +1453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sz.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "SleepWell Development Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

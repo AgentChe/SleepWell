@@ -10,19 +10,24 @@ import RxSwift
 import RxCocoa
 
 protocol MainViewModelInterface {
-
+    func sendPersonalData() -> Signal<Bool>
 }
 
-final class MainViewModel: BindableViewModel {
+final class MainViewModel: BindableViewModel, MainViewModelInterface {
 
     typealias Interface = MainViewModelInterface
     
     lazy var router: MainRouter = deferred()
     lazy var dependencies: Dependencies = deferred()
     
-    struct Dependencies {}
-}
-
-extension MainViewModel: MainViewModelInterface {
-
+    struct Dependencies {
+        let personalDataService: PersonalDataService
+    }
+    
+    func sendPersonalData() -> Signal<Bool> {
+        return dependencies.personalDataService
+            .sendPersonalData()
+            .map { true }
+            .asSignal(onErrorSignalWith: .never())
+    }
 }
