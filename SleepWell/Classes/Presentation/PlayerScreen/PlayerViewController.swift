@@ -157,11 +157,14 @@ extension PlayerViewController: BindsToViewModel {
             .withLatestFrom(beingDissmissed.map { _ in true }.startWith(false)) { ($0, $1) }
             .filter { !$1 }
             .map { $0.0 }
-            .withLatestFrom(yPositionWithState) { $0 + $1.y }
+            .withLatestFrom(yPositionWithState) { (panY: $0, originalY: $1.y, state: $1.state) }
             .asSignal(onErrorSignalWith: .empty())
-            .emit(to: Binder(self) { base, y in
+            .emit(to: Binder(self) { base, tuple in
+                let y = tuple.panY + tuple.originalY
                 base.topConstraint.constant = y
-                base.bottomConstraint.constant = -y
+                base.bottomConstraint.constant = tuple.state
+                    ? -y
+                    : GlobalDefinitions.tabBarHeight - tuple.panY
             })
             .disposed(by: disposeBag)
         
