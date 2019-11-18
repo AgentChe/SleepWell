@@ -9,6 +9,7 @@
 import AVFoundation
 import RxSwift
 import RxCocoa
+import MediaPlayer
 
 final class AudioPlayerService: ReactiveCompatible {
     
@@ -78,7 +79,106 @@ final class AudioPlayerService: ReactiveCompatible {
     }
     
     fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
-    private init() {}
+    private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+    private let disposeBag = DisposeBag()
+    
+    private init() {
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        setupRemoteTransportControls()
+        
+        let image = audioRelay.asObservable()
+            .map { value -> UIImage? in
+                guard let value = value,
+                    let url = value.recording.recording.imagePreviewUrl,
+                    let data = try? Data(contentsOf: url),
+                    let image = UIImage(data: data)
+                else {
+                    return nil
+                }
+                
+                return image
+            }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+        
+        Driver
+            .combineLatest(
+                audioRelay.asDriver(),
+                time,
+                isPlaying,
+                image.startWith(nil)
+                    .asDriver(onErrorJustReturn: nil)
+                    .distinctUntilChanged()
+            )
+            .map { audio, time, isPlaying, image -> [String: Any] in
+                guard let audio = audio else {
+                    return [:]
+                }
+                
+                var nowPlayingInfo: [String: Any] = [
+                    MPMediaItemPropertyTitle: audio.recording.recording.name,
+                    MPNowPlayingInfoPropertyElapsedPlaybackTime: time,
+                    MPMediaItemPropertyPlaybackDuration: audio.recording.readingSound.soundSecs,
+                    MPNowPlayingInfoPropertyPlaybackRate: isPlaying && time != 0 ? 1.0 : 0.0
+                ]
+                
+                if let image = image {
+                    nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                        MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                }
+                
+                return nowPlayingInfo
+            }
+            .drive(Binder(self) { base, info in
+                base.nowPlayingInfoCenter.nowPlayingInfo = info
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension AudioPlayerService {
+    
+    func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            if self.audioRelay.value?.isPlaying == false {
+                self.audioRelay.value?.play()
+                return .success
+            }
+            return .commandFailed
+        }
+
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            if self.audioRelay.value?.isPlaying == true {
+                self.audioRelay.value?.pause()
+                return .success
+            }
+            return .commandFailed
+        }
+        
+        commandCenter.previousTrackCommand.isEnabled = false
+        commandCenter.nextTrackCommand.isEnabled = false
+        commandCenter.skipForwardCommand.isEnabled = true
+        commandCenter.skipBackwardCommand.isEnabled = true
+        
+        commandCenter.skipForwardCommand.preferredIntervals = [NSNumber(value: 15)]
+        commandCenter.skipForwardCommand.addTarget { [unowned self] event in
+            guard let audio = self.audioRelay.value else {
+                return .commandFailed
+            }
+            audio.fastForward()
+            return .success
+        }
+        
+        commandCenter.skipBackwardCommand.preferredIntervals = [NSNumber(value: 15)]
+        commandCenter.skipBackwardCommand.addTarget { [unowned self] event in
+            guard let audio = self.audioRelay.value else {
+                return .commandFailed
+            }
+            audio.rewind()
+            return .success
+        }
+    }
 }
 
 private final class Audio: ReactiveCompatible {
@@ -160,7 +260,26 @@ private final class Audio: ReactiveCompatible {
         currentTime = CMTime.zero
     }
     
+    func fastForward() {
+        let seconds = Int(round(mainPlayer.currentTime().seconds))
+        let time = min(seconds + 15, recording.readingSound.soundSecs)
+        currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
+    }
+    
+    func rewind() {
+        let seconds = Int(round(mainPlayer.currentTime().seconds))
+        let time = max(seconds - 15, 0)
+        currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
+    }
+    
     private let disposeBag = DisposeBag()
+}
+
+private extension Audio {
+    
+    var isPlaying: Bool {
+        mainPlayer.rate == 1
+    }
 }
 
 extension Reactive where Base: AudioPlayerService {
