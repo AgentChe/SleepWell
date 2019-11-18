@@ -23,6 +23,7 @@
 		847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CC237212CD0005E84E /* VolumeSliderView.swift */; };
 		847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CE2372142E0005E84E /* NSObjectExtension.swift */; };
 		84D7543A2378BDF1003C084C /* SharedSequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D754392378BDF1003C084C /* SharedSequenceExtension.swift */; };
+		84FC708A23833E15000AD9AE /* SceneDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC708923833E15000AD9AE /* SceneDetailRequest.swift */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
 		86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */; };
 		86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */; };
@@ -196,6 +197,7 @@
 		847127CC237212CD0005E84E /* VolumeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSliderView.swift; sourceTree = "<group>"; };
 		847127CE2372142E0005E84E /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		84D754392378BDF1003C084C /* SharedSequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSequenceExtension.swift; sourceTree = "<group>"; };
+		84FC708923833E15000AD9AE /* SceneDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRequest.swift; sourceTree = "<group>"; };
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
 		86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-regular.ttf"; sourceTree = "<group>"; };
 		86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-medium.ttf"; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 				86B7A984237012EF007A36BA /* MeditationsListRequest.swift */,
 				86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
+				84FC708923833E15000AD9AE /* SceneDetailRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1199,6 +1202,7 @@
 				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
 				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
+				84FC708A23833E15000AD9AE /* SceneDetailRequest.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
