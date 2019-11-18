@@ -8,6 +8,16 @@
 
 import RxSwift
 
-class SceneService {
+final class SceneService {
     
+    func getScene(by id: Int) -> Single<SceneDetail?> {
+        let request = SceneDetailRequest(
+            sceneId: id,
+            userToken: SessionService.userToken,
+            apiKey: GlobalDefinitions.apiKey
+        )
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { SceneDetail.parseFromDictionary(any: $0) }
+    }
 }
