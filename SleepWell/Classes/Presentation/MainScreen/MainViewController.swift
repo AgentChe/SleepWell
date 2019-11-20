@@ -115,19 +115,32 @@ extension MainViewController: BindsToViewModel {
     }
 }
 
-extension MainViewController: PlaySoundProtocol {
-    func isExpanded(isExpanded: Bool) {
-        hideTabBar(isHidden: isExpanded)
-    }
-}
-
 private extension MainViewController {
     func setPlayer(_ detail: RecordingDetail) {
-        let playerController = PlayerAssembly().assemble(input: .init(recording: detail)).vc
+        let playerController = PlayerAssembly().assemble(input: .init(
+            recording: detail,
+            hideTabbarClosure: { [weak self] state in
+                self?.hideTabBar(isHidden: state)
+            }
+        )).vc
         playerController.view.frame = view.bounds
-        playerController.delegate = self
         addChild(playerController)
         view.insertSubview(playerController.view, at: 1)
+        didMove(toParent: self)
+    }
+    
+    func showSceneSettings(sceneDetail: SceneDetail) {
+        let sceneSettingsController = SceneSettingsAssembly()
+            .assemble(input: .init(
+                sceneDetail: sceneDetail,
+                hideTabbarClosure: { [weak self] state in
+                    self?.hideTabBar(isHidden: state)
+                }
+            )).vc
+        sceneSettingsController.view.frame = view.bounds
+        hideTabBar(isHidden: true)
+        addChild(sceneSettingsController)
+        view.insertSubview(sceneSettingsController.view, at: 1)
         didMove(toParent: self)
     }
     

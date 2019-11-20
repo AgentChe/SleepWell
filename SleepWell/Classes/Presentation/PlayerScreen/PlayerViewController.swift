@@ -10,10 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol PlaySoundProtocol: class {
-    func isExpanded(isExpanded: Bool)
-}
-
 final class PlayerViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,7 +30,6 @@ final class PlayerViewController: UIViewController {
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     private let disposeBag = DisposeBag()
-    weak var delegate: PlaySoundProtocol?
 }
 
 extension PlayerViewController: BindsToViewModel {
@@ -42,6 +37,7 @@ extension PlayerViewController: BindsToViewModel {
     
     struct Input {
         let recording: RecordingDetail
+        let hideTabbarClosure: (Bool) -> Void
     }
     
     static func make() -> PlayerViewController {
@@ -72,7 +68,7 @@ extension PlayerViewController: BindsToViewModel {
                 pan.translation(in: view).y
             }
         
-        let heightToDissmiss = view.frame.height / 3
+        let heightToDissmiss = view.frame.height / 2
         
         let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
             .take(1)
@@ -89,9 +85,7 @@ extension PlayerViewController: BindsToViewModel {
                     .asDriver(onErrorDriveWith: .empty()),
                 isCurrentRecordingPlaying
             )
-            .drive(Binder(self) { base, state in
-                base.delegate?.isExpanded(isExpanded: state)
-            })
+            .drive(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
         let subtitleWithDuration = input.recording.recording.reader
@@ -105,13 +99,14 @@ extension PlayerViewController: BindsToViewModel {
             .drive(subtitleLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let viewDidLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
             .map { _ in () }
+            .asDriver(onErrorDriveWith: .empty())
         
         let skippingIsPlaying = Driver
             .combineLatest(
-                viewDidLayoutSubviews.asDriver(onErrorDriveWith: .empty()),
+                viewDidAppear,
                 isCurrentRecordingPlaying
             ) { $1 }
         
