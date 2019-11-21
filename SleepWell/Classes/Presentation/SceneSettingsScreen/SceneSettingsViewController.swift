@@ -16,6 +16,8 @@ final class SceneSettingsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var defaultView: UIView!
+    @IBOutlet weak var randomView: UIView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     private let disposeBag = DisposeBag()
@@ -26,7 +28,10 @@ extension SceneSettingsViewController: BindsToViewModel {
 
     struct Input {
         let sceneDetail: SceneDetail
-        let hideTabbarClosure: (Bool) -> Void
+    }
+    
+    struct Output {
+        let didDismiss: Signal<Void>
     }
 
     static func make() -> SceneSettingsViewController {
@@ -35,14 +40,14 @@ extension SceneSettingsViewController: BindsToViewModel {
             as! SceneSettingsViewController
     }
 
-    func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) {
+    func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) -> Output {
         
         if let image = input.sceneDetail.scene.imageUrl {
             backgroundImageView.kf.indicatorType = .activity
             backgroundImageView.kf.setImage(with: image, options: [.transition(.fade(0.2))])
         }
         
-        let soundsCount = input.sceneDetail.sounds.count * 3
+        let soundsCount = input.sceneDetail.sounds.count
         let height: CGFloat = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
         rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
             .take(1)
@@ -53,12 +58,22 @@ extension SceneSettingsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        let defaultTapGesture = UITapGestureRecognizer()
+        defaultView.addGestureRecognizer(defaultTapGesture)
+        let defaultVolumes = defaultTapGesture.rx.event.asSignal()
+            .map { _ in Float(1) }
+        
+        let randomTapGesture = UITapGestureRecognizer()
+        randomView.addGestureRecognizer(randomTapGesture)
+        let randomVolumes = randomTapGesture.rx.event.asSignal()
+        
         let volumes = viewModel.currentScenePlayersVolume ?? []
         input.sceneDetail.sounds.forEach { sound in
             let view = VolumeSliderView()
             view.configure(input: .init(
                 text: sound.name,
-                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
+                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0,
+                programmaticallyValue: Signal.merge(defaultVolumes, randomVolumes.map { _ in Float.random(in: 0...1) })
             ))
             stackView.addArrangedSubview(view)
             
@@ -67,31 +82,6 @@ extension SceneSettingsViewController: BindsToViewModel {
                 .disposed(by: disposeBag)
         }
         
-        input.sceneDetail.sounds.forEach { sound in
-            let view = VolumeSliderView()
-            view.configure(input: .init(
-                text: sound.name,
-                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
-            ))
-            stackView.addArrangedSubview(view)
-            
-            view.volume.map { (sound.id, $0) }
-                .emit(to: viewModel.sceneVolume)
-                .disposed(by: disposeBag)
-        }
-        
-        input.sceneDetail.sounds.forEach { sound in
-            let view = VolumeSliderView()
-            view.configure(input: .init(
-                text: sound.name,
-                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
-            ))
-            stackView.addArrangedSubview(view)
-            
-            view.volume.map { (sound.id, $0) }
-                .emit(to: viewModel.sceneVolume)
-                .disposed(by: disposeBag)
-        }
         
         let heightToDissmiss = view.frame.height / 4
         
@@ -145,7 +135,6 @@ extension SceneSettingsViewController: BindsToViewModel {
                         )
                     },
                     completion: { [weak self] _ in
-                        input.hideTabbarClosure(false)
                         self?.removeFromParent()
                     }
                 )
@@ -203,6 +192,8 @@ extension SceneSettingsViewController: BindsToViewModel {
                 )
             })
             .disposed(by: disposeBag)
+        
+        return Output(didDismiss: shouldDismiss.map { _ in () })
     }
 }
 
@@ -234,5 +225,4 @@ extension Reactive where Base: SceneSettingsViewController {
             )
         }
     }
-    
 }

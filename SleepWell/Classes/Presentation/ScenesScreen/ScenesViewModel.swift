@@ -12,12 +12,26 @@ import RxCocoa
 protocol ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]>
     func sceneDetails(id: Int) -> Signal<ScenesViewModel.Action?>
+    func isPlaying(scene: SceneDetail) -> Driver<Bool>
+    func add(sceneDetail: SceneDetail)
+    var playScene: Binder<Void> { get }
+    var pauseScene: Binder<Void> { get }
+    func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
     enum Action {
         case paygate
         case detail(SceneDetail?)
+        
+        var sceneDetail: SceneDetail? {
+            switch self {
+            case .paygate:
+                return nil
+            case .detail(let detail):
+                return detail
+            }
+        }
     }
     
     typealias Interface = ScenesViewModelInterface
@@ -27,6 +41,7 @@ final class ScenesViewModel: BindableViewModel {
     
     struct Dependencies {
         let sceneService: SceneService
+        let audioPlayerService: AudioPlayerService
     }
 }
 
@@ -56,5 +71,25 @@ extension ScenesViewModel: ScenesViewModelInterface {
                 return .just(.paygate)
             }
             .asSignal(onErrorJustReturn: nil)
+    }
+    
+    func isPlaying(scene: SceneDetail) -> Driver<Bool> {
+        dependencies.audioPlayerService.isPlaying(scene: scene)
+    }
+    
+    func add(sceneDetail: SceneDetail) {
+        dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
+    }
+    
+    var playScene: Binder<Void> {
+        dependencies.audioPlayerService.rx.playScene
+    }
+    
+    var pauseScene: Binder<Void> {
+        dependencies.audioPlayerService.rx.pauseScene
+    }
+    
+    func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {
+        router.showSettings(sceneDetail: sceneDetail)
     }
 }

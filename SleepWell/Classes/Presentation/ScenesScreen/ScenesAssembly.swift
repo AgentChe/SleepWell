@@ -11,6 +11,9 @@ final class ScenesAssembly: ScreenAssembly {
     typealias VC = ScenesViewController
     
     func assembleDependencies() -> ScenesViewModel.Dependencies {
-        return VC.ViewModel.Dependencies(sceneService: SceneService())
+        return VC.ViewModel.Dependencies(
+            sceneService: SceneService(),
+            audioPlayerService: AudioPlayerService.shared
+        )
     }
 }

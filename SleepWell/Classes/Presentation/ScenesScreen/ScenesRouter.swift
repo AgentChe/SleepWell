@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RxCocoa
 
 final class ScenesRouter: Routing {
     private let router: Router
   
     init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
+    }
+    
+    func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {
+        router.presentChild(type: SceneSettingsAssembly.self, input: .init(sceneDetail: sceneDetail))
+            .didDismiss
     }
 }

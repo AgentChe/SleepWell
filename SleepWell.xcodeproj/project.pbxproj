@@ -462,10 +462,10 @@
 			children = (
 				86A7D6A42385EB980087CE87 /* Model */,
 				86A7D6942385DA510087CE87 /* Cell */,
-				86A7D6912385DA510087CE87 /* ScenesRouter.swift */,
-				86A7D6922385DA510087CE87 /* ScenesViewModel.swift */,
-				86A7D6932385DA510087CE87 /* ScenesAssembly.swift */,
 				86A7D6972385DA510087CE87 /* ScenesViewController.swift */,
+				86A7D6922385DA510087CE87 /* ScenesViewModel.swift */,
+				86A7D6912385DA510087CE87 /* ScenesRouter.swift */,
+				86A7D6932385DA510087CE87 /* ScenesAssembly.swift */,
 			);
 			path = ScenesScreen;
 			sourceTree = "<group>";

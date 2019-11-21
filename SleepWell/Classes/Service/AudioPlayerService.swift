@@ -87,6 +87,17 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    func isPlaying(scene: SceneDetail) -> Driver<Bool> {
+        
+        sceneRelay.asDriver()
+            .flatMapLatest {
+                guard let value = $0, value.scene.id == scene.scene.id else {
+                    return .just(false)
+                }
+                return value.rx.isPlaying
+            }
+    }
+    
     var isPlaying: Driver<Bool> {
         
         audioRelay.asDriver()
@@ -276,7 +287,7 @@ private extension AudioPlayerService {
     }
 }
 
-private final class SceneAudio {
+private final class SceneAudio: ReactiveCompatible {
     
     struct Player {
         let player: AVPlayer
@@ -527,6 +538,21 @@ private extension Reactive where Base: Audio {
         Driver<Int>.interval(.milliseconds(100))
             .map { [base] _ in
                 base.mainPlayer.rate != 0 && base.mainPlayer.error == nil
+            }
+            .distinctUntilChanged()
+    }
+}
+
+private extension Reactive where Base: SceneAudio {
+    
+    var isPlaying: Driver<Bool> {
+        
+        Driver<Int>.interval(.milliseconds(100))
+            .map { [base] _ in
+                guard let player = base.players.first?.player else {
+                    return false
+                }
+                return player.rate != 0 && player.error == nil
             }
             .distinctUntilChanged()
     }

@@ -15,6 +15,17 @@ final class VolumeSliderView: UIView {
     struct Input {
         let text: String
         let initialValue: Float
+        let programmaticallyValue: Signal<Float>
+        
+        init(
+            text: String,
+            initialValue: Float,
+            programmaticallyValue: Signal<Float> = .empty()
+        ) {
+            self.text = text
+            self.initialValue = initialValue
+            self.programmaticallyValue = programmaticallyValue
+        }
     }
     
     var volume: Signal<Float> {
@@ -38,6 +49,9 @@ final class VolumeSliderView: UIView {
         
         let initialVolumeValue = width.map { $0 * CGFloat(input.initialValue) }
         
+        let programmaticallyValue = input.programmaticallyValue
+            .withLatestFrom(width) { CGFloat($0) * $1 }
+        
         initialVolumeValue
             .emit(to: Binder(self) { view, width in
                 view.volumeView.frame = .init(
@@ -58,13 +72,18 @@ final class VolumeSliderView: UIView {
             .disposed(by: disposeBag)
         
         let volumeWidth = gesture.rx.event
+            .asSignal()
             .filter { $0.state == .ended }
             .map { [volumeView] _ in
                 volumeView.frame.width
             }
-            .asSignal(onErrorSignalWith: .empty())
         
-        let currentVolumeValue = Signal.merge(volumeWidth, initialVolumeValue)
+        let currentVolumeValue = Signal
+            .merge(
+                volumeWidth,
+                initialVolumeValue,
+                programmaticallyValue
+            )
         
         let volumeChangeEvent = gesture.rx.event
             .asSignal(onErrorSignalWith: .empty())
@@ -78,7 +97,13 @@ final class VolumeSliderView: UIView {
                 max(CGFloat(0), min(tuple.value, tuple.width))
             }
         
-        volumeChangeEvent
+        let volume = Signal
+            .merge(
+                volumeChangeEvent,
+                programmaticallyValue
+            )
+        
+        volume
             .emit(to: Binder(self) { view, volume in
                 view.volumeView.frame = .init(
                     x: 0,
@@ -89,7 +114,7 @@ final class VolumeSliderView: UIView {
             })
             .disposed(by: disposeBag)
         
-        volumeChangeEvent
+        volume
             .withLatestFrom(width) { Float($0 / $1) }
             .emit(to: _volume)
             .disposed(by: disposeBag)

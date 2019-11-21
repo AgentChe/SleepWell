@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupTabs() {
-        storiesTabItem.title = "Stroies"
+        storiesTabItem.title = "Stories"
         meditateTabItem.title = "Meditate"
         sceneTabItem.title = "Scene"
         
@@ -130,21 +130,6 @@ private extension MainViewController {
         didMove(toParent: self)
     }
     
-    func showSceneSettings(sceneDetail: SceneDetail) {
-        let sceneSettingsController = SceneSettingsAssembly()
-            .assemble(input: .init(
-                sceneDetail: sceneDetail,
-                hideTabbarClosure: { [weak self] state in
-                    self?.hideTabBar(isHidden: state)
-                }
-            )).vc
-        sceneSettingsController.view.frame = view.bounds
-        hideTabBar(isHidden: true)
-        addChild(sceneSettingsController)
-        view.insertSubview(sceneSettingsController.view, at: 1)
-        didMove(toParent: self)
-    }
-    
     func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
         if meditateAssambly == nil {
             meditateAssambly = MeditateAssembly().assemble(input: behave)
@@ -165,7 +150,12 @@ private extension MainViewController {
 
     func scenes(behave: Observable<Bool>) -> Signal<MainRoute> {
         if scenesAssambly == nil {
-            scenesAssambly = ScenesAssembly().assemble(input: behave)
+            scenesAssambly = ScenesAssembly().assemble(input: .init(
+                subscription: behave,
+                hideTabbarClosure: { [weak self] state in
+                    self?.hideTabBar(isHidden: state)
+                }
+            ))
         }
         scenesAssambly.vc.view.frame = containerView.bounds
         add(scenesAssambly.vc)
