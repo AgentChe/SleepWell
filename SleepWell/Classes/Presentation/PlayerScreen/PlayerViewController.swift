@@ -68,7 +68,7 @@ extension PlayerViewController: BindsToViewModel {
                 pan.translation(in: view).y
             }
         
-        let heightToDissmiss = view.frame.height / 2
+        let heightToDissmiss = view.frame.height / 4
         
         let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
             .take(1)

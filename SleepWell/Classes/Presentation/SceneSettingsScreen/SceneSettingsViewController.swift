@@ -42,7 +42,7 @@ extension SceneSettingsViewController: BindsToViewModel {
             backgroundImageView.kf.setImage(with: image, options: [.transition(.fade(0.2))])
         }
         
-        let soundsCount = input.sceneDetail.sounds.count
+        let soundsCount = input.sceneDetail.sounds.count * 3
         let height: CGFloat = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
         rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
             .take(1)
@@ -53,13 +53,44 @@ extension SceneSettingsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        let volumes = viewModel.currentScenePlayersVolume ?? []
         input.sceneDetail.sounds.forEach { sound in
             let view = VolumeSliderView()
             view.configure(input: .init(
                 text: sound.name,
-                initialValue: 1.0 //TO DO: Replace for current value
+                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
             ))
             stackView.addArrangedSubview(view)
+            
+            view.volume.map { (sound.id, $0) }
+                .emit(to: viewModel.sceneVolume)
+                .disposed(by: disposeBag)
+        }
+        
+        input.sceneDetail.sounds.forEach { sound in
+            let view = VolumeSliderView()
+            view.configure(input: .init(
+                text: sound.name,
+                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
+            ))
+            stackView.addArrangedSubview(view)
+            
+            view.volume.map { (sound.id, $0) }
+                .emit(to: viewModel.sceneVolume)
+                .disposed(by: disposeBag)
+        }
+        
+        input.sceneDetail.sounds.forEach { sound in
+            let view = VolumeSliderView()
+            view.configure(input: .init(
+                text: sound.name,
+                initialValue: volumes.first(where: { $0.id == sound.id })?.value ?? 0.0
+            ))
+            stackView.addArrangedSubview(view)
+            
+            view.volume.map { (sound.id, $0) }
+                .emit(to: viewModel.sceneVolume)
+                .disposed(by: disposeBag)
         }
         
         let heightToDissmiss = view.frame.height / 4
