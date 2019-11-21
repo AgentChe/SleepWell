@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
     
     private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
+    private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
     
     private let storiesTabItem = TabBarItem()
     private let meditateTabItem = TabBarItem()
@@ -98,7 +99,7 @@ extension MainViewController: BindsToViewModel {
                 case .stories:
                     return self.stories(behave: isActiveSubscription)
                 case .scene:
-                    return .empty()
+                    return self.scenes(behave: isActiveSubscription)
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -147,6 +148,15 @@ private extension MainViewController {
         storiesAssambly.vc.view.frame = containerView.bounds
         add(storiesAssambly.vc)
         return storiesAssambly.output
+    }
+
+    func scenes(behave: Observable<Bool>) -> Signal<MainRoute> {
+        if scenesAssambly == nil {
+            scenesAssambly = ScenesAssembly().assemble(input: behave)
+        }
+        scenesAssambly.vc.view.frame = containerView.bounds
+        add(scenesAssambly.vc)
+        return scenesAssambly.output
     }
 }
 
