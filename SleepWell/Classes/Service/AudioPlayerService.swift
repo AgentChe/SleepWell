@@ -35,12 +35,10 @@ final class AudioPlayerService: ReactiveCompatible {
             recording: recording
         )
         audioRelay.accept(audio)
-        sceneRelay.accept(nil)
         audio.prepareToPlay()
     }
     
     func add(sceneDetail: SceneDetail) {
-        
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
             return
@@ -59,7 +57,6 @@ final class AudioPlayerService: ReactiveCompatible {
             scene: sceneDetail.scene
         )
         sceneRelay.accept(sceneAudio)
-        audioRelay.accept(nil)
         sceneAudio.prepareToPlay()
     }
     
@@ -128,6 +125,7 @@ final class AudioPlayerService: ReactiveCompatible {
         setupRemoteTransportControls()
         
         let audioImage = audioRelay.asObservable()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { value -> UIImage? in
                 guard let value = value,
                     let url = value.recording.recording.imagePreviewUrl,
@@ -139,9 +137,9 @@ final class AudioPlayerService: ReactiveCompatible {
                 
                 return image
             }
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         
         let sceneImage = sceneRelay.asObservable()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { value -> UIImage? in
                 guard let value = value,
                     let url = value.scene.imageUrl,
@@ -153,7 +151,6 @@ final class AudioPlayerService: ReactiveCompatible {
                 
                 return image
             }
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         
         Driver
             .combineLatest(
@@ -213,13 +210,14 @@ final class AudioPlayerService: ReactiveCompatible {
                 base.nowPlayingInfoCenter.nowPlayingInfo = info
                 if info.isEmpty {
                     base.audioRelay.value?.pause()
+                    base.sceneRelay.value?.pause()
                     try? AVAudioSession.sharedInstance().setActive(
                         false,
                         options: .notifyOthersOnDeactivation
                     )
                 } else {
                     try? AVAudioSession.sharedInstance().setActive(
-                        false,
+                        true,
                         options: .notifyOthersOnDeactivation
                     )
                 }
@@ -239,6 +237,10 @@ private extension AudioPlayerService {
                     self?.audioRelay.value?.play()
                     return .success
                 }
+                if self?.sceneRelay.value?.isPlaying == false {
+                    self?.sceneRelay.value?.play()
+                    return .success
+                }
                 return .commandFailed
             }
 
@@ -246,6 +248,10 @@ private extension AudioPlayerService {
             .addTarget { [weak self] _ in
                 if self?.audioRelay.value?.isPlaying == true {
                     self?.audioRelay.value?.pause()
+                    return .success
+                }
+                if self?.sceneRelay.value?.isPlaying == true {
+                    self?.sceneRelay.value?.pause()
                     return .success
                 }
                 return .commandFailed
@@ -308,7 +314,7 @@ private final class SceneAudio: ReactiveCompatible {
             NotificationCenter.default.rx
             .notification(
                 .AVPlayerItemDidPlayToEndTime,
-                object: $0.player
+                object: $0.player.currentItem
             )
             .bind(to: Binder($0.player) { player, _ in
                 player.seek(to: CMTime.zero)
@@ -335,6 +341,13 @@ private final class SceneAudio: ReactiveCompatible {
             return
         }
         players.first(where: { $0.id == id })?.player.volume = value
+    }
+    
+    var isPlaying: Bool {
+        guard let player = players.first?.player else {
+            return false
+        }
+        return player.rate != 0 && player.error == nil
     }
     
     private let disposeBag = DisposeBag()
@@ -446,6 +459,10 @@ extension Reactive where Base: AudioPlayerService {
     var play: Binder<Void> {
         
         Binder(base) { base, _ in
+            if base.sceneRelay.value != nil {
+                base.sceneRelay.value?.pause()
+                base.sceneRelay.accept(nil)
+            }
             base.audioRelay.value?.play()
         }
     }
@@ -453,6 +470,10 @@ extension Reactive where Base: AudioPlayerService {
     var playScene: Binder<Void> {
         
         Binder(base) { base, _ in
+            if base.audioRelay.value != nil {
+                base.audioRelay.value?.pause()
+                base.audioRelay.accept(nil)
+            }
             base.sceneRelay.value?.play()
         }
     }
@@ -549,10 +570,7 @@ private extension Reactive where Base: SceneAudio {
         
         Driver<Int>.interval(.milliseconds(100))
             .map { [base] _ in
-                guard let player = base.players.first?.player else {
-                    return false
-                }
-                return player.rate != 0 && player.error == nil
+                base.isPlaying
             }
             .distinctUntilChanged()
     }

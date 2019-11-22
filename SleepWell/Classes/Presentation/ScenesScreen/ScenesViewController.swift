@@ -114,14 +114,16 @@ extension ScenesViewController: BindsToViewModel {
                 viewModel.showSettings(sceneDetail: $0)
             }
         
-        playButton.rx.tap.asSignal()
-            .withLatestFrom(sceneDetail)
+        playButton.rx.tap.asObservable()
+            .withLatestFrom(sceneDetail.asObservable())
             .filter { $0 != nil }
             .map { $0! }
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: {
                 viewModel.add(sceneDetail: $0)
             })
             .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
             .emit(to: viewModel.playScene)
             .disposed(by: disposeBag)
         
