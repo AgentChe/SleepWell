@@ -10,10 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol PlaySoundProtocol: class {
-    func isExpanded(isExpanded: Bool)
-}
-
 final class PlayerViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,7 +30,6 @@ final class PlayerViewController: UIViewController {
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     private let disposeBag = DisposeBag()
-    weak var delegate: PlaySoundProtocol?
 }
 
 extension PlayerViewController: BindsToViewModel {
@@ -42,6 +37,7 @@ extension PlayerViewController: BindsToViewModel {
     
     struct Input {
         let recording: RecordingDetail
+        let hideTabbarClosure: (Bool) -> Void
     }
     
     static func make() -> PlayerViewController {
@@ -72,7 +68,7 @@ extension PlayerViewController: BindsToViewModel {
                 pan.translation(in: view).y
             }
         
-        let heightToDissmiss = view.frame.height / 3
+        let heightToDissmiss = view.frame.height / 4
         
         let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
             .take(1)
@@ -89,9 +85,7 @@ extension PlayerViewController: BindsToViewModel {
                     .asDriver(onErrorDriveWith: .empty()),
                 isCurrentRecordingPlaying
             )
-            .drive(Binder(self) { base, state in
-                base.delegate?.isExpanded(isExpanded: state)
-            })
+            .drive(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
         let subtitleWithDuration = input.recording.recording.reader
@@ -105,13 +99,14 @@ extension PlayerViewController: BindsToViewModel {
             .drive(subtitleLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let viewDidLayoutSubviews = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
             .map { _ in () }
+            .asDriver(onErrorDriveWith: .empty())
         
         let skippingIsPlaying = Driver
             .combineLatest(
-                viewDidLayoutSubviews.asDriver(onErrorDriveWith: .empty()),
+                viewDidAppear,
                 isCurrentRecordingPlaying
             ) { $1 }
         
@@ -136,7 +131,7 @@ extension PlayerViewController: BindsToViewModel {
 
                 let screenHeight = UIScreen.main.bounds.height
                 let lastViewY = self.pauseButton.frame.maxY
-                let viewHeight = lastViewY + CGFloat(28) + GlobalDefinitions.tabBarHeight
+                let viewHeight = lastViewY + CGFloat(28) + Constants.marginBottom
                 return (screenHeight - viewHeight, state)
             }
             .asDriver(onErrorDriveWith: .empty())
@@ -164,7 +159,7 @@ extension PlayerViewController: BindsToViewModel {
                 base.topConstraint.constant = y
                 base.bottomConstraint.constant = tuple.state
                     ? -y
-                    : GlobalDefinitions.tabBarHeight - tuple.panY
+                    : Constants.marginBottom - tuple.panY
             })
             .disposed(by: disposeBag)
         
@@ -310,7 +305,7 @@ private extension Reactive where Base: PlayerViewController {
         
         Binder(base) { base, tuple in
             base.topConstraint.constant = tuple.y
-            base.bottomConstraint.constant = tuple.state ? -tuple.y : GlobalDefinitions.tabBarHeight
+            base.bottomConstraint.constant = tuple.state ? -tuple.y : Constants.marginBottom
             UIView.animate(
                 withDuration: 0.5,
                 animations: {
@@ -319,6 +314,10 @@ private extension Reactive where Base: PlayerViewController {
             )
         }
     }
+}
+
+private enum Constants {
+    static let marginBottom: CGFloat = 69
 }
 
 private extension Int {

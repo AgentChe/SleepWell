@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
     }
 
     private func setupTabs() {
-        storiesTabItem.title = "Stroies"
+        storiesTabItem.title = "Stories"
         meditateTabItem.title = "Meditate"
         sceneTabItem.title = "Scene"
         
@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
     
     private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
+    private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
     
     private let storiesTabItem = TabBarItem()
     private let meditateTabItem = TabBarItem()
@@ -88,7 +89,9 @@ extension MainViewController: BindsToViewModel {
             .merge(behaveSignal, paygateSignal)
             .share(replay: 1, scope: .forever)
 
-        tabBarView.selectIndex
+        let selectIndex = tabBarView.selectIndex
+        
+        selectIndex
             .map { Tab(rawValue: $0) ?? .scene }
             .flatMapLatest { [weak self] tab -> Signal<MainRoute> in
                 guard let self = self else { return .empty() }
@@ -98,7 +101,12 @@ extension MainViewController: BindsToViewModel {
                 case .stories:
                     return self.stories(behave: isActiveSubscription)
                 case .scene:
-                    return .empty()
+                    return self.scenes(
+                        behave: isActiveSubscription,
+                        isMainScreen: selectIndex
+                            .map { $0 == Tab.scene.rawValue }
+                            .startWith(true)
+                    )
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -115,17 +123,15 @@ extension MainViewController: BindsToViewModel {
     }
 }
 
-extension MainViewController: PlaySoundProtocol {
-    func isExpanded(isExpanded: Bool) {
-        hideTabBar(isHidden: isExpanded)
-    }
-}
-
 private extension MainViewController {
     func setPlayer(_ detail: RecordingDetail) {
-        let playerController = PlayerAssembly().assemble(input: .init(recording: detail)).vc
+        let playerController = PlayerAssembly().assemble(input: .init(
+            recording: detail,
+            hideTabbarClosure: { [weak self] state in
+                self?.hideTabBar(isHidden: state)
+            }
+        )).vc
         playerController.view.frame = view.bounds
-        playerController.delegate = self
         addChild(playerController)
         view.insertSubview(playerController.view, at: 1)
         didMove(toParent: self)
@@ -147,6 +153,24 @@ private extension MainViewController {
         storiesAssambly.vc.view.frame = containerView.bounds
         add(storiesAssambly.vc)
         return storiesAssambly.output
+    }
+
+    func scenes(
+        behave: Observable<Bool>,
+        isMainScreen: Signal<Bool>
+    ) -> Signal<MainRoute> {
+        if scenesAssambly == nil {
+            scenesAssambly = ScenesAssembly().assemble(input: .init(
+                subscription: behave,
+                isMainScreen: isMainScreen,
+                hideTabbarClosure: { [weak self] state in
+                    self?.hideTabBar(isHidden: state)
+                }
+            ))
+        }
+        scenesAssambly.vc.view.frame = containerView.bounds
+        add(scenesAssambly.vc)
+        return scenesAssambly.output
     }
 }
 
@@ -175,7 +199,6 @@ private extension MainViewController {
             options: isHidden ? .curveEaseOut : .curveEaseIn,
             animations: {
                 self.tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
-                self.tabBarView.alpha = isHidden ? 0 : 1
                 self.view.layoutIfNeeded()
         }) { _ in
             

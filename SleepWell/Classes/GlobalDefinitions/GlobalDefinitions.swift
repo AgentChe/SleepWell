@@ -11,6 +11,7 @@ final class GlobalDefinitions {
     static let termsOfServiceUrl = ""
     static let contactUsUrl = ""
     
-    static let tabBarHeight = CGFloat(69)
+    static let tabBarHeight = CGFloat(125)
+    static let tableBottomInsert = CGFloat(85)
 }
 

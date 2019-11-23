@@ -46,7 +46,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8qE-yo-Rws">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8qE-yo-Rws">
                                             <rect key="frame" x="30" y="28" width="354" height="354"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="8qE-yo-Rws" secondAttribute="height" multiplier="1:1" id="jza-Sm-5oZ"/>

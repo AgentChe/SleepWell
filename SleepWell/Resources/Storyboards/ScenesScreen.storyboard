@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scenes View Controller-->
+        <scene sceneID="u8W-8R-D54">
+            <objects>
+                <viewController storyboardIdentifier="ScenesViewController" id="LcW-xB-hGE" customClass="ScenesViewController" customModule="SleepWell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="wzv-1f-mCX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9os-dc-zca">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vtg-tW-af0">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-dS-kWW">
+                                <rect key="frame" x="192.5" y="747" width="29" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="ALO-U8-OfQ"/>
+                                    <constraint firstAttribute="width" constant="29" id="Wst-HX-VDq"/>
+                                </constraints>
+                                <state key="normal" image="scene_pause_button">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1C9-Uw-3Fa">
+                                <rect key="frame" x="322.5" y="745.5" width="38.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38.25" id="IeN-kq-8ca"/>
+                                    <constraint firstAttribute="height" constant="33.380000000000003" id="K08-UI-9rJ"/>
+                                </constraints>
+                                <state key="normal" image="scene_settings_button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X47-Wp-bYF">
+                                <rect key="frame" x="192.5" y="747" width="29" height="33"/>
+                                <state key="normal" image="play_scene_button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="NXd-FW-eNv" firstAttribute="trailing" secondItem="9os-dc-zca" secondAttribute="trailing" id="0AE-Gu-iaK"/>
+                            <constraint firstItem="X47-Wp-bYF" firstAttribute="width" secondItem="Zv2-dS-kWW" secondAttribute="width" id="5Rk-T5-i0s"/>
+                            <constraint firstItem="X47-Wp-bYF" firstAttribute="leading" secondItem="Zv2-dS-kWW" secondAttribute="leading" id="5nJ-2V-ZOr"/>
+                            <constraint firstItem="X47-Wp-bYF" firstAttribute="height" secondItem="Zv2-dS-kWW" secondAttribute="height" id="Jpd-x7-A24"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="Zv2-dS-kWW" secondAttribute="bottom" constant="116" id="PDv-JO-qJz"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="top" secondItem="wzv-1f-mCX" secondAttribute="top" id="XuN-KN-FOq"/>
+                            <constraint firstItem="Zv2-dS-kWW" firstAttribute="centerX" secondItem="wzv-1f-mCX" secondAttribute="centerX" id="dol-oI-f1U"/>
+                            <constraint firstItem="X47-Wp-bYF" firstAttribute="top" secondItem="Zv2-dS-kWW" secondAttribute="top" id="e6d-pZ-RXy"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="leading" secondItem="NXd-FW-eNv" secondAttribute="leading" id="hLE-oy-Lq2"/>
+                            <constraint firstAttribute="bottom" secondItem="9os-dc-zca" secondAttribute="bottom" id="iqS-vH-XET"/>
+                            <constraint firstItem="NXd-FW-eNv" firstAttribute="trailing" secondItem="1C9-Uw-3Fa" secondAttribute="trailing" constant="53.25" id="nop-ey-lmd"/>
+                            <constraint firstItem="X47-Wp-bYF" firstAttribute="bottom" secondItem="Zv2-dS-kWW" secondAttribute="bottom" id="oNe-9M-TJm"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="1C9-Uw-3Fa" secondAttribute="bottom" constant="117" id="vga-Cd-7b4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NXd-FW-eNv"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="UBo-v3-ndS" appends="YES" id="kVS-qO-1wP"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="9os-dc-zca" id="bVC-wg-01B"/>
+                        <outlet property="pauseButton" destination="Zv2-dS-kWW" id="ZxV-6f-8py"/>
+                        <outlet property="pauseButtonBottomConstraint" destination="PDv-JO-qJz" id="f9X-Bq-8Ik"/>
+                        <outlet property="playButton" destination="X47-Wp-bYF" id="JhQ-dh-9ay"/>
+                        <outlet property="settingsButton" destination="1C9-Uw-3Fa" id="BjL-vM-6FN"/>
+                        <outlet property="settingsButtonBottomConstraint" destination="vga-Cd-7b4" id="4Vi-gW-Wux"/>
+                        <outlet property="tapGesture" destination="UBo-v3-ndS" id="KZc-Je-ig2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bd-FC-Hy5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="UBo-v3-ndS"/>
+            </objects>
+            <point key="canvasLocation" x="-464" y="102"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="play_scene_button" width="24" height="28"/>
+        <image name="scene_pause_button" width="23" height="27"/>
+        <image name="scene_settings_button" width="38.5" height="33.5"/>
+    </resources>
+</document>

@@ -22,8 +22,13 @@
 		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
 		847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CC237212CD0005E84E /* VolumeSliderView.swift */; };
 		847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CE2372142E0005E84E /* NSObjectExtension.swift */; };
+		84A38E382383D21A004E7EBA /* SceneSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E372383D21A004E7EBA /* SceneSettingsViewController.swift */; };
+		84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */; };
+		84A38E3C2383D2CB004E7EBA /* SceneSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */; };
+		84A38E3E2383D5F4004E7EBA /* SceneSettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E3D2383D5F4004E7EBA /* SceneSettingsAssembly.swift */; };
 		84D7543A2378BDF1003C084C /* SharedSequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D754392378BDF1003C084C /* SharedSequenceExtension.swift */; };
 		84FC708A23833E15000AD9AE /* SceneDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC708923833E15000AD9AE /* SceneDetailRequest.swift */; };
+		84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
 		86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */; };
 		86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C61236ED0B300D50C32 /* sf-pro-text-heavy.ttf */; };
@@ -31,6 +36,16 @@
 		86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */; };
 		86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */; };
 		86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */; };
+		86A7D6982385DA510087CE87 /* ScenesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6912385DA510087CE87 /* ScenesRouter.swift */; };
+		86A7D6992385DA510087CE87 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6922385DA510087CE87 /* ScenesViewModel.swift */; };
+		86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6932385DA510087CE87 /* ScenesAssembly.swift */; };
+		86A7D69B2385DA510087CE87 /* SceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D6952385DA510087CE87 /* SceneCell.xib */; };
+		86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6962385DA510087CE87 /* SceneCell.swift */; };
+		86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6972385DA510087CE87 /* ScenesViewController.swift */; };
+		86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */; };
+		86A7D6A12385E1EB0087CE87 /* ScenesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */; };
+		86A7D6A32385EAC20087CE87 /* ScenesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A22385EAC20087CE87 /* ScenesMapper.swift */; };
+		86A7D6A62385EBAA0087CE87 /* SceneCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A52385EBAA0087CE87 /* SceneCellModel.swift */; };
 		86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3122379BBEF00C60158 /* RealmMeditation.swift */; };
 		86B0C3152379BF1400C60158 /* RealmStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3142379BF1400C60158 /* RealmStory.swift */; };
 		86B0C3192379DB7300C60158 /* RealmMeditationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B0C3182379DB7300C60158 /* RealmMeditationTag.swift */; };
@@ -196,8 +211,13 @@
 		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
 		847127CC237212CD0005E84E /* VolumeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSliderView.swift; sourceTree = "<group>"; };
 		847127CE2372142E0005E84E /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		84A38E372383D21A004E7EBA /* SceneSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsViewController.swift; sourceTree = "<group>"; };
+		84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsViewModel.swift; sourceTree = "<group>"; };
+		84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsRouter.swift; sourceTree = "<group>"; };
+		84A38E3D2383D5F4004E7EBA /* SceneSettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsAssembly.swift; sourceTree = "<group>"; };
 		84D754392378BDF1003C084C /* SharedSequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSequenceExtension.swift; sourceTree = "<group>"; };
 		84FC708923833E15000AD9AE /* SceneDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRequest.swift; sourceTree = "<group>"; };
+		84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneSettingsScreen.storyboard; sourceTree = "<group>"; };
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
 		86836C5F236ED0B300D50C32 /* sf-pro-text-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-regular.ttf"; sourceTree = "<group>"; };
 		86836C60236ED0B300D50C32 /* sf-pro-text-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-medium.ttf"; sourceTree = "<group>"; };
@@ -205,6 +225,16 @@
 		86836C62236ED0B300D50C32 /* sf-pro-text-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-light.ttf"; sourceTree = "<group>"; };
 		86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-semibold.ttf"; sourceTree = "<group>"; };
 		86836C64236ED0B300D50C32 /* sf-pro-text-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-text-bold.ttf"; sourceTree = "<group>"; };
+		86A7D6912385DA510087CE87 /* ScenesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesRouter.swift; sourceTree = "<group>"; };
+		86A7D6922385DA510087CE87 /* ScenesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
+		86A7D6932385DA510087CE87 /* ScenesAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesAssembly.swift; sourceTree = "<group>"; };
+		86A7D6952385DA510087CE87 /* SceneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneCell.xib; sourceTree = "<group>"; };
+		86A7D6962385DA510087CE87 /* SceneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
+		86A7D6972385DA510087CE87 /* ScenesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
+		86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScenesScreen.storyboard; sourceTree = "<group>"; };
+		86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesRequest.swift; sourceTree = "<group>"; };
+		86A7D6A22385EAC20087CE87 /* ScenesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesMapper.swift; sourceTree = "<group>"; };
+		86A7D6A52385EBAA0087CE87 /* SceneCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellModel.swift; sourceTree = "<group>"; };
 		86B0C3122379BBEF00C60158 /* RealmMeditation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditation.swift; sourceTree = "<group>"; };
 		86B0C3142379BF1400C60158 /* RealmStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStory.swift; sourceTree = "<group>"; };
 		86B0C3182379DB7300C60158 /* RealmMeditationTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditationTag.swift; sourceTree = "<group>"; };
@@ -396,6 +426,17 @@
 			path = VolumeScreen;
 			sourceTree = "<group>";
 		};
+		84FC708B238343D6000AD9AE /* SceneSettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84A38E372383D21A004E7EBA /* SceneSettingsViewController.swift */,
+				84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */,
+				84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */,
+				84A38E3D2383D5F4004E7EBA /* SceneSettingsAssembly.swift */,
+			);
+			path = SceneSettingsScreen;
+			sourceTree = "<group>";
+		};
 		86152F6D2365A5220006FF56 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +455,36 @@
 				86836C63236ED0B300D50C32 /* sf-pro-text-semibold.ttf */,
 			);
 			path = SFProText;
+			sourceTree = "<group>";
+		};
+		86A7D6902385DA510087CE87 /* ScenesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				86A7D6A42385EB980087CE87 /* Model */,
+				86A7D6942385DA510087CE87 /* Cell */,
+				86A7D6972385DA510087CE87 /* ScenesViewController.swift */,
+				86A7D6922385DA510087CE87 /* ScenesViewModel.swift */,
+				86A7D6912385DA510087CE87 /* ScenesRouter.swift */,
+				86A7D6932385DA510087CE87 /* ScenesAssembly.swift */,
+			);
+			path = ScenesScreen;
+			sourceTree = "<group>";
+		};
+		86A7D6942385DA510087CE87 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				86A7D6952385DA510087CE87 /* SceneCell.xib */,
+				86A7D6962385DA510087CE87 /* SceneCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		86A7D6A42385EB980087CE87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86A7D6A52385EBAA0087CE87 /* SceneCellModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		86B0C3112379BBDA00C60158 /* Realm */ = {
@@ -652,6 +723,8 @@
 				96C29F70236353E300E93CB1 /* MainScreen.storyboard */,
 				8441FB85236374CA001DC085 /* PlayerScreen.storyboard */,
 				844F025A23777002004C062B /* VolumeScreen.storyboard */,
+				84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */,
+				86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -659,6 +732,8 @@
 		96C29EDF23625A8C00E93CB1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				84FC708B238343D6000AD9AE /* SceneSettingsScreen */,
+				86A7D6902385DA510087CE87 /* ScenesScreen */,
 				844F025123776E03004C062B /* VolumeScreen */,
 				8441FB7C23637306001DC085 /* PlayerScreen */,
 				86C848B42366FFF300BC6EDA /* StoriesScreen */,
@@ -711,6 +786,7 @@
 				86B0C31C2379DE0300C60158 /* MeditationRealmMapper.swift */,
 				86B0C31E2379DE0D00C60158 /* MeditationTagRealmMapper.swift */,
 				86B0C3202379DEB600C60158 /* StoryRealmMapper.swift */,
+				86A7D6A22385EAC20087CE87 /* ScenesMapper.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
@@ -806,6 +882,7 @@
 				86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
 				84FC708923833E15000AD9AE /* SceneDetailRequest.swift */,
+				86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1078,6 +1155,7 @@
 				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
 				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
+				86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */,
 				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
 				844F025B23777002004C062B /* VolumeScreen.storyboard in Resources */,
 				86B7A99723702CA3007A36BA /* TabBarItem.xib in Resources */,
@@ -1094,6 +1172,7 @@
 				96DC8C702367460D004DC76A /* OpenSans-Light.ttf in Resources */,
 				86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */,
 				96DC8C712367460D004DC76A /* OpenSans-Italic.ttf in Resources */,
+				84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */,
 				96DC8C722367460D004DC76A /* OpenSans-Bold.ttf in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
@@ -1118,6 +1197,7 @@
 				86C848C82367027900BC6EDA /* StoryCell.xib in Resources */,
 				86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */,
 				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
+				86A7D69B2385DA510087CE87 /* SceneCell.xib in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
 				96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */,
@@ -1195,6 +1275,7 @@
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
 				968552912369871000A22E21 /* AppStateProxy.swift in Sources */,
+				84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */,
 				9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */,
 				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
@@ -1224,6 +1305,8 @@
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
 				96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */,
 				847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */,
+				86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */,
+				86A7D6A12385E1EB0087CE87 /* ScenesRequest.swift in Sources */,
 				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
@@ -1232,6 +1315,7 @@
 				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
+				84A38E382383D21A004E7EBA /* SceneSettingsViewController.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
 				8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */,
 				962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */,
@@ -1249,6 +1333,7 @@
 				96C29F8B23638B1000E93CB1 /* MeditationTag.swift in Sources */,
 				86B7A98B23701843007A36BA /* MeditationCellModel.swift in Sources */,
 				86B7A98923701501007A36BA /* MeditationTagsRequest.swift in Sources */,
+				86A7D6A62385EBAA0087CE87 /* SceneCellModel.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
 				968552882368FB1300A22E21 /* PickerView.swift in Sources */,
@@ -1264,10 +1349,13 @@
 				86C848BE2367001000BC6EDA /* StoriesViewModel.swift in Sources */,
 				96C29EF123625DB600E93CB1 /* GlobalDefinitions.swift in Sources */,
 				86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */,
+				86A7D6A32385EAC20087CE87 /* ScenesMapper.swift in Sources */,
 				96DC8C9D23684298004DC76A /* OnboardingAimTableHeader.swift in Sources */,
 				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,
+				84A38E3E2383D5F4004E7EBA /* SceneSettingsAssembly.swift in Sources */,
+				86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */,
 				86CFBCC82368BD550017CFE6 /* StoryDetailRequest.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
@@ -1276,12 +1364,15 @@
 				86B7A9872370132C007A36BA /* MeditationDetailRequest.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,
+				86A7D6992385DA510087CE87 /* ScenesViewModel.swift in Sources */,
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,
 				86B5F39B236B5CD7000E43A0 /* StoryCellModel.swift in Sources */,
 				862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */,
 				844F025323776E3D004C062B /* VolumeViewController.swift in Sources */,
 				96C29F03236260FA00E93CB1 /* UINavigationItemExtension.swift in Sources */,
+				86A7D6982385DA510087CE87 /* ScenesRouter.swift in Sources */,
 				96C29F4E2363467C00E93CB1 /* PurchaseValidateRequest.swift in Sources */,
+				84A38E3C2383D2CB004E7EBA /* SceneSettingsRouter.swift in Sources */,
 				8441FB8023637341001DC085 /* PlayerViewModel.swift in Sources */,
 				86F98CC4236463AE00B0F5EA /* MeditateTagCell.swift in Sources */,
 				96C29F5F23634D5200E93CB1 /* OnboardingViewModel.swift in Sources */,
@@ -1299,6 +1390,7 @@
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
+				86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */,
 				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
 				86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */,
 			);
