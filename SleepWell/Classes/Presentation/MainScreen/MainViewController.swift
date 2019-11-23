@@ -89,7 +89,9 @@ extension MainViewController: BindsToViewModel {
             .merge(behaveSignal, paygateSignal)
             .share(replay: 1, scope: .forever)
 
-        tabBarView.selectIndex
+        let selectIndex = tabBarView.selectIndex
+        
+        selectIndex
             .map { Tab(rawValue: $0) ?? .scene }
             .flatMapLatest { [weak self] tab -> Signal<MainRoute> in
                 guard let self = self else { return .empty() }
@@ -99,7 +101,12 @@ extension MainViewController: BindsToViewModel {
                 case .stories:
                     return self.stories(behave: isActiveSubscription)
                 case .scene:
-                    return self.scenes(behave: isActiveSubscription)
+                    return self.scenes(
+                        behave: isActiveSubscription,
+                        isMainScreen: selectIndex
+                            .map { $0 == Tab.scene.rawValue }
+                            .startWith(true)
+                    )
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -148,10 +155,14 @@ private extension MainViewController {
         return storiesAssambly.output
     }
 
-    func scenes(behave: Observable<Bool>) -> Signal<MainRoute> {
+    func scenes(
+        behave: Observable<Bool>,
+        isMainScreen: Signal<Bool>
+    ) -> Signal<MainRoute> {
         if scenesAssambly == nil {
             scenesAssambly = ScenesAssembly().assemble(input: .init(
                 subscription: behave,
+                isMainScreen: isMainScreen,
                 hideTabbarClosure: { [weak self] state in
                     self?.hideTabBar(isHidden: state)
                 }
