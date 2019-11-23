@@ -55,7 +55,8 @@ extension ScenesViewController: BindsToViewModel {
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.elements(subscription: input.subscription)
-
+        let visibleCellSignal = visibleCellIndex.compactMap { $0 }.share(replay: 1, scope: .whileConnected)
+    
         elements
             .drive(collectionView.rx.items) { collection, index, item in
                 let cell = collection.dequeueReusableCell(withReuseIdentifier: "SceneCell", for: IndexPath(row: index, section: 0)) as! SceneCell
@@ -66,33 +67,42 @@ extension ScenesViewController: BindsToViewModel {
         
         let sceneAction = Driver
             .combineLatest(
-                visibleCellIndex.compactMap { $0 }
+                visibleCellSignal.debug()
                     .asDriver(onErrorDriveWith: .empty()),
                 elements
             )
-            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action?> in
+            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action> in
                 guard index <= scene.count - 1 else {
                     return .empty()
                 }
                 
-                return viewModel.sceneDetails(id: scene[index].id)
+                return viewModel.sceneDetails(scene: scene[index])
+        }.debug()
+        
+        input.subscription
+            .filter { !$0 }
+            .withLatestFrom(visibleCellSignal)
+            .compactMap { index -> Int? in
+                guard index > 0 else {
+                    return nil
+                }
+                return index - 1
             }
+            .bind(to: Binder(collectionView) { [weak self] collectionView, index in
+                collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+                self?.visibleCellIndex.accept(index)
+            })
+            .disposed(by: disposeBag)
         
-//        sceneAction
-//            .bind { detail in
-//                print(detail)
-//            }
-//            .disposed(by: disposeBag)
-        
-        let paygate = visibleCellIndex.compactMap { $0 }
+        let paygate = visibleCellSignal
             .withLatestFrom(elements) { ($0, $1) }
-            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action?> in
+            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action> in
                 guard index <= scene.count - 1 else {
                     return .empty()
                 }
                 
-                return viewModel.sceneDetails(id: scene[index].id)
-            }
+                return viewModel.sceneDetails(scene: scene[index])
+            }.debug()
             .filter {
                 guard case .paygate = $0 else {  return false  }
                 return true
@@ -100,7 +110,7 @@ extension ScenesViewController: BindsToViewModel {
             .map { _ in MainRoute.paygate }
             .asSignal(onErrorJustReturn: .paygate)
         
-        let sceneDetail = sceneAction.map { $0?.sceneDetail }
+        let sceneDetail = sceneAction.map { $0.sceneDetail }
             .asSignal(onErrorSignalWith: .empty())
         
         let didDismissSetting = settingsButton.rx.tap.asSignal()
@@ -131,7 +141,7 @@ extension ScenesViewController: BindsToViewModel {
             .emit(to: viewModel.pauseScene)
             .disposed(by: disposeBag)
         
-        let isPlaying = sceneAction.map { $0?.sceneDetail }
+        let isPlaying = sceneAction.map { $0.sceneDetail }
             .flatMapLatest { scene -> Driver<Bool> in
                 guard let scene = scene else {
                     return .just(false)

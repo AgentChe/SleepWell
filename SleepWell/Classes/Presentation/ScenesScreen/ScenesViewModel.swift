@@ -11,7 +11,7 @@ import RxCocoa
 
 protocol ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]>
-    func sceneDetails(id: Int) -> Signal<ScenesViewModel.Action?>
+    func sceneDetails(scene: SceneCellModel) -> Signal<ScenesViewModel.Action>
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func add(sceneDetail: SceneDetail)
     var playScene: Binder<Void> { get }
@@ -55,22 +55,25 @@ extension ScenesViewModel: ScenesViewModelInterface {
         return Driver
             .combineLatest(
                 scenes,
-                subscription.asDriver(onErrorJustReturn: false)
+                subscription.distinctUntilChanged().asDriver(onErrorJustReturn: false)
             )
             .map { SceneCellModel.map(scene: $0.0, isActiveSubscription: $0.1) }
     }
 
-    func sceneDetails(id: Int) -> Signal<Action?> {
+    func sceneDetails(scene: SceneCellModel) -> Signal<Action> {
+        guard scene.paid else {
+            return .just(.paygate)
+        }
         return dependencies.sceneService
-            .getScene(by: id)
+            .getScene(by: scene.id)
             .map { Action.detail($0) }
-            .catchError { error -> Single<Action?> in
+            .catchError { error -> Single<Action> in
                 guard (error as NSError).code == 403  else {
                     return .never()
                 }
                 return .just(.paygate)
-            }
-            .asSignal(onErrorJustReturn: nil)
+            }.debug()
+            .asSignal(onErrorSignalWith: .empty())
     }
     
     func isPlaying(scene: SceneDetail) -> Driver<Bool> {
