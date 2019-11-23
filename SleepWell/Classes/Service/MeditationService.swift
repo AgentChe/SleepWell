@@ -20,10 +20,14 @@ class MeditationService {
         let meditations = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { MeditationsMapper.parse(response: $0) }
-            .flatMap {
+            .flatMap { meditations in
                 RealmDBTransport()
-                    .saveData(entities: $0) {
+                    .deleteData(realmType: RealmMeditation.self)
+                    .flatMap { _ in
+                        RealmDBTransport().saveData(entities: meditations) {
                         MeditationRealmMapper.map(from: $0)}
+                    }
+                
             }
             .flatMap {
                 catchMeditations
@@ -53,10 +57,15 @@ class MeditationService {
         let tags = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { TagsMapper.parse(response: $0) }
-            .flatMap {
-                RealmDBTransport().saveData(entities: $0) {
-                    MeditationTagRealmMapper.map(from: $0)
-                }
+            .flatMap { tags in
+                RealmDBTransport()
+                    .deleteData(realmType: RealmMeditationTag.self)
+                    .flatMap { _ in
+                        RealmDBTransport().saveData(entities: tags) {
+                            MeditationTagRealmMapper.map(from: $0)
+                        }
+                    }
+                
             }
             .flatMap {
                 cacheTags
