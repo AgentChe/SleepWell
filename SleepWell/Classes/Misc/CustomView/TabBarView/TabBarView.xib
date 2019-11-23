@@ -24,7 +24,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LR1-k4-vWj" secondAttribute="bottom" id="JZ4-33-kKv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LR1-k4-vWj" secondAttribute="trailing" id="RCJ-uH-VK3"/>

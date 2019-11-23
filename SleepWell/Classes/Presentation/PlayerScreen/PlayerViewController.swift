@@ -131,7 +131,7 @@ extension PlayerViewController: BindsToViewModel {
 
                 let screenHeight = UIScreen.main.bounds.height
                 let lastViewY = self.pauseButton.frame.maxY
-                let viewHeight = lastViewY + CGFloat(28) + GlobalDefinitions.tabBarHeight
+                let viewHeight = lastViewY + CGFloat(28) + Constants.marginBottom
                 return (screenHeight - viewHeight, state)
             }
             .asDriver(onErrorDriveWith: .empty())
@@ -159,7 +159,7 @@ extension PlayerViewController: BindsToViewModel {
                 base.topConstraint.constant = y
                 base.bottomConstraint.constant = tuple.state
                     ? -y
-                    : GlobalDefinitions.tabBarHeight - tuple.panY
+                    : Constants.marginBottom - tuple.panY
             })
             .disposed(by: disposeBag)
         
@@ -305,7 +305,7 @@ private extension Reactive where Base: PlayerViewController {
         
         Binder(base) { base, tuple in
             base.topConstraint.constant = tuple.y
-            base.bottomConstraint.constant = tuple.state ? -tuple.y : GlobalDefinitions.tabBarHeight
+            base.bottomConstraint.constant = tuple.state ? -tuple.y : Constants.marginBottom
             UIView.animate(
                 withDuration: 0.5,
                 animations: {
@@ -314,6 +314,10 @@ private extension Reactive where Base: PlayerViewController {
             )
         }
     }
+}
+
+private enum Constants {
+    static let marginBottom: CGFloat = 69
 }
 
 private extension Int {

@@ -38,7 +38,6 @@ final class MainViewController: UIViewController {
         meditateTabItem.title = "Meditate"
         sceneTabItem.title = "Scene"
         
-        tabBarView.backgroundColor = .black
         tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem]
     }
     
@@ -199,7 +198,6 @@ private extension MainViewController {
             options: isHidden ? .curveEaseOut : .curveEaseIn,
             animations: {
                 self.tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
-                self.tabBarView.alpha = isHidden ? 0 : 1
                 self.view.layoutIfNeeded()
         }) { _ in
             
