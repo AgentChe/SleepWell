@@ -63,7 +63,7 @@ class SplashViewModel {
     
     private func checkPersonalData() -> Step {
         if self.personalDataService.hasPersonalData() {
-            return .onboarding(.simple)
+            return .main(.withoutActiveSubscription)
         } else {
             return .onboarding(.requirePersonalData)
         }

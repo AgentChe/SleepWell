@@ -44,8 +44,6 @@ extension OnboardingViewController: BindsToViewModel {
                     
                     self?.startView.hide {
                         switch input.behave {
-                        case .simple:
-                            self?.welcomeView.show()
                         case .requirePersonalData:
                             self?.aimsView.show()
                         }

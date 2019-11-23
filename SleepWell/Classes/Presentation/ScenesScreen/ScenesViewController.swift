@@ -33,6 +33,14 @@ final class ScenesViewController: UIViewController {
         collectionView.collectionViewLayout = layout
         collectionView.isPagingEnabled = true
         collectionView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        let imageEdgeInsets = UIEdgeInsets(
+            top: 2.5,
+            left: 2.5,
+            bottom: 2.5,
+            right: 2.5
+        )
+        pauseButton.imageEdgeInsets = imageEdgeInsets
+        playButton.imageEdgeInsets = imageEdgeInsets
     }
 
     private let visibleCellIndex = BehaviorRelay<Int?>(value: 0)
@@ -45,6 +53,7 @@ extension ScenesViewController: BindsToViewModel {
     
     struct Input {
         let subscription: Observable<Bool>
+        let isMainScreen: Signal<Bool>
         let hideTabbarClosure: (Bool) -> Void
     }
 
@@ -158,54 +167,88 @@ extension ScenesViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        let action = Signal
+        let actions = Signal
             .merge(
-                tapGesture.rx.event.asSignal().map { _ in () },
                 pauseButton.rx.tap.asSignal(),
-                playButton.rx.tap.asSignal()
+                playButton.rx.tap.asSignal(),
+                settingsButton.rx.tap.asSignal(),
+                tapGesture.rx.event.asSignal()
+                    .map { _ in () },
+                rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+                    .asSignal(onErrorSignalWith: .empty())
+                    .map { _ in () },
+                didDismissSetting.map { _ in () }
             )
             .startWith(())
         
         let isExpanded = Signal
             .merge(
-                action.debounce(.seconds(5)).map { _ in true },
-                action.map { _ in false }
+                actions.debounce(.seconds(5))
+                    .map { _ in Action.none },
+                tapGesture.rx.event.asSignal()
+                    .map { _ in Action.backgroundTap },
+                rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+                    .asSignal(onErrorSignalWith: .empty())
+                    .map { _ in Action.appear },
+                didDismissSetting.map { _ in Action.appear }
             )
+            .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) {
+                (action: $0, isMain: $1)
+            }
+            .scan(false) { state, tuple in
+                guard tuple.isMain else {
+                    return false
+                }
+                switch tuple.action {
+                case .appear:
+                    return false
+                case .none:
+                    return true
+                case .backgroundTap:
+                    return !state
+                }
+            }
             .distinctUntilChanged()
             
         isExpanded.filter { $0 }
-            .withLatestFrom(isPlaying.asSignal(onErrorSignalWith: .empty()))
-            .filter { $0 }
             .emit(to: Binder(self) { base, isExpanded in
                 input.hideTabbarClosure(isExpanded)
                 
                 UIView.animate(
-                    withDuration: 0.9,
+                    withDuration: 0.8,
                     animations: {
                         base.bottomConstraint.constant = 0
                         base.collectionView.cornerRadius = 0
+                        
+                        self.pauseButton.isHidden = true
+                        self.playButton.isHidden = true
+                        self.settingsButton.isHidden = true
                     }
                 )
             })
             .disposed(by: disposeBag)
         
         isExpanded.filter { !$0 }
-            .emit(to: Binder(self) { base, isExpanded in
-                input.hideTabbarClosure(isExpanded)
+            .withLatestFrom(isPlaying)
+            .emit(to: Binder(self) { base, isPlaying in
+                input.hideTabbarClosure(false)
                 
                 UIView.animate(
-                    withDuration: 0.9,
+                    withDuration: 0.8,
                     animations: {
                         base.bottomConstraint.constant = GlobalDefinitions.tabBarHeight
                         base.collectionView.cornerRadius = 40
+                        
+                        if isPlaying {
+                            self.pauseButton.isHidden = false
+                        } else {
+                            self.playButton.isHidden = false
+                        }
+                        
+                        self.settingsButton.isHidden = false
                     }
                 )
             })
-            .disposed(by: disposeBag)
-        
-        didDismissSetting.withLatestFrom(isExpanded)
-            .filter { !$0 }
-            .emit(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
         return paygate
@@ -217,5 +260,14 @@ extension ScenesViewController: UICollectionViewDelegate, UIScrollViewDelegate {
         if let cell = collectionView.visibleCells.first {
             visibleCellIndex.accept(collectionView.indexPath(for: cell)?.row)
         }
+    }
+}
+
+private extension ScenesViewController {
+    
+    enum Action {
+        case backgroundTap
+        case none
+        case appear
     }
 }

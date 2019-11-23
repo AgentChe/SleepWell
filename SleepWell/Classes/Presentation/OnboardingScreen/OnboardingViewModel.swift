@@ -25,7 +25,6 @@ protocol OnboardingViewModelInterface {
 
 final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface {
     enum Behave {
-        case simple
         case requirePersonalData
     }
     
@@ -56,16 +55,6 @@ final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface
     
     func complete(with paygateResult: PaygateCompletionResult, behave: Behave) -> Signal<MainScreenBehave> {
         switch behave {
-        case .simple:
-            switch paygateResult {
-            case .purchased, .restored:
-                return dependencies.personalDataService
-                    .sendPersonalData()
-                    .map { .withActiveSubscription }
-                    .asSignal(onErrorSignalWith: .never())
-            case .closed:
-                return .just(.withoutActiveSubscription)
-            }
         case .requirePersonalData:
             switch paygateResult {
             case .purchased, .restored:
