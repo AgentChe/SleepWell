@@ -31,7 +31,7 @@ final class MeditateViewController: UIViewController {
         tableHeaderView.frame = CGRect(origin: .zero, size: size)
         tableHeaderView.setup(title: "Meditate", subtitle: "Описание, что дают пользователю материалы представленные в этом разделе.")
         tableView.tableHeaderView = tableHeaderView
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tabBarHeight, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
     }
 
     private let tableHeaderView = MeditateHeaderView()

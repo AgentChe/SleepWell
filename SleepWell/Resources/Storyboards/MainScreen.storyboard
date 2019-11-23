@@ -21,9 +21,9 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lQ-Uq-GGq" customClass="TabBarView" customModule="SleepWell" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="598" width="375" height="69"/>
+                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="cY0-EO-9j2"/>
+                                    <constraint firstAttribute="height" constant="125" id="cY0-EO-9j2"/>
                                 </constraints>
                             </view>
                         </subviews>
