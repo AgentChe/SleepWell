@@ -208,7 +208,6 @@ extension ScenesViewController: BindsToViewModel {
                     return !state
                 }
             }
-            .distinctUntilChanged()
             
         isExpanded.filter { $0 }
             .emit(to: Binder(self) { base, isExpanded in

@@ -38,7 +38,6 @@ final class MainViewController: UIViewController {
         meditateTabItem.title = "Meditate"
         sceneTabItem.title = "Scene"
         
-        tabBarView.backgroundColor = .black
         tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem]
     }
     
