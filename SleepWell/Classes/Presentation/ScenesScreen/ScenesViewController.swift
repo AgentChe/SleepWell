@@ -16,7 +16,8 @@ final class ScenesViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pauseButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsButtonBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +33,11 @@ final class ScenesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
         collectionView.isPagingEnabled = true
-        collectionView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         let imageEdgeInsets = UIEdgeInsets(
-            top: 2.5,
-            left: 2.5,
-            bottom: 2.5,
-            right: 2.5
+            top: 3,
+            left: 3,
+            bottom: 3,
+            right: 3
         )
         pauseButton.imageEdgeInsets = imageEdgeInsets
         playButton.imageEdgeInsets = imageEdgeInsets
@@ -213,16 +213,13 @@ extension ScenesViewController: BindsToViewModel {
         isExpanded.filter { $0 }
             .emit(to: Binder(self) { base, isExpanded in
                 input.hideTabbarClosure(isExpanded)
+                self.pauseButtonBottomConstraint.constant = CGFloat(-33)
+                self.settingsButtonBottomConstraint.constant = CGFloat(-35)
                 
                 UIView.animate(
-                    withDuration: 0.8,
+                    withDuration: 0.5,
                     animations: {
-                        base.bottomConstraint.constant = 0
-                        base.collectionView.cornerRadius = 0
-                        
-                        self.pauseButton.isHidden = true
-                        self.playButton.isHidden = true
-                        self.settingsButton.isHidden = true
+                        self.view.layoutIfNeeded()
                     }
                 )
             })
@@ -232,20 +229,13 @@ extension ScenesViewController: BindsToViewModel {
             .withLatestFrom(isPlaying)
             .emit(to: Binder(self) { base, isPlaying in
                 input.hideTabbarClosure(false)
+                self.pauseButtonBottomConstraint.constant = CGFloat(116)
+                self.settingsButtonBottomConstraint.constant = CGFloat(117)
                 
                 UIView.animate(
-                    withDuration: 0.8,
+                    withDuration: 0.5,
                     animations: {
-                        base.bottomConstraint.constant = GlobalDefinitions.tabBarHeight
-                        base.collectionView.cornerRadius = 40
-                        
-                        if isPlaying {
-                            self.pauseButton.isHidden = false
-                        } else {
-                            self.playButton.isHidden = false
-                        }
-                        
-                        self.settingsButton.isHidden = false
+                        self.view.layoutIfNeeded()
                     }
                 )
             })

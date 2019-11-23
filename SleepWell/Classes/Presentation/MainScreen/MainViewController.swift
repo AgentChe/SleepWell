@@ -199,7 +199,6 @@ private extension MainViewController {
             options: isHidden ? .curveEaseOut : .curveEaseIn,
             animations: {
                 self.tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
-                self.tabBarView.alpha = isHidden ? 0 : 1
                 self.view.layoutIfNeeded()
         }) { _ in
             
