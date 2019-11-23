@@ -46,6 +46,12 @@ class StoryService {
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
-            .map { StoryDetail.parseFromDictionary(any: $0) }
+            .map { response in
+                if try CheckResponseForNeedPaymentError.isNeedPayment(jsonResponse: response) {
+                    throw NSError(domain: "StoryService", code: 403, userInfo: [:])
+                } else {
+                    return StoryDetail.parseFromDictionary(any: response)
+                }
+            }
     }
 }

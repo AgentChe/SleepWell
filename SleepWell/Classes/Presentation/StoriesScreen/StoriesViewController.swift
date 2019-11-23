@@ -82,11 +82,17 @@ extension StoriesViewController: BindsToViewModel {
             
             return viewModel
                 .getStoryDetails(id: story.id)
-                .map { detail -> MainRoute in
-                    guard let details = detail else {
+                .map { action -> MainRoute in
+                    switch action {
+                    case .paygate:
                         return .paygate
+                    case let .detail(detail):
+                        guard let recording = detail else {
+                            assertionFailure(" ⚠️ Пустая запись ⚠️")
+                            return .paygate
+                        }
+                        return .play(recording)
                     }
-                    return .play(details)
                 }
         }
     }

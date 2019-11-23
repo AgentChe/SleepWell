@@ -43,7 +43,12 @@ class MeditationService {
         let request = MeditationDetailRequest(meditationId: meditationId, userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
         return RestAPITransport()
             .callServerApi(requestBody: request)
-            .map { MeditationDetail.parseFromDictionary(any: $0) }
+            .map { response in
+                if try CheckResponseForNeedPaymentError.isNeedPayment(jsonResponse: response) {
+                    throw NSError(domain: "MeditationService", code: 403, userInfo: [:])
+                } else {
+                    return MeditationDetail.parseFromDictionary(any: response) }
+                }
     }
     
     func getTags() -> Observable<[MeditationTag]> {
