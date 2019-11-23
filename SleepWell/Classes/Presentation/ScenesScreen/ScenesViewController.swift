@@ -64,7 +64,10 @@ extension ScenesViewController: BindsToViewModel {
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.elements(subscription: input.subscription)
-        let visibleCellSignal = visibleCellIndex.compactMap { $0 }.share(replay: 1, scope: .whileConnected)
+        let visibleCellSignal = visibleCellIndex
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .share(replay: 1, scope: .whileConnected)
     
         elements
             .drive(collectionView.rx.items) { collection, index, item in
@@ -76,7 +79,7 @@ extension ScenesViewController: BindsToViewModel {
         
         let sceneAction = Driver
             .combineLatest(
-                visibleCellSignal.debug()
+                visibleCellSignal
                     .asDriver(onErrorDriveWith: .empty()),
                 elements
             )
@@ -246,9 +249,9 @@ extension ScenesViewController: BindsToViewModel {
 
 extension ScenesViewController: UICollectionViewDelegate, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let cell = collectionView.visibleCells.first {
-            visibleCellIndex.accept(collectionView.indexPath(for: cell)?.row)
-        }
+        let cellWidth = scrollView.frame.width
+        let index = floor((scrollView.contentOffset.x - cellWidth / 2) / cellWidth) + 1
+        visibleCellIndex.accept(Int(index))
     }
 }
 

@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LR1-k4-vWj">
-                    <rect key="frame" x="0.0" y="60" width="622" height="217"/>
+                    <rect key="frame" x="0.0" y="62" width="622" height="215"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
@@ -28,7 +28,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LR1-k4-vWj" secondAttribute="bottom" id="JZ4-33-kKv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LR1-k4-vWj" secondAttribute="trailing" id="RCJ-uH-VK3"/>
-                <constraint firstItem="LR1-k4-vWj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="USe-Zv-8dx"/>
+                <constraint firstItem="LR1-k4-vWj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="USe-Zv-8dx"/>
                 <constraint firstItem="LR1-k4-vWj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wpt-QI-7Sy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

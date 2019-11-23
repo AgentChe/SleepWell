@@ -12,10 +12,15 @@ import RxCocoa
 protocol MeditateViewModelInterface {
     func elements(subscription: Observable<Bool>, selectedTag: Signal<Int?>) -> Driver<[MeditateCellType]>
     func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]>
-    func getMeditationDetails(meditationId: Int) -> Signal<MeditationDetail?>
+    func getMeditationDetails(meditationId: Int) -> Signal<MeditateViewModel.Action>
 }
 
 final class MeditateViewModel: BindableViewModel {
+
+    enum Action {
+        case paygate
+        case detail(MeditationDetail?)
+    }
 
     typealias Interface = MeditateViewModelInterface
     
@@ -62,9 +67,16 @@ extension MeditateViewModel: MeditateViewModelInterface {
             .asDriver(onErrorJustReturn: [])
     }
     
-    func getMeditationDetails(meditationId: Int) -> Signal<MeditationDetail?> {
+    func getMeditationDetails(meditationId: Int) -> Signal<Action> {
         return dependencies.meditatationService
             .getMeditation(meditationId: meditationId)
-            .asSignal(onErrorJustReturn: nil)
+            .map { Action.detail($0) }
+            .catchError { error -> Single<Action> in
+                guard (error as NSError).code == 403  else {
+                    return .never()
+                }
+                return .just(.paygate)
+            }
+            .asSignal(onErrorSignalWith: .empty())
     }
 }

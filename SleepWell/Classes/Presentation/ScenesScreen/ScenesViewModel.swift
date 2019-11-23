@@ -72,7 +72,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
                     return .never()
                 }
                 return .just(.paygate)
-            }.debug()
+            }
             .asSignal(onErrorSignalWith: .empty())
     }
     

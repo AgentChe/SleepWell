@@ -20,10 +20,14 @@ class MeditationService {
         let meditations = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { MeditationsMapper.parse(response: $0) }
-            .flatMap {
+            .flatMap { meditations in
                 RealmDBTransport()
-                    .saveData(entities: $0) {
+                    .deleteData(realmType: RealmMeditation.self)
+                    .flatMap { _ in
+                        RealmDBTransport().saveData(entities: meditations) {
                         MeditationRealmMapper.map(from: $0)}
+                    }
+                
             }
             .flatMap {
                 catchMeditations
@@ -39,7 +43,12 @@ class MeditationService {
         let request = MeditationDetailRequest(meditationId: meditationId, userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
         return RestAPITransport()
             .callServerApi(requestBody: request)
-            .map { MeditationDetail.parseFromDictionary(any: $0) }
+            .map { response in
+                if try CheckResponseForNeedPaymentError.isNeedPayment(jsonResponse: response) {
+                    throw NSError(domain: "MeditationService", code: 403, userInfo: [:])
+                } else {
+                    return MeditationDetail.parseFromDictionary(any: response) }
+                }
     }
     
     func getTags() -> Observable<[MeditationTag]> {
@@ -53,10 +62,15 @@ class MeditationService {
         let tags = RestAPITransport()
             .callServerApi(requestBody: request)
             .map { TagsMapper.parse(response: $0) }
-            .flatMap {
-                RealmDBTransport().saveData(entities: $0) {
-                    MeditationTagRealmMapper.map(from: $0)
-                }
+            .flatMap { tags in
+                RealmDBTransport()
+                    .deleteData(realmType: RealmMeditationTag.self)
+                    .flatMap { _ in
+                        RealmDBTransport().saveData(entities: tags) {
+                            MeditationTagRealmMapper.map(from: $0)
+                        }
+                    }
+                
             }
             .flatMap {
                 cacheTags
