@@ -60,11 +60,6 @@ final class AudioPlayerService: ReactiveCompatible {
         sceneAudio.prepareToPlay()
     }
     
-    func isPlaying(recording: RecordingDetail) -> Bool {
-        
-        audioRelay.value?.recording.recording.id == recording.recording.id
-    }
-    
     var time: Driver<Int> {
         
         audioRelay.asDriver()
@@ -103,6 +98,14 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    var timerSeconds: Driver<Int> {
+        timer.currentSeconds
+    }
+    
+    var isTimerRunning: Driver<Bool> {
+        timer.isRunning
+    }
+    
     var currentMainPlayerVolume: Float? {
         audioRelay.value?.mainPlayerVolume
     }
@@ -117,10 +120,21 @@ final class AudioPlayerService: ReactiveCompatible {
     
     fileprivate let sceneRelay = BehaviorRelay<SceneAudio?>(value: nil)
     fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
+    fileprivate let timer = SceneTimer()
     private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     private let disposeBag = DisposeBag()
     
     private init() {
+        
+        timer.shouldSleep
+            .emit(to: Binder(self) { base, _ in
+                if let scene = base.sceneRelay.value {
+                    scene.pause()
+                    base.sceneRelay.accept(nil)
+                }
+            })
+            .disposed(by: disposeBag)
+        
         try? AVAudioSession.sharedInstance().setCategory(.playback)
         setupRemoteTransportControls()
         
@@ -291,6 +305,52 @@ private extension AudioPlayerService {
             return .success
         }
     }
+}
+
+private final class SceneTimer {
+    
+    func start(with seconds: Int) {
+        disposeBag = DisposeBag()
+        
+        let timer = Driver<Int>.interval(.seconds(1))
+            .map { seconds - $0 - 1 }
+            .startWith(seconds)
+            .take(seconds + 1)
+        
+        timer.drive(_currentSeconds)
+            .disposed(by: disposeBag)
+        
+        timer.filter { $0 == 0 }
+            .take(1)
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+            .emit(to: _shouldSleep)
+            .disposed(by: disposeBag)
+    }
+    
+    func cancel() {
+        disposeBag = DisposeBag()
+        _currentSeconds.accept(0)
+    }
+    
+    var isRunning: Driver<Bool> {
+        
+        _currentSeconds.asDriver()
+            .map { $0 != 0 }
+            .distinctUntilChanged()
+    }
+    
+    var currentSeconds: Driver<Int> {
+        _currentSeconds.asDriver()
+    }
+    
+    var shouldSleep: Signal<Void> {
+        _shouldSleep.asSignal()
+    }
+    
+    private let _currentSeconds = BehaviorRelay<Int>(value: 0)
+    private let _shouldSleep = PublishRelay<Void>()
+    private var disposeBag = DisposeBag()
 }
 
 private final class SceneAudio: ReactiveCompatible {
@@ -537,6 +597,21 @@ extension Reactive where Base: AudioPlayerService {
         
         Binder(base) { base, value in
             base.audioRelay.value?.setAmbientPlayerVolume(value: value)
+        }
+    }
+    
+    
+    var setTimer: Binder<Int> {
+        
+        Binder(base) { base, seconds in
+            base.timer.start(with: seconds)
+        }
+    }
+    
+    var cancelTimer: Binder<Void> {
+        
+        Binder(base) { base, _ in
+            base.timer.cancel()
         }
     }
 }

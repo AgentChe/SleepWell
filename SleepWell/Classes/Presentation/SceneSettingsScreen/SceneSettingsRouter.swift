@@ -14,4 +14,8 @@ final class SceneSettingsRouter: Routing {
     required init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
     }
+    
+    func showSleepTimerScreen(sceneDetail: SceneDetail) {
+        router.present(type: SceneTimerAssembly.self, input: .init(sceneDetail: sceneDetail))
+    }
 }

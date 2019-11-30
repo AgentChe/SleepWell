@@ -191,8 +191,9 @@ extension ScenesViewController: BindsToViewModel {
                 tapGesture.rx.event.asSignal()
                     .map { _ in Action.backgroundTap },
                 rx.methodInvoked(#selector(UIViewController.viewDidAppear))
-                    .asSignal(onErrorSignalWith: .empty())
-                    .map { _ in Action.appear },
+                    .map { _ in Action.appear }
+                    .take(1)
+                    .asSignal(onErrorSignalWith: .empty()),
                 didDismissSetting.map { _ in Action.appear }
             )
             .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) {

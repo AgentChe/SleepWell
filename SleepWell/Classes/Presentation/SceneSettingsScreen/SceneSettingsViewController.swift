@@ -18,6 +18,7 @@ final class SceneSettingsViewController: UIViewController {
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var defaultView: UIView!
     @IBOutlet weak var randomView: UIView!
+    @IBOutlet weak var sleepTimerView: UIView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     private let disposeBag = DisposeBag()
@@ -66,6 +67,13 @@ extension SceneSettingsViewController: BindsToViewModel {
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
         let randomVolumes = randomTapGesture.rx.event.asSignal()
+        
+        let sleepTimerTapGesture = UITapGestureRecognizer()
+        sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
+        sleepTimerTapGesture.rx.event.asSignal()
+            .map { _ in input.sceneDetail }
+            .emit(onNext: viewModel.showSleepTimerScreen)
+            .disposed(by: disposeBag)
         
         let volumes = viewModel.currentScenePlayersVolume ?? []
         input.sceneDetail.sounds.forEach { sound in
@@ -205,24 +213,5 @@ extension SceneSettingsViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         scrollView.setContentOffset(scrollView.contentOffset, animated: true)
-    }
-}
-
-extension Reactive where Base: SceneSettingsViewController {
-    
-    var scrollToTop: Binder<Void> {
-        Binder(base) { base, _ in
-            UIView.animate(
-                withDuration: 0.4,
-                animations: {
-                    base.view.frame = .init(
-                        x: 0,
-                        y: 0,
-                        width: base.view.frame.width,
-                        height: base.view.frame.height
-                    )
-                }
-            )
-        }
     }
 }
