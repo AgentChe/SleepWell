@@ -45,7 +45,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="X2n-lg-yls" firstAttribute="centerY" secondItem="N1K-GT-PO3" secondAttribute="centerY" id="Mym-WG-BaC"/>
-                <constraint firstItem="N1K-GT-PO3" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="QG0-qA-QJ2"/>
+                <constraint firstItem="N1K-GT-PO3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QG0-qA-QJ2"/>
                 <constraint firstItem="X2n-lg-yls" firstAttribute="leading" secondItem="N1K-GT-PO3" secondAttribute="trailing" constant="60" id="ep3-Ar-D8a"/>
                 <constraint firstItem="N1K-GT-PO3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="eu3-qk-Ujh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="X2n-lg-yls" secondAttribute="trailing" id="qgz-2l-S1P"/>

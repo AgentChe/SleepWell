@@ -53,7 +53,7 @@ class ScrollTabBarView: UIView {
 
     private func initialize() {
         UINib(nibName: "ScrollTabBarView", bundle: nil).instantiate(withOwner: self, options: nil)
-        selectedIndicator.frame = CGRect(x: -10, y: self.frame.height - 20, width: 5, height: 5)
+        selectedIndicator.frame = CGRect(x: -10, y: self.frame.height - 30, width: 5, height: 5)
         containerView.frame = bounds
 
         addSubview(containerView)
@@ -113,7 +113,7 @@ class ScrollTabBarView: UIView {
         UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
             self.stackView.frame.size.width -= self.indentMiniPlayer
             self.miniPlayer.frame.origin.x -= self.indentMiniPlayer
-            self.selectedIndicator.frame.origin.x -= self.indentMiniPlayer
+            self.selectedIndicator.center.x -= self.stackView.frame.width
             self.stackView.frame.origin.x -= self.stackView.frame.width
             self.miniPlayer.center.x = self.containerView.convert(self.containerView.center, to: self.contentView).x
             self.miniPlayer.playerIsHidden = false
@@ -123,8 +123,13 @@ class ScrollTabBarView: UIView {
                 self.miniPlayer.playerIsHidden = true
                 self.stackView.frame.origin.x += self.stackView.frame.width
                 self.miniPlayer.frame.origin.x = self.containerView.bounds.size.width - self.indentMiniPlayer
+                self.selectedIndicator.center.x = (self.items.first(where: { $0.select })?.center.x ?? .zero) + 30
                 self.layoutIfNeeded()
-            }) { _ in }
+            }) { _ in
+                UIView.animate(withDuration: 0.3) {
+                    self.selectedIndicator.center.x -= 30
+                }
+            }
         }
     }
     
@@ -194,7 +199,7 @@ private extension ScrollTabBarView {
 
     func selectedAnimation() {
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: { [weak self] in
-            self?.selectedIndicator.frame.origin.x = self?.items.first(where: { $0.select })?.center.x ?? .zero
+            self?.selectedIndicator.center.x = self?.items.first(where: { $0.select })?.center.x ?? .zero
         }) { _ in  }
     }
 
@@ -204,37 +209,43 @@ private extension ScrollTabBarView {
                 guard gesture.view != nil, let self = self else { return }
                 let translation = gesture.translation(in: self.contentView.superview)
                 let velocity = gesture.velocity(in: self.containerView.superview)
-                let indicatorTranslation = gesture.translation(in: self.stackView.superview)
                 switch gesture.state {
                 case .began:
                     self.initialCenter = self.contentView.center
                     self.initialCenterIndicator = self.selectedIndicator.center
                 case .changed, .failed, .possible:
                     self.contentView.center.x = self.initialCenter.x + translation.x
-                    self.selectedIndicator.center.x = self.initialCenterIndicator.x + indicatorTranslation.x
+                    self.selectedIndicator.center.x = self.items.first(where: { $0.select })?.center.x ?? .zero
                 case .ended:
                     if velocity.x < 0 || translation.x < 0 {
-                        UIView.animate(withDuration: 0.2) {
-                            self.selectedIndicator.center.x = -self.initialCenterIndicator.x + 80
+                        if self.contentView.center.x < self.containerView.center.x {
+                            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+                                self.contentView.frame.origin.x -= translation.x
+                            }) { _ in }
+                        } else {
+                            UIView.animate(withDuration: 0.3) {
+                                self.selectedIndicator.center.x = -self.initialCenterIndicator.x + 80
+                            }
+                
+                            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+                                self.contentView.frame.origin.x = -self.initialCenter.x + 80
+                                self.miniPlayer.center.x = self.containerView.convert(self.containerView.center, to: self.contentView).x
+                                self.miniPlayer.playerIsHidden = false
+                                self.layoutIfNeeded()
+                            }) { _ in }
                         }
-            
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
-                            self.contentView.frame.origin.x = -self.initialCenter.x + 80
-                            self.miniPlayer.center.x = self.containerView.convert(self.containerView.center, to: self.contentView).x
-                            self.miniPlayer.playerIsHidden = false
-                            self.layoutIfNeeded()
-                        }) { _ in }
                     } else {
-                        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.85, options: [], animations: {
-                            self.selectedIndicator.center.x = self.items.first(where: { $0.select })?.center.x ?? .zero
-                        }) { _ in  }
-
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut, animations: {
+                            self.selectedIndicator.center.x += 50
                             self.contentView.frame.origin.x = 0
                             self.miniPlayer.frame.origin.x = self.stackView.frame.width
                             self.miniPlayer.playerIsHidden = true
                             self.layoutIfNeeded()
-                        }) { _ in  }
+                        }) { _ in
+                            UIView.animate(withDuration: 0.3) {
+                                self.selectedIndicator.center.x -= 50
+                            }
+                        }
                 }
                 case .cancelled:
                     self.contentView.center = self.initialCenter

@@ -28,8 +28,11 @@ class TabItem: UIButton {
     
     var title: String? {
         didSet {
-            self.setTitle(title?.uppercased(), for: .normal)
-            self.titleLabel?.font = UIFont.init(name: "Montserrat-Regular", size: 13)
+            guard let text = title?.uppercased() else {
+                return
+            }
+            let attributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Montserrat-Regular", size: 13) ?? UIFont.systemFont(ofSize: 13), .foregroundColor: UIColor.white]
+            self.setAttributedTitle(NSAttributedString(string: text, attributes: attributes), for: .normal)
         }
     }
 
