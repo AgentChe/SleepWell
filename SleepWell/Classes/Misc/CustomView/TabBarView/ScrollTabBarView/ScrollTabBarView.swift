@@ -24,7 +24,7 @@ class ScrollTabBarView: UIView {
         didSet {
             items.forEach {
                 stackView.addArrangedSubview($0)
-                items.first?.select = true
+                items.last?.select = true
             }
         }
     }
@@ -50,11 +50,16 @@ class ScrollTabBarView: UIView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return path.contains(point)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
+        selectedIndicator.frame = CGRect(origin: CGPoint(x: center, y: frame.height - 30), size: CGSize(width: 5, height: 5))
+    }
 
     private func initialize() {
         UINib(nibName: "ScrollTabBarView", bundle: nil).instantiate(withOwner: self, options: nil)
-        selectedIndicator.frame = CGRect(x: -10, y: self.frame.height - 30, width: 5, height: 5)
-        containerView.frame = bounds
+        containerView.frame = UIScreen.main.bounds
 
         addSubview(containerView)
         
@@ -180,7 +185,7 @@ extension ScrollTabBarView {
                         return indexItem
                     }
             }
-            .startWith(0)
+            .startWith(items.count - 1)
             .asSignal(onErrorJustReturn: 0)
     }
 }
