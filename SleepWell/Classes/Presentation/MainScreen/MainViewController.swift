@@ -21,7 +21,7 @@ enum MainRoute {
 
 final class MainViewController: UIViewController {
     
-    @IBOutlet private var tabBarView: TabBarView!
+    @IBOutlet private var tabBarView: ScrollTabBarView!
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
     
@@ -45,9 +45,9 @@ final class MainViewController: UIViewController {
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
     
-    private let storiesTabItem = TabBarItem()
-    private let meditateTabItem = TabBarItem()
-    private let sceneTabItem = TabBarItem()
+    private let storiesTabItem = TabItem()
+    private let meditateTabItem = TabItem()
+    private let sceneTabItem = TabItem()
     private let disposeBag = DisposeBag()
 }
 
@@ -115,7 +115,12 @@ extension MainViewController: BindsToViewModel {
                         paygateRelay.accept(result)
                     }))
                 case let .play(detail):
-                    base.setPlayer(detail)
+                    viewModel.showPlayerScreen(
+                        detail: detail,
+                        hideTabbarClosure: { [weak base] state in
+                            base?.hideTabBar(isHidden: state)
+                        }
+                    )
                 }
             })
             .disposed(by: disposeBag)
@@ -123,18 +128,6 @@ extension MainViewController: BindsToViewModel {
 }
 
 private extension MainViewController {
-    func setPlayer(_ detail: RecordingDetail) {
-        let playerController = PlayerAssembly().assemble(input: .init(
-            recording: detail,
-            hideTabbarClosure: { [weak self] state in
-                self?.hideTabBar(isHidden: state)
-            }
-        )).vc
-        playerController.view.frame = view.bounds
-        addChild(playerController)
-        view.insertSubview(playerController.view, at: 1)
-        didMove(toParent: self)
-    }
     
     func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
         if meditateAssambly == nil {

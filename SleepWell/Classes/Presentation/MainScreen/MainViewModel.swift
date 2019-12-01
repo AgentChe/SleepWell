@@ -11,6 +11,10 @@ import RxCocoa
 
 protocol MainViewModelInterface {
     func sendPersonalData() -> Signal<Bool>
+    func showPlayerScreen(
+        detail: RecordingDetail,
+        hideTabbarClosure: @escaping (Bool) -> Void
+    )
 }
 
 final class MainViewModel: BindableViewModel, MainViewModelInterface {
@@ -29,5 +33,15 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
             .sendPersonalData()
             .map { true }
             .asSignal(onErrorSignalWith: .never())
+    }
+    
+    func showPlayerScreen(
+        detail: RecordingDetail,
+        hideTabbarClosure: @escaping (Bool) -> Void
+    ) {
+        router.showPlayerScreen(
+            detail: detail,
+            hideTabbarClosure: hideTabbarClosure
+        )
     }
 }

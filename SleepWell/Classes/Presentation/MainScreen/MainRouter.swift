@@ -21,6 +21,16 @@ final class MainRouter: Routing {
         router = Router(transitionHandler: transitionHandler)
     }
     
+    func showPlayerScreen(
+        detail: RecordingDetail,
+        hideTabbarClosure: @escaping (Bool) -> Void
+    ) {
+        router.presentChild(type: PlayerAssembly.self, input: .init(
+            recording: detail,
+            hideTabbarClosure: hideTabbarClosure
+        ))
+    }
+    
     func trigger(_ route: Route) {
         switch route {
         case .meditate:

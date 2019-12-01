@@ -176,6 +176,7 @@ extension PlayerViewController: BindsToViewModel {
                         )
                     },
                     completion: { [weak self] _ in
+                        self?.view.removeFromSuperview()
                         self?.removeFromParent()
                     }
                 )
