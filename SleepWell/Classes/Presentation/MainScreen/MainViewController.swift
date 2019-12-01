@@ -21,7 +21,7 @@ enum MainRoute {
 
 final class MainViewController: UIViewController {
     
-    @IBOutlet private var tabBarView: TabBarView!
+    @IBOutlet private var tabBarView: ScrollTabBarView!
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
     
@@ -45,9 +45,9 @@ final class MainViewController: UIViewController {
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
     
-    private let storiesTabItem = TabBarItem()
-    private let meditateTabItem = TabBarItem()
-    private let sceneTabItem = TabBarItem()
+    private let storiesTabItem = TabItem()
+    private let meditateTabItem = TabItem()
+    private let sceneTabItem = TabItem()
     private let disposeBag = DisposeBag()
 }
 
