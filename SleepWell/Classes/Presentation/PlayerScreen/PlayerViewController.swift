@@ -38,6 +38,8 @@ extension PlayerViewController: BindsToViewModel {
     struct Input {
         let recording: RecordingDetail
         let hideTabbarClosure: (Bool) -> Void
+        let didStartPlaying: (String) -> Void
+        let didPause: () -> Void
     }
     
     static func make() -> PlayerViewController {
@@ -68,9 +70,9 @@ extension PlayerViewController: BindsToViewModel {
                 pan.translation(in: view).y
             }
         
-        let heightToDissmiss = view.frame.height / 4
+        let heightToDismiss: CGFloat = 100
         
-        let beingDissmissed = panEvent.filter { $0 >= heightToDissmiss }
+        let beingDismissed = panEvent.filter { $0 >= heightToDismiss }
             .take(1)
         
         let isCurrentRecordingPlaying = viewModel.isPlaying(recording: input.recording)
@@ -81,7 +83,7 @@ extension PlayerViewController: BindsToViewModel {
 
         Driver
             .merge(
-                beingDissmissed.map { _ in false }
+                beingDismissed.map { _ in false }
                     .asDriver(onErrorDriveWith: .empty()),
                 isCurrentRecordingPlaying
             )
@@ -141,15 +143,15 @@ extension PlayerViewController: BindsToViewModel {
         
         panGesture.rx.event
             .filter { $0.state == .ended }
-            .withLatestFrom(beingDissmissed.map { _ in true }.startWith(false))
+            .withLatestFrom(beingDismissed.map { _ in true }.startWith(false))
             .filter { !$0 }
             .withLatestFrom(yPositionWithState)
             .bind(to: rx.updateViewPosition)
             .disposed(by: disposeBag)
         
         panEvent
-            .filter { $0 < heightToDissmiss && $0 > 0 }
-            .withLatestFrom(beingDissmissed.map { _ in true }.startWith(false)) { ($0, $1) }
+            .filter { $0 < heightToDismiss && $0 > 0 }
+            .withLatestFrom(beingDismissed.map { _ in true }.startWith(false)) { ($0, $1) }
             .filter { !$1 }
             .map { $0.0 }
             .withLatestFrom(yPositionWithState) { (panY: $0, originalY: $1.y, state: $1.state) }
@@ -163,7 +165,7 @@ extension PlayerViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        beingDissmissed
+        beingDismissed
             .bind(to: Binder(self) { base, _ in
                 UIView.animate(
                     withDuration: 0.5,
@@ -176,6 +178,7 @@ extension PlayerViewController: BindsToViewModel {
                         )
                     },
                     completion: { [weak self] _ in
+                        self?.view.removeFromSuperview()
                         self?.removeFromParent()
                     }
                 )
@@ -219,9 +222,22 @@ extension PlayerViewController: BindsToViewModel {
             .emit(to: viewModel.play)
             .disposed(by: disposeBag)
         
-        pauseButton.rx.tap
+        let didTapPauseButton = pauseButton.rx.tap
             .asSignal()
-            .emit(to: viewModel.reset)
+        
+        didTapPauseButton.emit(onNext: input.didPause)
+            .disposed(by: disposeBag)
+        
+        didTapPauseButton.emit(to: viewModel.reset)
+            .disposed(by: disposeBag)
+        
+        beingDismissed.asSignal(onErrorSignalWith: .empty())
+            .take(1)
+            .withLatestFrom(Signal.merge(didTapPlayButton, didTapPauseButton))
+            .withLatestFrom(isCurrentRecordingPlaying)
+            .filter { $0 }
+            .map { _ in input.recording.recording.name }
+            .emit(onNext: input.didStartPlaying)
             .disposed(by: disposeBag)
         
         let currentSeconds = viewModel.time

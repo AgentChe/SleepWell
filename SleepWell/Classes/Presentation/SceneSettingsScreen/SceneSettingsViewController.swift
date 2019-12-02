@@ -18,6 +18,7 @@ final class SceneSettingsViewController: UIViewController {
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var defaultView: UIView!
     @IBOutlet weak var randomView: UIView!
+    @IBOutlet weak var sleepTimerView: UIView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     private let disposeBag = DisposeBag()
@@ -48,12 +49,18 @@ extension SceneSettingsViewController: BindsToViewModel {
         }
         
         let soundsCount = input.sceneDetail.sounds.count
-        let height: CGFloat = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
+        let maxHeight = view.frame.height - 304
+        let defaultHeight = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
+        let maxDivider: CGFloat = max(defaultHeight / maxHeight, 1)
+        let divider = maxDivider > 1.3 ? 1.0 : maxDivider
+        let height = CGFloat(soundsCount * 48) / divider + CGFloat((soundsCount - 1) * 24) / divider
+        
         rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
             .take(1)
             .map { _ in () }
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: Binder(self) { base, _ in
+                base.stackView.spacing = 24 / divider
                 base.stackViewHeight.constant = height
             })
             .disposed(by: disposeBag)
@@ -61,11 +68,18 @@ extension SceneSettingsViewController: BindsToViewModel {
         let defaultTapGesture = UITapGestureRecognizer()
         defaultView.addGestureRecognizer(defaultTapGesture)
         let defaultVolumes = defaultTapGesture.rx.event.asSignal()
-            .map { _ in Float(1) }
+            .map { _ in Float(0.75) }
         
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
         let randomVolumes = randomTapGesture.rx.event.asSignal()
+        
+        let sleepTimerTapGesture = UITapGestureRecognizer()
+        sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
+        sleepTimerTapGesture.rx.event.asSignal()
+            .map { _ in input.sceneDetail }
+            .emit(onNext: viewModel.showSleepTimerScreen)
+            .disposed(by: disposeBag)
         
         let volumes = viewModel.currentScenePlayersVolume ?? []
         input.sceneDetail.sounds.forEach { sound in
@@ -135,6 +149,7 @@ extension SceneSettingsViewController: BindsToViewModel {
                         )
                     },
                     completion: { [weak self] _ in
+                        self?.view.removeFromSuperview()
                         self?.removeFromParent()
                     }
                 )
@@ -205,24 +220,5 @@ extension SceneSettingsViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         scrollView.setContentOffset(scrollView.contentOffset, animated: true)
-    }
-}
-
-extension Reactive where Base: SceneSettingsViewController {
-    
-    var scrollToTop: Binder<Void> {
-        Binder(base) { base, _ in
-            UIView.animate(
-                withDuration: 0.4,
-                animations: {
-                    base.view.frame = .init(
-                        x: 0,
-                        y: 0,
-                        width: base.view.frame.width,
-                        height: base.view.frame.height
-                    )
-                }
-            )
-        }
     }
 }

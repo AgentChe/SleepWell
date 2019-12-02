@@ -62,11 +62,12 @@ final class VolumeSliderView: UIView {
                 )
                 
                 view.textLabel.text = input.text
+                let textLabelHeight = view.textLabel.intrinsicContentSize.height
                 view.textLabel.frame = .init(
                     x: 16,
-                    y: 14,
+                    y: (view.frame.height - textLabelHeight) / 2,
                     width: view.textLabel.intrinsicContentSize.width,
-                    height: view.textLabel.intrinsicContentSize.height
+                    height: textLabelHeight
                 )
             })
             .disposed(by: disposeBag)

@@ -11,6 +11,15 @@ import RxCocoa
 
 protocol MainViewModelInterface {
     func sendPersonalData() -> Signal<Bool>
+    func showPlayerScreen(
+        detail: RecordingDetail,
+        hideTabbarClosure: @escaping (Bool) -> Void,
+        didStartPlaying: @escaping (String) -> Void,
+        didPause: @escaping () -> Void
+    )
+    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
+    var play: Binder<Void> { get }
+    var pause: Binder<Void> { get }
 }
 
 final class MainViewModel: BindableViewModel, MainViewModelInterface {
@@ -22,6 +31,7 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
     
     struct Dependencies {
         let personalDataService: PersonalDataService
+        let audioService: AudioPlayerService
     }
     
     func sendPersonalData() -> Signal<Bool> {
@@ -29,5 +39,31 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
             .sendPersonalData()
             .map { true }
             .asSignal(onErrorSignalWith: .never())
+    }
+    
+    func showPlayerScreen(
+        detail: RecordingDetail,
+        hideTabbarClosure: @escaping (Bool) -> Void,
+        didStartPlaying: @escaping (String) -> Void,
+        didPause: @escaping () -> Void
+    ) {
+        router.showPlayerScreen(
+            detail: detail,
+            hideTabbarClosure: hideTabbarClosure,
+            didStartPlaying: didStartPlaying,
+            didPause: didPause
+        )
+    }
+    
+    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
+        router.showPaygateScreen(completion: completion)
+    }
+    
+    var play: Binder<Void> {
+        dependencies.audioService.rx.play
+    }
+    
+    var pause: Binder<Void> {
+        dependencies.audioService.rx.pause
     }
 }

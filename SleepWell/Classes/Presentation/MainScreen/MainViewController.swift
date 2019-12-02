@@ -21,11 +21,9 @@ enum MainRoute {
 
 final class MainViewController: UIViewController {
     
-    @IBOutlet private var tabBarView: TabBarView!
+    @IBOutlet private var tabBarView: ScrollTabBarView!
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
-    
-    private lazy var router = Router(transitionHandler: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +43,9 @@ final class MainViewController: UIViewController {
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
     
-    private let storiesTabItem = TabBarItem()
-    private let meditateTabItem = TabBarItem()
-    private let sceneTabItem = TabBarItem()
+    private let storiesTabItem = TabItem()
+    private let meditateTabItem = TabItem()
+    private let sceneTabItem = TabItem()
     private let disposeBag = DisposeBag()
 }
 
@@ -111,30 +109,39 @@ extension MainViewController: BindsToViewModel {
             .emit(to: Binder(self) { base, route in
                 switch route {
                 case .paygate:
-                    base.router.present(type: PaygateAssembly.self, input: (openedFrom: .paidContent, completion: { result in
-                        paygateRelay.accept(result)
-                    }))
-                case let .play(detail):
-                    base.setPlayer(detail)
+                    viewModel.showPaygateScreen(completion: { paygateRelay.accept($0) })
+                case .play(let detail):
+                    viewModel.showPlayerScreen(
+                        detail: detail,
+                        hideTabbarClosure: { [weak base] state in
+                            base?.hideTabBar(isHidden: state)
+                        },
+                        didStartPlaying: { [weak base] name in
+                            base?.tabBarView.showMiniPlayer(name: name)
+                        },
+                        didPause: { [weak base] in
+                            base?.tabBarView.hideMiniPlayer()
+                        }
+                    )
                 }
             })
+            .disposed(by: disposeBag)
+        
+        tabBarView.didTapMiniPlayer
+            .filter { $0 == .pause }
+            .map { _ in () }
+            .emit(to: viewModel.pause)
+            .disposed(by: disposeBag)
+        
+        tabBarView.didTapMiniPlayer
+            .filter { $0 == .play }
+            .map { _ in () }
+            .emit(to: viewModel.play)
             .disposed(by: disposeBag)
     }
 }
 
 private extension MainViewController {
-    func setPlayer(_ detail: RecordingDetail) {
-        let playerController = PlayerAssembly().assemble(input: .init(
-            recording: detail,
-            hideTabbarClosure: { [weak self] state in
-                self?.hideTabBar(isHidden: state)
-            }
-        )).vc
-        playerController.view.frame = view.bounds
-        addChild(playerController)
-        view.insertSubview(playerController.view, at: 1)
-        didMove(toParent: self)
-    }
     
     func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
         if meditateAssambly == nil {
