@@ -49,12 +49,18 @@ extension SceneSettingsViewController: BindsToViewModel {
         }
         
         let soundsCount = input.sceneDetail.sounds.count
-        let height: CGFloat = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
+        let maxHeight = view.frame.height - 304
+        let defaultHeight = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
+        let maxDivider: CGFloat = max(defaultHeight / maxHeight, 1)
+        let divider = maxDivider > 1.3 ? 1.0 : maxDivider
+        let height = CGFloat(soundsCount * 48) / divider + CGFloat((soundsCount - 1) * 24) / divider
+        
         rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
             .take(1)
             .map { _ in () }
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: Binder(self) { base, _ in
+                base.stackView.spacing = 24 / divider
                 base.stackViewHeight.constant = height
             })
             .disposed(by: disposeBag)
@@ -62,7 +68,7 @@ extension SceneSettingsViewController: BindsToViewModel {
         let defaultTapGesture = UITapGestureRecognizer()
         defaultView.addGestureRecognizer(defaultTapGesture)
         let defaultVolumes = defaultTapGesture.rx.event.asSignal()
-            .map { _ in Float(1) }
+            .map { _ in Float(0.75) }
         
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
@@ -143,6 +149,7 @@ extension SceneSettingsViewController: BindsToViewModel {
                         )
                     },
                     completion: { [weak self] _ in
+                        self?.view.removeFromSuperview()
                         self?.removeFromParent()
                     }
                 )

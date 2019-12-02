@@ -90,6 +90,22 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    func isOtherScenePlaying(scene: SceneDetail) -> Bool {
+        
+        guard let value = sceneRelay.value, value.scene.id != scene.scene.id else {
+            return false
+        }
+        return value.isPlaying
+    }
+    
+    var isScenePlaying: Driver<Bool> {
+        
+        sceneRelay.asDriver()
+            .flatMapLatest {
+                $0?.rx.isPlaying ?? .just(false)
+            }
+    }
+    
     var isPlaying: Driver<Bool> {
         
         audioRelay.asDriver()
@@ -371,6 +387,9 @@ private final class SceneAudio: ReactiveCompatible {
     func prepareToPlay() {
         
         players.forEach {
+            
+            $0.player.volume = 0.75
+            
             NotificationCenter.default.rx
             .notification(
                 .AVPlayerItemDidPlayToEndTime,
@@ -461,6 +480,9 @@ private final class Audio: ReactiveCompatible {
     }
     
     func prepareToPlay() {
+        
+        setMainPlayerVolume(value: 0.75)
+        setAmbientPlayerVolume(value: 0.75)
         
         if let ambient = ambientPlayer {
             

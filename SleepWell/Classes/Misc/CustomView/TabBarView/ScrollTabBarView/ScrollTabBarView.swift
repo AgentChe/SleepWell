@@ -50,12 +50,6 @@ class ScrollTabBarView: UIView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return path.contains(point)
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
-        selectedIndicator.frame = CGRect(origin: CGPoint(x: center, y: frame.height - 30), size: CGSize(width: 5, height: 5))
-    }
 
     private func initialize() {
         UINib(nibName: "ScrollTabBarView", bundle: nil).instantiate(withOwner: self, options: nil)
@@ -103,6 +97,19 @@ class ScrollTabBarView: UIView {
                 case .show:
                     self?.didTapPlayer()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        
+        rx.methodInvoked(#selector(UIView.layoutSubviews))
+            .asSignal(onErrorSignalWith: .empty())
+            .take(1)
+            .emit(to: Binder(self) { view, _ in
+                let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
+                view.selectedIndicator.frame = CGRect(
+                    origin: CGPoint(x: center, y: view.frame.height - 30),
+                    size: CGSize(width: 5, height: 5)
+                )
             })
             .disposed(by: disposeBag)
     }

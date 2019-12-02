@@ -23,23 +23,22 @@ final class MainRouter: Routing {
     
     func showPlayerScreen(
         detail: RecordingDetail,
-        hideTabbarClosure: @escaping (Bool) -> Void
+        hideTabbarClosure: @escaping (Bool) -> Void,
+        didStartPlaying: @escaping (String) -> Void,
+        didPause: @escaping () -> Void
     ) {
         router.presentChild(type: PlayerAssembly.self, input: .init(
             recording: detail,
-            hideTabbarClosure: hideTabbarClosure
+            hideTabbarClosure: hideTabbarClosure,
+            didStartPlaying: didStartPlaying,
+            didPause: didPause
         ))
     }
     
-    func trigger(_ route: Route) {
-        switch route {
-        case .meditate:
-            break
-        case let .stories(element): break
-//            router.presentChild(type: StoriesAssembly.self,
-//                                input: .init(isActiveSubscription: element))
-        case .scenes:
-            break
-        }
+    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
+        router.present(
+            type: PaygateAssembly.self,
+            input: (openedFrom: .paidContent, completion: completion)
+        )
     }
 }

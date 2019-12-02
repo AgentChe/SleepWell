@@ -36,19 +36,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gd-d3-sOJ" userLabel="Content View">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                                     <subviews>
-                                                        <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cno-aU-c76">
-                                                            <rect key="frame" x="171" y="57" width="33" height="4"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="4" id="KLY-t4-0Uy"/>
-                                                                <constraint firstAttribute="width" constant="33" id="SIh-o9-Xuu"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="7"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-5P-Sg3">
                                                             <rect key="frame" x="40" y="718" width="295" height="52"/>
                                                             <subviews>
@@ -135,22 +122,26 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="cno-aU-c76" firstAttribute="top" secondItem="2Gd-d3-sOJ" secondAttribute="top" constant="57" id="01u-eC-PXd"/>
                                                         <constraint firstItem="FKL-0r-wlO" firstAttribute="trailing" secondItem="hhE-5P-Sg3" secondAttribute="centerX" constant="-4" id="1G0-wT-sj2"/>
-                                                        <constraint firstItem="hhE-5P-Sg3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wA7-1r-pjD" secondAttribute="bottom" constant="189" id="8J4-Zl-NSc"/>
-                                                        <constraint firstItem="cno-aU-c76" firstAttribute="centerX" secondItem="2Gd-d3-sOJ" secondAttribute="centerX" id="HFa-dW-oqa"/>
+                                                        <constraint firstItem="hhE-5P-Sg3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wA7-1r-pjD" secondAttribute="bottom" constant="90" id="8J4-Zl-NSc"/>
                                                         <constraint firstItem="hhE-5P-Sg3" firstAttribute="top" secondItem="FKL-0r-wlO" secondAttribute="bottom" constant="16" id="R8T-BA-Vrf"/>
                                                         <constraint firstItem="hhE-5P-Sg3" firstAttribute="top" secondItem="jjm-AT-HtG" secondAttribute="bottom" constant="16" id="YM9-5j-WqB"/>
                                                         <constraint firstItem="jjm-AT-HtG" firstAttribute="leading" secondItem="hhE-5P-Sg3" secondAttribute="centerX" constant="4" id="e8r-vA-3kV"/>
                                                         <constraint firstAttribute="trailing" secondItem="hhE-5P-Sg3" secondAttribute="trailing" constant="40" id="fcg-9K-rZ0"/>
                                                         <constraint firstItem="wA7-1r-pjD" firstAttribute="centerX" secondItem="2Gd-d3-sOJ" secondAttribute="centerX" id="ho9-Da-81e"/>
                                                         <constraint firstAttribute="trailing" secondItem="jjm-AT-HtG" secondAttribute="trailing" constant="40" id="iwd-2e-FbC"/>
-                                                        <constraint firstItem="wA7-1r-pjD" firstAttribute="top" secondItem="cno-aU-c76" secondAttribute="bottom" constant="60" id="pdK-cI-nWi"/>
                                                         <constraint firstAttribute="bottom" secondItem="hhE-5P-Sg3" secondAttribute="bottom" constant="42" id="vXq-jl-QXq"/>
                                                         <constraint firstItem="FKL-0r-wlO" firstAttribute="leading" secondItem="2Gd-d3-sOJ" secondAttribute="leading" constant="40" id="vwU-BG-e5k"/>
                                                         <constraint firstItem="hhE-5P-Sg3" firstAttribute="leading" secondItem="2Gd-d3-sOJ" secondAttribute="leading" constant="40" id="yvr-bo-uTE"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_slider" translatesAutoresizingMaskIntoConstraints="NO" id="PG4-WD-Rml">
+                                                    <rect key="frame" x="171" y="57" width="33" height="4"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="4" id="jmm-KB-UCG"/>
+                                                        <constraint firstAttribute="width" constant="33" id="mG7-lu-KBW"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -160,6 +151,9 @@
                                                 <constraint firstItem="2Gd-d3-sOJ" firstAttribute="centerY" secondItem="idK-gK-Szh" secondAttribute="centerY" priority="250" id="Z0I-8D-eFR"/>
                                                 <constraint firstItem="2Gd-d3-sOJ" firstAttribute="leading" secondItem="idK-gK-Szh" secondAttribute="leading" id="baK-3e-d5B"/>
                                                 <constraint firstAttribute="trailing" secondItem="2Gd-d3-sOJ" secondAttribute="trailing" id="egM-Hy-FzM"/>
+                                                <constraint firstItem="PG4-WD-Rml" firstAttribute="centerX" secondItem="2Gd-d3-sOJ" secondAttribute="centerX" id="jZw-ba-cpw"/>
+                                                <constraint firstItem="wA7-1r-pjD" firstAttribute="top" secondItem="PG4-WD-Rml" secondAttribute="bottom" constant="60" id="p4m-9B-e3o"/>
+                                                <constraint firstItem="PG4-WD-Rml" firstAttribute="top" secondItem="idK-gK-Szh" secondAttribute="top" constant="57" id="r7g-dA-4Pt"/>
                                             </constraints>
                                         </scrollView>
                                     </subviews>
@@ -210,6 +204,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_slider" width="33" height="4.6666665077209473"/>
         <image name="moon" width="17" height="18.5"/>
     </resources>
 </document>

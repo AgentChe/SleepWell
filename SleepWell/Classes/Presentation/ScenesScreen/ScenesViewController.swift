@@ -136,10 +136,35 @@ extension ScenesViewController: BindsToViewModel {
                 viewModel.showSettings(sceneDetail: $0)
             }
         
-        playButton.rx.tap.asObservable()
+        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+            .take(1)
+        
+        let initialScene = Observable
+            .combineLatest(
+                viewDidAppear,
+                sceneDetail.asObservable()
+            ) { $1 }
+            .take(1)
+            .filter { $0 != nil }
+            .map { $0! }
+        
+        let playSceneBySwipe = sceneDetail.skip(1)
+            .filter { $0 != nil }
+            .map { $0! }
+            .filter { viewModel.isOtherScenePlaying(scene: $0) }
+            .asObservable()
+        
+        let didTapPlayScene = playButton.rx.tap.asObservable()
             .withLatestFrom(sceneDetail.asObservable())
             .filter { $0 != nil }
             .map { $0! }
+        
+        Observable
+            .merge(
+                initialScene,
+                playSceneBySwipe,
+                didTapPlayScene
+            )
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: {
                 viewModel.add(sceneDetail: $0)
@@ -153,16 +178,8 @@ extension ScenesViewController: BindsToViewModel {
             .emit(to: viewModel.pauseScene)
             .disposed(by: disposeBag)
         
-        let isPlaying = sceneAction.map { $0.sceneDetail }
-            .flatMapLatest { scene -> Driver<Bool> in
-                guard let scene = scene else {
-                    return .just(false)
-                }
-                return viewModel.isPlaying(scene: scene)
-            }
-            .distinctUntilChanged()
-            .asDriver(onErrorDriveWith: .empty())
-            
+        let isPlaying = viewModel.isScenePlaying
+        
         isPlaying
             .drive(Binder(self) { base, isPlaying in
                 base.pauseButton.isHidden = !isPlaying
@@ -190,9 +207,7 @@ extension ScenesViewController: BindsToViewModel {
                     .map { _ in Action.none },
                 tapGesture.rx.event.asSignal()
                     .map { _ in Action.backgroundTap },
-                rx.methodInvoked(#selector(UIViewController.viewDidAppear))
-                    .map { _ in Action.appear }
-                    .take(1)
+                viewDidAppear.map { _ in Action.appear }
                     .asSignal(onErrorSignalWith: .empty()),
                 didDismissSetting.map { _ in Action.appear }
             )

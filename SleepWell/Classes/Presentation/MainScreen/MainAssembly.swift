@@ -10,6 +10,9 @@ final class MainAssembly: ScreenAssembly {
     typealias VC = MainViewController
     
     func assembleDependencies() -> MainViewModel.Dependencies {
-        return VC.ViewModel.Dependencies(personalDataService: PersonalDataService())
+        return VC.ViewModel.Dependencies(
+            personalDataService: PersonalDataService(),
+            audioService: AudioPlayerService.shared
+        )
     }
 }

@@ -25,8 +25,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var tabBarHeight: NSLayoutConstraint!
     
-    private lazy var router = Router(transitionHandler: self)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,18 +109,34 @@ extension MainViewController: BindsToViewModel {
             .emit(to: Binder(self) { base, route in
                 switch route {
                 case .paygate:
-                    base.router.present(type: PaygateAssembly.self, input: (openedFrom: .paidContent, completion: { result in
-                        paygateRelay.accept(result)
-                    }))
-                case let .play(detail):
+                    viewModel.showPaygateScreen(completion: { paygateRelay.accept($0) })
+                case .play(let detail):
                     viewModel.showPlayerScreen(
                         detail: detail,
                         hideTabbarClosure: { [weak base] state in
                             base?.hideTabBar(isHidden: state)
+                        },
+                        didStartPlaying: { [weak base] name in
+                            base?.tabBarView.showMiniPlayer(name: name)
+                        },
+                        didPause: { [weak base] in
+                            base?.tabBarView.hideMiniPlayer()
                         }
                     )
                 }
             })
+            .disposed(by: disposeBag)
+        
+        tabBarView.didTapMiniPlayer
+            .filter { $0 == .pause }
+            .map { _ in () }
+            .emit(to: viewModel.pause)
+            .disposed(by: disposeBag)
+        
+        tabBarView.didTapMiniPlayer
+            .filter { $0 == .play }
+            .map { _ in () }
+            .emit(to: viewModel.play)
             .disposed(by: disposeBag)
     }
 }
