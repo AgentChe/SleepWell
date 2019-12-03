@@ -13,7 +13,7 @@ class StoryService {
         return RealmDBTransport().loadData(realmType: RealmStory.self, map: { StoryRealmMapper.map(from: $0) })
     }
 
-    func getStory(storyId: Int) -> Single<StoryDetail?> {
+    func story(storyId: Int) -> Single<StoryDetail?> {
         return RealmDBTransport()
             .loadData(realmType: RealmStoryDetail.self, filter: NSPredicate(format: "id == %i", storyId), map: { StoryDetailRealmMapper.map(from: $0) })
             .map { $0.first }

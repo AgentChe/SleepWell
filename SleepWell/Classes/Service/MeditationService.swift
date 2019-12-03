@@ -13,13 +13,13 @@ class MeditationService {
         return RealmDBTransport().loadData(realmType: RealmMeditation.self, map: { MeditationRealmMapper.map(from: $0) })
     }
     
-    func getMeditation(meditationId: Int) -> Single<MeditationDetail?> {
+    func meditation(meditationId: Int) -> Single<MeditationDetail?> {
         return RealmDBTransport()
             .loadData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "id == %i", meditationId), map: { MeditationDetailRealmMapper.map(from: $0) })
             .map { $0.first }
     }
     
-    func getTags() -> Observable<[MeditationTag]> {
+    func tags() -> Observable<[MeditationTag]> {
         let cacheTags = RealmDBTransport()
             .loadData(realmType: RealmMeditationTag.self) {
                 MeditationTagRealmMapper.map(from: $0)

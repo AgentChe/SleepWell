@@ -11,10 +11,12 @@ import RxSwift
 final class CacheService {
     private let updateMeditations = UpdateMeditations()
     private let updateStories = UpdateStories()
+    private let updateScenes = UpdateScenes()
     
     func update() -> Observable<Void> {
         return Observable.combineLatest(updateMeditations.update().catchErrorJustReturn(Void()),
-                                        updateStories.update().catchErrorJustReturn(Void())) { _, _ in Void() }
+                                        updateStories.update().catchErrorJustReturn(Void()),
+                                        updateScenes.update().catchErrorJustReturn(Void())) { _, _, _ in Void() }
     }
 }
 
@@ -59,6 +61,29 @@ private final class UpdateStories {
                     .combineLatest(saveStories.asObservable(), saveDetails.asObservable()) { _, _ in Void() }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
+                    })
+            }
+    }
+}
+
+private final class UpdateScenes {
+    func update() -> Observable<Void> {
+        return RestAPITransport()
+            .callServerApi(requestBody: FullScenesListRequest(hashCode: CacheHashCodes.scenesHashCode))
+            .asObservable()
+            .map { ScenesMapper.fullScenes(response: $0) }
+            .flatMap { fullScenes -> Observable<Void> in
+                guard let data = fullScenes else {
+                    return .error(RxError.noElements)
+                }
+                
+                let saveScenes = RealmDBTransport().saveData(entities: data.scenes, map: { SceneRealmMapper.map(from: $0) })
+                let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
+                
+                return Observable
+                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ in Void() }
+                    .do(onNext: {
+                        CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
             }
     }

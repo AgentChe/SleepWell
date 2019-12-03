@@ -9,14 +9,20 @@
 import RealmSwift
 
 class RealmSceneDetail: Object {
-    @objc var scene: RealmScene!
+    @objc dynamic var id: Int = Int.random(in: Int.min...Int.max)
+    @objc dynamic var scene: RealmScene!
     let sounds = List<RealmSceneSound>()
     
     convenience init(scene: Scene, sounds: [SceneSound]) {
         self.init()
         
+        self.id = scene.id
         self.scene = SceneRealmMapper.map(from: scene)
         
         self.sounds.append(objectsIn: sounds.map { SceneSoundRealmMapper.map(from: $0) })
+    }
+    
+    @objc open override class func primaryKey() -> String? {
+        return "id"
     }
 }

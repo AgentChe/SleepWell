@@ -61,7 +61,7 @@ extension StoriesViewModel: StoriesViewModelInterface {
 
     func getStoryDetails(id: Int) -> Signal<Action> {
         return dependencies.storyService
-            .getStory(storyId: id)
+            .story(storyId: id)
             .map { Action.detail($0) }
             .catchError { error -> Single<Action> in
                 guard (error as NSError).code == 403  else {

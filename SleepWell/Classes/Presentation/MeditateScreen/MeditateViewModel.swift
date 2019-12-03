@@ -60,7 +60,7 @@ extension MeditateViewModel: MeditateViewModelInterface {
     }
     
     func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]> {
-        let tags = dependencies.meditatationService.getTags()
+        let tags = dependencies.meditatationService.tags()
         return Observable
             .combineLatest(selectedTag.asObservable(), tags.asObservable())
             .map { TagCellModel.map(items: $1, selectedId: $0) }
@@ -69,7 +69,7 @@ extension MeditateViewModel: MeditateViewModelInterface {
     
     func getMeditationDetails(meditationId: Int) -> Signal<Action> {
         return dependencies.meditatationService
-            .getMeditation(meditationId: meditationId)
+            .meditation(meditationId: meditationId)
             .map { Action.detail($0) }
             .catchError { error -> Single<Action> in
                 guard (error as NSError).code == 403  else {

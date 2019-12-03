@@ -33,7 +33,6 @@
 		84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743823908CE100B10777 /* SceneTimerViewModel.swift */; };
 		84DD743B23908CEA00B10777 /* SceneTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743A23908CEA00B10777 /* SceneTimerViewController.swift */; };
 		84DD743D23908E8000B10777 /* SceneTimerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DD743C23908E8000B10777 /* SceneTimerScreen.storyboard */; };
-		84FC708A23833E15000AD9AE /* SceneDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC708923833E15000AD9AE /* SceneDetailRequest.swift */; };
 		84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */; };
 		8620C371238C58BB00D26FDB /* ScrollTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8620C370238C58BB00D26FDB /* ScrollTabBarView.swift */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
@@ -51,7 +50,7 @@
 		86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6962385DA510087CE87 /* SceneCell.swift */; };
 		86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6972385DA510087CE87 /* ScenesViewController.swift */; };
 		86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */; };
-		86A7D6A12385E1EB0087CE87 /* ScenesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */; };
+		86A7D6A12385E1EB0087CE87 /* FullScenesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */; };
 		86A7D6A32385EAC20087CE87 /* ScenesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A22385EAC20087CE87 /* ScenesMapper.swift */; };
 		86A7D6A62385EBAA0087CE87 /* SceneCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A52385EBAA0087CE87 /* SceneCellModel.swift */; };
 		86A85479239317AA006A0CB1 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A85478239317AA006A0CB1 /* TabItem.swift */; };
@@ -242,7 +241,6 @@
 		84DD743823908CE100B10777 /* SceneTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerViewModel.swift; sourceTree = "<group>"; };
 		84DD743A23908CEA00B10777 /* SceneTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerViewController.swift; sourceTree = "<group>"; };
 		84DD743C23908E8000B10777 /* SceneTimerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneTimerScreen.storyboard; sourceTree = "<group>"; };
-		84FC708923833E15000AD9AE /* SceneDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRequest.swift; sourceTree = "<group>"; };
 		84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneSettingsScreen.storyboard; sourceTree = "<group>"; };
 		8620C370238C58BB00D26FDB /* ScrollTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTabBarView.swift; sourceTree = "<group>"; };
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
@@ -260,7 +258,7 @@
 		86A7D6962385DA510087CE87 /* SceneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
 		86A7D6972385DA510087CE87 /* ScenesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
 		86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScenesScreen.storyboard; sourceTree = "<group>"; };
-		86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesRequest.swift; sourceTree = "<group>"; };
+		86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScenesListRequest.swift; sourceTree = "<group>"; };
 		86A7D6A22385EAC20087CE87 /* ScenesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesMapper.swift; sourceTree = "<group>"; };
 		86A7D6A52385EBAA0087CE87 /* SceneCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellModel.swift; sourceTree = "<group>"; };
 		86A85478239317AA006A0CB1 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
@@ -1005,8 +1003,7 @@
 				962A777C236A2A09000E2683 /* SetRequest.swift */,
 				86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
-				84FC708923833E15000AD9AE /* SceneDetailRequest.swift */,
-				86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */,
+				86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1411,7 +1408,6 @@
 				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
 				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
-				84FC708A23833E15000AD9AE /* SceneDetailRequest.swift in Sources */,
 				962FB445239665AB00B88FFC /* RealmMeditationSound.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86A85479239317AA006A0CB1 /* TabItem.swift in Sources */,
@@ -1438,7 +1434,7 @@
 				847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */,
 				84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */,
 				86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */,
-				86A7D6A12385E1EB0087CE87 /* ScenesRequest.swift in Sources */,
+				86A7D6A12385E1EB0087CE87 /* FullScenesListRequest.swift in Sources */,
 				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				84DD743723908CD900B10777 /* SceneTimerRouter.swift in Sources */,
