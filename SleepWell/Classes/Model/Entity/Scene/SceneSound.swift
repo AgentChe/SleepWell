@@ -13,6 +13,19 @@ struct SceneSound: Sound {
     let name: String
     let soundUrl: URL
     let soundSecs: Int
+}
+
+extension SceneSound {
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case soundUrl = "sounds_url"
+        case soundSecs = "sound_secs"
+    }
+    
+    enum Error: Swift.Error {
+        case invalidValue
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -28,19 +41,5 @@ struct SceneSound: Sound {
         }
         self.soundUrl = soundURL
         self.soundSecs = try container.decode(Int.self, forKey: .soundSecs)
-    }
-}
-
-private extension SceneSound {
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case soundUrl = "sounds_url"
-        case soundSecs = "sound_secs"
-    }
-    
-    enum Error: Swift.Error {
-        case invalidValue
     }
 }

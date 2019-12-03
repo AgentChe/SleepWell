@@ -33,6 +33,7 @@ extension MeditationDetail {
         case reader
         case imagePreview = "image_meditation_url"
         case imageReader = "image_reader_url"
+        case tags
     }
     
     init(from decoder: Decoder) throws {
@@ -46,13 +47,14 @@ extension MeditationDetail {
         readingSound = try meditation.decode(MeditationSound.self, forKey: .readingSound)
         ambientSound = try meditation.decode(MeditationSound?.self, forKey: .ambientSound)
         
-        recording = Story(id: try meditation.decode(Int.self, forKey: .id),
+        recording = Meditation(id: try meditation.decode(Int.self, forKey: .id),
                           name: try meditation.decode(String.self, forKey: .name),
                           paid: try meditation.decode(Bool.self, forKey: .paid),
                           reader: try meditation.decode(String.self, forKey: .reader),
                           imagePreviewUrl: URL(string: preview),
                           imageReaderURL: URL(string: reader),
                           hash: try data.decode(String.self, forKey: .hash),
+                          tags: try meditation.decode([Int].self, forKey: .tags),
                           length: readingSound.soundSecs)
         
     }

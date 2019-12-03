@@ -12,7 +12,9 @@ struct StoryDetail: RecordingDetail {
     let recording: Recording
     let readingSound: Sound
     let ambientSound: Sound?
-    
+}
+
+extension StoryDetail {
     private enum DataKeys: String, CodingKey {
         case data = "_data"
     }

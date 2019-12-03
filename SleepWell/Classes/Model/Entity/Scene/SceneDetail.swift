@@ -11,6 +11,25 @@ import Foundation.NSURL
 struct SceneDetail: Model {
     let scene: Scene
     let sounds: [SceneSound]
+}
+
+extension SceneDetail {
+    
+    private enum DataKeys: String, CodingKey {
+        case data = "_data"
+    }
+    
+    enum SceneKeys: String, CodingKey {
+        case scene = "scene"
+        case hash = "scene_hash"
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case paid
+        case image = "image_url"
+        case sounds
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DataKeys.self)
@@ -31,28 +50,5 @@ struct SceneDetail: Model {
     
     func encode(to encoder: Encoder) throws {
 
-    }
-}
-
-private extension SceneDetail {
-    
-    enum DataKeys: String, CodingKey {
-        case data = "_data"
-    }
-    
-    enum SceneKeys: String, CodingKey {
-        case scene = "scene"
-        case hash = "scene_hash"
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case paid
-        case image = "image_url"
-        case sounds
-    }
-    
-    enum Error: Swift.Error {
-        case invalidValue
     }
 }
