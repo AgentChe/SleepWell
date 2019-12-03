@@ -83,8 +83,7 @@
 		86C848C72367027900BC6EDA /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C848C52367027900BC6EDA /* StoryCell.swift */; };
 		86C848C82367027900BC6EDA /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848C62367027900BC6EDA /* StoryCell.xib */; };
 		86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA8C8023678A5300692EE5 /* StoriesCellType.swift */; };
-		86CFBCC62368BA790017CFE6 /* StoriesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */; };
-		86CFBCC82368BD550017CFE6 /* StoryDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */; };
+		86CFBCC62368BA790017CFE6 /* FullStoriesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC52368BA790017CFE6 /* FullStoriesListRequest.swift */; };
 		86E1052C2393ECD20092B194 /* MiniPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E1052A2393ECD20092B194 /* MiniPlayerView.xib */; };
 		86E1052D2393ECD20092B194 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1052B2393ECD20092B194 /* MiniPlayerView.swift */; };
 		86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */; };
@@ -294,8 +293,7 @@
 		86C848C52367027900BC6EDA /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		86C848C62367027900BC6EDA /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
 		86CA8C8023678A5300692EE5 /* StoriesCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCellType.swift; sourceTree = "<group>"; };
-		86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesListRequest.swift; sourceTree = "<group>"; };
-		86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailRequest.swift; sourceTree = "<group>"; };
+		86CFBCC52368BA790017CFE6 /* FullStoriesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStoriesListRequest.swift; sourceTree = "<group>"; };
 		86E1052A2393ECD20092B194 /* MiniPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniPlayerView.xib; sourceTree = "<group>"; };
 		86E1052B2393ECD20092B194 /* MiniPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeditateScreen.storyboard; sourceTree = "<group>"; };
@@ -1003,8 +1001,7 @@
 				96C29F442363421800E93CB1 /* CheckUserTokenRequest.swift */,
 				96C29F4D2363467C00E93CB1 /* PurchaseValidateRequest.swift */,
 				96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */,
-				86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */,
-				86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */,
+				86CFBCC52368BA790017CFE6 /* FullStoriesListRequest.swift */,
 				962A777C236A2A09000E2683 /* SetRequest.swift */,
 				86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
@@ -1501,7 +1498,6 @@
 				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,
 				84A38E3E2383D5F4004E7EBA /* SceneSettingsAssembly.swift in Sources */,
 				86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */,
-				86CFBCC82368BD550017CFE6 /* StoryDetailRequest.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
@@ -1525,7 +1521,7 @@
 				96C29F4C2363462100E93CB1 /* PurchaseService.swift in Sources */,
 				86C848AE2366EC8300BC6EDA /* TagCellModel.swift in Sources */,
 				84D7543A2378BDF1003C084C /* SharedSequenceExtension.swift in Sources */,
-				86CFBCC62368BA790017CFE6 /* StoriesListRequest.swift in Sources */,
+				86CFBCC62368BA790017CFE6 /* FullStoriesListRequest.swift in Sources */,
 				96C29F802363894F00E93CB1 /* StorySound.swift in Sources */,
 				96C29F5D23634D4600E93CB1 /* OnboardingViewController.swift in Sources */,
 				96C29F5923634D2400E93CB1 /* PaygateRouter.swift in Sources */,

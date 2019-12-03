@@ -10,13 +10,12 @@ import RxSwift
 
 class MeditationService {
     func meditations() -> Single<[Meditation]> {
-        return RealmDBTransport()
-            .loadData(realmType: RealmMeditation.self, map: { MeditationRealmMapper.map(from: $0) })
+        return RealmDBTransport().loadData(realmType: RealmMeditation.self, map: { MeditationRealmMapper.map(from: $0) })
     }
     
     func getMeditation(meditationId: Int) -> Single<MeditationDetail?> {
         return RealmDBTransport()
-            .loadData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "recording.id == %i", meditationId), map: { MeditationDetailRealmMapper.map(from: $0) })
+            .loadData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "id == %i", meditationId), map: { MeditationDetailRealmMapper.map(from: $0) })
             .map { $0.first }
     }
     
