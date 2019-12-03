@@ -65,8 +65,7 @@
 		86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */; };
 		86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */; };
 		86B5F39B236B5CD7000E43A0 /* StoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */; };
-		86B7A985237012EF007A36BA /* MeditationsListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A984237012EF007A36BA /* MeditationsListRequest.swift */; };
-		86B7A9872370132C007A36BA /* MeditationDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */; };
+		86B7A985237012EF007A36BA /* FullMeditationsListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */; };
 		86B7A98923701501007A36BA /* MeditationTagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98823701501007A36BA /* MeditationTagsRequest.swift */; };
 		86B7A98B23701843007A36BA /* MeditationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98A23701843007A36BA /* MeditationCellModel.swift */; };
 		86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A98C23701F85007A36BA /* MeditationsMapper.swift */; };
@@ -118,6 +117,7 @@
 		962FB4602396835400B88FFC /* SceneRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB45F2396835400B88FFC /* SceneRealmMapper.swift */; };
 		962FB4622396847F00B88FFC /* SceneSoundRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */; };
 		962FB4642396878A00B88FFC /* SceneDetailRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */; };
+		962FB46A2396A76100B88FFC /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4692396A76100B88FFC /* CacheService.swift */; };
 		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
 		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
 		9685528623688C1100A22E21 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528523688C1100A22E21 /* CheckView.swift */; };
@@ -275,8 +275,7 @@
 		86B2BFF523663C7000AF2B33 /* PremiumUnlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumUnlockCell.swift; sourceTree = "<group>"; };
 		86B2BFF623663C7000AF2B33 /* PremiumUnlockCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumUnlockCell.xib; sourceTree = "<group>"; };
 		86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModel.swift; sourceTree = "<group>"; };
-		86B7A984237012EF007A36BA /* MeditationsListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsListRequest.swift; sourceTree = "<group>"; };
-		86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailRequest.swift; sourceTree = "<group>"; };
+		86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMeditationsListRequest.swift; sourceTree = "<group>"; };
 		86B7A98823701501007A36BA /* MeditationTagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationTagsRequest.swift; sourceTree = "<group>"; };
 		86B7A98A23701843007A36BA /* MeditationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCellModel.swift; sourceTree = "<group>"; };
 		86B7A98C23701F85007A36BA /* MeditationsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsMapper.swift; sourceTree = "<group>"; };
@@ -331,6 +330,7 @@
 		962FB45F2396835400B88FFC /* SceneRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSoundRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRealmMapper.swift; sourceTree = "<group>"; };
+		962FB4692396A76100B88FFC /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
 		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
 		9685528523688C1100A22E21 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
@@ -899,6 +899,7 @@
 				96DC8C7A23674CB3004DC76A /* PaygateService.swift */,
 				9685528E236985EE00A22E21 /* PushMessageService.swift */,
 				968552902369871000A22E21 /* AppStateProxy.swift */,
+				962FB4692396A76100B88FFC /* CacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1005,8 +1006,7 @@
 				86CFBCC52368BA790017CFE6 /* StoriesListRequest.swift */,
 				86CFBCC72368BD550017CFE6 /* StoryDetailRequest.swift */,
 				962A777C236A2A09000E2683 /* SetRequest.swift */,
-				86B7A984237012EF007A36BA /* MeditationsListRequest.swift */,
-				86B7A9862370132C007A36BA /* MeditationDetailRequest.swift */,
+				86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
 				84FC708923833E15000AD9AE /* SceneDetailRequest.swift */,
 				86A7D6A02385E1EB0087CE87 /* ScenesRequest.swift */,
@@ -1393,6 +1393,7 @@
 				86B0C31D2379DE0300C60158 /* MeditationRealmMapper.swift in Sources */,
 				962FB44F23967A4300B88FFC /* RealmStorySound.swift in Sources */,
 				96C29F092362611F00E93CB1 /* DateExtension.swift in Sources */,
+				962FB46A2396A76100B88FFC /* CacheService.swift in Sources */,
 				8441FB8223637355001DC085 /* PlayerRouter.swift in Sources */,
 				96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */,
 				96C29F502363483000E93CB1 /* PurchaseError.swift in Sources */,
@@ -1478,7 +1479,7 @@
 				96C29EFB2362606300E93CB1 /* RxActivityIndicator.swift in Sources */,
 				86B0C3152379BF1400C60158 /* RealmStory.swift in Sources */,
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
-				86B7A985237012EF007A36BA /* MeditationsListRequest.swift in Sources */,
+				86B7A985237012EF007A36BA /* FullMeditationsListRequest.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
@@ -1506,7 +1507,6 @@
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
 				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
 				847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */,
-				86B7A9872370132C007A36BA /* MeditationDetailRequest.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				962FB45623967BE400B88FFC /* StoryDetailRealmMapper.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,

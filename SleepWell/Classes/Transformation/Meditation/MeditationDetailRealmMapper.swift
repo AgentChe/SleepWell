@@ -12,11 +12,12 @@ struct MeditationDetailRealmMapper {
     static func map(from meditation: MeditationDetail) throws -> RealmMeditationDetail {
         guard
             let recording = meditation.recording as? Meditation,
-            let readingSound = meditation.readingSound as? MeditationSound,
-            let ambientSound = meditation.ambientSound as? MeditationSound
+            let readingSound = meditation.readingSound as? MeditationSound
         else {
             throw NSError(domain: "MeditationDetailRealmMapper", code: 0, userInfo: [:])
         }
+        
+        let ambientSound = meditation.ambientSound as? MeditationSound
         
         return RealmMeditationDetail(recording: recording, readingSound: readingSound, ambientSound: ambientSound)
     }

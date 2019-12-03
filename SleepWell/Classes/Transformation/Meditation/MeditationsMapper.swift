@@ -9,10 +9,36 @@
 import Foundation
 
 struct MeditationsMapper {
-    static func parse(response: Any) -> [Meditation] {
-        guard let dict = response as? [String: Any], let data = dict["_data"] as? [String: Any], let stories = data["meditations"] as? [[String: Any]] else {
-            return []
+    typealias FullMeditations = (meditations: [Meditation], details: [MeditationDetail], meditationsHashCode: String)
+    
+    static func fullMeditations(response: Any) -> FullMeditations? {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullMeditations = data["meditations"] as? [[String: Any]] else {
+            return nil
         }
-        return Meditation.parseFromArray(any: stories)
+        
+        var meditations: [Meditation] = []
+        var meditationDetails: [MeditationDetail] = []
+        
+        for fullMeditation in fullMeditations {
+            guard
+                let meditation = Meditation.parseFromDictionary(any: fullMeditation),
+                let readingSoundJSON = fullMeditation["reading_sound"] as? [String: Any],
+                let readingSound = MeditationSound.parseFromDictionary(any: readingSoundJSON)
+            else {
+                continue
+            }
+            
+            let ambientSoundJSON = fullMeditation["ambient_sound"] as? [String: Any] ?? [:]
+            let ambientSound = MeditationSound.parseFromDictionary(any: ambientSoundJSON)
+            
+            let details = MeditationDetail(recording: meditation, readingSound: readingSound, ambientSound: ambientSound)
+            
+            meditations.append(meditation)
+            meditationDetails.append(details)
+        }
+        
+        let hashCode = data["meditations_hash"] as? String ?? ""
+        
+        return (meditations, meditationDetails, hashCode)
     }
 }
