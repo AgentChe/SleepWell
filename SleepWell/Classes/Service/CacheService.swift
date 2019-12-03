@@ -14,14 +14,15 @@ final class CacheService {
     private let updateScenes = UpdateScenes()
     
     func update() -> Observable<Void> {
-        return Observable.combineLatest(updateMeditations.update().catchErrorJustReturn(Void()),
+        return Observable.combineLatest(updateMeditations.updateMeditations().catchErrorJustReturn(Void()),
                                         updateStories.update().catchErrorJustReturn(Void()),
-                                        updateScenes.update().catchErrorJustReturn(Void())) { _, _, _ in Void() }
+                                        updateScenes.update().catchErrorJustReturn(Void()),
+                                        updateMeditations.updateTags()) { _, _, _, _ in Void() }
     }
 }
 
 private final class UpdateMeditations {
-    func update() -> Observable<Void> {
+    func updateMeditations() -> Observable<Void> {
         return RestAPITransport()
             .callServerApi(requestBody: FullMeditationsListRequest(hashCode: CacheHashCodes.meditationsHashCode))
             .asObservable()
@@ -39,6 +40,21 @@ private final class UpdateMeditations {
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
+            }
+    }
+    
+    func updateTags() -> Observable<Void> {
+        return RestAPITransport()
+            .callServerApi(requestBody: MeditationTagsRequest(hashCode: CacheHashCodes.meditationTagsHashCode))
+            .asObservable()
+            .map { TagsMapper.parse(response: $0) }
+            .flatMap { fullTags -> Observable<Void> in
+                return RealmDBTransport()
+                    .saveData(entities: fullTags.tags, map: { MeditationTagRealmMapper.map(from: $0) })
+                    .do(onSuccess: {
+                        CacheHashCodes.meditationTagsHashCode = fullTags.tagsHashCode
+                    })
+                    .asObservable()
             }
     }
 }
@@ -93,6 +109,7 @@ private final class CacheHashCodes {
     private static let meditationsHashCodeKey = "meditations_hash_code_key"
     private static let storiesHashCodeKey = "stories_hash_code_key"
     private static let scenesHashCodeKey = "scenes_hash_code_key"
+    private static let meditationTagsHashCodeKey = "meditation_tags_hash_code_key"
     
     static var meditationsHashCode: String? {
         set(hashCode) {
@@ -118,6 +135,15 @@ private final class CacheHashCodes {
         }
         get {
             return UserDefaults.standard.string(forKey: scenesHashCodeKey)
+        }
+    }
+    
+    static var meditationTagsHashCode: String? {
+        set(hashCode) {
+            UserDefaults.standard.set(hashCode, forKey: meditationTagsHashCodeKey)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: meditationTagsHashCodeKey)
         }
     }
 }

@@ -19,34 +19,8 @@ class MeditationService {
             .map { $0.first }
     }
     
-    func tags() -> Observable<[MeditationTag]> {
-        let cacheTags = RealmDBTransport()
-            .loadData(realmType: RealmMeditationTag.self) {
-                MeditationTagRealmMapper.map(from: $0)
-            }
-
-        let request = MeditationTagsRequest(userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
-        
-        let tags = RestAPITransport()
-            .callServerApi(requestBody: request)
-            .map { TagsMapper.parse(response: $0) }
-            .flatMap { tags in
-                RealmDBTransport()
-                    .deleteData(realmType: RealmMeditationTag.self)
-                    .flatMap { _ in
-                        RealmDBTransport().saveData(entities: tags) {
-                            MeditationTagRealmMapper.map(from: $0)
-                        }
-                    }
-                
-            }
-            .flatMap {
-                cacheTags
-            }
-            .catchError { _ in
-                cacheTags
-            }
-
-        return Observable.concat(cacheTags.asObservable(), tags.asObservable())
+    func tags() -> Single<[MeditationTag]> {
+        return RealmDBTransport()
+            .loadData(realmType: RealmMeditationTag.self, filter: NSPredicate(format: "meditationsCount > %i", 0), map: { MeditationTagRealmMapper.map(from: $0) })
     }
 }

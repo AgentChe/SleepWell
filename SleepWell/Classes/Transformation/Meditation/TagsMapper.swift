@@ -9,10 +9,16 @@
 import Foundation
 
 struct TagsMapper {
-    static func parse(response: Any) -> [MeditationTag] {
+    typealias FullTags = (tags: [MeditationTag], tagsHashCode: String)
+    
+    static func parse(response: Any) -> FullTags {
         guard let dict = response as? [String: Any], let data = dict["_data"] as? [String: Any], let stories = data["tags"] as? [[String: Any]] else {
-            return []
+            return ([], "")
         }
-        return MeditationTag.parseFromArray(any: stories)
+        
+        let tags = MeditationTag.parseFromArray(any: stories)
+        let tagsHachCode = data["tags_hash"] as? String ?? ""
+        
+        return (tags, tagsHachCode)
     }
 }

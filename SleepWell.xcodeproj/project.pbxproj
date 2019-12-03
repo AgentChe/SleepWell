@@ -707,6 +707,7 @@
 		962FB44823966AD200B88FFC /* Meditation */ = {
 			isa = PBXGroup;
 			children = (
+				86B7A98E23702760007A36BA /* TagsMapper.swift */,
 				86B7A98C23701F85007A36BA /* MeditationsMapper.swift */,
 				86B0C31C2379DE0300C60158 /* MeditationRealmMapper.swift */,
 				86B0C31E2379DE0D00C60158 /* MeditationTagRealmMapper.swift */,
@@ -909,7 +910,6 @@
 				96C29F4223633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift */,
 				96DC8C7E23674EC5004DC76A /* PaygateMapper.swift */,
 				962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */,
-				86B7A98E23702760007A36BA /* TagsMapper.swift */,
 			);
 			path = Transformation;
 			sourceTree = "<group>";
