@@ -30,7 +30,7 @@ final class StoriesViewController: UIViewController {
         )
 
         tableHeaderView.frame = CGRect(origin: .zero, size: size)
-        tableHeaderView.setup(title: "Stories", subtitle: "Описание, что дают пользователю материалы представленные в этом разделе.")
+        tableHeaderView.setup(title: "Stories", subtitle: "stories_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
     }
