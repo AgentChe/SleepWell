@@ -158,10 +158,6 @@ class ScrollTabBarView: UIView {
         })
     }
     
-    func setPlayerState(_ isPlaying: Bool) {
-        miniPlayer.isPlaying = isPlaying
-    }
-    
     private var miniPlayerIsHidden = true
     
     private var initialCenterIndicator: CGPoint = .zero
@@ -200,6 +196,12 @@ extension ScrollTabBarView {
             }
             .startWith(items.count - 1)
             .asSignal(onErrorJustReturn: 0)
+    }
+    // true - отображает кнопку паузы, false - плей
+    var setPlayerState: Binder<Bool> {
+        return Binder(miniPlayer) {
+            $0.isPlaying = $1
+        }
     }
 }
 
