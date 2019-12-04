@@ -106,6 +106,7 @@ extension MainViewController: BindsToViewModel {
                         behave: isActiveSubscription,
                         isMainScreen: selectIndex
                             .map { $0 == Tab.scene.rawValue }
+                            .asDriver(onErrorDriveWith: .empty())
                             .startWith(true)
                     )
                 }
@@ -167,7 +168,7 @@ private extension MainViewController {
 
     func scenes(
         behave: Observable<Bool>,
-        isMainScreen: Signal<Bool>
+        isMainScreen: Driver<Bool>
     ) -> Signal<MainRoute> {
         if scenesAssambly == nil {
             scenesAssambly = ScenesAssembly().assemble(input: .init(

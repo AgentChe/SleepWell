@@ -53,7 +53,7 @@ extension ScenesViewController: BindsToViewModel {
     
     struct Input {
         let subscription: Observable<Bool>
-        let isMainScreen: Signal<Bool>
+        let isMainScreen: Driver<Bool>
         let hideTabbarClosure: (Bool) -> Void
     }
 
@@ -229,6 +229,9 @@ extension ScenesViewController: BindsToViewModel {
             }
             
         isExpanded.filter { $0 }
+            .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) { ($0, $1) }
+            .filter { $1 }
+            .map { $0.0 }
             .emit(to: Binder(self) { base, isExpanded in
                 input.hideTabbarClosure(isExpanded)
                 self.pauseButtonBottomConstraint.constant = CGFloat(-33)
@@ -245,6 +248,9 @@ extension ScenesViewController: BindsToViewModel {
         
         isExpanded.filter { !$0 }
             .withLatestFrom(isPlaying)
+            .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) { ($0, $1) }
+            .filter { $1 }
+            .map { $0.0 }
             .emit(to: Binder(self) { base, isPlaying in
                 input.hideTabbarClosure(false)
                 self.pauseButtonBottomConstraint.constant = CGFloat(116)
