@@ -87,6 +87,7 @@ extension PlayerViewController: BindsToViewModel {
                     .asDriver(onErrorDriveWith: .empty()),
                 isCurrentRecordingPlaying
             )
+            .distinctUntilChanged()
             .drive(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         

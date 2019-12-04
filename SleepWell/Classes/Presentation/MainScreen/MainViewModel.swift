@@ -18,6 +18,7 @@ protocol MainViewModelInterface {
         didPause: @escaping () -> Void
     )
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
+    var isPlaying: Driver<Bool> { get }
     var play: Binder<Void> { get }
     var pause: Binder<Void> { get }
 }
@@ -57,6 +58,10 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
     
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
         router.showPaygateScreen(completion: completion)
+    }
+    
+    var isPlaying: Driver<Bool> {
+        dependencies.audioService.isPlaying
     }
     
     var play: Binder<Void> {
