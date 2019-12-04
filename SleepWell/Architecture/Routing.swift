@@ -78,6 +78,19 @@ extension Router {
             $0.view.frame = self.transitionHandler?.view.frame ?? .zero
         }
     }
+    
+    @discardableResult
+    func presentChild<Assembly: ScreenAssembly>(
+        type: Assembly.Type,
+        input: Assembly.VC.Input,
+        at position: Int
+    ) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
+            self.transitionHandler?.addChild($0)
+            self.transitionHandler?.view.insertSubview($0.view, at: position)
+            $0.view.frame = self.transitionHandler?.view.frame ?? .zero
+        }
+    }
 
     @discardableResult
     func present<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input, animated: Bool = true) -> Assembly.VC.Output {

@@ -119,7 +119,6 @@ class ScrollTabBarView: UIView {
 
         miniPlayerIsHidden = false
         miniPlayer.name = name
-        miniPlayer.isPlaying = true
         addGestureRecognizer(panGesture)
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
@@ -150,10 +149,13 @@ class ScrollTabBarView: UIView {
         
         miniPlayerIsHidden = true
         removeGestureRecognizer(panGesture)
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
+            self.contentView.frame.origin.x = 0
             self.stackView.frame.size.width += self.indentMiniPlayer
             self.miniPlayer.frame.origin.x += self.indentMiniPlayer
-        }
+        }, completion: { _ in
+            self.selectedIndicator.center.x = self.items.first(where: { $0.select })?.center.x ?? .zero
+        })
     }
     
     private var miniPlayerIsHidden = true
@@ -194,6 +196,12 @@ extension ScrollTabBarView {
             }
             .startWith(items.count - 1)
             .asSignal(onErrorJustReturn: 0)
+    }
+    // true - отображает кнопку паузы, false - плей
+    var setPlayerState: Binder<Bool> {
+        return Binder(miniPlayer) {
+            $0.isPlaying = $1
+        }
     }
 }
 
