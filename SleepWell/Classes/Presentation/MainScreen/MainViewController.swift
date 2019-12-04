@@ -82,6 +82,10 @@ extension MainViewController: BindsToViewModel {
             }
             .asObservable()
         
+        viewModel.isPlaying
+            .drive(tabBarView.setPlayerState)
+            .disposed(by: disposeBag)
+        
         let isActiveSubscription = Observable
             .merge(behaveSignal, paygateSignal)
             .share(replay: 1, scope: .forever)

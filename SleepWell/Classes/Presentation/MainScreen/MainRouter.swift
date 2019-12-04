@@ -27,12 +27,16 @@ final class MainRouter: Routing {
         didStartPlaying: @escaping (String) -> Void,
         didPause: @escaping () -> Void
     ) {
-        router.presentChild(type: PlayerAssembly.self, input: .init(
-            recording: detail,
-            hideTabbarClosure: hideTabbarClosure,
-            didStartPlaying: didStartPlaying,
-            didPause: didPause
-        ))
+        router.presentChild(
+            type: PlayerAssembly.self,
+            input: .init(
+                recording: detail,
+                hideTabbarClosure: hideTabbarClosure,
+                didStartPlaying: didStartPlaying,
+                didPause: didPause
+            ),
+            at: 1
+        )
     }
     
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
