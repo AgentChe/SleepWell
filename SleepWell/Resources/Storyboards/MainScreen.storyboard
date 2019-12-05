@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="r7c-Ta-bYf">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" id="rqR-np-gSC" customClass="MainViewController" customModule="SleepWell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DFH-cd-wZt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEQ-I2-KZT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lQ-Uq-GGq" customClass="ScrollTabBarView" customModule="SleepWell" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="771" width="414" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="cY0-EO-9j2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WEQ-I2-KZT" firstAttribute="top" secondItem="DFH-cd-wZt" secondAttribute="top" id="65T-bL-SRw"/>
+                            <constraint firstItem="WEQ-I2-KZT" firstAttribute="leading" secondItem="vnC-KW-rOL" secondAttribute="leading" id="B3r-xx-qX8"/>
+                            <constraint firstAttribute="bottom" secondItem="5lQ-Uq-GGq" secondAttribute="bottom" id="D67-sN-2VC"/>
+                            <constraint firstItem="5lQ-Uq-GGq" firstAttribute="leading" secondItem="vnC-KW-rOL" secondAttribute="leading" id="EjA-Kf-cpw"/>
+                            <constraint firstItem="vnC-KW-rOL" firstAttribute="trailing" secondItem="5lQ-Uq-GGq" secondAttribute="trailing" id="FV3-KD-0I8"/>
+                            <constraint firstAttribute="bottom" secondItem="WEQ-I2-KZT" secondAttribute="bottom" id="Wxl-1g-qTh"/>
+                            <constraint firstItem="vnC-KW-rOL" firstAttribute="trailing" secondItem="WEQ-I2-KZT" secondAttribute="trailing" id="v7h-PK-P4l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vnC-KW-rOL"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="WEQ-I2-KZT" id="yma-kF-816"/>
+                        <outlet property="tabBarHeight" destination="cY0-EO-9j2" id="FNq-8m-eZw"/>
+                        <outlet property="tabBarView" destination="5lQ-Uq-GGq" id="Ixa-dv-PIK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aFS-CE-Ah9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="113"/>
+        </scene>
+    </scenes>
+</document>

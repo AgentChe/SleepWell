@@ -9,12 +9,12 @@
 import UIKit
 
 @discardableResult
-func with<T>(_ object: T, do action: (T) -> Void) -> T {
+func with<T>(object: T, do action: (T) -> Void) -> T {
     action(object)
     return object
 }
 
-func apply<T, R>(_ object: T, transform: (T) -> R) -> R {
+func apply<T, R>(object: T, transform: (T) -> R) -> R {
     return transform(object)
 }
 
@@ -23,27 +23,22 @@ func deferred<T>(file: StaticString = #file, line: UInt = #line) -> T {
 }
 
 protocol Routing {
-    init(_ vc: UIViewController)
+    init(transitionHandler: UIViewController)
 }
 
 final class Router: Routing {
     weak var transitionHandler: UIViewController?
     
-    init(_ transitionHandler: UIViewController) {
+    init(transitionHandler: UIViewController) {
         self.transitionHandler = transitionHandler
     }
 }
 
 private extension Router {
-    func show<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        input: Assembly.VC.Input,
-        transition: (UIViewController) -> Void
-        ) -> Assembly.VC.Output {
-        
+    func show<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input, transition: (UIViewController) -> Void) -> Assembly.VC.Output {
         let assembly = Assembly()
         
-        let tuple = assembly.assemble(input)
+        let tuple = assembly.assemble(input: input)
         
         transition(tuple.vc)
         
@@ -60,6 +55,7 @@ extension Router {
         guard let stackViewControllers = transitionHandler?.navigationController?.viewControllers, stackViewControllers.count > count else {
             return
         }
+        
         transitionHandler?.navigationController?.popToViewController(stackViewControllers[stackViewControllers.count - (count + 1)], animated: animated)
     }
     
@@ -68,120 +64,88 @@ extension Router {
     }
     
     @discardableResult
-    func push<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        input: Assembly.VC.Input,
-        animated: Bool = true
-    ) -> Assembly.VC.Output {
-        
-        return show(type, input: input) {
-            self.transitionHandler?.navigationController?.pushViewController(
-                $0,
-                animated: animated
-            )
+    func push<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input, animated: Bool = true) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
+            self.transitionHandler?.navigationController?.pushViewController($0, animated: animated)
         }
     }
 
     @discardableResult
-    func presentChild<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        input: Assembly.VC.Input
-    ) -> Assembly.VC.Output {
-
-        return show(type, input: input) {
+    func presentChild<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
             self.transitionHandler?.addChild($0)
             self.transitionHandler?.view.addSubview($0.view)
             $0.view.frame = self.transitionHandler?.view.frame ?? .zero
         }
     }
+    
+    @discardableResult
+    func presentChild<Assembly: ScreenAssembly>(
+        type: Assembly.Type,
+        input: Assembly.VC.Input,
+        at position: Int
+    ) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
+            self.transitionHandler?.addChild($0)
+            self.transitionHandler?.view.insertSubview($0.view, at: position)
+            $0.view.frame = self.transitionHandler?.view.frame ?? .zero
+        }
+    }
 
     @discardableResult
-    func present<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        input: Assembly.VC.Input,
-        animated: Bool = true
-    ) -> Assembly.VC.Output {
-        
-        return show(type, input: input) {
+    func present<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input, animated: Bool = true) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
             let rootVC = self.transitionHandler?.navigationController
                 ?? self.transitionHandler
             
-            rootVC?.present(
-                $0,
-                animated: animated,
-                completion: nil
-            )
+            rootVC?.present($0, animated: animated)
         }
     }
     
     @discardableResult
-    func setRootVC<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        input: Assembly.VC.Input,
-        animationOptions: UIView.AnimationOptions,
-        duration: TimeInterval
-    ) -> Assembly.VC.Output {
-
-        return show(type, input: input) {
-
-            let nc = UINavigationController(rootViewController: $0)
+    func setRootVC<Assembly: ScreenAssembly>(type: Assembly.Type, input: Assembly.VC.Input, animationOptions: UIView.AnimationOptions, duration: TimeInterval) -> Assembly.VC.Output {
+        return show(type: type, input: input) {
             guard let window = UIApplication.shared.keyWindow else {
                 return
             }
-            window.rootViewController = nc
-
-            UIView.transition(
-                with: window,
-                duration: duration,
-                options: animationOptions,
-                animations: nil,
-                completion: { [weak self] completed in
-                    self?.transitionHandler?.dismiss(animated: false, completion: nil)
-                }
+            
+            window.rootViewController = $0
+            
+            UIView.transition(with: window,
+                              duration: duration,
+                              options: animationOptions,
+                              animations: nil,
+                              completion: { [weak self] completed in
+                                self?.transitionHandler?.dismiss(animated: false, completion: nil)
+                            }
             )
         }
     }
 }
 
 extension Router {
-
     @discardableResult
-    func presentChild<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type
-    ) -> Assembly.VC.Output where Assembly.VC.Input == Void {
-
-        return presentChild(type, input: ())
+    func presentChild<Assembly: ScreenAssembly>(type: Assembly.Type) -> Assembly.VC.Output where Assembly.VC.Input == Void {
+        return presentChild(type: type, input: ())
     }
 
     @discardableResult
-    func push<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        animated: Bool = true
-    ) -> Assembly.VC.Output where Assembly.VC.Input == Void {
-        
-        return push(type, input: ())
+    func push<Assembly: ScreenAssembly>(type: Assembly.Type, animated: Bool = true) -> Assembly.VC.Output where Assembly.VC.Input == Void {
+        return push(type: type, input: ())
     }
     
     @discardableResult
-    func present<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        animated: Bool = true
-    ) -> Assembly.VC.Output where Assembly.VC.Input == Void {
-        
-        return present(type, input: ())
+    func present<Assembly: ScreenAssembly>(type: Assembly.Type, animated: Bool = true) -> Assembly.VC.Output where Assembly.VC.Input == Void {
+        return present(type: type, input: ())
     }
 
     @discardableResult
-    func setRootVC<Assembly: ScreenAssembly>(
-        _ type: Assembly.Type,
-        animationOptions: UIView.AnimationOptions = .transitionCrossDissolve,
-        duration: TimeInterval = 0.3
-    ) -> Assembly.VC.Output where Assembly.VC.Input == Void {
-        return setRootVC(
-            type,
-            input: (),
-            animationOptions: animationOptions,
-            duration: duration
-        )
+    func setRootVC<Assembly: ScreenAssembly>(type: Assembly.Type,
+                                             animationOptions: UIView.AnimationOptions = .transitionCrossDissolve,
+                                             duration: TimeInterval = 0.3) -> Assembly.VC.Output where Assembly.VC.Input == Void {
+        return setRootVC(type: type,
+                         input: (),
+                         animationOptions: animationOptions,
+                         duration: duration)
     }
 }

@@ -10,11 +10,11 @@ import RxSwift
 import RealmSwift
 
 class RealmDBTransport {
-    func loadData<E, R: Object>(realmType: R.Type, filter: NSPredicate? = nil, map: @escaping (R) -> (E)) -> Observable<[E]> {
-        return Observable.create { observer in
+    func loadData<E, R: Object>(realmType: R.Type, filter: NSPredicate? = nil, map: @escaping (R) -> (E)) -> Single<[E]> {
+        return Single.create { single in
             
             guard let realm = try? Realm(configuration: RealmDBTransport.realmConfiguration) else {
-                observer.onError(DataBaseError.failedToInitialize)
+                single(.error(DataBaseError.failedToInitialize))
                 return Disposables.create()
             }
             
@@ -27,18 +27,17 @@ class RealmDBTransport {
                 return map(obj)
             }
             
-            observer.onNext(objects)
-            observer.onCompleted()
+            single(.success(objects))
             
             return Disposables.create()
         }
     }
     
-    func saveData<E, R: Object>(entities: [E], map: @escaping (E) -> (R)) -> Observable<Void> {
-        return Observable.create { observer in
+    func saveData<E, R: Object>(entities: [E], map: @escaping (E) -> (R)) -> Single<Void> {
+        return Single.create { single in
             
             guard let realm = try? Realm(configuration: RealmDBTransport.realmConfiguration) else {
-                observer.onError(DataBaseError.failedToInitialize)
+                single(.error(DataBaseError.failedToInitialize))
                 return Disposables.create()
             }
             
@@ -51,22 +50,21 @@ class RealmDBTransport {
                     realm.add(objects, update: .all)
                 }
                 
-                observer.onNext(Void())
-                observer.onCompleted()
+                single(.success(Void()))
             }
             catch _ {
-                observer.onError(DataBaseError.failedToWrite)
+                single(.error(DataBaseError.failedToWrite))
             }
             
             return Disposables.create()
         }
     }
     
-    func deleteData<R: Object>(realmType: R.Type, filter: NSPredicate? = nil) -> Observable<Void> {
-        return Observable.create { observer in
+    func deleteData<R: Object>(realmType: R.Type, filter: NSPredicate? = nil) -> Single<Void> {
+        return Single.create { single in
             
             guard let realm = try? Realm(configuration: RealmDBTransport.realmConfiguration) else {
-                observer.onError(DataBaseError.failedToInitialize)
+                single(.error(DataBaseError.failedToInitialize))
                 return Disposables.create()
             }
             
@@ -80,11 +78,10 @@ class RealmDBTransport {
                     realm.delete(results)
                 }
                 
-                observer.onNext(Void())
-                observer.onCompleted()
+                single(.success(Void()))
             }
             catch _ {
-                observer.onError(DataBaseError.failedToWrite)
+                single(.error(DataBaseError.failedToWrite))
             }
             
             return Disposables.create()
