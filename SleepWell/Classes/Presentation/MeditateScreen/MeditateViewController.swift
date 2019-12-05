@@ -15,20 +15,47 @@ final class MeditateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
     }
+    
+//    self.tableView.tableHeaderView = nil;
+//
+//    UIView *header = self.headerView;
+//    CGRect frame = header.frame;
+//    frame.size.width = self.tableView.frame.size.width;
+//    header.frame = frame;
+//
+//    [header setNeedsLayout];
+//    [header layoutIfNeeded];
+//
+//    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//
+//    CGRect headerFrame = header.frame;
+//    headerFrame.size.height = height;
+//
+//    header.frame = headerFrame;
+//
+//    self.tableView.tableHeaderView = header;
     
     private func setupUI() {
         tableView.register(UINib(nibName: "MeditateCell", bundle: nil), forCellReuseIdentifier: "MeditateCell")
         tableView.register(UINib(nibName: "PremiumUnlockCell", bundle: nil), forCellReuseIdentifier: "PremiumUnlockCell")
         
-        let size = tableHeaderView.systemLayoutSizeFitting(
-            CGSize(width: tableView.frame.width, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
+        var tableHeaderFrame = tableHeaderView.frame
+        tableHeaderFrame.size.width = tableView.frame.size.width
+        tableHeaderView.frame = tableHeaderFrame
         
-        tableHeaderView.frame = CGRect(origin: .zero, size: size)
+        tableHeaderView.setNeedsLayout()
+        tableHeaderView.layoutIfNeeded()
+        
+        let height = tableHeaderView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        
+        var tableHeaderUpdatedFrame = tableHeaderView.frame
+        tableHeaderUpdatedFrame.size.height = height
+        
+        tableHeaderView.frame = tableHeaderUpdatedFrame
+        
         tableHeaderView.setup(title: "Meditate", subtitle: "meditations_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)

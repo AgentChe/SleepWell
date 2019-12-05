@@ -22,13 +22,20 @@ final class StoriesViewController: UIViewController {
         tableView.register(UINib(nibName: "StoryCell", bundle: nil), forCellReuseIdentifier: "StoryCell")
         tableView.register(UINib(nibName: "PremiumUnlockCell", bundle: nil), forCellReuseIdentifier: "PremiumUnlockCell")
 
-        let size = tableHeaderView.systemLayoutSizeFitting(
-            CGSize(width: tableView.frame.width, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-
-        tableHeaderView.frame = CGRect(origin: .zero, size: size)
+        var tableHeaderFrame = tableHeaderView.frame
+        tableHeaderFrame.size.width = tableView.frame.size.width
+        tableHeaderView.frame = tableHeaderFrame
+        
+        tableHeaderView.setNeedsLayout()
+        tableHeaderView.layoutIfNeeded()
+        
+        let height = tableHeaderView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        
+        var tableHeaderUpdatedFrame = tableHeaderView.frame
+        tableHeaderUpdatedFrame.size.height = height
+        
+        tableHeaderView.frame = tableHeaderUpdatedFrame
+        
         tableHeaderView.setup(title: "Stories", subtitle: "stories_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
