@@ -113,7 +113,7 @@ extension PlayerViewController: BindsToViewModel {
                 isCurrentRecordingPlaying
             ) { $1 }
         
-        rx.methodInvoked(#selector(UIViewController.viewWillLayoutSubviews))
+        rx.methodInvoked(#selector(UIViewController.viewWillAppear))
             .take(1)
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: Binder(self) { base, _ in
@@ -121,6 +121,7 @@ extension PlayerViewController: BindsToViewModel {
                 UIView.performWithoutAnimation {
                     base.topConstraint.constant = maxY
                     base.bottomConstraint.constant = -maxY
+                    base.view.layoutIfNeeded()
                 }
             })
             .disposed(by: disposeBag)

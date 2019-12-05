@@ -45,4 +45,3 @@ class PaygateMapper {
         return (productId, preBuyButtonInfo, postBuyButtonInfo, buyButtonText)
     }
 }
-

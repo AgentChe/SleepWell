@@ -8,7 +8,7 @@
 
 import RxCocoa
 
-class AppStateProxy {
+final class AppStateProxy {
     struct PushNotificationsProxy {
         static var notifyAboutPushTokenHasArrived: (() -> Void)?
         static let notifyAboutPushMessageArrived = PublishRelay<[AnyHashable : Any]>()

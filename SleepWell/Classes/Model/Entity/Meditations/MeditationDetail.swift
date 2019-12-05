@@ -57,6 +57,7 @@ extension MeditationDetail {
                           tags: try meditation.decode([Int].self, forKey: .tags),
                           length: readingSound.soundSecs)
         
+        print()
     }
     
     func encode(to encoder: Encoder) throws {

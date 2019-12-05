@@ -9,6 +9,7 @@
 import RealmSwift
 
 class RealmStoryDetail: Object {
+    @objc dynamic var id: Int = Int.random(in: Int.min...Int.max)
     @objc dynamic var recording: RealmStory!
     @objc dynamic var readingSound: RealmStorySound!
     @objc dynamic var ambientSound: RealmStorySound?
@@ -18,11 +19,17 @@ class RealmStoryDetail: Object {
                      ambientSound: StorySound?) {
         self.init()
         
+        id = recording.id
+        
         self.recording = StoryRealmMapper.map(from: recording)
         self.readingSound = StorySoundRealmMapper.map(from: readingSound)
         
         if let ambient = ambientSound {
             self.ambientSound = StorySoundRealmMapper.map(from: ambient)
         }
+    }
+    
+    @objc open override class func primaryKey() -> String? {
+        return "id"
     }
 }

@@ -18,6 +18,7 @@ protocol MainViewModelInterface {
         didPause: @escaping () -> Void
     )
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
+    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Void>
     var isPlaying: Driver<Bool> { get }
     var play: Binder<Void> { get }
     var pause: Binder<Void> { get }
@@ -33,6 +34,31 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
     struct Dependencies {
         let personalDataService: PersonalDataService
         let audioService: AudioPlayerService
+        let meditationService: MeditationService
+        let purchaseService: PurchaseService
+    }
+    
+    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Void> {
+        return dependencies
+            .meditationService.randomPaidMeditation().asObservable()
+            .flatMapLatest { meditation -> Observable<Int> in
+                guard let id = meditation?.id else {
+                    return .never()
+                }
+                
+                return Observable<Void>
+                    .merge(triggers)
+                    .map { id }
+            }
+            .flatMapLatest { [dependencies] meditationId in
+                return dependencies.purchaseService
+                    .isNeedPayment(by: meditationId)
+                    .catchError { _ in .never() }
+            }
+            .flatMapLatest { isNeedPayment -> Observable<Void> in
+                isNeedPayment ? .just(Void()) : .never()
+            }
+            .asSignal(onErrorSignalWith: .never())
     }
     
     func sendPersonalData() -> Signal<Bool> {

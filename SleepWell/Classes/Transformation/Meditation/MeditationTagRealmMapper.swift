@@ -10,10 +10,10 @@ import Foundation
 
 struct MeditationTagRealmMapper {
     static func map(from realm: RealmMeditationTag) -> MeditationTag {
-        return MeditationTag(id: realm.id, name: realm.name)
+        return MeditationTag(id: realm.id, name: realm.name, meditationsCount: realm.meditationsCount)
     }
 
     static func map(from entity: MeditationTag) -> RealmMeditationTag {
-        return RealmMeditationTag(id: entity.id, name: entity.name)
+        return RealmMeditationTag(id: entity.id, name: entity.name, meditationsCount: entity.meditationsCount)
     }
 }

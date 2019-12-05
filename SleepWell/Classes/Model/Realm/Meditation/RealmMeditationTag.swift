@@ -12,11 +12,14 @@ import RealmSwift
 class RealmMeditationTag: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
+    @objc dynamic var meditationsCount: Int = 0
     
-    convenience init(id: Int, name: String) {
+    convenience init(id: Int, name: String, meditationsCount: Int) {
         self.init()
+        
         self.id = id
         self.name = name
+        self.meditationsCount = meditationsCount
     }
 
     @objc open override class func primaryKey() -> String? {

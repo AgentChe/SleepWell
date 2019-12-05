@@ -12,7 +12,7 @@ import RxCocoa
 protocol MeditateViewModelInterface {
     func elements(subscription: Observable<Bool>, selectedTag: Signal<Int?>) -> Driver<[MeditateCellType]>
     func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]>
-    func getMeditationDetails(meditationId: Int) -> Signal<MeditateViewModel.Action>
+    func getMeditationDetails(meditationId: Int, subscription: Observable<Bool>) -> Signal<MeditateViewModel.Action>
 }
 
 final class MeditateViewModel: BindableViewModel {
@@ -60,23 +60,27 @@ extension MeditateViewModel: MeditateViewModelInterface {
     }
     
     func tags(selectedTag: Signal<Int?>) -> Driver<[TagCellModel]> {
-        let tags = dependencies.meditatationService.getTags()
+        let tags = dependencies.meditatationService.tags()
         return Observable
             .combineLatest(selectedTag.asObservable(), tags.asObservable())
             .map { TagCellModel.map(items: $1, selectedId: $0) }
             .asDriver(onErrorJustReturn: [])
     }
     
-    func getMeditationDetails(meditationId: Int) -> Signal<Action> {
+    func getMeditationDetails(meditationId: Int, subscription: Observable<Bool>) -> Signal<Action> {
         return dependencies.meditatationService
-            .getMeditation(meditationId: meditationId)
-            .map { Action.detail($0) }
-            .catchError { error -> Single<Action> in
-                guard (error as NSError).code == 403  else {
-                    return .never()
+            .meditation(meditationId: meditationId).asObservable()
+            .withLatestFrom(subscription) { (meditationDetails, isActiveSubscription) -> Action in
+                guard let details = meditationDetails else {
+                    return Action.detail(meditationDetails)
                 }
-                return .just(.paygate)
+                
+                guard isActiveSubscription ? true : !details.recording.paid else {
+                    return Action.paygate
+                }
+                
+                return Action.detail(details)
             }
-            .asSignal(onErrorSignalWith: .empty())
+            .asSignal(onErrorSignalWith: .never())
     }
 }

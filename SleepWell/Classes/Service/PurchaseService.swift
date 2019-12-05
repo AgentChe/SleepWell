@@ -9,7 +9,7 @@
 import RxSwift
 import SwiftyStoreKit
 
-class PurchaseService {
+final class PurchaseService {
     static func register() {
         SwiftyStoreKit.completeTransactions { purchases in
             for purchase in purchases {
@@ -103,5 +103,14 @@ class PurchaseService {
             return Disposables.create()
         }
     }
+    
+    func isNeedPayment(by meditationId: Int) -> Single<Bool> {
+        let userToken = SessionService.userToken
+        
+        let request = CheckActiveSubscriptionRequest(userToken: userToken, meditationId: meditationId)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { try CheckResponseForNeedPaymentError.isNeedPayment(jsonResponse: $0) }
+    }
 }
-

@@ -9,12 +9,10 @@
 import Alamofire
 
 struct MeditationTagsRequest: APIRequestBody {
-    private let userToken: String?
-    private let apiKey: String
+    private let hashCode: String?
     
-    init(userToken: String?, apiKey: String) {
-        self.userToken = userToken
-        self.apiKey = apiKey
+    init(hashCode: String?) {
+        self.hashCode = hashCode
     }
     
     var url: String {
@@ -26,9 +24,9 @@ struct MeditationTagsRequest: APIRequestBody {
     }
     
     var parameters: Parameters? {
-        var params: [String : Any] = ["_api_key": apiKey]
-        if let token = userToken {
-            params["_user_token"] = token
+        var params: [String : Any] = ["_api_key": GlobalDefinitions.apiKey]
+        if let hashCode = self.hashCode {
+            params["hash"] = hashCode
         }
         return params
     }

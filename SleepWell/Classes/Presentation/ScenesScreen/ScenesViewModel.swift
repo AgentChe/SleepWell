@@ -67,7 +67,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
             return .just(.paygate)
         }
         return dependencies.sceneService
-            .getScene(by: scene.id)
+            .scene(by: scene.id)
             .map { Action.detail($0) }
             .catchError { error -> Single<Action> in
                 guard (error as NSError).code == 403  else {

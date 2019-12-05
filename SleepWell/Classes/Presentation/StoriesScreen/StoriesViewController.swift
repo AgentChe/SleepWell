@@ -11,9 +11,8 @@ import RxSwift
 import RxCocoa
 
 final class StoriesViewController: UIViewController {
-    
     @IBOutlet private var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -23,14 +22,21 @@ final class StoriesViewController: UIViewController {
         tableView.register(UINib(nibName: "StoryCell", bundle: nil), forCellReuseIdentifier: "StoryCell")
         tableView.register(UINib(nibName: "PremiumUnlockCell", bundle: nil), forCellReuseIdentifier: "PremiumUnlockCell")
 
-        let size = tableHeaderView.systemLayoutSizeFitting(
-            CGSize(width: tableView.frame.width, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-
-        tableHeaderView.frame = CGRect(origin: .zero, size: size)
-        tableHeaderView.setup(title: "Stories", subtitle: "Описание, что дают пользователю материалы представленные в этом разделе.")
+        var tableHeaderFrame = tableHeaderView.frame
+        tableHeaderFrame.size.width = tableView.frame.size.width
+        tableHeaderView.frame = tableHeaderFrame
+        
+        tableHeaderView.setNeedsLayout()
+        tableHeaderView.layoutIfNeeded()
+        
+        let height = tableHeaderView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        
+        var tableHeaderUpdatedFrame = tableHeaderView.frame
+        tableHeaderUpdatedFrame.size.height = height
+        
+        tableHeaderView.frame = tableHeaderUpdatedFrame
+        
+        tableHeaderView.setup(title: "Stories", subtitle: "stories_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
     }
@@ -65,6 +71,14 @@ extension StoriesViewController: BindsToViewModel {
                 }
             }
             .disposed(by: disposeBag)
+        
+        tableHeaderView.didTapMenu
+            .emit(onNext: { [weak self] in
+                let vc = SettingsViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self?.present(vc, animated: false)
+            })
+            .disposed(by: disposeBag)
 
         let randomElement = tableHeaderView.didTapRandom
             .withLatestFrom(elements)
@@ -81,7 +95,7 @@ extension StoriesViewController: BindsToViewModel {
             }
             
             return viewModel
-                .getStoryDetails(id: story.id)
+                .getStoryDetails(id: story.id, subscription: input)
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:

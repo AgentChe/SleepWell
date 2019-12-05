@@ -81,7 +81,7 @@ struct PersonalData: Model {
     }
 }
 
-class PersonalDataService {
+final class PersonalDataService {
     private static let personalDataKey = "personal_data_key"
     
     func hasPersonalData() -> Bool {

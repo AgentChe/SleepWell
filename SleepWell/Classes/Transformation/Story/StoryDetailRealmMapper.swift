@@ -12,11 +12,12 @@ struct StoryDetailRealmMapper {
     static func map(from story: StoryDetail) throws -> RealmStoryDetail {
         guard
             let recording = story.recording as? Story,
-            let readingSound = story.readingSound as? StorySound,
-            let ambientSound = story.ambientSound as? StorySound
+            let readingSound = story.readingSound as? StorySound
         else {
             throw NSError(domain: "StoryDetailRealmMapper", code: 0, userInfo: [:])
         }
+        
+        let ambientSound = story.ambientSound as? StorySound
         
         return RealmStoryDetail(recording: recording, readingSound: readingSound, ambientSound: ambientSound)
     }

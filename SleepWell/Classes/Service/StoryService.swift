@@ -8,50 +8,14 @@
 
 import RxSwift
 
-class StoryService {
-    func stories() -> Observable<[Story]> {
-        let cachStories = RealmDBTransport()
-            .loadData(realmType: RealmStory.self) {
-                StoryRealmMapper.map(from: $0)
-            }
-
-        
-        let request = StoriesListRequest(userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
-
-        let stories = RestAPITransport()
-            .callServerApi(requestBody: request)
-            .map { StoriesMapper.parse(response: $0) }
-            .flatMap { stories in
-                RealmDBTransport()
-                    .deleteData(realmType: RealmStory.self)
-                    .flatMap { _ in
-                        RealmDBTransport().saveData(entities: stories) {
-                            StoryRealmMapper.map(from: $0)
-                        }
-                
-                    }
-            }
-            .flatMap {
-                cachStories
-            }
-            .catchError { _ in
-                cachStories
-            }
-
-        return Observable.concat(cachStories.asObservable(), stories.asObservable())
+final class StoryService {
+    func stories() -> Single<[Story]> {
+        return RealmDBTransport().loadData(realmType: RealmStory.self, map: { StoryRealmMapper.map(from: $0) })
     }
 
-    func getStory(storyId: Int) -> Single<StoryDetail?> {
-        let request = StoryDetailRequest(storyId: storyId, userToken: SessionService.userToken, apiKey: GlobalDefinitions.apiKey)
-        
-        return RestAPITransport()
-            .callServerApi(requestBody: request)
-            .map { response in
-                if try CheckResponseForNeedPaymentError.isNeedPayment(jsonResponse: response) {
-                    throw NSError(domain: "StoryService", code: 403, userInfo: [:])
-                } else {
-                    return StoryDetail.parseFromDictionary(any: response)
-                }
-            }
+    func story(storyId: Int) -> Single<StoryDetail?> {
+        return RealmDBTransport()
+            .loadData(realmType: RealmStoryDetail.self, filter: NSPredicate(format: "id == %i", storyId), map: { StoryDetailRealmMapper.map(from: $0) })
+            .map { $0.first }
     }
 }

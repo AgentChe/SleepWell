@@ -40,9 +40,9 @@
 		<string>Poppins-Italic.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 		<string>OpenSans-SemiBold.ttf</string>
-		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Italic.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>

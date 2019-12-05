@@ -15,11 +15,22 @@ class SplashViewModel {
         case onboarding(OnboardingViewModel.Behave)
     }
     
-    lazy var step = createStep()
+    lazy var step = updateCacheAndCreateStep()
     
     private let sessionService = SessionService()
     private let purchaseService = PurchaseService()
     private let personalDataService = PersonalDataService()
+    
+    private let cacheService = CacheService()
+    
+    private func updateCacheAndCreateStep() -> Single<Step> {
+        return cacheService
+        .update()
+        .asSingle()
+        .flatMap { [weak self] in
+            return self?.createStep() ?? .never()
+        }
+    }
     
     private func createStep() -> Single<Step> {
         if let userToken = SessionService.userToken {

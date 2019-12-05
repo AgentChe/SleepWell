@@ -12,7 +12,7 @@ import RxCocoa
 protocol StoriesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[StoriesCellType]>
     func randomElement(items: [StoriesCellType]) -> Signal<StoriesCellType>
-    func getStoryDetails(id: Int) -> Signal<StoriesViewModel.Action>
+    func getStoryDetails(id: Int, subscription: Observable<Bool>) -> Signal<StoriesViewModel.Action>
 }
 
 final class StoriesViewModel: BindableViewModel {
@@ -59,15 +59,19 @@ extension StoriesViewModel: StoriesViewModelInterface {
         return Signal.just(item)
     }
 
-    func getStoryDetails(id: Int) -> Signal<Action> {
+    func getStoryDetails(id: Int, subscription: Observable<Bool>) -> Signal<Action> {
         return dependencies.storyService
-            .getStory(storyId: id)
-            .map { Action.detail($0) }
-            .catchError { error -> Single<Action> in
-                guard (error as NSError).code == 403  else {
-                    return .never()
+            .story(storyId: id).asObservable()
+            .withLatestFrom(subscription) { (storyDetails, isActiveSubscription) -> Action in
+                guard let details = storyDetails else {
+                    return Action.detail(storyDetails)
                 }
-                return .just(.paygate)
+                
+                guard isActiveSubscription ? true : !details.recording.paid else {
+                    return Action.paygate
+                }
+                
+                return Action.detail(details)
             }
             .asSignal(onErrorSignalWith: .empty())
     }   

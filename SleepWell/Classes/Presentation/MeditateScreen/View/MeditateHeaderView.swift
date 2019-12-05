@@ -12,7 +12,7 @@ import RxCocoa
 
 final class MeditateHeaderView: UIView {
 
-    @IBOutlet private var titleView: HeaderTitleView!
+    @IBOutlet fileprivate var titleView: HeaderTitleView!
     @IBOutlet fileprivate var collectionView: UICollectionView!
     @IBOutlet private var conteinerView: UIView!
     @IBOutlet private var flowLayout: UICollectionViewFlowLayout!
@@ -51,6 +51,10 @@ final class MeditateHeaderView: UIView {
 extension MeditateHeaderView {
     var selectTag: Signal<Int?> {
         return didTapCell.asSignal(onErrorJustReturn: nil)
+    }
+    
+    var didTapMenu: Signal<Void> {
+        titleView.menuButton.rx.tap.asSignal()
     }
 }
 

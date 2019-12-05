@@ -15,6 +15,7 @@ final class MeditateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
     }
     
@@ -22,14 +23,21 @@ final class MeditateViewController: UIViewController {
         tableView.register(UINib(nibName: "MeditateCell", bundle: nil), forCellReuseIdentifier: "MeditateCell")
         tableView.register(UINib(nibName: "PremiumUnlockCell", bundle: nil), forCellReuseIdentifier: "PremiumUnlockCell")
         
-        let size = tableHeaderView.systemLayoutSizeFitting(
-            CGSize(width: tableView.frame.width, height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
+        var tableHeaderFrame = tableHeaderView.frame
+        tableHeaderFrame.size.width = tableView.frame.size.width
+        tableHeaderView.frame = tableHeaderFrame
         
-        tableHeaderView.frame = CGRect(origin: .zero, size: size)
-        tableHeaderView.setup(title: "Meditate", subtitle: "Описание, что дают пользователю материалы представленные в этом разделе.")
+        tableHeaderView.setNeedsLayout()
+        tableHeaderView.layoutIfNeeded()
+        
+        let height = tableHeaderView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        
+        var tableHeaderUpdatedFrame = tableHeaderView.frame
+        tableHeaderUpdatedFrame.size.height = height
+        
+        tableHeaderView.frame = tableHeaderUpdatedFrame
+        
+        tableHeaderView.setup(title: "Meditate", subtitle: "meditations_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
     }
@@ -67,6 +75,14 @@ extension MeditateViewController: BindsToViewModel {
         viewModel.tags(selectedTag: tableHeaderView.selectTag)
             .drive(tableHeaderView.rx.tags)
             .disposed(by: disposeBag)
+        
+        tableHeaderView.didTapMenu
+            .emit(onNext: { [weak self] in
+                let vc = SettingsViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self?.present(vc, animated: false)
+            })
+            .disposed(by: disposeBag)
 
         return tableView.rx.modelSelected(MeditateCellType.self)
             .asSignal()
@@ -76,7 +92,7 @@ extension MeditateViewController: BindsToViewModel {
                 }
                 
                 return viewModel
-                    .getMeditationDetails(meditationId: meditate.id)
+                    .getMeditationDetails(meditationId: meditate.id, subscription: input)
                     .map { action -> MainRoute in
                         switch action {
                         case .paygate:
@@ -90,6 +106,5 @@ extension MeditateViewController: BindsToViewModel {
                         }
                     }
             }
-        
     }
 }

@@ -13,7 +13,7 @@ enum PushNotificationAuthorizationStatus {
     case authorized, denied, notDetermined
 }
 
-class PushMessagesService {
+final class PushMessagesService {
     static let shared = PushMessagesService()
     
     private init() {}
