@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>517537745864-31hcb302g6t92cf6flp9as693jfbl5gg.apps.googleusercontent.com</string>
+	<string>401049101814-vr3h24h38g288gto28mb25dtnohpucu6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.517537745864-31hcb302g6t92cf6flp9as693jfbl5gg</string>
+	<string>com.googleusercontent.apps.401049101814-vr3h24h38g288gto28mb25dtnohpucu6</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAM_QvfA6gQT7AR57IvkVoXqFdXQLLDuvc</string>
+	<string>AIzaSyDlWE_NwJe19SvWoW8K_o-uUrPf_6LxmAY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>517537745864</string>
+	<string>401049101814</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sz.sleepwell</string>
+	<string>com.li.sleepwell</string>
 	<key>PROJECT_ID</key>
-	<string>sleep-app-78be3</string>
+	<string>sleepwell-8536d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sleep-app-78be3.appspot.com</string>
+	<string>sleepwell-8536d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:517537745864:ios:2392d07509bdd6a517cefd</string>
+	<string>1:401049101814:ios:36fe62cd15199830d153d7</string>
 	<key>DATABASE_URL</key>
-	<string>https://sleep-app-78be3.firebaseio.com</string>
+	<string>https://sleepwell-8536d.firebaseio.com</string>
 </dict>
 </plist>

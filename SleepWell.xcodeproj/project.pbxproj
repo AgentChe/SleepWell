@@ -109,7 +109,7 @@
 		9623D346239917EC0040CB43 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D345239917EC0040CB43 /* SettingsItemView.swift */; };
 		9623D348239942630040CB43 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D347239942630040CB43 /* UIDeviceExtension.swift */; };
 		9623D34A239967C70040CB43 /* CheckActiveSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */; };
-		962A7778236A0662000E2683 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962A7777236A0661000E2683 /* GoogleService-Info.plist */; };
+		9623D34E2399878E0040CB43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9623D34D2399878D0040CB43 /* GoogleService-Info.plist */; };
 		962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */; };
 		962A777D236A2A09000E2683 /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777C236A2A09000E2683 /* SetRequest.swift */; };
 		962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */; };
@@ -320,8 +320,8 @@
 		9623D345239917EC0040CB43 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		9623D347239942630040CB43 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckActiveSubscriptionRequest.swift; sourceTree = "<group>"; };
+		9623D34D2399878D0040CB43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		962A777623698EB2000E2683 /* SleepWell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepWell.entitlements; sourceTree = "<group>"; };
-		962A7777236A0661000E2683 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
 		962A777C236A2A09000E2683 /* SetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRequest.swift; sourceTree = "<group>"; };
 		962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckResponseForCodeError.swift; sourceTree = "<group>"; };
@@ -860,7 +860,7 @@
 				96C29F112362649100E93CB1 /* Strings */,
 				96DC8C612367444C004DC76A /* Fonts */,
 				96C29ED12362564200E93CB1 /* Assets.xcassets */,
-				962A7777236A0661000E2683 /* GoogleService-Info.plist */,
+				9623D34D2399878D0040CB43 /* GoogleService-Info.plist */,
 				96C29ED62362564200E93CB1 /* Info.plist */,
 			);
 			path = Resources;
@@ -1320,6 +1320,7 @@
 				86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */,
 				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
 				844F025B23777002004C062B /* VolumeScreen.storyboard in Resources */,
+				9623D34E2399878E0040CB43 /* GoogleService-Info.plist in Resources */,
 				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
 				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
 				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
@@ -1340,7 +1341,6 @@
 				968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
-				962A7778236A0662000E2683 /* GoogleService-Info.plist in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
 				86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */,
