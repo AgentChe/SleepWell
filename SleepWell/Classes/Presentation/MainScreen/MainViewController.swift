@@ -68,6 +68,10 @@ extension MainViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: MainViewModelInterface, with input: Input) -> () {
+        viewModel.isPlaying
+            .drive(tabBarView.setPlayerState)
+            .disposed(by: disposeBag)
+        
         let paygateRelay = PublishRelay<PaygateCompletionResult>()
         
         let behaveSignal = Observable.deferred { .just(input.behave == .withActiveSubscription) }
@@ -81,13 +85,14 @@ extension MainViewController: BindsToViewModel {
                 }
             }
             .asObservable()
-        
-        viewModel.isPlaying
-            .drive(tabBarView.setPlayerState)
-            .disposed(by: disposeBag)
+        let subscriptionExpired = viewModel
+            .monitorSubscriptionExpiration(triggers: [AppStateProxy.ApplicationProxy.didBecomeActive.asObservable()])
+            .asObservable()
+            .map { false }
+            .distinctUntilChanged()
         
         let isActiveSubscription = Observable
-            .merge(behaveSignal, paygateSignal)
+            .merge(behaveSignal, paygateSignal, subscriptionExpired)
             .share(replay: 1, scope: .forever)
 
         let selectIndex = tabBarView.selectIndex

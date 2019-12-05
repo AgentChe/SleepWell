@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class MeditationService {
+final class MeditationService {
     func meditations() -> Single<[Meditation]> {
         return RealmDBTransport().loadData(realmType: RealmMeditation.self, map: { MeditationRealmMapper.map(from: $0) })
     }
@@ -22,5 +22,11 @@ class MeditationService {
     func tags() -> Single<[MeditationTag]> {
         return RealmDBTransport()
             .loadData(realmType: RealmMeditationTag.self, filter: NSPredicate(format: "meditationsCount > %i", 0), map: { MeditationTagRealmMapper.map(from: $0) })
+    }
+    
+    func randomPaidMeditation() -> Single<Meditation?> {
+        return RealmDBTransport()
+            .loadData(realmType: RealmMeditation.self, filter: NSPredicate(format: "paid == TRUE"), map: { MeditationRealmMapper.map(from: $0) })
+            .map { $0.randomElement() }
     }
 }

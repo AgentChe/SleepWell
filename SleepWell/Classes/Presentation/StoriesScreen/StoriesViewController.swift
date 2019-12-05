@@ -95,7 +95,7 @@ extension StoriesViewController: BindsToViewModel {
             }
             
             return viewModel
-                .getStoryDetails(id: story.id)
+                .getStoryDetails(id: story.id, subscription: input)
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:

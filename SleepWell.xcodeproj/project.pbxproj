@@ -108,6 +108,7 @@
 		9623D343239911F90040CB43 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D342239911F90040CB43 /* SettingsViewController.swift */; };
 		9623D346239917EC0040CB43 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D345239917EC0040CB43 /* SettingsItemView.swift */; };
 		9623D348239942630040CB43 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D347239942630040CB43 /* UIDeviceExtension.swift */; };
+		9623D34A239967C70040CB43 /* CheckActiveSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */; };
 		962A7778236A0662000E2683 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962A7777236A0661000E2683 /* GoogleService-Info.plist */; };
 		962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */; };
 		962A777D236A2A09000E2683 /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777C236A2A09000E2683 /* SetRequest.swift */; };
@@ -318,6 +319,7 @@
 		9623D342239911F90040CB43 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9623D345239917EC0040CB43 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		9623D347239942630040CB43 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckActiveSubscriptionRequest.swift; sourceTree = "<group>"; };
 		962A777623698EB2000E2683 /* SleepWell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepWell.entitlements; sourceTree = "<group>"; };
 		962A7777236A0661000E2683 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 				86B7A984237012EF007A36BA /* FullMeditationsListRequest.swift */,
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
 				86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */,
+				9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1515,6 +1518,7 @@
 				962FB447239668BF00B88FFC /* RealmMeditationDetail.swift in Sources */,
 				844F025723776E4F004C062B /* VolumeRouter.swift in Sources */,
 				8620C371238C58BB00D26FDB /* ScrollTabBarView.swift in Sources */,
+				9623D34A239967C70040CB43 /* CheckActiveSubscriptionRequest.swift in Sources */,
 				9623D343239911F90040CB43 /* SettingsViewController.swift in Sources */,
 				962FB45423967B5F00B88FFC /* StorySoundRealmMapper.swift in Sources */,
 				86F98CBE23645F7800B0F5EA /* MeditateHeaderView.swift in Sources */,

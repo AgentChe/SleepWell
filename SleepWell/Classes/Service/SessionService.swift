@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class SessionService {
+final class SessionService {
     private static let userTokenKey = "user_token_key"
     
     static var userToken: String? {

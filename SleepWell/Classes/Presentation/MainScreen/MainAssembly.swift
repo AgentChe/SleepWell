@@ -12,7 +12,9 @@ final class MainAssembly: ScreenAssembly {
     func assembleDependencies() -> MainViewModel.Dependencies {
         return VC.ViewModel.Dependencies(
             personalDataService: PersonalDataService(),
-            audioService: AudioPlayerService.shared
+            audioService: AudioPlayerService.shared,
+            meditationService: MeditationService(),
+            purchaseService: PurchaseService()
         )
     }
 }

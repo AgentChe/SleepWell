@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class StoryService {
+final class StoryService {
     func stories() -> Single<[Story]> {
         return RealmDBTransport().loadData(realmType: RealmStory.self, map: { StoryRealmMapper.map(from: $0) })
     }

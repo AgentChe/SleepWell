@@ -19,25 +19,6 @@ final class MeditateViewController: UIViewController {
         setupUI()
     }
     
-//    self.tableView.tableHeaderView = nil;
-//
-//    UIView *header = self.headerView;
-//    CGRect frame = header.frame;
-//    frame.size.width = self.tableView.frame.size.width;
-//    header.frame = frame;
-//
-//    [header setNeedsLayout];
-//    [header layoutIfNeeded];
-//
-//    CGFloat height = [header systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//
-//    CGRect headerFrame = header.frame;
-//    headerFrame.size.height = height;
-//
-//    header.frame = headerFrame;
-//
-//    self.tableView.tableHeaderView = header;
-    
     private func setupUI() {
         tableView.register(UINib(nibName: "MeditateCell", bundle: nil), forCellReuseIdentifier: "MeditateCell")
         tableView.register(UINib(nibName: "PremiumUnlockCell", bundle: nil), forCellReuseIdentifier: "PremiumUnlockCell")
@@ -111,7 +92,7 @@ extension MeditateViewController: BindsToViewModel {
                 }
                 
                 return viewModel
-                    .getMeditationDetails(meditationId: meditate.id)
+                    .getMeditationDetails(meditationId: meditate.id, subscription: input)
                     .map { action -> MainRoute in
                         switch action {
                         case .paygate:
