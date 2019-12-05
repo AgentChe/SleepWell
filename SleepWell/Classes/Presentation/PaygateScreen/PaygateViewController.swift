@@ -18,8 +18,15 @@ final class PaygateViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var freeAccessLabel: UILabel!
     @IBOutlet weak var errorView: ErrorView!
+    @IBOutlet weak var topContraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        topContraint.constant = UIDevice.current.isSmallScreen ? 190 : 258
+    }
 }
 
 extension PaygateViewController: BindsToViewModel {

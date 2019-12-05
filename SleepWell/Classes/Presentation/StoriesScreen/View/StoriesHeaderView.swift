@@ -39,4 +39,8 @@ extension StoriesHeaderView {
     var didTapRandom: Signal<Void> {
         randomButton.rx.tap.asSignal()
     }
+    
+    var didTapMenu: Signal<Void> {
+        titleView.menuButton.rx.tap.asSignal()
+    }
 }

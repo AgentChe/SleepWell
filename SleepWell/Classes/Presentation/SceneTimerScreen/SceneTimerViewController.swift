@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 final class SceneTimerViewController: UIViewController {
-    
     @IBOutlet weak var fifteenMinView: UIView!
     @IBOutlet weak var thirtyView: UIView!
     @IBOutlet weak var fortyFiveView: UIView!

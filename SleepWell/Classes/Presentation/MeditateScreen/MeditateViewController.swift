@@ -67,6 +67,14 @@ extension MeditateViewController: BindsToViewModel {
         viewModel.tags(selectedTag: tableHeaderView.selectTag)
             .drive(tableHeaderView.rx.tags)
             .disposed(by: disposeBag)
+        
+        tableHeaderView.didTapMenu
+            .emit(onNext: { [weak self] in
+                let vc = SettingsViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self?.present(vc, animated: false)
+            })
+            .disposed(by: disposeBag)
 
         return tableView.rx.modelSelected(MeditateCellType.self)
             .asSignal()
@@ -90,6 +98,5 @@ extension MeditateViewController: BindsToViewModel {
                         }
                     }
             }
-        
     }
 }

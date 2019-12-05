@@ -12,6 +12,7 @@ class HeaderTitleView: UIView {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var containerView: UIView!
+    @IBOutlet weak var menuButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -11,9 +11,8 @@ import RxSwift
 import RxCocoa
 
 final class StoriesViewController: UIViewController {
-    
     @IBOutlet private var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -64,6 +63,14 @@ extension StoriesViewController: BindsToViewModel {
                     return cell
                 }
             }
+            .disposed(by: disposeBag)
+        
+        tableHeaderView.didTapMenu
+            .emit(onNext: { [weak self] in
+                let vc = SettingsViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self?.present(vc, animated: false)
+            })
             .disposed(by: disposeBag)
 
         let randomElement = tableHeaderView.didTapRandom
