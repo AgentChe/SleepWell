@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Kingfisher
 
 final class CacheService {
     private let updateMeditations = UpdateMeditations()
@@ -22,10 +23,13 @@ final class CacheService {
 }
 
 private final class UpdateMeditations {
+    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    
     func updateMeditations() -> Observable<Void> {
         return RestAPITransport()
             .callServerApi(requestBody: FullMeditationsListRequest(hashCode: CacheHashCodes.meditationsHashCode))
             .asObservable()
+            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { MeditationsMapper.fullMeditations(response: $0) }
             .flatMap { fullMeditations -> Observable<Void> in
                 guard let data = fullMeditations else {
@@ -36,11 +40,20 @@ private final class UpdateMeditations {
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! MeditationDetailRealmMapper.map(from: $0) })
                 
                 return Observable
-                    .combineLatest(saveMeditations.asObservable(), saveDetails.asObservable()) { _, _ in Void() }
+                    .combineLatest(saveMeditations.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in
+                        return data.meditations.reduce([]) { urls, meditation -> [URL] in
+                            var result = urls
+                            if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
+                            if let imageReaderURL = meditation.imageReaderURL { result.append(imageReaderURL) }
+                            return result
+                        }
+                    }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .never() }
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
             }
+            .observeOn(MainScheduler.asyncInstance)
     }
     
     func updateTags() -> Observable<Void> {
@@ -60,10 +73,13 @@ private final class UpdateMeditations {
 }
 
 private final class UpdateStories {
+    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    
     func update() -> Observable<Void> {
         return RestAPITransport()
             .callServerApi(requestBody: FullStoriesListRequest(hashCode: CacheHashCodes.storiesHashCode))
             .asObservable()
+            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { StoriesMapper.fullStories(response: $0) }
             .flatMap { fullStories -> Observable<Void> in
                 guard let data = fullStories else {
@@ -74,19 +90,31 @@ private final class UpdateStories {
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! StoryDetailRealmMapper.map(from: $0) })
                 
                 return Observable
-                    .combineLatest(saveStories.asObservable(), saveDetails.asObservable()) { _, _ in Void() }
+                    .combineLatest(saveStories.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in
+                        return data.stories.reduce([]) { urls, story -> [URL] in
+                            var result = urls
+                            if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
+                            if let imageReaderURL = story.imageReaderURL { result.append(imageReaderURL) }
+                            return result
+                        }
+                    }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .never() }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
             }
+            .observeOn(MainScheduler.asyncInstance)
     }
 }
 
 private final class UpdateScenes {
+    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    
     func update() -> Observable<Void> {
         return RestAPITransport()
             .callServerApi(requestBody: FullScenesListRequest(hashCode: CacheHashCodes.scenesHashCode))
             .asObservable()
+            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { ScenesMapper.fullScenes(response: $0) }
             .flatMap { fullScenes -> Observable<Void> in
                 guard let data = fullScenes else {
@@ -97,11 +125,13 @@ private final class UpdateScenes {
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
                 
                 return Observable
-                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ in Void() }
+                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in data.scenes.compactMap { $0.imageUrl } }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .never() }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
             }
+            .observeOn(MainScheduler.asyncInstance)
     }
 }
 

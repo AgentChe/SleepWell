@@ -110,6 +110,7 @@
 		9623D348239942630040CB43 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D347239942630040CB43 /* UIDeviceExtension.swift */; };
 		9623D34A239967C70040CB43 /* CheckActiveSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */; };
 		9623D34E2399878E0040CB43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9623D34D2399878D0040CB43 /* GoogleService-Info.plist */; };
+		9623D3502399C3060040CB43 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D34F2399C3060040CB43 /* ImageCacheService.swift */; };
 		962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */; };
 		962A777D236A2A09000E2683 /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777C236A2A09000E2683 /* SetRequest.swift */; };
 		962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */; };
@@ -321,6 +322,7 @@
 		9623D347239942630040CB43 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckActiveSubscriptionRequest.swift; sourceTree = "<group>"; };
 		9623D34D2399878D0040CB43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9623D34F2399C3060040CB43 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		962A777623698EB2000E2683 /* SleepWell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepWell.entitlements; sourceTree = "<group>"; };
 		962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
 		962A777C236A2A09000E2683 /* SetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRequest.swift; sourceTree = "<group>"; };
@@ -929,6 +931,7 @@
 				9685528E236985EE00A22E21 /* PushMessageService.swift */,
 				968552902369871000A22E21 /* AppStateProxy.swift */,
 				962FB4692396A76100B88FFC /* CacheService.swift */,
+				9623D34F2399C3060040CB43 /* ImageCacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1432,6 +1435,7 @@
 				96C29F6323634D6C00E93CB1 /* OnboardingAssembly.swift in Sources */,
 				96C29F452363421800E93CB1 /* CheckUserTokenRequest.swift in Sources */,
 				86B7A98F23702760007A36BA /* TagsMapper.swift in Sources */,
+				9623D3502399C3060040CB43 /* ImageCacheService.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
