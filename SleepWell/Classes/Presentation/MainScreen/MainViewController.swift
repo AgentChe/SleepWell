@@ -207,17 +207,10 @@ private extension MainViewController {
     }
 
     func hideTabBar(isHidden: Bool) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0,
-            options: isHidden ? .curveEaseOut : .curveEaseIn,
-            animations: {
-                self.tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
-                self.view.layoutIfNeeded()
-        }) { _ in
-            
+        tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
+
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
 }
