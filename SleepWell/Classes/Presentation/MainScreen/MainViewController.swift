@@ -71,7 +71,6 @@ extension MainViewController: BindsToViewModel {
         
         let paygateRelay = PublishRelay<PaygateCompletionResult>()
         
-        let behaveSignal = Observable.deferred { .just(input.behave == .withActiveSubscription) }
         let paygateSignal = paygateRelay
             .flatMapLatest { paygateResult -> Signal<Bool> in
                 switch paygateResult {
@@ -82,14 +81,15 @@ extension MainViewController: BindsToViewModel {
                 }
             }
             .asObservable()
+        
         let subscriptionExpired = viewModel
             .monitorSubscriptionExpiration(triggers: [AppStateProxy.ApplicationProxy.didBecomeActive.asObservable()])
-            .asObservable()
-            .map { false }
+            .startWith(input.behave == .withActiveSubscription)
             .distinctUntilChanged()
+            .asObservable()
         
         let isActiveSubscription = Observable
-            .merge(behaveSignal, paygateSignal, subscriptionExpired)
+            .merge(paygateSignal, subscriptionExpired)
             .share(replay: 1, scope: .forever)
 
         let selectIndex = tabBarView.selectIndex

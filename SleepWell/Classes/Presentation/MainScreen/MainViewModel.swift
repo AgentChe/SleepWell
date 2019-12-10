@@ -18,7 +18,7 @@ protocol MainViewModelInterface {
         didPause: @escaping () -> Void
     )
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
-    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Void>
+    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Bool>
     var isPlaying: Driver<Bool> { get }
     func playRecording(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
@@ -39,7 +39,7 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
         let purchaseService: PurchaseService
     }
     
-    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Void> {
+    func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Bool> {
         return dependencies
             .meditationService.randomPaidMeditation().asObservable()
             .flatMapLatest { meditation -> Observable<Int> in
@@ -55,9 +55,6 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
                 return dependencies.purchaseService
                     .isNeedPayment(by: meditationId)
                     .catchError { _ in .never() }
-            }
-            .flatMapLatest { isNeedPayment -> Observable<Void> in
-                isNeedPayment ? .just(Void()) : .never()
             }
             .asSignal(onErrorSignalWith: .never())
     }
