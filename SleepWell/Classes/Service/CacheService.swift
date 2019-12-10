@@ -47,7 +47,7 @@ private final class UpdateMeditations {
                             return result
                         }
                     }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .just(Void()) }
+                .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -95,7 +95,7 @@ private final class UpdateStories {
                             return result
                         }
                     }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .just(Void()) }
+                .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -121,7 +121,7 @@ private final class UpdateScenes {
                 
                 return Observable
                     .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in data.scenes.compactMap { $0.imageUrl } }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.rx.cacheImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })

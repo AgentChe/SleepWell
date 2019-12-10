@@ -13,11 +13,11 @@ import Kingfisher
 final class ImageCacheService {
     private lazy var queue: OperationQueue = {
         let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 5
+        queue.maxConcurrentOperationCount = 1
         return queue
     }()
     
-    fileprivate func cacheImagesReactive(urls: [URL]) -> Single<Void>{
+    func cacheImages(urls: [URL]) -> Single<Void>{
         return Single.create { single in
             let operations = urls.map { ImageFetchOperation(url: $0) }
 
@@ -35,14 +35,6 @@ final class ImageCacheService {
                 }
             }
         }
-    }
-}
-
-extension ImageCacheService: ReactiveCompatible { }
-
-extension Reactive where Base: ImageCacheService {
-    func cacheImages(urls: [URL]) -> Single<Void> {
-        return base.cacheImagesReactive(urls: urls)
     }
 }
 
@@ -66,7 +58,7 @@ private final class ImageFetchOperation: Operation {
     @objc dynamic class func keyPathsForValuesAffectingIsExecuting() -> Set<String> { return ["state"] }
     @objc dynamic class func keyPathsForValuesAffectingIsFinished() -> Set<String> { return ["state"] }
     @objc dynamic class func keyPathsForValuesAffectingIsCancelled() -> Set<String> { return ["state"] }
-    
+
     private var rawState = State.ready
     
     private let stateQueue = DispatchQueue(label: "ImageFetchOperation.stateQueue.\(UUID().uuidString)", attributes: .concurrent)
