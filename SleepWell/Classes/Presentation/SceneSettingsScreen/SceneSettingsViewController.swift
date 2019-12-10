@@ -12,7 +12,6 @@ import RxCocoa
 
 final class SceneSettingsViewController: UIViewController {
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
@@ -45,11 +44,6 @@ extension SceneSettingsViewController: BindsToViewModel {
     }
 
     func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) -> Output {
-        
-        if let image = input.sceneDetail.scene.imageUrl {
-            backgroundImageView.kf.indicatorType = .activity
-            backgroundImageView.kf.setImage(with: image, options: [.transition(.fade(0.2))])
-        }
         
         let soundsCount = input.sceneDetail.sounds.count
         let maxHeight = view.frame.height - 304

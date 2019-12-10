@@ -32,13 +32,21 @@ final class ScenesViewController: UIViewController {
         collectionView.velocityMultiplier = 1
         collectionView.isItemPagingEnabled = true
         let imageEdgeInsets = UIEdgeInsets(
-            top: 3,
-            left: 3,
-            bottom: 3,
-            right: 3
+            top: 26.5,
+            left: 28.5,
+            bottom: 26.5,
+            right: 28.5
         )
         pauseButton.imageEdgeInsets = imageEdgeInsets
         playButton.imageEdgeInsets = imageEdgeInsets
+        
+        let settingsInsets = UIEdgeInsets(
+            top: 23.31,
+            left: 20.875,
+            bottom: 23.31,
+            right: 20.875
+        )
+        settingsButton.imageEdgeInsets = settingsInsets
     }
 
     private let disposeBag = DisposeBag()
@@ -269,8 +277,8 @@ extension ScenesViewController: BindsToViewModel {
             .map { $0.0 }
             .emit(to: Binder(self) { base, isExpanded in
                 input.hideTabbarClosure(isExpanded)
-                self.pauseButtonBottomConstraint.constant = CGFloat(-33)
-                self.settingsButtonBottomConstraint.constant = CGFloat(-35)
+                self.pauseButtonBottomConstraint.constant = CGFloat(-80)
+                self.settingsButtonBottomConstraint.constant = CGFloat(-80)
                 
                 UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()
@@ -285,8 +293,8 @@ extension ScenesViewController: BindsToViewModel {
             .map { $0.0 }
             .emit(to: Binder(self) { base, isPlaying in
                 input.hideTabbarClosure(false)
-                self.pauseButtonBottomConstraint.constant = CGFloat(116)
-                self.settingsButtonBottomConstraint.constant = CGFloat(117)
+                self.pauseButtonBottomConstraint.constant = CGFloat(108.5)
+                self.settingsButtonBottomConstraint.constant = CGFloat(110.32)
                 
                 UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()
