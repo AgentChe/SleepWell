@@ -129,6 +129,7 @@
 		962FB4622396847F00B88FFC /* SceneSoundRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */; };
 		962FB4642396878A00B88FFC /* SceneDetailRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */; };
 		962FB46A2396A76100B88FFC /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4692396A76100B88FFC /* CacheService.swift */; };
+		965ABE7123A023780069307E /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ABE7023A023770069307E /* SizeUtils.swift */; };
 		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
 		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
 		9685528623688C1100A22E21 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528523688C1100A22E21 /* CheckView.swift */; };
@@ -342,6 +343,7 @@
 		962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSoundRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4692396A76100B88FFC /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		965ABE7023A023770069307E /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
 		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
 		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
 		9685528523688C1100A22E21 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
@@ -698,6 +700,7 @@
 			children = (
 				9623D33723988A510040CB43 /* Fonts.swift */,
 				9623D335239885EF0040CB43 /* TextAttributes.swift */,
+				965ABE7023A023770069307E /* SizeUtils.swift */,
 			);
 			path = UIUtils;
 			sourceTree = "<group>";
@@ -1546,6 +1549,7 @@
 				847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
 				962FB45623967BE400B88FFC /* StoryDetailRealmMapper.swift in Sources */,
+				965ABE7123A023780069307E /* SizeUtils.swift in Sources */,
 				96C29EF523625E7800E93CB1 /* RealmDBTransport.swift in Sources */,
 				86A7D6992385DA510087CE87 /* ScenesViewModel.swift in Sources */,
 				96C29F4A236343B600E93CB1 /* SessionService.swift in Sources */,

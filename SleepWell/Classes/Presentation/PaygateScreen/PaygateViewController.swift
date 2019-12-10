@@ -18,14 +18,30 @@ final class PaygateViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var freeAccessLabel: UILabel!
     @IBOutlet weak var errorView: ErrorView!
-    @IBOutlet weak var topContraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var logoImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var title1ContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var title2ContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var title3ContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buyButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var restorePurchaseButtonTopConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topContraint.constant = UIDevice.current.isSmallScreen ? 190 : 258
+        configure()
+    }
+    
+    private func configure() {
+        logoImageViewTopConstraint.constant = SizeUtils.value(largeDevice: 110, smallDevice: 80, verySmallDevice: 50)
+        title1ContainerViewTopConstraint.constant = SizeUtils.value(largeDevice: 58, smallDevice: 45, verySmallDevice: 30)
+        title2ContainerViewTopConstraint.constant = SizeUtils.value(largeDevice: 32, smallDevice: 24, verySmallDevice: 16)
+        title3ContainerViewTopConstraint.constant = SizeUtils.value(largeDevice: 32, smallDevice: 24, verySmallDevice: 16)
+        buyButtonTopConstraint.constant = SizeUtils.value(largeDevice: 110, smallDevice: 90, verySmallDevice: 70)
+        restorePurchaseButtonTopConstraint.constant = SizeUtils.value(largeDevice: 76, smallDevice: 50, verySmallDevice: 40)
     }
 }
 

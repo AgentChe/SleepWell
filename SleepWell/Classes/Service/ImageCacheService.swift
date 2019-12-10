@@ -19,18 +19,16 @@ final class ImageCacheService {
     
     fileprivate func cacheImagesReactive(urls: [URL]) -> Single<Void>{
         return Single.create { single in
-            let observableQueue = DispatchQueue(label: "ImageCacheService.observableQueue.\(UUID().uuidString)")
-            
             let operations = urls.map { ImageFetchOperation(url: $0) }
-            
+
             DispatchQueue.global().async { [weak self] in
                 self?.queue.addOperations(operations, waitUntilFinished: true)
-                
-                observableQueue.async {
+
+                DispatchQueue.main.async {
                     single(.success(Void()))
                 }
             }
-            
+
             return Disposables.create {
                 for operation in operations {
                     operation.cancel()

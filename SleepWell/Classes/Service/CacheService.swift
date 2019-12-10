@@ -29,7 +29,6 @@ private final class UpdateMeditations {
         return RestAPITransport()
             .callServerApi(requestBody: FullMeditationsListRequest(hashCode: CacheHashCodes.meditationsHashCode))
             .asObservable()
-            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { MeditationsMapper.fullMeditations(response: $0) }
             .flatMap { fullMeditations -> Observable<Void> in
                 guard let data = fullMeditations else {
@@ -53,7 +52,6 @@ private final class UpdateMeditations {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
             }
-            .observeOn(MainScheduler.asyncInstance)
     }
     
     func updateTags() -> Observable<Void> {
@@ -79,7 +77,6 @@ private final class UpdateStories {
         return RestAPITransport()
             .callServerApi(requestBody: FullStoriesListRequest(hashCode: CacheHashCodes.storiesHashCode))
             .asObservable()
-            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { StoriesMapper.fullStories(response: $0) }
             .flatMap { fullStories -> Observable<Void> in
                 guard let data = fullStories else {
@@ -103,7 +100,6 @@ private final class UpdateStories {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
             }
-            .observeOn(MainScheduler.asyncInstance)
     }
 }
 
@@ -114,7 +110,6 @@ private final class UpdateScenes {
         return RestAPITransport()
             .callServerApi(requestBody: FullScenesListRequest(hashCode: CacheHashCodes.scenesHashCode))
             .asObservable()
-            .observeOn(ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { ScenesMapper.fullScenes(response: $0) }
             .flatMap { fullScenes -> Observable<Void> in
                 guard let data = fullScenes else {
@@ -131,7 +126,6 @@ private final class UpdateScenes {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
             }
-            .observeOn(MainScheduler.asyncInstance)
     }
 }
 
