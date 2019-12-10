@@ -68,9 +68,6 @@ extension MainViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: MainViewModelInterface, with input: Input) -> () {
-        viewModel.isPlaying
-            .drive(tabBarView.setPlayerState)
-            .disposed(by: disposeBag)
         
         let paygateRelay = PublishRelay<PaygateCompletionResult>()
         
@@ -121,6 +118,7 @@ extension MainViewController: BindsToViewModel {
                 case .paygate:
                     viewModel.showPaygateScreen(completion: { paygateRelay.accept($0) })
                 case .play(let detail):
+                    base.hideTabBar(isHidden: true)
                     viewModel.showPlayerScreen(
                         detail: detail,
                         hideTabbarClosure: { [weak base] state in
@@ -139,14 +137,19 @@ extension MainViewController: BindsToViewModel {
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .pause }
-            .map { _ in () }
-            .emit(to: viewModel.pause)
+            .flatMapFirst { _ in viewModel.pauseRecording(style: .gentle) }
+            .emit()
             .disposed(by: disposeBag)
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .play }
-            .map { _ in () }
-            .emit(to: viewModel.play)
+            .flatMapFirst { _ in viewModel.pauseScene(style: .gentle) }
+            .flatMapLatest { _ in viewModel.playRecording(style: .gentle) }
+            .emit()
+            .disposed(by: disposeBag)
+        
+        viewModel.isPlaying
+            .drive(tabBarView.setPlayerState)
             .disposed(by: disposeBag)
     }
 }
@@ -207,17 +210,10 @@ private extension MainViewController {
     }
 
     func hideTabBar(isHidden: Bool) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0,
-            options: isHidden ? .curveEaseOut : .curveEaseIn,
-            animations: {
-                self.tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
-                self.view.layoutIfNeeded()
-        }) { _ in
-            
+        tabBarHeight.constant = isHidden ? 0 : GlobalDefinitions.tabBarHeight
+
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
 }

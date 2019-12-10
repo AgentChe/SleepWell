@@ -50,6 +50,8 @@ extension PlayerViewController: BindsToViewModel {
     
     func bind(to viewModel: PlayerViewModelInterface, with input: Input) {
         
+        
+        
         [backgroundImageView, blurView].forEach {
             $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         }
@@ -70,7 +72,7 @@ extension PlayerViewController: BindsToViewModel {
                 pan.translation(in: view).y
             }
         
-        let heightToDismiss: CGFloat = 100
+        let heightToDismiss: CGFloat = 75
         
         let beingDismissed = panEvent.filter { $0 >= heightToDismiss }
             .take(1)
@@ -80,38 +82,13 @@ extension PlayerViewController: BindsToViewModel {
         isCurrentRecordingPlaying
             .drive(rx.playingState)
             .disposed(by: disposeBag)
-
-        Driver
-            .merge(
-                beingDismissed.map { _ in false }
-                    .asDriver(onErrorDriveWith: .empty()),
-                isCurrentRecordingPlaying
-            )
-            .distinctUntilChanged()
+        
+        beingDismissed.map { _ in false }
+            .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
-        let subtitleWithDuration = input.recording.recording.reader
-            + " · "
-            + input.recording.readingSound.soundSecs.subtitleDescription
-        
-        isCurrentRecordingPlaying
-            .map {
-                $0 ? input.recording.recording.reader : subtitleWithDuration
-            }
-            .drive(subtitleLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
-            .take(1)
-            .map { _ in () }
-            .asDriver(onErrorDriveWith: .empty())
-        
-        let skippingIsPlaying = Driver
-            .combineLatest(
-                viewDidAppear,
-                isCurrentRecordingPlaying
-            ) { $1 }
+        subtitleLabel.text = input.recording.recording.reader
         
         rx.methodInvoked(#selector(UIViewController.viewWillAppear))
             .take(1)
@@ -126,44 +103,31 @@ extension PlayerViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        let yPositionWithState = skippingIsPlaying
-            .distinctUntilChanged()
-            .map { [weak self] state -> (y: CGFloat, state: Bool) in
-                guard let self = self, !state else {
-                    return (0, state)
-                }
-
-                let screenHeight = UIScreen.main.bounds.height
-                let lastViewY = self.pauseButton.frame.maxY
-                let viewHeight = lastViewY + CGFloat(28) + Constants.marginBottom
-                return (screenHeight - viewHeight, state)
-            }
-            .asDriver(onErrorDriveWith: .empty())
-        
-        yPositionWithState.drive(rx.updateViewPosition)
+        rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+            .take(1)
+            .asSignal(onErrorSignalWith: .empty())
+            .map { _ in Constants.marginTop }
+            .emit(to: rx.updateViewPosition)
             .disposed(by: disposeBag)
-        
+
         panGesture.rx.event
             .filter { $0.state == .ended }
             .withLatestFrom(beingDismissed.map { _ in true }.startWith(false))
             .filter { !$0 }
-            .withLatestFrom(yPositionWithState)
+            .map { _ in Constants.marginTop }
             .bind(to: rx.updateViewPosition)
             .disposed(by: disposeBag)
-        
+
         panEvent
             .filter { $0 < heightToDismiss && $0 > 0 }
             .withLatestFrom(beingDismissed.map { _ in true }.startWith(false)) { ($0, $1) }
             .filter { !$1 }
             .map { $0.0 }
-            .withLatestFrom(yPositionWithState) { (panY: $0, originalY: $1.y, state: $1.state) }
             .asSignal(onErrorSignalWith: .empty())
-            .emit(to: Binder(self) { base, tuple in
-                let y = tuple.panY + tuple.originalY
+            .emit(to: Binder(self) { base, panY in
+                let y = panY + Constants.marginTop
                 base.topConstraint.constant = y
-                base.bottomConstraint.constant = tuple.state
-                    ? -y
-                    : Constants.marginBottom - tuple.panY
+                base.bottomConstraint.constant = -panY
             })
             .disposed(by: disposeBag)
         
@@ -189,39 +153,21 @@ extension PlayerViewController: BindsToViewModel {
         
         let maxSeconds = input.recording.readingSound.soundSecs
         
-        let isSilence = viewModel.isPlaying.map(!)
-        
-        isSilence
-            .filter { $0 }
-            .map { _ in input.recording }
-            .take(1)
-            .drive(onNext: viewModel.add)
-            .disposed(by: disposeBag)
-        
-        isSilence
-            .filter { $0 }
-            .map { _ in () }
-            .drive(viewModel.reset)
-            .disposed(by: disposeBag)
-        
         let didTapPlayButton = playButton.rx.tap
             .asSignal()
         
         didTapPlayButton
-            .withLatestFrom(isSilence)
-            .filter { $0 }
-            .map { _ in () }
-            .emit(to: viewModel.play)
-            .disposed(by: disposeBag)
-        
-        didTapPlayButton
-            .withLatestFrom(isSilence)
-            .filter { !$0 }
-            .map { _ in () }
-            .do(onNext: {
-                viewModel.add(recording: input.recording)
-            })
-            .emit(to: viewModel.play)
+            .flatMapFirst {
+                Signal
+                    .zip(
+                        viewModel.add(recording: input.recording),
+                        viewModel.pauseScene(style: .gentle),
+                        viewModel.pauseRecording(style: .gentle)
+                    )
+                    .take(1)
+            }
+            .flatMapLatest { _ in viewModel.playRecording(style: .gentle) }
+            .emit()
             .disposed(by: disposeBag)
         
         let didTapPauseButton = pauseButton.rx.tap
@@ -230,7 +176,9 @@ extension PlayerViewController: BindsToViewModel {
         didTapPauseButton.emit(onNext: input.didPause)
             .disposed(by: disposeBag)
         
-        didTapPauseButton.emit(to: viewModel.reset)
+        didTapPauseButton.map { _ in .gentle }
+            .flatMapFirst { viewModel.pauseRecording(style: $0) }
+            .emit()
             .disposed(by: disposeBag)
         
         beingDismissed.asSignal(onErrorSignalWith: .empty())
@@ -242,13 +190,14 @@ extension PlayerViewController: BindsToViewModel {
             .emit(onNext: input.didStartPlaying)
             .disposed(by: disposeBag)
         
-        let currentSeconds = viewModel.time
+        let currentSeconds = viewModel.time(for: input.recording.recording.id)
+            .startWith(0)
         
         currentSeconds.map { $0.timeDescription }
             .drive(currentTimeLabel.rx.text)
             .disposed(by: disposeBag)
         
-        currentSeconds.map { "-" + (maxSeconds - $0).timeDescription }
+        currentSeconds.map { "-" + (max(maxSeconds - $0, 0)).timeDescription }
             .drive(remainingTimeLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -260,6 +209,11 @@ extension PlayerViewController: BindsToViewModel {
                 return Float(value) / Float(maxSeconds)
             }
             .drive(audioSlider.rx.setValue)
+            .disposed(by: disposeBag)
+        
+        currentSeconds.filter { $0 >= maxSeconds }
+            .map { _ in () }
+            .drive(viewModel.resetAudio)
             .disposed(by: disposeBag)
         
         audioSlider.rx.userSetsValue
@@ -301,29 +255,17 @@ private extension Reactive where Base: PlayerViewController {
                 withDuration: 0.5,
                 animations: {
                     base.playButton.alpha = 1 - stateAlpha
-                    
-                    [base.backgroundImageView, base.blurView].forEach {
-                        $0.layer.cornerRadius = state ? 0 : 40
-                    }
-                    
-                    [base.currentTimeLabel,
-                     base.remainingTimeLabel,
-                     base.rewindButton,
-                     base.pauseButton,
-                     base.fastForwardButton,
-                     base.audioSlider,
-                     base.volumeButton
-                    ].forEach { $0.alpha = stateAlpha }
+                    base.pauseButton.alpha = stateAlpha
                 }
             )
         }
     }
     
-    var updateViewPosition: Binder<(y: CGFloat, state: Bool)> {
+    var updateViewPosition: Binder<CGFloat> {
         
-        Binder(base) { base, tuple in
-            base.topConstraint.constant = tuple.y
-            base.bottomConstraint.constant = tuple.state ? -tuple.y : Constants.marginBottom
+        Binder(base) { base, y in
+            base.topConstraint.constant = y
+            base.bottomConstraint.constant = 0
             UIView.animate(
                 withDuration: 0.5,
                 animations: {
@@ -335,7 +277,7 @@ private extension Reactive where Base: PlayerViewController {
 }
 
 private enum Constants {
-    static let marginBottom: CGFloat = 69
+    static let marginTop: CGFloat = 49
 }
 
 private extension Int {
@@ -352,13 +294,5 @@ private extension Int {
             : String(seconds)
         
         return "\(hoursString)\(minutes):\(secondsString)"
-    }
-    
-    var subtitleDescription: String {
-        
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
-        formatter.unitsStyle = .short
-        return formatter.string(from: TimeInterval(self)) ?? ""
     }
 }

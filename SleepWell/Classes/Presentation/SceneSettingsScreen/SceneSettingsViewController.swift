@@ -19,7 +19,10 @@ final class SceneSettingsViewController: UIViewController {
     @IBOutlet weak var defaultView: UIView!
     @IBOutlet weak var randomView: UIView!
     @IBOutlet weak var sleepTimerView: UIView!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var sliderImageView: UIImageView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     private let disposeBag = DisposeBag()
 }
@@ -62,6 +65,19 @@ extension SceneSettingsViewController: BindsToViewModel {
             .emit(to: Binder(self) { base, _ in
                 base.stackView.spacing = 24 / divider
                 base.stackViewHeight.constant = height
+                base.blurView.effect = nil
+                
+                UIView.animate(
+                    withDuration: 1,
+                    animations: {
+                        base.blurView.effect = UIBlurEffect(style: .dark)
+                        base.randomView.alpha = 1
+                        base.defaultView.alpha = 1
+                        base.sleepTimerView.alpha = 1
+                        base.sliderImageView.alpha = 1
+                        base.stackView.alpha = 1
+                    }
+                )
             })
             .disposed(by: disposeBag)
         
@@ -96,9 +112,6 @@ extension SceneSettingsViewController: BindsToViewModel {
                 .disposed(by: disposeBag)
         }
         
-        
-        let heightToDissmiss = view.frame.height / 4
-        
         scrollView.delegate = self
         scrollView.scrollsToTop = false
         
@@ -116,8 +129,8 @@ extension SceneSettingsViewController: BindsToViewModel {
             .map { $0! }
             .asSignal(onErrorSignalWith: .empty())
         
-        let scrollToTopY = scrollToTop.filter { $0 < heightToDissmiss && $0 > 0 }
-        let shouldDismissByScroll = scrollToTop.filter { $0 >= heightToDissmiss }
+        let scrollToTopY = scrollToTop.filter { $0 < Constants.heightToDismiss && $0 > 0 }
+        let shouldDismissByScroll = scrollToTop.filter { $0 >= Constants.heightToDismiss }
         
         let panEvent = panGesture.rx.event
             .filter { $0.state == .changed }
@@ -127,13 +140,18 @@ extension SceneSettingsViewController: BindsToViewModel {
             .asSignal(onErrorSignalWith: .empty())
         
         let shouldDismissByPan = panEvent
-            .filter { $0 >= heightToDissmiss }
+            .filter { $0 >= Constants.heightToDismiss }
             .take(1)
+        
+        let shouldDismissByTap = tapGesture.rx.event
+            .filter { $0.state == .ended }
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
         
         let shouldDismiss = Signal
             .merge(
-                shouldDismissByPan,
-                shouldDismissByScroll
+                shouldDismissByPan.map { _ in () },
+                shouldDismissByScroll.map { _ in () }
             )
         
         shouldDismiss
@@ -156,10 +174,30 @@ extension SceneSettingsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        shouldDismissByTap
+            .emit(to: Binder(self) { base, _ in
+                UIView.animate(
+                    withDuration: 1,
+                    animations: {
+                        base.blurView.effect = nil//UIBlurEffect(style: .dark)
+                        base.randomView.alpha = 0
+                        base.defaultView.alpha = 0
+                        base.sleepTimerView.alpha = 0
+                        base.sliderImageView.alpha = 0
+                        base.stackView.alpha = 0
+                    },
+                    completion: { [weak self] _ in
+                        self?.view.removeFromSuperview()
+                        self?.removeFromParent()
+                    }
+                )
+            })
+            .disposed(by: disposeBag)
+        
         let beingDismissed = shouldDismiss.map { _ in true }
         
         let panEventY = panEvent
-            .filter { $0 < heightToDissmiss && $0 > 0 }
+            .filter { $0 < Constants.heightToDismiss && $0 > 0 }
             
         Signal
             .merge(
@@ -208,7 +246,7 @@ extension SceneSettingsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(didDismiss: shouldDismiss.map { _ in () })
+        return Output(didDismiss: Signal.merge(shouldDismiss.map { _ in () }, shouldDismissByTap))
     }
 }
 
@@ -220,5 +258,12 @@ extension SceneSettingsViewController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         scrollView.setContentOffset(scrollView.contentOffset, animated: true)
+    }
+}
+
+private extension SceneSettingsViewController {
+    
+    enum Constants {
+        static let heightToDismiss: CGFloat = 50
     }
 }

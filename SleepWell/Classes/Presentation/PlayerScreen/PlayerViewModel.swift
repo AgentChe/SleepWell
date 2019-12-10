@@ -11,13 +11,15 @@ import RxCocoa
 
 protocol PlayerViewModelInterface {
     var setTime: Binder<Int> { get }
-    var play: Binder<Void> { get }
-    var reset: Binder<Void> { get }
-    var time: Driver<Int> { get }
+    func playRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     var isPlaying: Driver<Bool> { get }
+    func time(for id: Int) -> Driver<Int>
     func isPlaying(recording: RecordingDetail) -> Driver<Bool>
-    func add(recording: RecordingDetail)
+    func add(recording: RecordingDetail) -> Signal<Void>
     func goToVolumeScreen(recording: RecordingDetail)
+    var resetAudio: Binder<Void> { get }
 }
 
 final class PlayerViewModel: BindableViewModel {
@@ -37,16 +39,20 @@ extension PlayerViewModel: PlayerViewModelInterface {
         dependencies.audioService.rx.setTime
     }
     
-    var play: Binder<Void> {
-        dependencies.audioService.rx.play
+    func playRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.playRecording(style: style)
     }
     
-    var reset: Binder<Void> {
-        dependencies.audioService.rx.reset
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.pauseRecording(style: style)
     }
     
-    var time: Driver<Int> {
-        dependencies.audioService.time
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.pauseScene(style: .gentle)
+    }
+    
+    func time(for id: Int) -> Driver<Int> {
+        dependencies.audioService.time(for: id)
     }
     
     var isPlaying: Driver<Bool> {
@@ -57,11 +63,15 @@ extension PlayerViewModel: PlayerViewModelInterface {
         dependencies.audioService.isPlaying(recording: recording)
     }
     
-    func add(recording: RecordingDetail) {
+    func add(recording: RecordingDetail) -> Signal<Void> {
         dependencies.audioService.add(recording: recording)
     }
     
     func goToVolumeScreen(recording: RecordingDetail) {
         router.goToVolumeScreen(recording: recording)
+    }
+    
+    var resetAudio: Binder<Void> {
+        dependencies.audioService.rx.resetAudio
     }
 }
