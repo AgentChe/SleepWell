@@ -23,7 +23,7 @@ final class CacheService {
 }
 
 private final class UpdateMeditations {
-    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    private let imageCacheService = ImageCacheService()
     
     func updateMeditations() -> Observable<Void> {
         return RestAPITransport()
@@ -73,7 +73,7 @@ private final class UpdateMeditations {
 }
 
 private final class UpdateStories {
-    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    private let imageCacheService = ImageCacheService()
     
     func update() -> Observable<Void> {
         return RestAPITransport()
@@ -108,7 +108,7 @@ private final class UpdateStories {
 }
 
 private final class UpdateScenes {
-    private let imageCacheService = ImageCacheService(qos: .userInitiated)
+    private let imageCacheService = ImageCacheService()
     
     func update() -> Observable<Void> {
         return RestAPITransport()

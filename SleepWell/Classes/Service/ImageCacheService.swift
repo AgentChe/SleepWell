@@ -11,16 +11,15 @@ import RxSwift
 import Kingfisher
 
 final class ImageCacheService {
-    private let queue = OperationQueue()
-    
-    init(maxConcurrentRequests: Int = 5, qos: QualityOfService = .default) {
-        queue.qualityOfService = qos
-        queue.maxConcurrentOperationCount = maxConcurrentRequests
-    }
+    private lazy var queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 5
+        return queue
+    }()
     
     fileprivate func cacheImagesReactive(urls: [URL]) -> Single<Void>{
         return Single.create { single in
-            let observableQueue = DispatchQueue(label: "ImageCacheService.observableQueue")
+            let observableQueue = DispatchQueue(label: "ImageCacheService.observableQueue.\(UUID().uuidString)")
             
             let operations = urls.map { ImageFetchOperation(url: $0) }
             
@@ -50,20 +49,14 @@ extension Reactive where Base: ImageCacheService {
 }
 
 private final class ImageFetchOperation: Operation {
-    typealias CompletionHandler = (ImageFetchOperation, UIImage?, Error?) -> Void
-    
     private let url: URL
-    private let completionHandler: CompletionHandler?
     
     private var task: DownloadTask?
     
-    init(url: URL, completionHandler: CompletionHandler? = nil) {
+    init(url: URL) {
         self.url = url
-        self.completionHandler = completionHandler
         
         super.init()
-        
-        self.name = "ImageFetchOperation(\"\(url.absoluteString)\")"
     }
     
     override var isAsynchronous: Bool { return true }
@@ -78,7 +71,7 @@ private final class ImageFetchOperation: Operation {
     
     private var rawState = State.ready
     
-    private let stateQueue = DispatchQueue(label: "ImageFetchOperation.stateQueue", attributes: .concurrent)
+    private let stateQueue = DispatchQueue(label: "ImageFetchOperation.stateQueue.\(UUID().uuidString)", attributes: .concurrent)
     
     @objc private(set) dynamic var state: State {
         get {
@@ -103,13 +96,8 @@ private final class ImageFetchOperation: Operation {
         
         state = .executing
         
-        task = KingfisherManager.shared.retrieveImage(with: url) { [weak self] completion in
-            switch completion {
-            case .success(let result):
-                self?.onSuccess(result.image)
-            case .failure(let error):
-                self?.onError(error)
-            }
+        task = KingfisherManager.shared.retrieveImage(with: url) { [weak self] _ in
+            self?.state = .finished
         }
     }
     
@@ -117,22 +105,9 @@ private final class ImageFetchOperation: Operation {
         super.cancel()
         
         task?.cancel()
-        task = nil
         
         if state == .executing {
             state = .finished
         }
-    }
-    
-    private func onError(_ error: Error?) {
-        state = .finished
-        task = nil
-        completionHandler?(self, nil, error)
-    }
-    
-    private func onSuccess(_ image: UIImage) {
-        state = .finished
-        task = nil
-        completionHandler?(self, image, nil)
     }
 }
