@@ -29,8 +29,6 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
     
     private let disposeBag = DisposeBag()
     
-    private lazy var nextButtonColor = UIColor(red: 0.921, green: 0.894, blue: 0.909, alpha: 1)
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
@@ -117,8 +115,8 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
     
     private func updateNextButton() {
         let isEmpty = items.filter { $0.isSelected }.count == 0
-        nextButton.isEnabled = !isEmpty
-        nextButton.backgroundColor = isEmpty ? nextButtonColor.withAlphaComponent(0.3) : nextButtonColor
+        nextButton.isUserInteractionEnabled = !isEmpty
+        nextButton.alpha = isEmpty ? 0.1 : 1
     }
     
     private var items: [OnboardingAimItem] = [
