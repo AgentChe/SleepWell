@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,10 +33,10 @@
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-dS-kWW">
-                                <rect key="frame" x="192.5" y="747" width="29" height="33"/>
+                                <rect key="frame" x="167" y="707.5" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="ALO-U8-OfQ"/>
-                                    <constraint firstAttribute="width" constant="29" id="Wst-HX-VDq"/>
+                                    <constraint firstAttribute="height" constant="80" id="ALO-U8-OfQ"/>
+                                    <constraint firstAttribute="width" constant="80" id="Wst-HX-VDq"/>
                                 </constraints>
                                 <state key="normal" image="scene_pause_button">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,15 +48,15 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1C9-Uw-3Fa">
-                                <rect key="frame" x="322.5" y="745.5" width="38.5" height="33.5"/>
+                                <rect key="frame" x="301.5" y="705.5" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="38.25" id="IeN-kq-8ca"/>
-                                    <constraint firstAttribute="height" constant="33.380000000000003" id="K08-UI-9rJ"/>
+                                    <constraint firstAttribute="width" constant="80" id="IeN-kq-8ca"/>
+                                    <constraint firstAttribute="height" constant="80" id="K08-UI-9rJ"/>
                                 </constraints>
                                 <state key="normal" image="scene_settings_button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X47-Wp-bYF">
-                                <rect key="frame" x="192.5" y="747" width="29" height="33"/>
+                                <rect key="frame" x="167" y="707.5" width="80" height="80"/>
                                 <state key="normal" image="play_scene_button"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -72,15 +72,15 @@
                             <constraint firstItem="X47-Wp-bYF" firstAttribute="width" secondItem="Zv2-dS-kWW" secondAttribute="width" id="5Rk-T5-i0s"/>
                             <constraint firstItem="X47-Wp-bYF" firstAttribute="leading" secondItem="Zv2-dS-kWW" secondAttribute="leading" id="5nJ-2V-ZOr"/>
                             <constraint firstItem="X47-Wp-bYF" firstAttribute="height" secondItem="Zv2-dS-kWW" secondAttribute="height" id="Jpd-x7-A24"/>
-                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="Zv2-dS-kWW" secondAttribute="bottom" constant="116" id="PDv-JO-qJz"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="Zv2-dS-kWW" secondAttribute="bottom" constant="108.5" id="PDv-JO-qJz"/>
                             <constraint firstItem="9os-dc-zca" firstAttribute="top" secondItem="wzv-1f-mCX" secondAttribute="top" id="XuN-KN-FOq"/>
                             <constraint firstItem="Zv2-dS-kWW" firstAttribute="centerX" secondItem="wzv-1f-mCX" secondAttribute="centerX" id="dol-oI-f1U"/>
                             <constraint firstItem="X47-Wp-bYF" firstAttribute="top" secondItem="Zv2-dS-kWW" secondAttribute="top" id="e6d-pZ-RXy"/>
                             <constraint firstItem="9os-dc-zca" firstAttribute="leading" secondItem="NXd-FW-eNv" secondAttribute="leading" id="hLE-oy-Lq2"/>
                             <constraint firstAttribute="bottom" secondItem="9os-dc-zca" secondAttribute="bottom" id="iqS-vH-XET"/>
-                            <constraint firstItem="NXd-FW-eNv" firstAttribute="trailing" secondItem="1C9-Uw-3Fa" secondAttribute="trailing" constant="53.25" id="nop-ey-lmd"/>
+                            <constraint firstItem="NXd-FW-eNv" firstAttribute="trailing" secondItem="1C9-Uw-3Fa" secondAttribute="trailing" constant="32.375" id="nop-ey-lmd"/>
                             <constraint firstItem="X47-Wp-bYF" firstAttribute="bottom" secondItem="Zv2-dS-kWW" secondAttribute="bottom" id="oNe-9M-TJm"/>
-                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="1C9-Uw-3Fa" secondAttribute="bottom" constant="117" id="vga-Cd-7b4"/>
+                            <constraint firstItem="9os-dc-zca" firstAttribute="bottom" secondItem="1C9-Uw-3Fa" secondAttribute="bottom" constant="110.31999999999999" id="vga-Cd-7b4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NXd-FW-eNv"/>
                         <connections>
