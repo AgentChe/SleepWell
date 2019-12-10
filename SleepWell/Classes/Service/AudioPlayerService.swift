@@ -681,7 +681,7 @@ private final class Audio: ReactiveCompatible {
     
     var currentTime: CMTime {
         set {
-            mainPlayer.seek(to: newValue, completionHandler: { _ in })
+            mainPlayer.seek(to: newValue)
         }
         get {
             mainPlayer.currentTime()
@@ -821,6 +821,7 @@ private final class Audio: ReactiveCompatible {
     func reset() {
         forcePause()
         currentTime = .zero
+        ambientPlayer?.seek(to: .zero)
     }
     
     func forcePause() {
