@@ -114,16 +114,16 @@ extension ScenesViewController: BindsToViewModel {
                 }
                 
                 return viewModel.sceneDetails(scene: scene[index])
-            }.debug()
+            }
             .filter {
-                guard case .paygate = $0 else {  return false  }
+                guard case .paygate = $0 else { return false  }
                 return true
             }
             .map { _ in MainRoute.paygate }
             .asSignal(onErrorJustReturn: .paygate)
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
-            .asSignal(onErrorSignalWith: .empty())
+            .asDriver(onErrorDriveWith: .empty())
         
         let didDismissSetting = settingsButton.rx.tap.asSignal()
             .withLatestFrom(sceneDetail)
@@ -154,33 +154,82 @@ extension ScenesViewController: BindsToViewModel {
             .filter { viewModel.isOtherScenePlaying(scene: $0) }
             .asObservable()
         
+        let playSceneByOpeningSettings = settingsButton.rx.tap.asObservable()
+            .withLatestFrom(sceneDetail.asObservable())
+            .filter { $0 != nil }
+            .map { $0! }
+            .flatMapLatest { scene in
+                viewModel.isPlaying(scene: scene)
+                    .take(1)
+                    .map { (scene, $0) }
+            }
+            .filter { !$1 }
+            .map { $0.0 }
+        
         let didTapPlayScene = playButton.rx.tap.asObservable()
             .withLatestFrom(sceneDetail.asObservable())
             .filter { $0 != nil }
             .map { $0! }
         
+        let shouldPlayScene = Observable
+            .merge(
+                initialScene.map { _ in true },
+                playSceneBySwipe.map { _ in true },
+                playSceneByOpeningSettings.map { _ in true },
+                didTapPlayScene.map { _ in true },
+                pauseButton.rx.tap.asObservable().map { _ in false }
+            )
+        
         Observable
             .merge(
                 initialScene,
                 playSceneBySwipe,
+                playSceneByOpeningSettings,
                 didTapPlayScene
             )
+            .observeOn(MainScheduler.instance)
+            .flatMapLatest { scene in
+                viewModel.pauseScene(style: .gentle).map { _ in scene }
+            }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: {
                 viewModel.add(sceneDetail: $0)
             })
-            .map { _ in () }
             .asSignal(onErrorSignalWith: .empty())
-            .emit(to: viewModel.playScene)
+            .flatMapFirst { _ in
+                viewModel.pauseRecording(style: .gentle)
+            }
+            .withLatestFrom(shouldPlayScene.asSignal(onErrorSignalWith: .empty()))
+            .flatMapLatest { shouldPlay in
+                shouldPlay ? viewModel.playScene(style: .gentle) : .empty()
+            }
+            .emit()
             .disposed(by: disposeBag)
         
         pauseButton.rx.tap.asSignal()
-            .emit(to: viewModel.pauseScene)
+            .map { _ in .gentle }
+            .flatMapFirst { viewModel.pauseScene(style: $0) }
+            .emit()
             .disposed(by: disposeBag)
         
         let isPlaying = viewModel.isScenePlaying
         
-        isPlaying
+        let isPlayingBySwipe = Observable
+            .merge(
+                initialScene.map { _ in false },
+                playSceneBySwipe.map { _ in true },
+                playSceneByOpeningSettings.map { _ in false },
+                didTapPlayScene.map { _ in false },
+                pauseButton.rx.tap.asObservable().map { _ in false }
+            )
+            .distinctUntilChanged()
+            .asDriver(onErrorDriveWith: .empty())
+        
+        Driver
+            .combineLatest(
+                isPlaying,
+                isPlayingBySwipe
+            ) { $0 || $1 }
             .drive(Binder(self) { base, isPlaying in
                 base.pauseButton.isHidden = !isPlaying
                 base.playButton.isHidden = isPlaying

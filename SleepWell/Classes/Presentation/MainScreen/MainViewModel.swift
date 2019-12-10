@@ -20,8 +20,9 @@ protocol MainViewModelInterface {
     func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
     func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Void>
     var isPlaying: Driver<Bool> { get }
-    var play: Binder<Void> { get }
-    var pause: Binder<Void> { get }
+    func playRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
 }
 
 final class MainViewModel: BindableViewModel, MainViewModelInterface {
@@ -90,11 +91,15 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
         dependencies.audioService.isPlaying
     }
     
-    var play: Binder<Void> {
-        dependencies.audioService.rx.play
+    func playRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.playRecording(style: style)
     }
     
-    var pause: Binder<Void> {
-        dependencies.audioService.rx.pause
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.pauseRecording(style: style)
+    }
+    
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioService.pauseScene(style: .gentle)
     }
 }

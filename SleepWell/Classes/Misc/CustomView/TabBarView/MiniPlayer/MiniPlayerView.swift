@@ -63,10 +63,10 @@ extension MiniPlayerView {
                 if self.playerIsHidden {
                     return .show
                 } else if self.isPlaying {
-                    self.isPlaying = !self.isPlaying
+//                    self.isPlaying = !self.isPlaying
                     return .pause
                 } else {
-                    self.isPlaying = !self.isPlaying
+//                    self.isPlaying = !self.isPlaying
                     return .play
                 }
             }

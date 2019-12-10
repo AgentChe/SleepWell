@@ -25,12 +25,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Ky-Sq7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="847"/>
                             </imageView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgN-KF-nXC">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="847"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="F7U-pt-W3H">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="847"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8qE-yo-Rws">
@@ -63,11 +63,11 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <slider opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gBM-LX-919" customClass="AudioSlider" customModule="SleepWell" customModuleProvider="target">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gBM-LX-919" customClass="AudioSlider" customModule="SleepWell" customModuleProvider="target">
                                             <rect key="frame" x="30" y="487" width="354" height="31"/>
                                             <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="0.79684824486301364" colorSpace="calibratedRGB"/>
                                         </slider>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:36" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3t-C5-iox">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:36" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3t-C5-iox">
                                             <rect key="frame" x="32" y="519" width="22.5" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="bAN-UZ-N8N"/>
@@ -76,7 +76,7 @@
                                             <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-2:59" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovh-DS-QYv">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-2:59" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovh-DS-QYv">
                                             <rect key="frame" x="354.5" y="519" width="27.5" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="hVJ-ys-DeB"/>
@@ -85,7 +85,7 @@
                                             <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S3-xM-nhb">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S3-xM-nhb">
                                             <rect key="frame" x="83" y="587" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="0l5-tb-6Fr"/>
@@ -93,7 +93,7 @@
                                             </constraints>
                                             <state key="normal" image="rewind_button"/>
                                         </button>
-                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5Q-Rg-s1y">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5Q-Rg-s1y">
                                             <rect key="frame" x="187" y="587" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="bUD-XJ-bUs"/>
@@ -101,7 +101,7 @@
                                             </constraints>
                                             <state key="normal" image="pause_button"/>
                                         </button>
-                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-7e-Sij">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-7e-Sij">
                                             <rect key="frame" x="291" y="587" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="TX6-sS-N3W"/>
@@ -110,15 +110,15 @@
                                             <state key="normal" image="fast_forward_button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqk-m6-XR5">
-                                            <rect key="frame" x="172" y="486" width="70" height="70"/>
+                                            <rect key="frame" x="172" y="571" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="9t8-r6-DUB"/>
                                                 <constraint firstAttribute="width" constant="70" id="JXd-4O-YTe"/>
                                             </constraints>
                                             <state key="normal" image="play_button"/>
                                         </button>
-                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-kt-37O">
-                                            <rect key="frame" x="299" y="785" width="24" height="24"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-kt-37O">
+                                            <rect key="frame" x="299" y="780" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="LXJ-lm-mms"/>
                                                 <constraint firstAttribute="height" constant="24" id="yhp-j4-E8x"/>
@@ -161,10 +161,10 @@
                                         <constraint firstAttribute="trailing" secondItem="B8Y-0p-8SQ" secondAttribute="trailing" constant="29" id="gBt-Dz-lOg"/>
                                         <constraint firstItem="B8Y-0p-8SQ" firstAttribute="top" secondItem="vRn-eF-q5C" secondAttribute="bottom" constant="1" id="hb4-jy-ROH"/>
                                         <constraint firstItem="0S3-xM-nhb" firstAttribute="top" secondItem="Z3t-C5-iox" secondAttribute="bottom" constant="52" id="klk-5F-YUr"/>
+                                        <constraint firstItem="oqk-m6-XR5" firstAttribute="top" secondItem="Z3t-C5-iox" secondAttribute="top" constant="52" id="oAI-Zt-Ce8"/>
                                         <constraint firstItem="vRn-eF-q5C" firstAttribute="leading" secondItem="F7U-pt-W3H" secondAttribute="leading" constant="29" id="uMM-Q9-tgv"/>
                                         <constraint firstItem="HLg-Mf-lOE" firstAttribute="centerX" secondItem="F7U-pt-W3H" secondAttribute="centerX" id="vBO-Jy-7A0"/>
                                         <constraint firstItem="L5Q-Rg-s1y" firstAttribute="leading" secondItem="0S3-xM-nhb" secondAttribute="trailing" constant="64" id="xtK-hZ-Y31"/>
-                                        <constraint firstItem="oqk-m6-XR5" firstAttribute="top" secondItem="B8Y-0p-8SQ" secondAttribute="bottom" constant="24" id="xwJ-No-Zgb"/>
                                         <constraint firstItem="gBM-LX-919" firstAttribute="leading" secondItem="F7U-pt-W3H" secondAttribute="leading" constant="32" id="yJ7-k6-QM7"/>
                                     </constraints>
                                     <connections>
@@ -179,7 +179,7 @@
                         <constraints>
                             <constraint firstItem="kCu-lx-LIJ" firstAttribute="trailing" secondItem="AgN-KF-nXC" secondAttribute="trailing" id="C38-3l-sGa"/>
                             <constraint firstItem="WzL-Ky-Sq7" firstAttribute="leading" secondItem="kCu-lx-LIJ" secondAttribute="leading" id="DAU-aE-XhN"/>
-                            <constraint firstItem="WzL-Ky-Sq7" firstAttribute="top" secondItem="kCu-lx-LIJ" secondAttribute="top" id="Hbs-CA-jRf"/>
+                            <constraint firstItem="WzL-Ky-Sq7" firstAttribute="top" secondItem="Llh-Lx-nN3" secondAttribute="top" constant="49" id="Hbs-CA-jRf"/>
                             <constraint firstAttribute="bottom" secondItem="WzL-Ky-Sq7" secondAttribute="bottom" id="KkS-aE-Wuf"/>
                             <constraint firstItem="AgN-KF-nXC" firstAttribute="top" secondItem="WzL-Ky-Sq7" secondAttribute="top" id="fMI-ME-ogp"/>
                             <constraint firstItem="kCu-lx-LIJ" firstAttribute="trailing" secondItem="WzL-Ky-Sq7" secondAttribute="trailing" id="jZU-2o-B2F"/>
