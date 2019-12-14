@@ -21,9 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7t-Ms-pPY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="936-wr-VDh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fHD-oc-u25">
@@ -36,7 +33,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gd-d3-sOJ" userLabel="Content View">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-5P-Sg3">
+                                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-5P-Sg3">
                                                             <rect key="frame" x="40" y="718" width="295" height="52"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon" translatesAutoresizingMaskIntoConstraints="NO" id="OPi-Gx-fJY">
@@ -68,14 +65,14 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="wA7-1r-pjD">
+                                                        <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="wA7-1r-pjD">
                                                             <rect key="frame" x="40" y="121" width="295" height="408"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="408" id="Eyb-Zj-8ga"/>
                                                                 <constraint firstAttribute="width" constant="295" id="w6R-qK-DnV"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKL-0r-wlO" userLabel="Default">
+                                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKL-0r-wlO" userLabel="Default">
                                                             <rect key="frame" x="40" y="650" width="143.66666666666666" height="52"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33b-xA-U04">
@@ -97,7 +94,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjm-AT-HtG" userLabel="Random">
+                                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjm-AT-HtG" userLabel="Random">
                                                             <rect key="frame" x="191.66666666666663" y="650" width="143.33333333333337" height="52"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2e-jL-I5U">
@@ -135,7 +132,7 @@
                                                         <constraint firstItem="hhE-5P-Sg3" firstAttribute="leading" secondItem="2Gd-d3-sOJ" secondAttribute="leading" constant="40" id="yvr-bo-uTE"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_slider" translatesAutoresizingMaskIntoConstraints="NO" id="PG4-WD-Rml">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_slider" translatesAutoresizingMaskIntoConstraints="NO" id="PG4-WD-Rml">
                                                     <rect key="frame" x="171" y="57" width="33" height="4"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="4" id="jmm-KB-UCG"/>
@@ -167,17 +164,13 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="936-wr-VDh" secondAttribute="bottom" id="0dx-AM-cZ9"/>
                             <constraint firstItem="936-wr-VDh" firstAttribute="leading" secondItem="Uyt-jF-wIb" secondAttribute="leading" id="8n1-lS-vK6"/>
-                            <constraint firstItem="Uyt-jF-wIb" firstAttribute="trailing" secondItem="A7t-Ms-pPY" secondAttribute="trailing" id="GXS-pp-JYT"/>
                             <constraint firstItem="Uyt-jF-wIb" firstAttribute="trailing" secondItem="936-wr-VDh" secondAttribute="trailing" id="LzN-9a-9Dk"/>
                             <constraint firstItem="936-wr-VDh" firstAttribute="top" secondItem="R0L-7A-Qf9" secondAttribute="top" id="S6Y-OD-J7v"/>
-                            <constraint firstAttribute="bottom" secondItem="A7t-Ms-pPY" secondAttribute="bottom" id="Tak-U8-jZ2"/>
-                            <constraint firstItem="A7t-Ms-pPY" firstAttribute="top" secondItem="R0L-7A-Qf9" secondAttribute="top" id="XZ2-Nt-AUq"/>
-                            <constraint firstItem="A7t-Ms-pPY" firstAttribute="leading" secondItem="Uyt-jF-wIb" secondAttribute="leading" id="z28-Xd-Uux"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Uyt-jF-wIb"/>
                         <connections>
@@ -186,14 +179,16 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="backgroundImageView" destination="A7t-Ms-pPY" id="bCT-2F-RYR"/>
+                        <outlet property="blurView" destination="936-wr-VDh" id="jyx-8r-EQY"/>
                         <outlet property="defaultView" destination="FKL-0r-wlO" id="q8m-qA-Q6k"/>
                         <outlet property="panGesture" destination="cgl-P7-lbr" id="6lR-MC-ghj"/>
                         <outlet property="randomView" destination="jjm-AT-HtG" id="ciO-Sa-8ND"/>
                         <outlet property="scrollView" destination="idK-gK-Szh" id="TXk-Cv-rIh"/>
                         <outlet property="sleepTimerView" destination="hhE-5P-Sg3" id="PI8-II-d21"/>
+                        <outlet property="sliderImageView" destination="PG4-WD-Rml" id="lNB-M0-LKQ"/>
                         <outlet property="stackView" destination="wA7-1r-pjD" id="Qiq-RJ-qNe"/>
                         <outlet property="stackViewHeight" destination="Eyb-Zj-8ga" id="MSJ-pf-jvA"/>
+                        <outlet property="tapGesture" destination="Obo-rJ-gEs" id="iNm-ug-qcr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoh-Bi-cVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

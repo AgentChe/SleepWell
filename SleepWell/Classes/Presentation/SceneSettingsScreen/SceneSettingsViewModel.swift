@@ -11,7 +11,7 @@ import RxCocoa
 protocol SceneSettingsViewModelInterface {
     var currentScenePlayersVolume: [(id: Int, value: Float)]? { get }
     var sceneVolume: Binder<(to: Int, value: Float)> { get }
-    func showSleepTimerScreen(sceneDetail: SceneDetail)
+    func showSleepTimerScreen(sceneDetail: SceneDetail) -> SceneTimerViewController.Output
 }
 
 final class SceneSettingsViewModel: BindableViewModel {
@@ -35,7 +35,7 @@ extension SceneSettingsViewModel: SceneSettingsViewModelInterface {
         dependencies.audioService.rx.sceneVolume
     }
     
-    func showSleepTimerScreen(sceneDetail: SceneDetail) {
+    func showSleepTimerScreen(sceneDetail: SceneDetail) -> SceneTimerViewController.Output {
         router.showSleepTimerScreen(sceneDetail: sceneDetail)
     }
 }

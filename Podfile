@@ -11,6 +11,7 @@ target 'SleepWell' do
   pod 'RealmSwift'
   pod 'Kingfisher'
   pod 'Firebase/Messaging'
+  pod 'InfiniteLayout/Rx'
 end
 
 post_install do |installer|

@@ -44,10 +44,10 @@ class CheckView: UIView {
         return label
     }()
     
-    private lazy var selectedTitleColor = UIColor(red: 0.541, green: 0.498, blue: 0.525, alpha: 1)
-    private lazy var unSelectedTitleColor = UIColor(red: 0.921, green: 0.898, blue: 0.917, alpha: 1)
+    private lazy var selectedTitleColor = UIColor(red: 138 / 255, green: 127 / 255, blue: 134 / 255, alpha: 1)
+    private lazy var unSelectedTitleColor = UIColor(red: 235 / 255, green: 229 / 255, blue: 234 / 255, alpha: 1)
     
-    private lazy var selectedBackgroundColor = UIColor(red: 0.792, green: 0.760, blue: 0.756, alpha: 1)
+    private lazy var selectedBackgroundColor = UIColor(red: 234 / 255, green: 231 / 255, blue: 237 / 255, alpha: 1)
     private lazy var unSelectedBackgroundColor = UIColor.clear
     
     private lazy var selectedImage = UIImage(named: "checked")
@@ -71,7 +71,7 @@ class CheckView: UIView {
     
     private func configure() {
         borderWidth = 2
-        borderColor = UIColor.white.withAlphaComponent(0.3)
+        borderColor = UIColor.white.withAlphaComponent(0.1)
         cornerRadius = 16
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))

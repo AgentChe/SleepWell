@@ -104,13 +104,29 @@ final class VolumeSliderView: UIView {
                 programmaticallyValue
             )
         
-        volume
+        volumeChangeEvent
             .emit(to: Binder(self) { view, volume in
                 view.volumeView.frame = .init(
                     x: 0,
                     y: 0,
                     width: volume,
                     height: view.frame.height
+                )
+            })
+            .disposed(by: disposeBag)
+        
+        programmaticallyValue
+            .emit(to: Binder(self) { view, volume in
+                UIView.animate(
+                    withDuration: 0.3,
+                    animations: {
+                        view.volumeView.frame = .init(
+                            x: 0,
+                            y: 0,
+                            width: volume,
+                            height: view.frame.height
+                        )
+                    }
                 )
             })
             .disposed(by: disposeBag)

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
+  - Differentiator (4.0.1)
   - Firebase/CoreOnly (6.11.0):
     - FirebaseCore (= 6.3.2)
   - Firebase/Messaging (6.11.0):
@@ -51,6 +52,14 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
+  - InfiniteLayout/CocoaProxy (0.4.2)
+  - InfiniteLayout/Core (0.4.2):
+    - InfiniteLayout/CocoaProxy
+  - InfiniteLayout/Rx (0.4.2):
+    - InfiniteLayout/Core
+    - RxCocoa (~> 5)
+    - RxDataSources (~> 4)
+    - RxSwift (~> 5)
   - Kingfisher (5.9.0):
     - Kingfisher/Core (= 5.9.0)
   - Kingfisher/Core (5.9.0)
@@ -69,6 +78,10 @@ PODS:
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
@@ -77,6 +90,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Firebase/Messaging
+  - InfiniteLayout/Rx
   - Kingfisher
   - lottie-ios
   - RealmSwift
@@ -87,6 +101,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - Firebase
     - FirebaseAnalyticsInterop
     - FirebaseCore
@@ -97,6 +112,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - InfiniteLayout
     - Kingfisher
     - lottie-ios
     - nanopb
@@ -104,12 +120,14 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: bc9cfc7a96c73268656d5aaab453ff1b4b530e0e
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
   FirebaseCore: beeff42c07c30ea94702471d99db2089b594fbbd
@@ -120,6 +138,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
+  InfiniteLayout: de51cfad9ed480a3e3a0af7d28242d3257c606d9
   Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
   lottie-ios: 496ac5cea1bbf1a7bd1f1f472f3232eb1b8d744b
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -127,10 +146,11 @@ SPEC CHECKSUMS:
   Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
   RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: ac3b9d2043d5761f29d262c46d3ec89992d4c5a9
+PODFILE CHECKSUM: be51db3adda46e826487560a8666a90f993cc135
 
 COCOAPODS: 1.8.3

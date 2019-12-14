@@ -10,23 +10,30 @@ import UIKit
 
 class OnboardingAimTableHeader: UIView {
     private lazy var whatHelpLabel: UILabel = {
+        let attr = TextAttributes()
+            .font(Font.Poppins.bold(size: 34))
+            .lineHeight(41)
+            .textAlignment(.center)
+            .textColor(.white)
+        
         let label = UILabel()
-        label.text = "what_to_help_you_with".localized
-        label.font = UIFont(name: "Poppins-SemiBold", size: 34)!
-        label.textColor = .white
+        label.attributedText = "what_to_help_you_with".localized.attributed(with: attr)
         label.numberOfLines = 0
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var selectAimsLabel: UILabel = {
+        let attr = TextAttributes()
+            .font(Font.Poppins.medium(size: 17))
+            .lineHeight(22)
+            .letterSpacing(-0.5)
+            .textAlignment(.center)
+            .textColor(UIColor.white.withAlphaComponent(0.7))
+        
         let label = UILabel()
-        label.text = "select_that_are_the_most_relevant_to_you".localized
-        label.font = UIFont(name: "Poppins-Regular", size: 17)!
-        label.textColor = UIColor.white.withAlphaComponent(0.7)
+        label.attributedText = "select_that_are_the_most_relevant_to_you".localized.attributed(with: attr)
         label.numberOfLines = 0
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

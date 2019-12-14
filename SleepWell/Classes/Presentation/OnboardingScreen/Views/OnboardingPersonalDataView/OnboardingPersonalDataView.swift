@@ -14,6 +14,9 @@ extension Int: PickerViewItem {}
 
 class OnboardingPersonalDataView: UIView {
     @IBOutlet var containerView: UIView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var maleCheckView: CheckView!
     @IBOutlet weak var femaleCheckView: CheckView!
     @IBOutlet weak var otherCheckView: CheckView!
@@ -33,8 +36,6 @@ class OnboardingPersonalDataView: UIView {
         
         return array
     }()
-    
-    private lazy var nextButtonColor = UIColor(red: 0.921, green: 0.894, blue: 0.909, alpha: 1)
     
     private var years: [Int] = []
     
@@ -83,6 +84,7 @@ class OnboardingPersonalDataView: UIView {
         
         updateGenderViews()
         updateNextButton()
+        setupUI()
         
         nextButton.rx.tap
             .throttle(RxTimeInterval.microseconds(500), scheduler: MainScheduler.asyncInstance)
@@ -124,7 +126,26 @@ class OnboardingPersonalDataView: UIView {
     
     private func updateNextButton() {
         let isFilled = selectedYear != nil && selectedGender != nil
-        nextButton.isEnabled = isFilled
-        nextButton.backgroundColor = isFilled ? nextButtonColor : nextButtonColor.withAlphaComponent(0.3)
+        nextButton.isUserInteractionEnabled = isFilled
+        nextButton.alpha = isFilled ? 1 : 0.1
+    }
+    
+    private func setupUI() {
+        let titleAttr = TextAttributes()
+            .font(Font.Poppins.bold(size: 34))
+            .lineHeight(41)
+            .textAlignment(.center)
+            .textColor(.white)
+        
+        titleLabel.attributedText = "make_it_your_own".localized.attributed(with: titleAttr)
+        
+        let subtitleAttr = TextAttributes()
+            .font(Font.Poppins.medium(size: 17))
+            .lineHeight(22)
+            .letterSpacing(-0.5)
+            .textAlignment(.center)
+            .textColor(UIColor.white)
+        
+        subtitleLabel.attributedText = "get_recommended_content_based_on_your_gender_and_age".localized.attributed(with: subtitleAttr)
     }
 }

@@ -11,14 +11,15 @@ import RxCocoa
 
 protocol ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]>
-    func sceneDetails(scene: SceneCellModel) -> Signal<ScenesViewModel.Action>
+    func sceneDetails(scene: SceneCellModelFields) -> Signal<ScenesViewModel.Action>
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
     func add(sceneDetail: SceneDetail)
-    var playScene: Binder<Void> { get }
-    var pauseScene: Binder<Void> { get }
+    func playScene(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
@@ -62,7 +63,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
             .map { SceneCellModel.map(scene: $0.0, isActiveSubscription: $0.1) }
     }
 
-    func sceneDetails(scene: SceneCellModel) -> Signal<Action> {
+    func sceneDetails(scene: SceneCellModelFields) -> Signal<Action> {
         guard scene.paid else {
             return .just(.paygate)
         }
@@ -94,12 +95,16 @@ extension ScenesViewModel: ScenesViewModelInterface {
         dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
     }
     
-    var playScene: Binder<Void> {
-        dependencies.audioPlayerService.rx.playScene
+    func playScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioPlayerService.playScene(style: style)
     }
     
-    var pauseScene: Binder<Void> {
-        dependencies.audioPlayerService.rx.pauseScene
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioPlayerService.pauseScene(style: style)
+    }
+    
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioPlayerService.pauseRecording(style: .gentle)
     }
     
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {

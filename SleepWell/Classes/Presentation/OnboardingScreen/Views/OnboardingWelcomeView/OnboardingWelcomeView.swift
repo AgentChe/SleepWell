@@ -31,12 +31,16 @@ class OnboardingWelcomeView: UIView {
     }()
     
     private lazy var label: UILabel = {
+        let attr = TextAttributes()
+            .font(Font.Poppins.semibold(size: 22))
+            .lineHeight(32)
+            .letterSpacing(-0.3)
+            .textAlignment(.center)
+            .textColor(.white)
+        
         let label = UILabel()
-        label.text = "swipe_left_or_right_to_change_scene".localized
+        label.attributedText = "swipe_left_or_right_to_change_scene".localized.attributed(with: attr)
         label.numberOfLines = 0
-        label.font = UIFont(name: "Poppins-Regular", size: 22)
-        label.textColor = .white
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

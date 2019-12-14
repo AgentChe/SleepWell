@@ -14,6 +14,8 @@ extension String: PickerViewItem {}
 
 class OnboardingBedtimeView: UIView {
     @IBOutlet var containerView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var hourPickerView: PickerView!
     @IBOutlet weak var minutePickerView: PickerView!
@@ -69,6 +71,8 @@ class OnboardingBedtimeView: UIView {
         frame = bounds
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(containerView)
+        
+        setupUI()
         
         hourPickerView.didSelectItem = { [weak self] item in
             guard let hour = item as? String else {
@@ -131,5 +135,24 @@ class OnboardingBedtimeView: UIView {
             
             completion()
         })
+    }
+    
+    private func setupUI() {
+        let titleAttr = TextAttributes()
+            .font(Font.Poppins.bold(size: 34))
+            .lineHeight(41)
+            .textAlignment(.center)
+            .textColor(.white)
+        
+        titleLabel.attributedText = "set_your_bedtime".localized.attributed(with: titleAttr)
+        
+        let subtitleAttr = TextAttributes()
+            .font(Font.Poppins.medium(size: 17))
+            .lineHeight(22)
+            .letterSpacing(-0.5)
+            .textAlignment(.center)
+            .textColor(UIColor.white)
+        
+        subtitleLabel.attributedText = "bedtime_info".localized.attributed(with: subtitleAttr)
     }
 }

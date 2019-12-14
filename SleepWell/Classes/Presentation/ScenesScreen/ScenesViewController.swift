@@ -9,9 +9,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import InfiniteLayout
 
 final class ScenesViewController: UIViewController {
-    @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: RxInfiniteCollectionView!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -25,25 +26,30 @@ final class ScenesViewController: UIViewController {
     }
     
     private func setupUI() {
-        collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: "SceneCell")
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = view.frame.size
-        layout.minimumLineSpacing = 0
-        layout.scrollDirection = .horizontal
-        collectionView.delegate = self
-        collectionView.collectionViewLayout = layout
-        collectionView.isPagingEnabled = true
+        collectionView.register(UINib(nibName: "SceneImageCell", bundle: nil), forCellWithReuseIdentifier: "SceneImageCell")
+        collectionView.register(SceneVideoCell.self, forCellWithReuseIdentifier: "SceneVideoCell")
+        collectionView.infiniteLayout.itemSize = UIScreen.main.bounds.size
+        collectionView.infiniteLayout.minimumLineSpacing = 0
+        collectionView.velocityMultiplier = 1
+        collectionView.isItemPagingEnabled = true
         let imageEdgeInsets = UIEdgeInsets(
-            top: 3,
-            left: 3,
-            bottom: 3,
-            right: 3
+            top: 26.5,
+            left: 28.5,
+            bottom: 26.5,
+            right: 28.5
         )
         pauseButton.imageEdgeInsets = imageEdgeInsets
         playButton.imageEdgeInsets = imageEdgeInsets
+        
+        let settingsInsets = UIEdgeInsets(
+            top: 23.31,
+            left: 20.875,
+            bottom: 23.31,
+            right: 20.875
+        )
+        settingsButton.imageEdgeInsets = settingsInsets
     }
 
-    private let visibleCellIndex = BehaviorRelay<Int?>(value: 0)
     private let disposeBag = DisposeBag()
 }
 
@@ -64,32 +70,40 @@ extension ScenesViewController: BindsToViewModel {
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.elements(subscription: input.subscription)
-        let visibleCellSignal = visibleCellIndex
-            .compactMap { $0 }
+
+        let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
+            .compactMap { $0?.fields }
+
+        let visibleCellSignal = collectionView.rx.itemCentered
+            .compactMap { $0?.row }
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
     
         elements
-            .drive(collectionView.rx.items) { collection, index, item in
-                let cell = collection.dequeueReusableCell(withReuseIdentifier: "SceneCell", for: IndexPath(row: index, section: 0)) as! SceneCell
-                cell.setup(model: item)
-                return cell
+            .drive(collectionView.rx.items(infinite: true)) { collection, index, item in
+                switch item {
+                case .image(let fields):
+                    let cell = collection.dequeueReusableCell(
+                        withReuseIdentifier: "SceneImageCell",
+                        for: IndexPath(row: index, section: 0)
+                    ) as! SceneImageCell
+                    cell.setup(model: fields)
+                    return cell
+                case .video(let fields):
+                    let cell = collection.dequeueReusableCell(
+                        withReuseIdentifier: "SceneVideoCell",
+                        for: IndexPath(row: index, section: 0)
+                    ) as! SceneVideoCell
+                    cell.setup(model: fields)
+                    return cell
+                }
             }
             .disposed(by: disposeBag)
         
-        let sceneAction = Driver
-            .combineLatest(
-                visibleCellSignal
-                    .asDriver(onErrorDriveWith: .empty()),
-                elements
-            )
-            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action> in
-                guard index <= scene.count - 1 else {
-                    return .empty()
-                }
-                
-                return viewModel.sceneDetails(scene: scene[index])
-        }.debug()
+        let sceneAction = modelSelected
+            .flatMapLatest { scene -> Signal<ScenesViewModel.Action> in
+                viewModel.sceneDetails(scene: scene)
+            }
         
         input.subscription
             .filter { !$0 }
@@ -100,30 +114,24 @@ extension ScenesViewController: BindsToViewModel {
                 }
                 return index - 1
             }
-            .bind(to: Binder(collectionView) { [weak self] collectionView, index in
-                collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
-                self?.visibleCellIndex.accept(index)
+            .bind(to: Binder(collectionView) {
+                $0.scrollToItem(at: IndexPath(row: $1, section: 0), at: .centeredHorizontally, animated: true)
             })
             .disposed(by: disposeBag)
         
-        let paygate = visibleCellSignal
-            .withLatestFrom(elements) { ($0, $1) }
-            .flatMapLatest { index, scene -> Signal<ScenesViewModel.Action> in
-                guard index <= scene.count - 1 else {
-                    return .empty()
-                }
-                
-                return viewModel.sceneDetails(scene: scene[index])
-            }.debug()
+        let paygate = modelSelected
+            .flatMapLatest { scene -> Signal<ScenesViewModel.Action> in
+                return viewModel.sceneDetails(scene: scene)
+            }
             .filter {
-                guard case .paygate = $0 else {  return false  }
+                guard case .paygate = $0 else { return false  }
                 return true
             }
             .map { _ in MainRoute.paygate }
             .asSignal(onErrorJustReturn: .paygate)
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
-            .asSignal(onErrorSignalWith: .empty())
+            .asDriver(onErrorDriveWith: .empty())
         
         let didDismissSetting = settingsButton.rx.tap.asSignal()
             .withLatestFrom(sceneDetail)
@@ -154,33 +162,82 @@ extension ScenesViewController: BindsToViewModel {
             .filter { viewModel.isOtherScenePlaying(scene: $0) }
             .asObservable()
         
+        let playSceneByOpeningSettings = settingsButton.rx.tap.asObservable()
+            .withLatestFrom(sceneDetail.asObservable())
+            .filter { $0 != nil }
+            .map { $0! }
+            .flatMapLatest { scene in
+                viewModel.isPlaying(scene: scene)
+                    .take(1)
+                    .map { (scene, $0) }
+            }
+            .filter { !$1 }
+            .map { $0.0 }
+        
         let didTapPlayScene = playButton.rx.tap.asObservable()
             .withLatestFrom(sceneDetail.asObservable())
             .filter { $0 != nil }
             .map { $0! }
         
+        let shouldPlayScene = Observable
+            .merge(
+                initialScene.map { _ in true },
+                playSceneBySwipe.map { _ in true },
+                playSceneByOpeningSettings.map { _ in true },
+                didTapPlayScene.map { _ in true },
+                pauseButton.rx.tap.asObservable().map { _ in false }
+            )
+        
         Observable
             .merge(
                 initialScene,
                 playSceneBySwipe,
+                playSceneByOpeningSettings,
                 didTapPlayScene
             )
+            .observeOn(MainScheduler.instance)
+            .flatMapLatest { scene in
+                viewModel.pauseScene(style: .gentle).map { _ in scene }
+            }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: {
                 viewModel.add(sceneDetail: $0)
             })
-            .map { _ in () }
             .asSignal(onErrorSignalWith: .empty())
-            .emit(to: viewModel.playScene)
+            .flatMapFirst { _ in
+                viewModel.pauseRecording(style: .gentle)
+            }
+            .withLatestFrom(shouldPlayScene.asSignal(onErrorSignalWith: .empty()))
+            .flatMapLatest { shouldPlay in
+                shouldPlay ? viewModel.playScene(style: .gentle) : .empty()
+            }
+            .emit()
             .disposed(by: disposeBag)
         
         pauseButton.rx.tap.asSignal()
-            .emit(to: viewModel.pauseScene)
+            .map { _ in .gentle }
+            .flatMapFirst { viewModel.pauseScene(style: $0) }
+            .emit()
             .disposed(by: disposeBag)
         
         let isPlaying = viewModel.isScenePlaying
         
-        isPlaying
+        let isPlayingBySwipe = Observable
+            .merge(
+                initialScene.map { _ in false },
+                playSceneBySwipe.map { _ in true },
+                playSceneByOpeningSettings.map { _ in false },
+                didTapPlayScene.map { _ in false },
+                pauseButton.rx.tap.asObservable().map { _ in false }
+            )
+            .distinctUntilChanged()
+            .asDriver(onErrorDriveWith: .empty())
+        
+        Driver
+            .combineLatest(
+                isPlaying,
+                isPlayingBySwipe
+            ) { $0 || $1 }
             .drive(Binder(self) { base, isPlaying in
                 base.pauseButton.isHidden = !isPlaying
                 base.playButton.isHidden = isPlaying
@@ -234,15 +291,12 @@ extension ScenesViewController: BindsToViewModel {
             .map { $0.0 }
             .emit(to: Binder(self) { base, isExpanded in
                 input.hideTabbarClosure(isExpanded)
-                self.pauseButtonBottomConstraint.constant = CGFloat(-33)
-                self.settingsButtonBottomConstraint.constant = CGFloat(-35)
+                self.pauseButtonBottomConstraint.constant = CGFloat(-80)
+                self.settingsButtonBottomConstraint.constant = CGFloat(-80)
                 
-                UIView.animate(
-                    withDuration: 0.5,
-                    animations: {
-                        self.view.layoutIfNeeded()
-                    }
-                )
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
             })
             .disposed(by: disposeBag)
         
@@ -253,27 +307,16 @@ extension ScenesViewController: BindsToViewModel {
             .map { $0.0 }
             .emit(to: Binder(self) { base, isPlaying in
                 input.hideTabbarClosure(false)
-                self.pauseButtonBottomConstraint.constant = CGFloat(116)
-                self.settingsButtonBottomConstraint.constant = CGFloat(117)
+                self.pauseButtonBottomConstraint.constant = CGFloat(108.5)
+                self.settingsButtonBottomConstraint.constant = CGFloat(110.32)
                 
-                UIView.animate(
-                    withDuration: 0.5,
-                    animations: {
-                        self.view.layoutIfNeeded()
-                    }
-                )
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
             })
             .disposed(by: disposeBag)
         
         return paygate
-    }
-}
-
-extension ScenesViewController: UICollectionViewDelegate, UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let cellWidth = scrollView.frame.width
-        let index = floor((scrollView.contentOffset.x - cellWidth / 2) / cellWidth) + 1
-        visibleCellIndex.accept(Int(index))
     }
 }
 

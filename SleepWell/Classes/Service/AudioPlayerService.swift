@@ -11,6 +11,11 @@ import RxSwift
 import RxCocoa
 import MediaPlayer
 
+enum PlayAndPauseStyle {
+    case force
+    case gentle
+}
+
 final class AudioPlayerService: ReactiveCompatible {
     
     static let shared = AudioPlayerService()
@@ -38,6 +43,33 @@ final class AudioPlayerService: ReactiveCompatible {
         audio.prepareToPlay()
     }
     
+    func add(recording: RecordingDetail) -> Signal<Void> {
+        
+        guard recording.recording.id != audioRelay.value?.recording.recording.id else {
+            return .just(())
+        }
+
+        return .deferred { [weak self] in
+            let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
+            let ambientPlayer: AVPlayer?
+            if let ambientUrl = recording.ambientSound?.soundUrl {
+                ambientPlayer = AVPlayer(url: ambientUrl)
+            } else {
+                ambientPlayer = nil
+            }
+            
+            let audio = Audio(
+                mainPlayer: mainPlayer,
+                ambientPlayer: ambientPlayer,
+                recording: recording
+            )
+            self?.audioRelay.accept(audio)
+            audio.prepareToPlay()
+            
+            return .just(())
+        }
+    }
+
     func add(sceneDetail: SceneDetail) {
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
@@ -60,12 +92,16 @@ final class AudioPlayerService: ReactiveCompatible {
         sceneAudio.prepareToPlay()
     }
     
-    var time: Driver<Int> {
+    func time(for id: Int) -> Driver<Int> {
         
         audioRelay.asDriver()
             .filter { $0 != nil }
             .map { $0! }
-            .flatMapLatest { $0.rx.currentTime }
+            .flatMapLatest {
+                $0.recording.recording.id == id
+                    ? $0.rx.currentTime
+                    : .just(0)
+            }
     }
     
     func isPlaying(recording: RecordingDetail) -> Driver<Bool> {
@@ -96,6 +132,22 @@ final class AudioPlayerService: ReactiveCompatible {
             return false
         }
         return value.isPlaying
+    }
+    
+    func playScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        sceneRelay.value?.play(style: style) ?? .just(())
+    }
+    
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        sceneRelay.value?.pause(style: style) ?? .just(())
+    }
+    
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        audioRelay.value?.pause(style: style) ?? .just(())
+    }
+    
+    func playRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        audioRelay.value?.play(style: style) ?? .just(())
     }
     
     var isScenePlaying: Driver<Bool> {
@@ -131,24 +183,54 @@ final class AudioPlayerService: ReactiveCompatible {
     }
     
     var currentScenePlayersVolume: [(id: Int, value: Float)]? {
-        sceneRelay.value?.players.map { ($0.id, $0.player.volume) }
+        sceneRelay.value?.currentScenePlayersVolume.map { (id: $0, value: $1) }
     }
     
     fileprivate let sceneRelay = BehaviorRelay<SceneAudio?>(value: nil)
     fileprivate let audioRelay = BehaviorRelay<Audio?>(value: nil)
+    fileprivate let audioType = BehaviorRelay<AudioType>(value: .none)
     fileprivate let timer = SceneTimer()
+    fileprivate let disposeBag = DisposeBag()
     private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-    private let disposeBag = DisposeBag()
+    
+    private var time: Driver<Int> {
+        
+        audioRelay.asDriver()
+            .filter { $0 != nil }
+            .map { $0! }
+            .flatMapLatest { $0.rx.currentTime }
+    }
     
     private init() {
         
         timer.shouldSleep
             .emit(to: Binder(self) { base, _ in
                 if let scene = base.sceneRelay.value {
-                    scene.pause()
-                    base.sceneRelay.accept(nil)
+                    
+                    scene.pause(style: .gentle)
+                        .map { _ in SceneAudio?.none }
+                        .emit(to: base.sceneRelay)
+                        .disposed(by: base.disposeBag)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        let isSoundsEmpty = Driver
+            .combineLatest(
+                sceneRelay.asDriver(),
+                audioRelay.asDriver()
+            ) { $0 == nil && $1 == nil }
+            .filter { $0 }
+            .map { _ in AudioType.none }
+        
+        Driver<AudioType>
+            .merge(
+                isSoundsEmpty,
+                isScenePlaying.filter { $0 }.map { _ in .scene },
+                isPlaying.filter { $0 }.map { _ in .recording }
+            )
+            .distinctUntilChanged()
+            .drive(audioType)
             .disposed(by: disposeBag)
         
         try? AVAudioSession.sharedInstance().setCategory(.playback)
@@ -172,8 +254,7 @@ final class AudioPlayerService: ReactiveCompatible {
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { value -> UIImage? in
                 guard let value = value,
-                    let url = value.scene.imageUrl,
-                    let data = try? Data(contentsOf: url),
+                    let data = try? Data(contentsOf: value.scene.url),
                     let image = UIImage(data: data)
                 else {
                     return nil
@@ -193,13 +274,18 @@ final class AudioPlayerService: ReactiveCompatible {
                     .distinctUntilChanged(),
                 sceneImage.startWith(nil)
                     .asDriver(onErrorJustReturn: nil)
-                    .distinctUntilChanged()
+                    .distinctUntilChanged(),
+                audioType.asDriver()
             )
-            .map { scene, audio, time, isPlaying, audioImage, sceneImage -> [String: Any] in
+            .map { scene, audio, time, isPlaying, audioImage, sceneImage, type -> [String: Any] in
+                
+                guard type != .none else {
+                    return [:]
+                }
                 
                 let commandCenter = MPRemoteCommandCenter.shared()
                 
-                guard scene == nil else {
+                if scene != nil && type == .scene {
                     commandCenter.skipForwardCommand.isEnabled = false
                     commandCenter.skipBackwardCommand.isEnabled = false
                     
@@ -207,7 +293,7 @@ final class AudioPlayerService: ReactiveCompatible {
                         MPMediaItemPropertyTitle: "Scene"
                     ]
                     
-                    if let image = audioImage {
+                    if let image = sceneImage {
                         nowPlayingInfo[MPMediaItemPropertyArtwork] =
                             MPMediaItemArtwork(boundsSize: image.size) { _ in image }
                     }
@@ -239,8 +325,8 @@ final class AudioPlayerService: ReactiveCompatible {
             .drive(Binder(self) { base, info in
                 base.nowPlayingInfoCenter.nowPlayingInfo = info
                 if info.isEmpty {
-                    base.audioRelay.value?.pause()
-                    base.sceneRelay.value?.pause()
+                    base.audioRelay.value?.forcePause()
+                    base.sceneRelay.value?.forcePause()
                     try? AVAudioSession.sharedInstance().setActive(
                         false,
                         options: .notifyOthersOnDeactivation
@@ -258,17 +344,39 @@ final class AudioPlayerService: ReactiveCompatible {
 
 private extension AudioPlayerService {
     
+    enum AudioType {
+        case scene
+        case recording
+        case none
+    }
+}
+
+private extension AudioPlayerService {
+    
     func setupRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
 
         commandCenter.playCommand
             .addTarget { [weak self] _ in
-                if self?.audioRelay.value?.isPlaying == false {
-                    self?.audioRelay.value?.play()
+                if let self = self,
+                    self.audioType.value == .recording,
+                    let audio = self.audioRelay.value,
+                    !audio.isPlaying {
+                    
+                    audio.play(style: .gentle)
+                        .emit()
+                        .disposed(by: self.disposeBag)
                     return .success
                 }
-                if self?.sceneRelay.value?.isPlaying == false {
-                    self?.sceneRelay.value?.play()
+                if let self = self,
+                    self.audioType.value == .scene,
+                    let scene = self.sceneRelay.value,
+                    !scene.isPlaying {
+                    
+                    scene.play(style: .gentle)
+                        .emit()
+                        .disposed(by: self.disposeBag)
+                    
                     return .success
                 }
                 return .commandFailed
@@ -276,12 +384,24 @@ private extension AudioPlayerService {
 
         commandCenter.pauseCommand
             .addTarget { [weak self] _ in
-                if self?.audioRelay.value?.isPlaying == true {
-                    self?.audioRelay.value?.pause()
+                if let self = self,
+                    let audio = self.audioRelay.value,
+                    audio.isPlaying {
+                    
+                    audio.pause(style: .gentle)
+                        .emit()
+                        .disposed(by: self.disposeBag)
+                    
                     return .success
                 }
-                if self?.sceneRelay.value?.isPlaying == true {
-                    self?.sceneRelay.value?.pause()
+                if let self = self,
+                    let scene = self.sceneRelay.value,
+                    scene.isPlaying {
+                    
+                    scene.pause(style: .gentle)
+                        .emit()
+                        .disposed(by: self.disposeBag)
+                    
                     return .success
                 }
                 return .commandFailed
@@ -328,9 +448,8 @@ private final class SceneTimer {
     func start(with seconds: Int) {
         disposeBag = DisposeBag()
         
-        let timer = Driver<Int>.interval(.seconds(1))
-            .map { seconds - $0 - 1 }
-            .startWith(seconds)
+        let timer = Driver<Int>.timer(.seconds(0), period: .seconds(1))
+            .map { seconds - $0 }
             .take(seconds + 1)
         
         timer.drive(_currentSeconds)
@@ -387,31 +506,120 @@ private final class SceneAudio: ReactiveCompatible {
     func prepareToPlay() {
         
         players.forEach {
-            
             $0.player.volume = 0.75
-            
+        }
+        let volumes = players.reduce([Int: Float]()) { result, player in
+            var result = result
+            result[player.id] = 0.75
+            return result
+        }
+        _currentScenePlayersVolume.accept(volumes)
+        prepareRetry()
+    }
+    
+    func prepareRetry() {
+        players.forEach {
             NotificationCenter.default.rx
-            .notification(
-                .AVPlayerItemDidPlayToEndTime,
-                object: $0.player.currentItem
-            )
-            .bind(to: Binder($0.player) { player, _ in
-                player.seek(to: CMTime.zero)
-                player.play()
-            })
-            .disposed(by: disposeBag)
+                .notification(
+                    .AVPlayerItemDidPlayToEndTime,
+                    object: $0.player.currentItem
+                )
+                .bind(to: Binder($0.player) { player, _ in
+                    player.seek(to: CMTime.zero)
+                    player.play()
+                })
+                .disposed(by: disposeBag)
         }
     }
     
-    func play() {
-        players.forEach {
-            $0.player.play()
+    func play(style: PlayAndPauseStyle) -> Signal<Void> {
+        switch style {
+        case .force:
+            return .deferred { [weak self] in
+                self?.forcePlay()
+                return .just(())
+            }
+        case .gentle:
+            let initialVolumes = players.map { $0.player.volume }
+            players.forEach { $0.player.volume = 0 }
+            forcePlay()
+            
+            return Observable<Int>
+                .timer(
+                    .milliseconds(0),
+                    period: .milliseconds(10),
+                    scheduler: MainScheduler.instance
+                )
+                .take(101)
+                .map { Float($0) / 100.0 }
+                .do(onNext: { [weak self] progress in
+                    guard let scene = self else {
+                        return
+                    }
+                    scene.players.enumerated()
+                        .forEach { index, player in
+                            guard let initialVolume = initialVolumes.item(at: index) else {
+                                return
+                            }
+                            player.player.volume = progress * initialVolume
+                        }
+                })
+                .takeLast(1)
+                .map { _ in () }
+                .asSignal(onErrorSignalWith: .empty())
         }
     }
     
-    func pause() {
-        players.forEach {
-            $0.player.pause()
+    func pause(style: PlayAndPauseStyle) -> Signal<Void> {
+        switch style {
+        case .force:
+            return .deferred { [weak self] in
+                self?.forcePause()
+                return .just(())
+            }
+            
+        case .gentle:
+            
+            guard isPlaying else {
+                return .just(())
+            }
+            
+            let initialVolumes = players.map { $0.player.volume }
+            return Observable<Int>
+                .timer(
+                    .milliseconds(0),
+                    period: .milliseconds(10),
+                    scheduler: MainScheduler.instance
+                )
+                .take(101)
+                .map { 1.0 - Float($0) / 100.0 }
+                .do(onNext: { [weak self] progress in
+                    guard let scene = self else {
+                        return
+                    }
+                    scene.players.enumerated()
+                        .forEach { index, player in
+                            guard let initialVolume = initialVolumes.item(at: index) else {
+                                return
+                            }
+                            player.player.volume = progress * initialVolume
+                        }
+                    
+                    if progress == 0.0 {
+                        scene.forcePause()
+                        
+                        scene.players.enumerated()
+                            .forEach { index, player in
+                                guard let initialVolume = initialVolumes.item(at: index) else {
+                                    return
+                                }
+                                player.player.volume = initialVolume
+                            }
+                    }
+                })
+                .takeLast(1)
+                .map { _ in () }
+                .asSignal(onErrorSignalWith: .empty())
         }
     }
     
@@ -419,7 +627,12 @@ private final class SceneAudio: ReactiveCompatible {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
-        players.first(where: { $0.id == id })?.player.volume = value
+        if let player = players.first(where: { $0.id == id }) {
+            player.player.volume = value
+            var newVolumes = _currentScenePlayersVolume.value
+            newVolumes[id] = value
+            _currentScenePlayersVolume.accept(newVolumes)
+        }
     }
     
     var isPlaying: Bool {
@@ -429,6 +642,23 @@ private final class SceneAudio: ReactiveCompatible {
         return player.rate != 0 && player.error == nil
     }
     
+    func forcePause() {
+        players.forEach {
+            $0.player.pause()
+        }
+    }
+    
+    func forcePlay() {
+        players.forEach {
+            $0.player.play()
+        }
+    }
+    
+    var currentScenePlayersVolume: [Int: Float] {
+        _currentScenePlayersVolume.value
+    }
+    
+    private let _currentScenePlayersVolume = BehaviorRelay<[Int: Float]>(value: [:])
     private let disposeBag = DisposeBag()
 }
 
@@ -450,7 +680,7 @@ private final class Audio: ReactiveCompatible {
     
     var currentTime: CMTime {
         set {
-            mainPlayer.seek(to: newValue, completionHandler: { _ in })
+            mainPlayer.seek(to: newValue)
         }
         get {
             mainPlayer.currentTime()
@@ -458,17 +688,18 @@ private final class Audio: ReactiveCompatible {
     }
     
     var mainPlayerVolume: Float {
-        mainPlayer.volume
+        _mainPlayerVolume.value
     }
     
     var ambientPlayerVolume: Float? {
-        ambientPlayer?.volume
+        _ambientPlayerVolume.value
     }
     
     func setMainPlayerVolume(value: Float) {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
+        _mainPlayerVolume.accept(value)
         mainPlayer.volume = value
     }
     
@@ -476,6 +707,7 @@ private final class Audio: ReactiveCompatible {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
+        _ambientPlayerVolume.accept(value)
         ambientPlayer?.volume = value
     }
     
@@ -483,7 +715,9 @@ private final class Audio: ReactiveCompatible {
         
         setMainPlayerVolume(value: 0.75)
         setAmbientPlayerVolume(value: 0.75)
-        
+    }
+    
+    private func prepareAmbient() {
         if let ambient = ambientPlayer {
             
             NotificationCenter.default.rx
@@ -499,19 +733,104 @@ private final class Audio: ReactiveCompatible {
         }
     }
     
-    func play() {
-        mainPlayer.play()
-        ambientPlayer?.play()
+    func play(style: PlayAndPauseStyle) -> Signal<Void> {
+        switch style {
+        case .force:
+            return .deferred { [weak self] in
+                self?.forcePlay()
+                return .just(())
+            }
+        case .gentle:
+            
+            let initialMainVolume = _mainPlayerVolume.value
+            let initialAmbientVolume = _ambientPlayerVolume.value
+            mainPlayer.volume = 0
+            ambientPlayer?.volume = 0
+            forcePlay()
+            
+            return Observable<Int>
+                .timer(
+                    .milliseconds(0),
+                    period: .milliseconds(10),
+                    scheduler: MainScheduler.instance
+                )
+                .take(101)
+                .map { Float($0) / 100.0 }
+                .do(onNext: { [weak self] progress in
+                    guard let audio = self else {
+                        return
+                    }
+                    audio.mainPlayer.volume = progress * initialMainVolume
+                    audio.ambientPlayer?.volume = progress * initialAmbientVolume
+                })
+                .takeUntil(isPausing.asObservable())
+                .takeLast(1)
+                .map { _ in () }
+                .asSignal(onErrorSignalWith: .empty())
+        }
     }
     
-    func pause() {
+    func pause(style: PlayAndPauseStyle) -> Signal<Void> {
+        
+        isPausing.accept(())
+        mainPlayer.volume = _mainPlayerVolume.value
+        ambientPlayer?.volume = _ambientPlayerVolume.value
+        
+        switch style {
+        case .force:
+            return .deferred { [weak self] in
+                self?.forcePause()
+                return .just(())
+            }
+        case .gentle:
+            
+            guard isPlaying else {
+                return .just(())
+            }
+            
+            let initialMainVolume = mainPlayer.volume
+            let initialAmbientVolume = ambientPlayer?.volume ?? 0
+            
+            return Observable<Int>
+                .timer(
+                    .milliseconds(0),
+                    period: .milliseconds(10),
+                    scheduler: MainScheduler.instance
+                )
+                .take(101)
+                .map { 1.0 - Float($0) / 100.0 }
+                .do(onNext: { [weak self] progress in
+                    guard let audio = self else {
+                        return
+                    }
+                    audio.mainPlayer.volume = progress * initialMainVolume
+                    audio.ambientPlayer?.volume = progress * initialAmbientVolume
+                    if progress == 0.0 {
+                        audio.forcePause()
+                        audio.mainPlayer.volume = initialMainVolume
+                        audio.ambientPlayer?.volume = initialAmbientVolume
+                    }
+                })
+                .takeLast(1)
+                .map { _ in () }
+                .asSignal(onErrorSignalWith: .empty())
+        }
+    }
+    
+    func reset() {
+        forcePause()
+        currentTime = .zero
+        ambientPlayer?.seek(to: .zero)
+    }
+    
+    func forcePause() {
         mainPlayer.pause()
         ambientPlayer?.pause()
     }
     
-    func reset() {
-        pause()
-        currentTime = CMTime.zero
+    func forcePlay() {
+        mainPlayer.play()
+        ambientPlayer?.play()
     }
     
     func fastForward() {
@@ -526,6 +845,9 @@ private final class Audio: ReactiveCompatible {
         currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
     }
     
+    private let _mainPlayerVolume = BehaviorRelay<Float>(value: 0.75)
+    private let _ambientPlayerVolume = BehaviorRelay<Float>(value: 0.75)
+    private let isPausing = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
 }
 
@@ -537,42 +859,6 @@ private extension Audio {
 }
 
 extension Reactive where Base: AudioPlayerService {
-    
-    var play: Binder<Void> {
-        
-        Binder(base) { base, _ in
-            if base.sceneRelay.value != nil {
-                base.sceneRelay.value?.pause()
-                base.sceneRelay.accept(nil)
-            }
-            base.audioRelay.value?.play()
-        }
-    }
-    
-    var playScene: Binder<Void> {
-        
-        Binder(base) { base, _ in
-            if base.audioRelay.value != nil {
-                base.audioRelay.value?.pause()
-                base.audioRelay.accept(nil)
-            }
-            base.sceneRelay.value?.play()
-        }
-    }
-    
-    var pause: Binder<Void> {
-        
-        Binder(base) { base, _ in
-            base.audioRelay.value?.pause()
-        }
-    }
-    
-    var pauseScene: Binder<Void> {
-        
-        Binder(base) { base, _ in
-            base.sceneRelay.value?.pause()
-        }
-    }
     
     var clear: Binder<Void> {
         
@@ -591,9 +877,9 @@ extension Reactive where Base: AudioPlayerService {
         }
     }
     
-    var reset: Binder<Void> {
-        
-        Binder(base) { base, _ in
+    var resetAudio: Binder<Void> {
+
+        Binder(base) { base, style in
             base.audioRelay.value?.reset()
         }
     }
@@ -644,7 +930,7 @@ private extension Reactive where Base: Audio {
     
     var currentTime: Driver<Int> {
         
-        Driver<Int>.interval(.milliseconds(100))
+        Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
             .map { [base] _ in
                 Int(round(base.mainPlayer.currentTime().seconds))
             }
@@ -653,7 +939,7 @@ private extension Reactive where Base: Audio {
     
     var isPlaying: Driver<Bool> {
         
-        Driver<Int>.interval(.milliseconds(100))
+        Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
             .map { [base] _ in
                 base.mainPlayer.rate != 0 && base.mainPlayer.error == nil
             }
@@ -665,10 +951,20 @@ private extension Reactive where Base: SceneAudio {
     
     var isPlaying: Driver<Bool> {
         
-        Driver<Int>.interval(.milliseconds(100))
+        Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
             .map { [base] _ in
                 base.isPlaying
             }
             .distinctUntilChanged()
+    }
+}
+
+private extension Array {
+    
+    func item(at index: Int) -> Element? {
+        guard index >= 0 && index < count else {
+            return nil
+        }
+        return self[index]
     }
 }
