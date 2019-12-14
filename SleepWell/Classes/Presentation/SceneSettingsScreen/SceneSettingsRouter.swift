@@ -6,6 +6,7 @@
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
+import RxCocoa
 import UIKit
 
 final class SceneSettingsRouter: Routing {
@@ -15,7 +16,7 @@ final class SceneSettingsRouter: Routing {
         router = Router(transitionHandler: transitionHandler)
     }
     
-    func showSleepTimerScreen(sceneDetail: SceneDetail) {
+    func showSleepTimerScreen(sceneDetail: SceneDetail) -> SceneTimerViewController.Output {
         router.present(type: SceneTimerAssembly.self, input: .init(sceneDetail: sceneDetail))
     }
 }

@@ -26,7 +26,8 @@ final class ScenesViewController: UIViewController {
     }
     
     private func setupUI() {
-        collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: "SceneCell")
+        collectionView.register(UINib(nibName: "SceneImageCell", bundle: nil), forCellWithReuseIdentifier: "SceneImageCell")
+        collectionView.register(SceneVideoCell.self, forCellWithReuseIdentifier: "SceneVideoCell")
         collectionView.infiniteLayout.itemSize = UIScreen.main.bounds.size
         collectionView.infiniteLayout.minimumLineSpacing = 0
         collectionView.velocityMultiplier = 1
@@ -71,7 +72,7 @@ extension ScenesViewController: BindsToViewModel {
         let elements = viewModel.elements(subscription: input.subscription)
 
         let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
-            .compactMap { $0 }
+            .compactMap { $0?.fields }
 
         let visibleCellSignal = collectionView.rx.itemCentered
             .compactMap { $0?.row }
@@ -80,9 +81,22 @@ extension ScenesViewController: BindsToViewModel {
     
         elements
             .drive(collectionView.rx.items(infinite: true)) { collection, index, item in
-                let cell = collection.dequeueReusableCell(withReuseIdentifier: "SceneCell", for: IndexPath(row: index, section: 0)) as! SceneCell
-                cell.setup(model: item)
-                return cell
+                switch item {
+                case .image(let fields):
+                    let cell = collection.dequeueReusableCell(
+                        withReuseIdentifier: "SceneImageCell",
+                        for: IndexPath(row: index, section: 0)
+                    ) as! SceneImageCell
+                    cell.setup(model: fields)
+                    return cell
+                case .video(let fields):
+                    let cell = collection.dequeueReusableCell(
+                        withReuseIdentifier: "SceneVideoCell",
+                        for: IndexPath(row: index, section: 0)
+                    ) as! SceneVideoCell
+                    cell.setup(model: fields)
+                    return cell
+                }
             }
             .disposed(by: disposeBag)
         

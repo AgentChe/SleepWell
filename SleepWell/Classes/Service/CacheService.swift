@@ -120,7 +120,7 @@ private final class UpdateScenes {
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
                 
                 return Observable
-                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in data.scenes.compactMap { $0.imageUrl } }
+                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in data.scenes.map { $0.url } }
                     .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode

@@ -86,9 +86,23 @@ extension SceneSettingsViewController: BindsToViewModel {
         
         let sleepTimerTapGesture = UITapGestureRecognizer()
         sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
-        sleepTimerTapGesture.rx.event.asSignal()
-            .map { _ in input.sceneDetail }
-            .emit(onNext: viewModel.showSleepTimerScreen)
+        
+        let showSleepTimer = sleepTimerTapGesture.rx.event.asSignal()
+            .do(onNext: { _ in self.view.alpha = 0 })
+            .map { _ in
+                viewModel.showSleepTimerScreen(sceneDetail: input.sceneDetail)
+            }
+        
+        showSleepTimer.flatMapLatest { $0.appeared }
+            .emit(to: Binder(self) { base, _ in
+                base.view.alpha = 0
+            })
+            .disposed(by: disposeBag)
+
+        showSleepTimer.flatMapLatest { $0.didDismiss }
+            .emit(to: Binder(self) { base, _ in
+                base.view.alpha = 1
+            })
             .disposed(by: disposeBag)
         
         let volumes = viewModel.currentScenePlayersVolume ?? []
@@ -173,7 +187,7 @@ extension SceneSettingsViewController: BindsToViewModel {
                 UIView.animate(
                     withDuration: 1,
                     animations: {
-                        base.blurView.effect = nil//UIBlurEffect(style: .dark)
+                        base.blurView.effect = nil
                         base.randomView.alpha = 0
                         base.defaultView.alpha = 0
                         base.sleepTimerView.alpha = 0

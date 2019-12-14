@@ -33,6 +33,7 @@
 		84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743823908CE100B10777 /* SceneTimerViewModel.swift */; };
 		84DD743B23908CEA00B10777 /* SceneTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743A23908CEA00B10777 /* SceneTimerViewController.swift */; };
 		84DD743D23908E8000B10777 /* SceneTimerScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DD743C23908E8000B10777 /* SceneTimerScreen.storyboard */; };
+		84EF894D23A3A8A200E09C9D /* SceneVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF894C23A3A8A200E09C9D /* SceneVideoCell.swift */; };
 		84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */; };
 		8620C371238C58BB00D26FDB /* ScrollTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8620C370238C58BB00D26FDB /* ScrollTabBarView.swift */; };
 		862783FA2369DFF60065A436 /* StoriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862783F92369DFF60065A436 /* StoriesMapper.swift */; };
@@ -46,8 +47,8 @@
 		86A7D6982385DA510087CE87 /* ScenesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6912385DA510087CE87 /* ScenesRouter.swift */; };
 		86A7D6992385DA510087CE87 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6922385DA510087CE87 /* ScenesViewModel.swift */; };
 		86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6932385DA510087CE87 /* ScenesAssembly.swift */; };
-		86A7D69B2385DA510087CE87 /* SceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D6952385DA510087CE87 /* SceneCell.xib */; };
-		86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6962385DA510087CE87 /* SceneCell.swift */; };
+		86A7D69B2385DA510087CE87 /* SceneImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D6952385DA510087CE87 /* SceneImageCell.xib */; };
+		86A7D69C2385DA510087CE87 /* SceneImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6962385DA510087CE87 /* SceneImageCell.swift */; };
 		86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6972385DA510087CE87 /* ScenesViewController.swift */; };
 		86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */; };
 		86A7D6A12385E1EB0087CE87 /* FullScenesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */; };
@@ -250,6 +251,7 @@
 		84DD743823908CE100B10777 /* SceneTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerViewModel.swift; sourceTree = "<group>"; };
 		84DD743A23908CEA00B10777 /* SceneTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerViewController.swift; sourceTree = "<group>"; };
 		84DD743C23908E8000B10777 /* SceneTimerScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneTimerScreen.storyboard; sourceTree = "<group>"; };
+		84EF894C23A3A8A200E09C9D /* SceneVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVideoCell.swift; sourceTree = "<group>"; };
 		84FC708C23834431000AD9AE /* SceneSettingsScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneSettingsScreen.storyboard; sourceTree = "<group>"; };
 		8620C370238C58BB00D26FDB /* ScrollTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTabBarView.swift; sourceTree = "<group>"; };
 		862783F92369DFF60065A436 /* StoriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesMapper.swift; sourceTree = "<group>"; };
@@ -263,8 +265,8 @@
 		86A7D6912385DA510087CE87 /* ScenesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesRouter.swift; sourceTree = "<group>"; };
 		86A7D6922385DA510087CE87 /* ScenesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		86A7D6932385DA510087CE87 /* ScenesAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesAssembly.swift; sourceTree = "<group>"; };
-		86A7D6952385DA510087CE87 /* SceneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneCell.xib; sourceTree = "<group>"; };
-		86A7D6962385DA510087CE87 /* SceneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
+		86A7D6952385DA510087CE87 /* SceneImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneImageCell.xib; sourceTree = "<group>"; };
+		86A7D6962385DA510087CE87 /* SceneImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneImageCell.swift; sourceTree = "<group>"; };
 		86A7D6972385DA510087CE87 /* ScenesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
 		86A7D69E2385DA710087CE87 /* ScenesScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScenesScreen.storyboard; sourceTree = "<group>"; };
 		86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScenesListRequest.swift; sourceTree = "<group>"; };
@@ -492,6 +494,23 @@
 			path = SceneTimerScreen;
 			sourceTree = "<group>";
 		};
+		84EF894A23A3A86200E09C9D /* SceneImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				86A7D6952385DA510087CE87 /* SceneImageCell.xib */,
+				86A7D6962385DA510087CE87 /* SceneImageCell.swift */,
+			);
+			path = SceneImageCell;
+			sourceTree = "<group>";
+		};
+		84EF894B23A3A89100E09C9D /* SceneVideoCell */ = {
+			isa = PBXGroup;
+			children = (
+				84EF894C23A3A8A200E09C9D /* SceneVideoCell.swift */,
+			);
+			path = SceneVideoCell;
+			sourceTree = "<group>";
+		};
 		84FC708B238343D6000AD9AE /* SceneSettingsScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,8 +570,8 @@
 		86A7D6942385DA510087CE87 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				86A7D6952385DA510087CE87 /* SceneCell.xib */,
-				86A7D6962385DA510087CE87 /* SceneCell.swift */,
+				84EF894B23A3A89100E09C9D /* SceneVideoCell */,
+				84EF894A23A3A86200E09C9D /* SceneImageCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1361,7 +1380,7 @@
 				86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */,
 				84DD743D23908E8000B10777 /* SceneTimerScreen.storyboard in Resources */,
 				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
-				86A7D69B2385DA510087CE87 /* SceneCell.xib in Resources */,
+				86A7D69B2385DA510087CE87 /* SceneImageCell.xib in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
 				96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */,
@@ -1437,6 +1456,7 @@
 				86F98CBB23645C3B00B0F5EA /* MeditateViewModel.swift in Sources */,
 				96C29F6323634D6C00E93CB1 /* OnboardingAssembly.swift in Sources */,
 				96C29F452363421800E93CB1 /* CheckUserTokenRequest.swift in Sources */,
+				84EF894D23A3A8A200E09C9D /* SceneVideoCell.swift in Sources */,
 				86B7A98F23702760007A36BA /* TagsMapper.swift in Sources */,
 				9623D3502399C3060040CB43 /* ImageCacheService.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
@@ -1541,7 +1561,7 @@
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,
 				84A38E3E2383D5F4004E7EBA /* SceneSettingsAssembly.swift in Sources */,
-				86A7D69C2385DA510087CE87 /* SceneCell.swift in Sources */,
+				86A7D69C2385DA510087CE87 /* SceneImageCell.swift in Sources */,
 				96C29F0B2362619600E93CB1 /* RestAPITransport.swift in Sources */,
 				84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,

@@ -33,9 +33,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hlm-fJ-ibf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJp-4V-HK8">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7wN-yd-61G">
@@ -284,17 +281,13 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="hlm-fJ-ibf" firstAttribute="leading" secondItem="SJ5-fz-Pgd" secondAttribute="leading" id="3T9-3f-Wwk"/>
                             <constraint firstAttribute="bottom" secondItem="sJp-4V-HK8" secondAttribute="bottom" id="EV2-lq-Y9c"/>
                             <constraint firstItem="SJ5-fz-Pgd" firstAttribute="trailing" secondItem="sJp-4V-HK8" secondAttribute="trailing" id="NPN-qV-VJ4"/>
-                            <constraint firstItem="SJ5-fz-Pgd" firstAttribute="trailing" secondItem="hlm-fJ-ibf" secondAttribute="trailing" id="NdH-yH-LX6"/>
                             <constraint firstItem="sJp-4V-HK8" firstAttribute="leading" secondItem="SJ5-fz-Pgd" secondAttribute="leading" id="Wcg-5f-NHo"/>
-                            <constraint firstAttribute="bottom" secondItem="hlm-fJ-ibf" secondAttribute="bottom" id="bWX-Wo-Q6b"/>
                             <constraint firstItem="sJp-4V-HK8" firstAttribute="top" secondItem="fZs-pn-9Zb" secondAttribute="top" id="oVo-jf-KdH"/>
-                            <constraint firstItem="hlm-fJ-ibf" firstAttribute="top" secondItem="fZs-pn-9Zb" secondAttribute="top" id="yWv-nS-u71"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SJ5-fz-Pgd"/>
                         <connections>
@@ -303,7 +296,6 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="backgroundImageView" destination="hlm-fJ-ibf" id="NF2-8S-hYm"/>
                         <outlet property="backgroundTap" destination="2Sp-5G-7bk" id="B4A-Iy-HlX"/>
                         <outlet property="backgroundView" destination="7wN-yd-61G" id="tiu-cY-UsG"/>
                         <outlet property="cancelView" destination="G4i-GO-joc" id="JNI-SQ-sXX"/>
