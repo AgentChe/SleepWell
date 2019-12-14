@@ -16,4 +16,3 @@ final class GlobalDefinitions {
     static let tabBarHeight = CGFloat(125)
     static let tableBottomInsert = CGFloat(85)
 }
-

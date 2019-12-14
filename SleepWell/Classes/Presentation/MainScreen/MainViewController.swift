@@ -84,6 +84,7 @@ extension MainViewController: BindsToViewModel {
         
         let subscriptionExpired = viewModel
             .monitorSubscriptionExpiration(triggers: [AppStateProxy.ApplicationProxy.didBecomeActive.asObservable()])
+            .map { !$0 }
             .startWith(input.behave == .withActiveSubscription)
             .distinctUntilChanged()
             .asObservable()
