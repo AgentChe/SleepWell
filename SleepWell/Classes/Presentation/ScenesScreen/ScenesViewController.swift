@@ -159,7 +159,9 @@ extension ScenesViewController: BindsToViewModel {
         let playSceneBySwipe = sceneDetail.skip(1)
             .filter { $0 != nil }
             .map { $0! }
-            .filter { viewModel.isOtherScenePlaying(scene: $0) }
+            .withLatestFrom(viewModel.isScenePlaying) { ($0, $1) }
+            .filter { $1 }
+            .map { $0.0 }
             .asObservable()
         
         let playSceneByOpeningSettings = settingsButton.rx.tap.asObservable()
