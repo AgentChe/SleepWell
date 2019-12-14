@@ -8,17 +8,36 @@
 
 import Foundation
 
-struct SceneCellModel {
+enum SceneCellModel {
+    case image(SceneCellModelFields)
+    case video(SceneCellModelFields)
+    
+    var fields: SceneCellModelFields {
+        switch self {
+        case .image(let fields):
+            return fields
+        case .video(let fields):
+            return fields
+        }
+    }
+}
+
+struct SceneCellModelFields {
     let id: Int
-    let image: URL?
+    let url: URL
     let paid: Bool
 }
 
 extension SceneCellModel {
     init(scene: Scene, isActiveSubscription: Bool) {
-        id = scene.id
-        image = scene.imageUrl
-        paid = isActiveSubscription ? true : !scene.paid
+        let sceneCellModelFields = SceneCellModelFields(
+            id: scene.id,
+            url: scene.url,
+            paid: isActiveSubscription ? true : !scene.paid
+        )
+        self = scene.hasVideoType
+            ? .video(sceneCellModelFields)
+            : .image(sceneCellModelFields)
     }
 
     static func map(scene: [Scene], isActiveSubscription: Bool) -> [SceneCellModel] {

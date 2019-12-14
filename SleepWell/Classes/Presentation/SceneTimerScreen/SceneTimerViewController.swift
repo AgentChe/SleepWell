@@ -17,7 +17,6 @@ final class SceneTimerViewController: UIViewController {
     @IBOutlet weak var sixtyView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var backgroundTap: UITapGestureRecognizer!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var cancelView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timerDescriptionLabel: UILabel!
@@ -32,21 +31,21 @@ extension SceneTimerViewController: BindsToViewModel {
     struct Input {
         let sceneDetail: SceneDetail
     }
+    
+    struct Output {
+        let appeared: Signal<Void>
+        let didDismiss: Signal<Void>
+    }
 
     static func make() -> SceneTimerViewController {
         let storyboard = UIStoryboard(name: "SceneTimerScreen", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SceneTimerViewController")
             as! SceneTimerViewController
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .overFullScreen
         return vc
     }
 
-    func bind(to viewModel: SceneTimerViewModelInterface, with input: Input) {
-        
-        if let image = input.sceneDetail.scene.imageUrl {
-            backgroundImageView.kf.indicatorType = .activity
-            backgroundImageView.kf.setImage(with: image, options: [.transition(.fade(0.2))])
-        }
+    func bind(to viewModel: SceneTimerViewModelInterface, with input: Input) -> Output {
         
         let fifteenMinTapGesture = UITapGestureRecognizer()
         fifteenMinView.addGestureRecognizer(fifteenMinTapGesture)
@@ -98,14 +97,23 @@ extension SceneTimerViewController: BindsToViewModel {
         
         viewModel.timerSeconds
             .map { $0.timerDescription }
-            //.map { "\($0 / 60):\($0 % 60)" }
             .drive(timerLabel.rx.text)
             .disposed(by: disposeBag)
         
-        backgroundTap.rx.event.asSignal()
+        let didDismiss = backgroundTap.rx.event.asSignal()
             .map { _ in () }
+            .take(1)
+        
+        didDismiss
             .emit(onNext: viewModel.dismiss)
             .disposed(by: disposeBag)
+        
+        return Output(
+            appeared: rx.methodInvoked(#selector(UIViewController.viewDidAppear))
+                .asSignal(onErrorSignalWith: .empty())
+                .map { _ in () },
+            didDismiss: didDismiss
+        )
     }
 }
 

@@ -11,19 +11,24 @@ import RealmSwift
 class RealmScene: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var paid: Bool = true
-    @objc dynamic var imageUrl: String?
+    @objc dynamic var url: String = ""
     @objc dynamic var hashCode: String = ""
+    @objc dynamic var hasVideoType: Bool = false
     
-    convenience init(id: Int,
-                     paid: Bool,
-                     imageUrl: URL?,
-                     hash: String) {
+    convenience init(
+        id: Int,
+        paid: Bool,
+        url: URL,
+        hash: String,
+        hasVideoType: Bool
+    ) {
         self.init()
         
         self.id = id
         self.paid = paid
-        self.imageUrl = imageUrl?.absoluteString
+        self.url = url.absoluteString
         self.hashCode = hash
+        self.hasVideoType = hasVideoType
     }
     
     @objc open override class func primaryKey() -> String? {

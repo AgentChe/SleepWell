@@ -254,8 +254,7 @@ final class AudioPlayerService: ReactiveCompatible {
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .map { value -> UIImage? in
                 guard let value = value,
-                    let url = value.scene.imageUrl,
-                    let data = try? Data(contentsOf: url),
+                    let data = try? Data(contentsOf: value.scene.url),
                     let image = UIImage(data: data)
                 else {
                     return nil

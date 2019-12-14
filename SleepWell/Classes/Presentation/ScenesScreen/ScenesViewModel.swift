@@ -11,7 +11,7 @@ import RxCocoa
 
 protocol ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]>
-    func sceneDetails(scene: SceneCellModel) -> Signal<ScenesViewModel.Action>
+    func sceneDetails(scene: SceneCellModelFields) -> Signal<ScenesViewModel.Action>
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
@@ -63,7 +63,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
             .map { SceneCellModel.map(scene: $0.0, isActiveSubscription: $0.1) }
     }
 
-    func sceneDetails(scene: SceneCellModel) -> Signal<Action> {
+    func sceneDetails(scene: SceneCellModelFields) -> Signal<Action> {
         guard scene.paid else {
             return .just(.paygate)
         }
