@@ -104,7 +104,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
     }
     
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
-        dependencies.audioPlayerService.pauseRecording(style: .gentle)
+        dependencies.audioPlayerService.pauseRecording(style: style)
     }
     
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {

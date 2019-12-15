@@ -204,14 +204,9 @@ final class AudioPlayerService: ReactiveCompatible {
     private init() {
         
         timer.shouldSleep
-            .emit(to: Binder(self) { base, _ in
-                if let scene = base.sceneRelay.value {
-                    
-                    scene.pause(style: .gentle)
-                        .map { _ in SceneAudio?.none }
-                        .emit(to: base.sceneRelay)
-                        .disposed(by: base.disposeBag)
-                }
+            .withLatestFrom(sceneRelay.asDriver())
+            .emit(onNext: {
+                $0?.forcePause()
             })
             .disposed(by: disposeBag)
         
@@ -363,9 +358,7 @@ private extension AudioPlayerService {
                     let audio = self.audioRelay.value,
                     !audio.isPlaying {
                     
-                    audio.play(style: .gentle)
-                        .emit()
-                        .disposed(by: self.disposeBag)
+                    audio.forcePlay()
                     return .success
                 }
                 if let self = self,
@@ -373,10 +366,7 @@ private extension AudioPlayerService {
                     let scene = self.sceneRelay.value,
                     !scene.isPlaying {
                     
-                    scene.play(style: .gentle)
-                        .emit()
-                        .disposed(by: self.disposeBag)
-                    
+                    scene.forcePlay()
                     return .success
                 }
                 return .commandFailed
@@ -388,20 +378,14 @@ private extension AudioPlayerService {
                     let audio = self.audioRelay.value,
                     audio.isPlaying {
                     
-                    audio.pause(style: .gentle)
-                        .emit()
-                        .disposed(by: self.disposeBag)
-                    
+                    audio.forcePause()
                     return .success
                 }
                 if let self = self,
                     let scene = self.sceneRelay.value,
                     scene.isPlaying {
                     
-                    scene.pause(style: .gentle)
-                        .emit()
-                        .disposed(by: self.disposeBag)
-                    
+                    scene.forcePause()
                     return .success
                 }
                 return .commandFailed
