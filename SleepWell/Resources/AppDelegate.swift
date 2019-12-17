@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PurchaseService.register()
         PushMessagesService.shared.configure()
         FirebaseApp.configure()
-        
+        RateManager.incrementRun()
+
         return true
     }
     

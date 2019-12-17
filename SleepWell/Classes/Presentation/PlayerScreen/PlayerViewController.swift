@@ -88,6 +88,14 @@ extension PlayerViewController: BindsToViewModel {
             .drive(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
+        beingDismissed
+            .withLatestFrom(isCurrentRecordingPlaying)
+            .filter { $0 }
+            .bind(to: Binder(self) { _, _ in
+                RateManager.showWeekRateController()
+            })
+            .disposed(by: disposeBag)
+        
         subtitleLabel.text = input.recording.recording.reader
         
         rx.methodInvoked(#selector(UIViewController.viewWillAppear))

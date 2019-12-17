@@ -84,6 +84,7 @@
 		86C848C82367027900BC6EDA /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C848C62367027900BC6EDA /* StoryCell.xib */; };
 		86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA8C8023678A5300692EE5 /* StoriesCellType.swift */; };
 		86CFBCC62368BA790017CFE6 /* FullStoriesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFBCC52368BA790017CFE6 /* FullStoriesListRequest.swift */; };
+		86DD77AC23A7EEBB009213DF /* RateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DD77AB23A7EEBB009213DF /* RateService.swift */; };
 		86E1052C2393ECD20092B194 /* MiniPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E1052A2393ECD20092B194 /* MiniPlayerView.xib */; };
 		86E1052D2393ECD20092B194 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1052B2393ECD20092B194 /* MiniPlayerView.swift */; };
 		86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */; };
@@ -303,6 +304,7 @@
 		86C848C62367027900BC6EDA /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
 		86CA8C8023678A5300692EE5 /* StoriesCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCellType.swift; sourceTree = "<group>"; };
 		86CFBCC52368BA790017CFE6 /* FullStoriesListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStoriesListRequest.swift; sourceTree = "<group>"; };
+		86DD77AB23A7EEBB009213DF /* RateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateService.swift; sourceTree = "<group>"; };
 		86E1052A2393ECD20092B194 /* MiniPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniPlayerView.xib; sourceTree = "<group>"; };
 		86E1052B2393ECD20092B194 /* MiniPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeditateScreen.storyboard; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 				968552902369871000A22E21 /* AppStateProxy.swift */,
 				962FB4692396A76100B88FFC /* CacheService.swift */,
 				9623D34F2399C3060040CB43 /* ImageCacheService.swift */,
+				86DD77AB23A7EEBB009213DF /* RateService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1493,6 +1496,7 @@
 				96C29F6923634D8C00E93CB1 /* MainRouter.swift in Sources */,
 				86C848C12367007C00BC6EDA /* StoriesHeaderView.swift in Sources */,
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
+				86DD77AC23A7EEBB009213DF /* RateService.swift in Sources */,
 				96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */,
 				9623D33823988A510040CB43 /* Fonts.swift in Sources */,
 				84DD743523908CCF00B10777 /* SceneTimerAssembly.swift in Sources */,
