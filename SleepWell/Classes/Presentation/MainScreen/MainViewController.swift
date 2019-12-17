@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupTabs()
+        RateManager.secondLaunch()
     }
 
     private func setupTabs() {
