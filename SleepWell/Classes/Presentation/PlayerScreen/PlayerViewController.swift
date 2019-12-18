@@ -92,7 +92,7 @@ extension PlayerViewController: BindsToViewModel {
             .withLatestFrom(isCurrentRecordingPlaying)
             .filter { $0 }
             .bind(to: Binder(self) { _, _ in
-                RateManager.showWeekRateController()
+                RateManager.showRateController()
             })
             .disposed(by: disposeBag)
         
