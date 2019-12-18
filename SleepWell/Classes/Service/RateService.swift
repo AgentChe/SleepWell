@@ -21,27 +21,23 @@ final class RateManager {
     static func secondLaunch() {
         let count = UserDefaults.standard.integer(forKey: runCountKey)
         if count == 2 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                SKStoreReviewController.requestReview()
-            }
+            showRateController()
         }
     }
     
-    static func showWeekRateController() {
+    static func showRateController() {
         if let lastDate = (UserDefaults.standard.object(forKey: weekReteKey) as? Date)?.daysSinceNow.day {
             if lastDate > 7 {
-                showWeekRate()
+                showRateAlert()
             }
         } else {
-            showWeekRate()
+            showRateAlert()
         }
     }
     
-    private static func showWeekRate() {
-        DispatchQueue.main.async {
-            SKStoreReviewController.requestReview()
-            UserDefaults.standard.setValue(Date(), forKey: weekReteKey)
-        }
+    private static func showRateAlert() {
+        SKStoreReviewController.requestReview()
+        UserDefaults.standard.setValue(Date(), forKey: weekReteKey)
     }
     
     private static let runCountKey = "kRunCount"

@@ -100,6 +100,7 @@ extension PaygateViewController: BindsToViewModel {
                 let (isSuccess, result) = stub
                 
                 if isSuccess {
+                    RateManager.showRateController()
                     input.completion?(result)
                     viewModel.dismiss()
                 } else {
