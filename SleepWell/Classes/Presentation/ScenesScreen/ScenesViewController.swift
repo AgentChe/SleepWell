@@ -105,14 +105,18 @@ extension ScenesViewController: BindsToViewModel {
                 viewModel.sceneDetails(scene: scene)
             }
         
+        let cellIndex = visibleCellSignal
+            .scan((0, 0)) { ($0.1, $1) }
+
         input.subscription
             .filter { !$0 }
-            .withLatestFrom(visibleCellSignal)
-            .compactMap { index -> Int? in
-                guard index > 0 else {
+            .withLatestFrom(cellIndex)
+            .compactMap { tuple -> Int? in
+                let (last, new) = tuple
+                guard new > 0 else {
                     return nil
                 }
-                return index - 1
+                return abs(last - new) == 1 ? last : 0
             }
             .bind(to: Binder(collectionView) {
                 $0.scrollToItem(at: IndexPath(row: $1, section: 0), at: .centeredHorizontally, animated: true)
