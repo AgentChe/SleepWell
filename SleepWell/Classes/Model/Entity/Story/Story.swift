@@ -12,7 +12,7 @@ struct Story: Recording {
     let id: Int
     let name: String
     let paid: Bool
-    let reader: String
+    let reader: String?
     let imagePreviewUrl: URL?
     let imageReaderURL: URL?
     let hash: String
@@ -40,7 +40,7 @@ extension Story {
         id = try data.decode(Int.self, forKey: .id)
         name = try data.decode(String.self, forKey: .name)
         paid = try data.decode(Bool.self, forKey: .paid)
-        reader = try data.decode(String.self, forKey: .reader)
+        reader = try data.decode(String?.self, forKey: .reader)
         imagePreviewUrl = URL(string: preview)
         imageReaderURL = URL(string: readerImage)
         hash = try data.decode(String.self, forKey: .hash)

@@ -13,7 +13,7 @@ struct MeditationCellModel {
     let image: URL?
     let name: String
     let avatar: URL?
-    let reader: String
+    let reader: String?
     let time: Int
     let paid: Bool
 }

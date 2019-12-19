@@ -31,6 +31,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     enum PaygateOpenedFrom {
         case onboarding
         case paidContent
+        case promotionInApp
     }
     
     typealias Interface = PaygateViewModelInterface
@@ -49,13 +50,13 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     
     var openedFrom: PaygateViewModel.PaygateOpenedFrom!
     
-    private var productId: String?
+    private let productId = BehaviorRelay<String?>(value: nil)
     
     func paygate() -> Driver<Paygate?> {
         return dependencies.paygateService
             .paygete()
             .do(onSuccess: { [weak self] paygate in
-                self?.productId = paygate?.productId
+                self?.productId.accept(paygate?.productId)
             })
             .trackActivity(paygateLoading)
             .asDriver(onErrorJustReturn: nil)
@@ -66,7 +67,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     }
     
     func buy() -> Driver<Bool> {
-        guard let productId = self.productId else {
+        guard let productId = self.productId.value else {
             return .just(false)
         }
         
@@ -82,6 +83,9 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
                         case .paidContent:
                             return dependencies.personalDataService
                                 .sendPersonalData()
+                                .catchErrorJustReturn(Void())
+                        case .promotionInApp:
+                            return .just(Void())
                         }
                     }
             }
@@ -93,7 +97,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     }
     
     func restore() -> Driver<Bool> {
-        guard let productId = self.productId else {
+        guard let productId = self.productId.value else {
             return .just(false)
         }
         
@@ -109,6 +113,9 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
                         case .paidContent:
                             return dependencies.personalDataService
                                 .sendPersonalData()
+                                .catchErrorJustReturn(Void())
+                        case .promotionInApp:
+                            return .just(Void())
                         }
                     }
             }

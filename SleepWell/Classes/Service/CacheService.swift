@@ -37,9 +37,14 @@ private final class UpdateMeditations {
                 
                 let saveMeditations = RealmDBTransport().saveData(entities: data.meditations, map: { MeditationRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! MeditationDetailRealmMapper.map(from: $0) })
+                let removeMeditations = RealmDBTransport().deleteData(realmType: RealmMeditation.self, filter: NSPredicate(format: "id IN %@", data.deletedMeditationIds))
+                let removeDetails = RealmDBTransport().deleteData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedMeditationIds))
                 
                 return Observable
-                    .combineLatest(saveMeditations.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in
+                    .combineLatest(saveMeditations.asObservable(),
+                                   saveDetails.asObservable(),
+                                   removeMeditations.asObservable(),
+                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in
                         return data.meditations.reduce([]) { urls, meditation -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
@@ -85,9 +90,14 @@ private final class UpdateStories {
                 
                 let saveStories = RealmDBTransport().saveData(entities: data.stories, map: { StoryRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! StoryDetailRealmMapper.map(from: $0) })
+                let removeStories = RealmDBTransport().deleteData(realmType: RealmStory.self, filter: NSPredicate(format: "id IN %@", data.deletedStoryIds))
+                let removeDetails = RealmDBTransport().deleteData(realmType: RealmStoryDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedStoryIds))
                 
                 return Observable
-                    .combineLatest(saveStories.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in
+                    .combineLatest(saveStories.asObservable(),
+                                   saveDetails.asObservable(),
+                                   removeStories.asObservable(),
+                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in
                         return data.stories.reduce([]) { urls, story -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
@@ -118,9 +128,14 @@ private final class UpdateScenes {
                 
                 let saveScenes = RealmDBTransport().saveData(entities: data.scenes, map: { SceneRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
+                let removeScenes = RealmDBTransport().deleteData(realmType: RealmScene.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
+                let removeDetails = RealmDBTransport().deleteData(realmType: RealmSceneDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
                 
                 return Observable
-                    .combineLatest(saveScenes.asObservable(), saveDetails.asObservable()) { _, _ -> [URL] in data.scenes.map { $0.url } }
+                    .combineLatest(saveScenes.asObservable(),
+                                   saveDetails.asObservable(),
+                                   removeScenes.asObservable(),
+                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in data.scenes.map { $0.url } }
                     .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode

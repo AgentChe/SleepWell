@@ -13,7 +13,7 @@ class RealmMeditation: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var paid: Bool = true
-    @objc dynamic var reader: String = ""
+    @objc dynamic var reader: String?
     @objc dynamic var imagePreviewURL: String?
     @objc dynamic var imageReaderURL: String?
     @objc dynamic var meditationHash: String = ""
@@ -23,7 +23,7 @@ class RealmMeditation: Object {
     convenience init(id: Int,
                      name: String,
                      paid: Bool,
-                     reader: String,
+                     reader: String?,
                      imagePreviewURL: URL?,
                      imageReaderURL: URL?,
                      meditationHash: String,
