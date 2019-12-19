@@ -9,12 +9,14 @@
 import Foundation
 
 struct MeditationsMapper {
-    typealias FullMeditations = (meditations: [Meditation], details: [MeditationDetail], meditationsHashCode: String)
+    typealias FullMeditations = (meditations: [Meditation], details: [MeditationDetail], meditationsHashCode: String, deletedMeditationIds: [Int])
     
     static func fullMeditations(response: Any) -> FullMeditations? {
-        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullMeditations = data["meditations"] as? [[String: Any]] else {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
         }
+        
+        let fullMeditations = data["meditations"] as? [[String: Any]] ?? []
         
         var meditations: [Meditation] = []
         var meditationDetails: [MeditationDetail] = []
@@ -39,6 +41,8 @@ struct MeditationsMapper {
         
         let hashCode = data["meditations_hash"] as? String ?? ""
         
-        return (meditations, meditationDetails, hashCode)
+        let deletedMeditationIds = data["deleted_meditations"] as? [Int] ?? []
+        
+        return (meditations, meditationDetails, hashCode, deletedMeditationIds)
     }
 }

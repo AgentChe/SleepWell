@@ -9,12 +9,14 @@
 import Foundation
 
 struct StoriesMapper {
-    typealias FullStories = (stories: [Story], details: [StoryDetail], storiesHashCode: String)
+    typealias FullStories = (stories: [Story], details: [StoryDetail], storiesHashCode: String, deletedStoryIds: [Int])
     
     static func fullStories(response: Any) -> FullStories? {
-        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullStories = data["stories"] as? [[String: Any]] else {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
         }
+        
+        let fullStories = data["stories"] as? [[String: Any]] ?? []
         
         var stories: [Story] = []
         var storiesDetails: [StoryDetail] = []
@@ -39,6 +41,8 @@ struct StoriesMapper {
         
         let hashCode = data["stories_hash"] as? String ?? ""
         
-        return (stories, storiesDetails, hashCode)
+        let deletedStoryIds = data["deleted_stories"] as? [Int] ?? []
+        
+        return (stories, storiesDetails, hashCode, deletedStoryIds)
     }
 }

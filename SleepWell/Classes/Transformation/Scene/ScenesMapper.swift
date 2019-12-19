@@ -9,12 +9,14 @@
 import Foundation
 
 struct ScenesMapper {
-    typealias FullScenes = (scenes: [Scene], details: [SceneDetail], scenesHashCode: String)
+    typealias FullScenes = (scenes: [Scene], details: [SceneDetail], scenesHashCode: String, deletedSceneIds: [Int])
     
     static func fullScenes(response: Any) -> FullScenes? {
-        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullScenes = data["scenes"] as? [[String: Any]] else {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
         }
+        
+        let fullScenes = data["scenes"] as? [[String: Any]] ?? []
         
         var scenes: [Scene] = []
         var scenesDetails: [SceneDetail] = []
@@ -34,6 +36,8 @@ struct ScenesMapper {
         
         let hashCode = data["scenes_hash"] as? String ?? ""
         
-        return (scenes, scenesDetails, hashCode)
+        let deletecSceneIds = data["deleted_scenes"] as? [Int] ?? []
+        
+        return (scenes, scenesDetails, hashCode, deletecSceneIds)
     }
 }
