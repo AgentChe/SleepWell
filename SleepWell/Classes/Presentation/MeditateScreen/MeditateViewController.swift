@@ -37,7 +37,7 @@ final class MeditateViewController: UIViewController {
         
         tableHeaderView.frame = tableHeaderUpdatedFrame
         
-        tableHeaderView.setup(title: "Meditate", subtitle: "meditations_subtitle".localized)
+        tableHeaderView.setup(title: "Meditations", subtitle: "meditations_subtitle".localized)
         tableView.tableHeaderView = tableHeaderView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: GlobalDefinitions.tableBottomInsert, right: 0)
     }
