@@ -19,7 +19,6 @@ final class PaygateViewController: UIViewController {
     @IBOutlet weak var freeAccessLabel: UILabel!
     @IBOutlet weak var errorView: ErrorView!
     
-    
     @IBOutlet weak var logoImageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var title1ContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var title2ContainerViewTopConstraint: NSLayoutConstraint!
@@ -28,6 +27,8 @@ final class PaygateViewController: UIViewController {
     @IBOutlet weak var restorePurchaseButtonTopConstraint: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
+    
+    fileprivate var isBuyOrRestoreAtUserAction: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,9 +94,20 @@ extension PaygateViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        
+        let buySignal = buyButton.rx.tap.asDriver()
+            .do(onNext: { [weak self] in self?.isBuyOrRestoreAtUserAction = true })
+            .flatMapLatest { _ in viewModel.buy() }
+            .map { ($0, PaygateCompletionResult.purchased) }
+        
+        let restoreTrigger = PublishRelay<Void>()
+        let restoreSignal = Driver.merge(restorePurchaseButton.rx.tap.asDriver(), restoreTrigger.asDriver(onErrorDriveWith: .never()))
+            .do(onNext: { [weak self] in self?.isBuyOrRestoreAtUserAction = true })
+            .flatMapLatest { _ in viewModel.restore() }
+            .map { ($0, PaygateCompletionResult.restored) }
+        
         Driver<(Bool, PaygateCompletionResult)>
-            .merge(buyButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.buy() }.map { ($0, PaygateCompletionResult.purchased) },
-                   restorePurchaseButton.rx.tap.asDriver().flatMapLatest { _ in viewModel.restore() }.map { ($0, PaygateCompletionResult.restored) })
+            .merge(buySignal, restoreSignal)
             .drive(onNext: { [weak self] stub in
                 let (isSuccess, result) = stub
                 
@@ -108,6 +120,19 @@ extension PaygateViewController: BindsToViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        if viewModel.openedFrom == .promotionInApp {
+            isBuyOrRestoreAtUserAction = false
+            
+            AppStateProxy.ApplicationProxy
+                .completeTransactions
+                .subscribe(onNext: { [weak self] in
+                    if self?.isBuyOrRestoreAtUserAction == false {
+                        restoreTrigger.accept(Void())
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
         
         errorView.tapForHide
             .subscribe(onNext: { [weak self] in

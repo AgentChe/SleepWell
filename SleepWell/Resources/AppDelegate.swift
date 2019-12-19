@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PushMessagesService.shared.configure()
         FirebaseApp.configure()
         RateManager.incrementRun()
+        
+        navigate()
 
         return true
     }
@@ -34,5 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStateProxy.ApplicationProxy.didBecomeActive.accept(Void())
+    }
+    
+    private var router: Router?
+    private func navigate() {
+        _ = AppStateProxy.NavigateProxy.openPaygateAtPromotionInApp
+            .subscribe(onNext: {
+                if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+                    self.router = Router(transitionHandler: rootVC)
+                    self.router?.present(type: PaygateAssembly.self, input: PaygateViewController.Input(openedFrom: .promotionInApp, completion: nil))
+                }
+            })
     }
 }

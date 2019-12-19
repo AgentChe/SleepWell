@@ -12,12 +12,20 @@ import SwiftyStoreKit
 final class PurchaseService {
     static func register() {
         SwiftyStoreKit.completeTransactions { purchases in
+            AppStateProxy.ApplicationProxy.completeTransactions.accept(Void())
+            
             for purchase in purchases {
                 let state = purchase.transaction.transactionState
                 if state == .purchased || state == .restored {
                     SwiftyStoreKit.finishTransaction(purchase.transaction)
                 }
             }
+        }
+        
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { _, _ in
+            AppStateProxy.NavigateProxy.openPaygateAtPromotionInApp.accept(Void())
+            
+            return true
         }
     }
     
