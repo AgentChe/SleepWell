@@ -12,7 +12,7 @@ protocol Recording: Model {
     var id: Int { get }
     var name: String { get }
     var paid: Bool { get }
-    var reader: String { get }
+    var reader: String? { get }
     var imagePreviewUrl: URL? { get }
     var imageReaderURL: URL? { get }
     var hash: String { get }
