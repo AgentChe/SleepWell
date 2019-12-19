@@ -12,6 +12,7 @@ target 'SleepWell' do
   pod 'Kingfisher'
   pod 'Firebase/Messaging'
   pod 'InfiniteLayout/Rx'
+  pod 'FacebookSDK'
 end
 
 post_install do |installer|
