@@ -154,12 +154,30 @@ final class SettingsViewController: UIViewController {
     }
     
     private func addActions() {
-        let hideGesture = UISwipeGestureRecognizer()
-        hideGesture.direction = .down
-        sliderView.addGestureRecognizer(hideGesture)
-        hideGesture.rx.event
-            .subscribe(onNext: { [weak self] _ in
-                self?.animateHide()
+        
+        let backgroundTap = UITapGestureRecognizer()
+        backgroundTap.delegate = self
+        view.addGestureRecognizer(backgroundTap)
+        
+        let panGesture = UIPanGestureRecognizer()
+        containerView.addGestureRecognizer(panGesture)
+        
+        Signal
+            .merge(
+                panGesture.rx.event
+                    .asSignal()
+                    .filter { $0.state == .changed }
+                    .map { [view] pan in
+                        pan.translation(in: view).y
+                    }
+                    .filter { $0 > 0 }
+                    .map { _ in () },
+                backgroundTap.rx.event.asSignal()
+                    .map { _ in () }
+            )
+            .take(1)
+            .emit(to: Binder(self) { base, _ in
+                base.animateHide()
             })
             .disposed(by: disposeBag)
         
@@ -200,5 +218,14 @@ final class SettingsViewController: UIViewController {
         }, completion: { [weak self] _ in
             self?.dismiss(animated: false)
         })
+    }
+}
+
+extension SettingsViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldReceive touch: UITouch
+    ) -> Bool {
+        touch.view == view
     }
 }
