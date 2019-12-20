@@ -16,7 +16,6 @@ class StoryCell: UITableViewCell {
     @IBOutlet private var avatarImage: UIImageView!
     @IBOutlet private var lockedImage: UIImageView!
     
-    
     func setup(model: StoryCellModel) {
         if let backgroundUrl = model.image {
             backgroundImage.kf.indicatorType = .activity

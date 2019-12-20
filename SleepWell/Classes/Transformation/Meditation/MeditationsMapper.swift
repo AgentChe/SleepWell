@@ -8,9 +8,15 @@
 
 import Foundation
 
+struct FullMeditations {
+    let meditations: [Meditation]
+    let details: [MeditationDetail]
+    let meditationsHashCode: String
+    let deletedMeditationIds: [Int]
+    let copingLocalImages: [CopingLocalImage]
+}
+
 struct MeditationsMapper {
-    typealias FullMeditations = (meditations: [Meditation], details: [MeditationDetail], meditationsHashCode: String, deletedMeditationIds: [Int])
-    
     static func fullMeditations(response: Any) -> FullMeditations? {
         guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
@@ -20,6 +26,7 @@ struct MeditationsMapper {
         
         var meditations: [Meditation] = []
         var meditationDetails: [MeditationDetail] = []
+        var copingLocalImages: [CopingLocalImage] = []
         
         for fullMeditation in fullMeditations {
             guard
@@ -35,6 +42,14 @@ struct MeditationsMapper {
             
             let details = MeditationDetail(recording: meditation, readingSound: readingSound, ambientSound: ambientSound)
             
+            if let imageReaderUrl = meditation.imageReaderURL, let imageReaderLocalName = fullMeditation["image_reader_path"] as? String {
+                copingLocalImages.append(CopingLocalImage(imageName: imageReaderLocalName, imageCacheKey: imageReaderUrl.absoluteString))
+            }
+            
+            if let imageMeditationUrl = meditation.imagePreviewUrl, let imageMeditationLocalName = fullMeditation["image_meditation_path"] as? String {
+                copingLocalImages.append(CopingLocalImage(imageName: imageMeditationLocalName, imageCacheKey: imageMeditationUrl.absoluteString))
+            }
+            
             meditations.append(meditation)
             meditationDetails.append(details)
         }
@@ -43,6 +58,10 @@ struct MeditationsMapper {
         
         let deletedMeditationIds = data["deleted_meditations"] as? [Int] ?? []
         
-        return (meditations, meditationDetails, hashCode, deletedMeditationIds)
+        return FullMeditations(meditations: meditations,
+                               details: meditationDetails,
+                               meditationsHashCode: hashCode,
+                               deletedMeditationIds: deletedMeditationIds,
+                               copingLocalImages: copingLocalImages)
     }
 }

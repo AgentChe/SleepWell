@@ -8,9 +8,15 @@
 
 import Foundation
 
+struct FullStories {
+    let stories: [Story]
+    let details: [StoryDetail]
+    let storiesHashCode: String
+    let deletedStoryIds: [Int]
+    let copingLocalImages: [CopingLocalImage]
+}
+
 struct StoriesMapper {
-    typealias FullStories = (stories: [Story], details: [StoryDetail], storiesHashCode: String, deletedStoryIds: [Int])
-    
     static func fullStories(response: Any) -> FullStories? {
         guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
@@ -20,6 +26,7 @@ struct StoriesMapper {
         
         var stories: [Story] = []
         var storiesDetails: [StoryDetail] = []
+        var copingLocalImages: [CopingLocalImage] = []
         
         for fullStory in fullStories {
             guard
@@ -35,6 +42,14 @@ struct StoriesMapper {
             
             let details = StoryDetail(recording: story, readingSound: readingSound, ambientSound: ambientSound)
             
+            if let imageReaderUrl = story.imageReaderURL, let imageReaderLocalName = fullStory["image_reader_path"] as? String {
+                copingLocalImages.append(CopingLocalImage(imageName: imageReaderLocalName, imageCacheKey: imageReaderUrl.absoluteString))
+            }
+            
+            if let imageStoryUrl = story.imagePreviewUrl, let imageStoryLocalName = fullStory["image_story_path"] as? String {
+                copingLocalImages.append(CopingLocalImage(imageName: imageStoryLocalName, imageCacheKey: imageStoryUrl.absoluteString))
+            }
+            
             stories.append(story)
             storiesDetails.append(details)
         }
@@ -43,6 +58,10 @@ struct StoriesMapper {
         
         let deletedStoryIds = data["deleted_stories"] as? [Int] ?? []
         
-        return (stories, storiesDetails, hashCode, deletedStoryIds)
+        return FullStories(stories: stories,
+                           details: storiesDetails,
+                           storiesHashCode: hashCode,
+                           deletedStoryIds: deletedStoryIds,
+                           copingLocalImages: copingLocalImages)
     }
 }
