@@ -8,9 +8,15 @@
 
 import Foundation
 
+struct FullScenes {
+    let scenes: [Scene]
+    let details: [SceneDetail]
+    let scenesHashCode: String
+    let deletedSceneIds: [Int]
+    let copingLocalImages: [CopingLocalImage]
+}
+
 struct ScenesMapper {
-    typealias FullScenes = (scenes: [Scene], details: [SceneDetail], scenesHashCode: String, deletedSceneIds: [Int])
-    
     static func fullScenes(response: Any) -> FullScenes? {
         guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
@@ -20,6 +26,7 @@ struct ScenesMapper {
         
         var scenes: [Scene] = []
         var scenesDetails: [SceneDetail] = []
+        var copingLocalImages: [CopingLocalImage] = []
         
         for fullScene in fullScenes {
             guard let scene = Scene.parseFromDictionary(any: fullScene) else {
@@ -30,6 +37,10 @@ struct ScenesMapper {
             let sounds = soundsJSONArray.compactMap { SceneSound.parseFromDictionary(any: $0) }
             let details = SceneDetail(scene: scene, sounds: sounds)
             
+            if scene.mime.isImage, let imageSceneLocalName = fullScene["image_path"] as? String {
+                copingLocalImages.append(CopingLocalImage(imageName: imageSceneLocalName, imageCacheKey: scene.url.absoluteString))
+            }
+            
             scenes.append(scene)
             scenesDetails.append(details)
         }
@@ -38,6 +49,10 @@ struct ScenesMapper {
         
         let deletecSceneIds = data["deleted_scenes"] as? [Int] ?? []
         
-        return (scenes, scenesDetails, hashCode, deletecSceneIds)
+        return FullScenes(scenes: scenes,
+                          details: scenesDetails,
+                          scenesHashCode: hashCode,
+                          deletedSceneIds: deletecSceneIds,
+                          copingLocalImages: copingLocalImages)
     }
 }

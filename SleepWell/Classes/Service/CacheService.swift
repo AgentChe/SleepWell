@@ -12,17 +12,18 @@ import Kingfisher
 final class CacheService {
     private let cacheMeditations = CacheMeditations()
     private let cacheStories = CacheStories()
-    private let updateScenes = UpdateScenes()
+    private let cacheScenes = CacheScenes()
     
     func update() -> Single<Void> {
         return Observable
             .combineLatest(cacheMeditations.copyMeditations().catchErrorJustReturn(Void()),
-                           cacheStories.copyStories().catchErrorJustReturn(Void()))
+                           cacheStories.copyStories().catchErrorJustReturn(Void()),
+                           cacheScenes.copyScenes().catchErrorJustReturn(Void()))
             .flatMap { [unowned self] _ -> Observable<Void> in
                 return Observable
                     .combineLatest(self.cacheMeditations.updateMeditations().catchErrorJustReturn(Void()),
                                    self.cacheStories.update().catchErrorJustReturn(Void()),
-                                   self.updateScenes.update().catchErrorJustReturn(Void()),
+                                   self.cacheScenes.update().catchErrorJustReturn(Void()),
                                    self.cacheMeditations.updateTags().catchErrorJustReturn(Void())) { _, _, _, _ in Void() }
             }
             .asSingle()
@@ -193,9 +194,33 @@ private final class CacheStories: Copy {
     }
 }
 
-private final class UpdateScenes: Copy {
+private final class CacheScenes: Copy {
     private let downloadImagesService = DownloadImagesService()
     private let copyImagesService = CopyImagesService()
+    
+    func copyScenes() -> Observable<Void> {
+        let fullScenes = whatCopy(resource: "scenes", map: { ScenesMapper.fullScenes(response: $0) })
+        
+        return fullScenes
+            .flatMap { fullScenes -> Observable<Void> in
+                guard let data = fullScenes else {
+                    return .error(RxError.noElements)
+                }
+
+                let saveScenes = RealmDBTransport().saveData(entities: data.scenes, map: { SceneRealmMapper.map(from: $0) })
+                let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
+                
+                return Observable
+                    .combineLatest(saveScenes.asObservable(),
+                                   saveDetails.asObservable())
+                    .flatMap { [weak self] _ -> Single<Void> in
+                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                    }
+                    .do(onNext: {
+                        CacheHashCodes.scenesHashCode = data.scenesHashCode
+                    })
+            }
+    }
     
     func update() -> Observable<Void> {
         return RestAPITransport()
