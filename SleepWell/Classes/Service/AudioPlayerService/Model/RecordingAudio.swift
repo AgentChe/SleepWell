@@ -12,13 +12,13 @@ import RxSwift
 
 final class RecordingAudio: ReactiveCompatible {
     
-    let mainPlayer: AVPlayer
-    let ambientPlayer: AVPlayer?
+    let mainPlayer: VLCMediaPlayer
+    let ambientPlayer: VLCMediaPlayer?
     let recording: RecordingDetail
     
     init(
-        mainPlayer: AVPlayer,
-        ambientPlayer: AVPlayer?,
+        mainPlayer: VLCMediaPlayer,
+        ambientPlayer: VLCMediaPlayer?,
         recording: RecordingDetail
     ) {
         self.mainPlayer = mainPlayer
@@ -26,12 +26,12 @@ final class RecordingAudio: ReactiveCompatible {
         self.recording = recording
     }
     
-    var currentTime: CMTime {
+    var currentTime: VLCTime {
         set {
-            mainPlayer.seek(to: newValue)
+            mainPlayer.time = newValue
         }
         get {
-            mainPlayer.currentTime()
+            mainPlayer.time
         }
     }
     
@@ -47,16 +47,26 @@ final class RecordingAudio: ReactiveCompatible {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
+        guard value != 0 else {
+            _mainPlayerVolume.accept(value)
+            mainPlayer.audio.volume = 0
+            return
+        }
         _mainPlayerVolume.accept(value)
-        mainPlayer.volume = value
+        mainPlayer.audio.volume = Int32(100 * value) + 20
     }
     
     func setAmbientPlayerVolume(value: Float) {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
+        guard value != 0 else {
+            _ambientPlayerVolume.accept(value)
+            ambientPlayer?.audio.volume = 0
+            return
+        }
         _ambientPlayerVolume.accept(value)
-        ambientPlayer?.volume = value
+        ambientPlayer?.audio.volume = Int32(100 * value) + 20
     }
     
     func prepareToPlay() {
@@ -66,19 +76,19 @@ final class RecordingAudio: ReactiveCompatible {
     }
     
     private func prepareAmbient() {
-        if let ambient = ambientPlayer {
-            
-            NotificationCenter.default.rx
-                .notification(
-                    .AVPlayerItemDidPlayToEndTime,
-                    object: ambient.currentItem
-                )
-                .bind(to: Binder(ambient) { player, _ in
-                    player.seek(to: CMTime.zero)
-                    player.play()
-                })
-                .disposed(by: disposeBag)
-        }
+//        if let ambient = ambientPlayer {
+//
+//            NotificationCenter.default.rx
+//                .notification(
+//                    .AVPlayerItemDidPlayToEndTime,
+//                    object: ambient.currentItem
+//                )
+//                .bind(to: Binder(ambient) { player, _ in
+//                    player.seek(to: CMTime.zero)
+//                    player.play()
+//                })
+//                .disposed(by: disposeBag)
+//        }
     }
     
     func play(style: PlayAndPauseStyle) -> Signal<Void> {
@@ -92,8 +102,8 @@ final class RecordingAudio: ReactiveCompatible {
             
             let initialMainVolume = _mainPlayerVolume.value
             let initialAmbientVolume = _ambientPlayerVolume.value
-            mainPlayer.volume = 0
-            ambientPlayer?.volume = 0
+            mainPlayer.audio.volume = 0
+            ambientPlayer?.audio.volume = 0
             forcePlay()
             
             return Observable<Int>
@@ -108,8 +118,8 @@ final class RecordingAudio: ReactiveCompatible {
                     guard let audio = self else {
                         return
                     }
-                    audio.mainPlayer.volume = progress * initialMainVolume
-                    audio.ambientPlayer?.volume = progress * initialAmbientVolume
+                    audio.mainPlayer.audio.volume = Int32(progress * initialMainVolume) * 100
+                    audio.ambientPlayer?.audio.volume = Int32(progress * initialAmbientVolume) * 100
                 })
                 .takeUntil(isPausing.asObservable())
                 .takeLast(1)
@@ -121,8 +131,10 @@ final class RecordingAudio: ReactiveCompatible {
     func pause(style: PlayAndPauseStyle) -> Signal<Void> {
         
         isPausing.accept(())
-        mainPlayer.volume = _mainPlayerVolume.value
-        ambientPlayer?.volume = _ambientPlayerVolume.value
+        mainPlayer.audio.volume = _mainPlayerVolume.value == 0
+            ? 0 : Int32(_mainPlayerVolume.value * 100) + 20
+        ambientPlayer?.audio.volume = _ambientPlayerVolume.value == 0
+            ? 0 : Int32(_ambientPlayerVolume.value * 100) + 20
         
         switch style {
         case .force:
@@ -136,8 +148,8 @@ final class RecordingAudio: ReactiveCompatible {
                 return .just(())
             }
             
-            let initialMainVolume = mainPlayer.volume
-            let initialAmbientVolume = ambientPlayer?.volume ?? 0
+            let initialMainVolume = mainPlayer.audio.volume
+            let initialAmbientVolume = ambientPlayer?.audio.volume ?? 0
             
             return Observable<Int>
                 .timer(
@@ -151,12 +163,14 @@ final class RecordingAudio: ReactiveCompatible {
                     guard let audio = self else {
                         return
                     }
-                    audio.mainPlayer.volume = progress * initialMainVolume
-                    audio.ambientPlayer?.volume = progress * initialAmbientVolume
+                    audio.mainPlayer.audio.volume = progress == 0
+                        ? 0 : Int32(progress * Float(initialMainVolume * 100))
+                    audio.ambientPlayer?.audio.volume = progress == 0
+                        ? 0 : Int32(progress * Float(initialAmbientVolume * 100))
                     if progress == 0.0 {
                         audio.forcePause()
-                        audio.mainPlayer.volume = initialMainVolume
-                        audio.ambientPlayer?.volume = initialAmbientVolume
+                        audio.mainPlayer.audio.volume = initialMainVolume
+                        audio.ambientPlayer?.audio.volume = initialAmbientVolume
                     }
                 })
                 .takeLast(1)
@@ -167,8 +181,8 @@ final class RecordingAudio: ReactiveCompatible {
     
     func reset() {
         forcePause()
-        currentTime = .zero
-        ambientPlayer?.seek(to: .zero)
+        currentTime = VLCTime(int: 0)
+        ambientPlayer?.time = VLCTime(int: 0)
     }
     
     func forcePause() {
@@ -182,19 +196,19 @@ final class RecordingAudio: ReactiveCompatible {
     }
     
     func fastForward() {
-        let seconds = Int(round(mainPlayer.currentTime().seconds))
-        let time = min(seconds + 15, recording.readingSound.soundSecs)
-        currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
+        let seconds = mainPlayer.time.intValue
+        let time = min(seconds + 15000, Int32(recording.readingSound.soundSecs * 1000))
+        currentTime = VLCTime(int: time)
     }
     
     func rewind() {
-        let seconds = Int(round(mainPlayer.currentTime().seconds))
-        let time = max(seconds - 15, 0)
-        currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
+        let seconds = mainPlayer.time.intValue
+        let time = max(seconds - 15000, 0)
+        currentTime = VLCTime(int: time)
     }
     
     var isPlaying: Bool {
-        mainPlayer.rate == 1
+        mainPlayer.isPlaying
     }
     
     private let _mainPlayerVolume = BehaviorRelay<Float>(value: 0.75)
@@ -211,7 +225,7 @@ extension Reactive where Base: RecordingAudio {
         
         Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
             .map { [base] _ in
-                Int(round(base.mainPlayer.currentTime().seconds))
+                Int(base.mainPlayer.time.intValue / 1000)
             }
             .distinctUntilChanged()
     }
@@ -220,7 +234,7 @@ extension Reactive where Base: RecordingAudio {
         
         Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
             .map { [base] _ in
-                base.mainPlayer.rate != 0 && base.mainPlayer.error == nil
+                base.mainPlayer.isPlaying
             }
             .distinctUntilChanged()
     }

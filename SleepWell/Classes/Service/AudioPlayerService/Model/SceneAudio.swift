@@ -12,12 +12,17 @@ import RxSwift
 
 final class SceneAudio: ReactiveCompatible {
     
-    struct Player {
-        let player: AVPlayer
+    class Player {
+        var player: VLCMediaPlayer
         let id: Int
+        
+        init(player: VLCMediaPlayer, id: Int) {
+            self.player = player
+            self.id = id
+        }
     }
     
-    let players: [Player]
+    var players: [Player]
     let scene: Scene
     
     init(players: [Player], scene: Scene) {
@@ -28,7 +33,7 @@ final class SceneAudio: ReactiveCompatible {
     func prepareToPlay() {
         
         players.forEach {
-            $0.player.volume = 0.75
+            $0.player.audio.volume = 75
         }
         let volumes = players.reduce([Int: Float]()) { result, player in
             var result = result
@@ -40,15 +45,24 @@ final class SceneAudio: ReactiveCompatible {
     }
     
     func prepareRetry() {
-        players.forEach {
-            NotificationCenter.default.rx
-                .notification(
-                    .AVPlayerItemDidPlayToEndTime,
-                    object: $0.player.currentItem
+        
+        players.forEach { player in
+            
+            Observable<Int32>
+                .timer(
+                    .seconds(0),
+                    period: .milliseconds(200),
+                    scheduler: MainScheduler.instance
                 )
-                .bind(to: Binder($0.player) { player, _ in
-                    player.seek(to: CMTime.zero)
-                    player.play()
+                .map { _ -> Bool in
+                    print(abs(player.player.remainingTime.intValue))
+                    return abs(player.player.remainingTime.intValue) < 5000
+                        && player.player.time.intValue != 0
+                }
+                .filter { $0 }
+                .subscribe(onNext: { _ in
+                    player.player.time = .init(int: 0)
+                    player.player.play()
                 })
                 .disposed(by: disposeBag)
         }
@@ -62,8 +76,8 @@ final class SceneAudio: ReactiveCompatible {
                 return .just(())
             }
         case .gentle:
-            let initialVolumes = players.map { $0.player.volume }
-            players.forEach { $0.player.volume = 0 }
+            let initialVolumes = players.map { $0.player.audio.volume }
+            players.forEach { $0.player.audio.volume = 0 }
             forcePlay()
             
             return Observable<Int>
@@ -83,7 +97,7 @@ final class SceneAudio: ReactiveCompatible {
                             guard let initialVolume = initialVolumes.item(at: index) else {
                                 return
                             }
-                            player.player.volume = progress * initialVolume
+                            player.player.audio.volume = Int32(progress * Float(initialVolume))
                         }
                 })
                 .takeLast(1)
@@ -106,7 +120,7 @@ final class SceneAudio: ReactiveCompatible {
                 return .just(())
             }
             
-            let initialVolumes = players.map { $0.player.volume }
+            let initialVolumes = players.map { $0.player.audio.volume }
             return Observable<Int>
                 .timer(
                     .milliseconds(0),
@@ -124,7 +138,7 @@ final class SceneAudio: ReactiveCompatible {
                             guard let initialVolume = initialVolumes.item(at: index) else {
                                 return
                             }
-                            player.player.volume = progress * initialVolume
+                            player.player.audio.volume = Int32(progress * Float(initialVolume * 100))
                         }
                     
                     if progress == 0.0 {
@@ -135,7 +149,7 @@ final class SceneAudio: ReactiveCompatible {
                                 guard let initialVolume = initialVolumes.item(at: index) else {
                                     return
                                 }
-                                player.player.volume = initialVolume
+                                player.player.audio.volume = initialVolume
                             }
                     }
                 })
@@ -150,7 +164,7 @@ final class SceneAudio: ReactiveCompatible {
             return
         }
         if let player = players.first(where: { $0.id == id }) {
-            player.player.volume = value
+            player.player.audio.volume = value == 0 ? 0 : Int32(100 * value) + 20
             var newVolumes = _currentScenePlayersVolume.value
             newVolumes[id] = value
             _currentScenePlayersVolume.accept(newVolumes)
@@ -161,7 +175,7 @@ final class SceneAudio: ReactiveCompatible {
         guard let player = players.first?.player else {
             return false
         }
-        return player.rate != 0 && player.error == nil
+        return player.isPlaying
     }
     
     func forcePause() {
@@ -180,8 +194,8 @@ final class SceneAudio: ReactiveCompatible {
         _currentScenePlayersVolume.value
     }
     
+    let disposeBag = DisposeBag()
     private let _currentScenePlayersVolume = BehaviorRelay<[Int: Float]>(value: [:])
-    private let disposeBag = DisposeBag()
 }
 
 extension Reactive where Base: SceneAudio {

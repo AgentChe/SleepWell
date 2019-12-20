@@ -6,6 +6,7 @@
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
+import UIKit
 import AVFoundation
 import RxSwift
 import RxCocoa
@@ -20,16 +21,20 @@ final class AudioPlayerService: ReactiveCompatible {
     
     static let shared = AudioPlayerService()
     
+    var player = VLCMediaPlayer()
+    
     func add(recording: RecordingDetail) {
         
         guard recording.recording.id != audioRelay.value?.recording.recording.id else {
             return
         }
         
-        let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
-        let ambientPlayer: AVPlayer?
+        let mainPlayer = VLCMediaPlayer()
+        mainPlayer.media = .init(url: recording.readingSound.soundUrl)
+        let ambientPlayer: VLCMediaPlayer?
         if let ambientUrl = recording.ambientSound?.soundUrl {
-            ambientPlayer = AVPlayer(url: ambientUrl)
+            ambientPlayer = VLCMediaPlayer()
+            ambientPlayer?.media = .init(url: ambientUrl)
         } else {
             ambientPlayer = nil
         }
@@ -50,10 +55,12 @@ final class AudioPlayerService: ReactiveCompatible {
         }
 
         return .deferred { [weak self] in
-            let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
-            let ambientPlayer: AVPlayer?
+            let mainPlayer = VLCMediaPlayer()
+            mainPlayer.media = .init(url: recording.readingSound.soundUrl)
+            let ambientPlayer: VLCMediaPlayer?
             if let ambientUrl = recording.ambientSound?.soundUrl {
-                ambientPlayer = AVPlayer(url: ambientUrl)
+                ambientPlayer = VLCMediaPlayer()
+                ambientPlayer?.media = .init(url: ambientUrl)
             } else {
                 ambientPlayer = nil
             }
@@ -77,10 +84,12 @@ final class AudioPlayerService: ReactiveCompatible {
         }
         
         let players = sceneDetail.sounds
-            .map {
-                SceneAudio.Player(
-                    player: AVPlayer(url: $0.soundUrl),
-                    id: $0.id
+            .map { detail -> SceneAudio.Player in
+                let player = VLCMediaPlayer()
+                player.media = .init(url: detail.soundUrl)
+                return SceneAudio.Player(
+                    player: player,
+                    id: detail.id
                 )
             }
         
@@ -397,10 +406,7 @@ private extension AudioPlayerService {
                     let audio = self?.audioRelay.value else {
                         return .commandFailed
                 }
-                audio.currentTime = CMTime(
-                    seconds: round(event.positionTime),
-                    preferredTimescale: 1
-                )
+                audio.currentTime = VLCTime(int: Int32(round(event.positionTime)))
                 return .success
             }
         
@@ -442,7 +448,7 @@ extension Reactive where Base: AudioPlayerService {
             guard let audio = base.audioRelay.value else {
                 return
             }
-            audio.currentTime = CMTime(seconds: Double(time), preferredTimescale: 1)
+            audio.currentTime = .init(int: Int32(time * 1000))
         }
     }
     
