@@ -26,6 +26,10 @@
 		84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */; };
 		84A38E3C2383D2CB004E7EBA /* SceneSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */; };
 		84A38E3E2383D5F4004E7EBA /* SceneSettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E3D2383D5F4004E7EBA /* SceneSettingsAssembly.swift */; };
+		84AB422D23ABFD4C00E2A558 /* SceneAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB422C23ABFD4C00E2A558 /* SceneAudio.swift */; };
+		84AB422F23ABFD9200E2A558 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB422E23ABFD9200E2A558 /* ArrayExtension.swift */; };
+		84AB423223ABFDFD00E2A558 /* SceneTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB423123ABFDFD00E2A558 /* SceneTimer.swift */; };
+		84AB423423ABFE6F00E2A558 /* RecordingAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */; };
 		84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF4D2623945FF300E07784 /* ReactiveExtension.swift */; };
 		84D7543A2378BDF1003C084C /* SharedSequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D754392378BDF1003C084C /* SharedSequenceExtension.swift */; };
 		84DD743523908CCF00B10777 /* SceneTimerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743423908CCF00B10777 /* SceneTimerAssembly.swift */; };
@@ -245,6 +249,10 @@
 		84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsViewModel.swift; sourceTree = "<group>"; };
 		84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsRouter.swift; sourceTree = "<group>"; };
 		84A38E3D2383D5F4004E7EBA /* SceneSettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsAssembly.swift; sourceTree = "<group>"; };
+		84AB422C23ABFD4C00E2A558 /* SceneAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAudio.swift; sourceTree = "<group>"; };
+		84AB422E23ABFD9200E2A558 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		84AB423123ABFDFD00E2A558 /* SceneTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimer.swift; sourceTree = "<group>"; };
+		84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAudio.swift; sourceTree = "<group>"; };
 		84CF4D2623945FF300E07784 /* ReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExtension.swift; sourceTree = "<group>"; };
 		84D754392378BDF1003C084C /* SharedSequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSequenceExtension.swift; sourceTree = "<group>"; };
 		84DD743423908CCF00B10777 /* SceneTimerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerAssembly.swift; sourceTree = "<group>"; };
@@ -483,6 +491,25 @@
 				844F025823776E64004C062B /* VolumeAssembly.swift */,
 			);
 			path = VolumeScreen;
+			sourceTree = "<group>";
+		};
+		84AB422923ABFBDE00E2A558 /* AudioPlayerService */ = {
+			isa = PBXGroup;
+			children = (
+				84AB423023ABFDEB00E2A558 /* Model */,
+				8441FB7823636932001DC085 /* AudioPlayerService.swift */,
+			);
+			path = AudioPlayerService;
+			sourceTree = "<group>";
+		};
+		84AB423023ABFDEB00E2A558 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84AB423123ABFDFD00E2A558 /* SceneTimer.swift */,
+				84AB422C23ABFD4C00E2A558 /* SceneAudio.swift */,
+				84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		84DD743323908CA600B10777 /* SceneTimerScreen */ = {
@@ -944,7 +971,7 @@
 		96C29EE123625A9E00E93CB1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				8441FB7823636932001DC085 /* AudioPlayerService.swift */,
+				84AB422923ABFBDE00E2A558 /* AudioPlayerService */,
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
 				96C29F4B2363462100E93CB1 /* PurchaseService.swift */,
 				96C29F9223638F3900E93CB1 /* SceneService.swift */,
@@ -1000,6 +1027,7 @@
 				84D754392378BDF1003C084C /* SharedSequenceExtension.swift */,
 				84CF4D2623945FF300E07784 /* ReactiveExtension.swift */,
 				9623D347239942630040CB43 /* UIDeviceExtension.swift */,
+				84AB422E23ABFD9200E2A558 /* ArrayExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1447,6 +1475,7 @@
 				86E1052D2393ECD20092B194 /* MiniPlayerView.swift in Sources */,
 				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
+				84AB422D23ABFD4C00E2A558 /* SceneAudio.swift in Sources */,
 				96C29EF923625EE100E93CB1 /* DataBaseError.swift in Sources */,
 				96DC8C7F23674EC5004DC76A /* PaygateMapper.swift in Sources */,
 				86B0C31D2379DE0300C60158 /* MeditationRealmMapper.swift in Sources */,
@@ -1462,17 +1491,20 @@
 				84EF894D23A3A8A200E09C9D /* SceneVideoCell.swift in Sources */,
 				86B7A98F23702760007A36BA /* TagsMapper.swift in Sources */,
 				9623D3502399C3060040CB43 /* ImageCacheService.swift in Sources */,
+				84AB423223ABFDFD00E2A558 /* SceneTimer.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
 				968552912369871000A22E21 /* AppStateProxy.swift in Sources */,
+				84AB423423ABFE6F00E2A558 /* RecordingAudio.swift in Sources */,
 				84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */,
 				9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */,
 				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				844F025923776E64004C062B /* VolumeAssembly.swift in Sources */,
 				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
+				84AB422F23ABFD9200E2A558 /* ArrayExtension.swift in Sources */,
 				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				962FB445239665AB00B88FFC /* RealmMeditationSound.swift in Sources */,
