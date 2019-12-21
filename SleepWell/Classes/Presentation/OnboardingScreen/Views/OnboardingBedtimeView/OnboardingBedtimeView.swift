@@ -110,6 +110,7 @@ class OnboardingBedtimeView: UIView {
                 PushMessagesService.shared.register { isRegisteredForRemoteNotifications, token in
                     if isRegisteredForRemoteNotifications {
                         self?.nextUpWithTimeAndPushToken.accept((time, token ?? ""))
+                        PushMessagesService.shared.addLocalNotification(time: time)
                     } else {
                         self?.nextUpWithout.accept(Void())
                     }

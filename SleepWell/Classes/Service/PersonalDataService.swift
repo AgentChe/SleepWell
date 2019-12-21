@@ -124,4 +124,15 @@ final class PersonalDataService {
             return Disposables.create()
         }
     }
+    
+    static func pushTime() -> String? {
+         guard
+            let data = UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey),
+            let personalData = try? JSONDecoder().decode(PersonalData.self, from: data)
+         else {
+            return nil
+        }
+        
+        return personalData.pushTime
+    }
 }
