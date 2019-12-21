@@ -36,29 +36,39 @@
                                                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-5P-Sg3">
                                                             <rect key="frame" x="40" y="718" width="295" height="52"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon" translatesAutoresizingMaskIntoConstraints="NO" id="OPi-Gx-fJY">
-                                                                    <rect key="frame" x="94.333333333333343" y="16.666666666666629" width="18" height="18"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cB8-jn-XBW">
+                                                                    <rect key="frame" x="91.333333333333343" y="0.0" width="112.33333333333334" height="52"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon" translatesAutoresizingMaskIntoConstraints="NO" id="OPi-Gx-fJY">
+                                                                            <rect key="frame" x="0.0" y="17" width="17.666666666666668" height="18"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="17.829999999999998" id="Zoz-V9-igf"/>
+                                                                                <constraint firstAttribute="width" constant="17.829999999999998" id="zwb-do-kbg"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-xg-j9I">
+                                                                            <rect key="frame" x="23.666666666666664" y="15.666666666666629" width="88.666666666666686" height="21"/>
+                                                                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="17.829999999999998" id="Zoz-V9-igf"/>
-                                                                        <constraint firstAttribute="width" constant="17.829999999999998" id="zwb-do-kbg"/>
+                                                                        <constraint firstItem="OPi-Gx-fJY" firstAttribute="centerY" secondItem="cB8-jn-XBW" secondAttribute="centerY" id="Oje-JY-SwF"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="OUg-xg-j9I" secondAttribute="trailing" id="OoR-oP-0gE"/>
+                                                                        <constraint firstItem="OUg-xg-j9I" firstAttribute="centerY" secondItem="OPi-Gx-fJY" secondAttribute="centerY" id="USo-gC-Aby"/>
+                                                                        <constraint firstItem="OPi-Gx-fJY" firstAttribute="leading" secondItem="cB8-jn-XBW" secondAttribute="leading" id="aam-mD-jPM"/>
+                                                                        <constraint firstItem="OUg-xg-j9I" firstAttribute="leading" secondItem="OPi-Gx-fJY" secondAttribute="trailing" constant="6" id="zcd-IW-ONd"/>
                                                                     </constraints>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-xg-j9I">
-                                                                    <rect key="frame" x="118.33333333333336" y="15" width="160.66666666666663" height="21"/>
-                                                                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="OPi-Gx-fJY" firstAttribute="leading" secondItem="hhE-5P-Sg3" secondAttribute="leading" constant="94.430000000000007" id="2Po-oY-9vl"/>
                                                                 <constraint firstAttribute="height" constant="52" id="5xR-Gd-zQF"/>
-                                                                <constraint firstItem="OUg-xg-j9I" firstAttribute="leading" secondItem="OPi-Gx-fJY" secondAttribute="trailing" constant="6" id="71c-ny-01T"/>
-                                                                <constraint firstItem="OUg-xg-j9I" firstAttribute="top" secondItem="hhE-5P-Sg3" secondAttribute="top" constant="15" id="ESF-K0-MGm"/>
-                                                                <constraint firstItem="OPi-Gx-fJY" firstAttribute="top" secondItem="hhE-5P-Sg3" secondAttribute="top" constant="16.739999999999998" id="Qba-eF-tcT"/>
-                                                                <constraint firstAttribute="trailing" secondItem="OUg-xg-j9I" secondAttribute="trailing" constant="16" id="j3g-ec-Q2S"/>
-                                                                <constraint firstAttribute="bottom" secondItem="OPi-Gx-fJY" secondAttribute="bottom" constant="17.43" id="jkI-dv-NI6"/>
+                                                                <constraint firstItem="cB8-jn-XBW" firstAttribute="top" secondItem="hhE-5P-Sg3" secondAttribute="top" id="9vB-mB-Tat"/>
+                                                                <constraint firstItem="cB8-jn-XBW" firstAttribute="centerX" secondItem="hhE-5P-Sg3" secondAttribute="centerX" id="QXK-hP-wXW"/>
+                                                                <constraint firstAttribute="bottom" secondItem="cB8-jn-XBW" secondAttribute="bottom" id="gvf-OD-55I"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
