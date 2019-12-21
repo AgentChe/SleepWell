@@ -57,7 +57,16 @@ private final class CacheMeditations: Copy {
     private let downloadImagesService = DownloadImagesService()
     private let copyImagesService = CopyImagesService()
     
+    var wasCopied: Bool {
+        set { UserDefaults.standard.set(true, forKey: "meditations_was_copied_in_db_key") }
+        get { return UserDefaults.standard.bool(forKey: "meditations_was_copied_in_db_key") }
+    }
+    
     func copyMeditations() -> Observable<Void> {
+        guard !wasCopied else {
+            return Observable<Void>.just(Void())
+        }
+        
         let fullMeditations = whatCopy(resource: "meditations", map: { MeditationsMapper.fullMeditations(response: $0) })
         
         return fullMeditations
@@ -75,7 +84,8 @@ private final class CacheMeditations: Copy {
                     .flatMap { [weak self] _ -> Single<Void> in
                         return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
                     }
-                    .do(onNext: {
+                    .do(onNext: { [weak self] in
+                        self?.wasCopied = true
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
             }
@@ -135,7 +145,16 @@ private final class CacheStories: Copy {
     private let downloadImagesService = DownloadImagesService()
     private let copyImagesService = CopyImagesService()
     
+    var wasCopied: Bool {
+        set { UserDefaults.standard.set(true, forKey: "stories_was_copied_in_db_key") }
+        get { return UserDefaults.standard.bool(forKey: "stories_was_copied_in_db_key") }
+    }
+    
     func copyStories() -> Observable<Void> {
+        guard !wasCopied else {
+            return Observable<Void>.just(Void())
+        }
+        
         let fullStories = whatCopy(resource: "stories", map: { StoriesMapper.fullStories(response: $0) })
         
         return fullStories
@@ -153,7 +172,8 @@ private final class CacheStories: Copy {
                     .flatMap { [weak self] _ -> Single<Void> in
                         return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
                     }
-                    .do(onNext: {
+                    .do(onNext: { [weak self] in
+                        self?.wasCopied = true
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
             }
@@ -198,7 +218,16 @@ private final class CacheScenes: Copy {
     private let downloadImagesService = DownloadImagesService()
     private let copyImagesService = CopyImagesService()
     
+    var wasCopied: Bool {
+        set { UserDefaults.standard.set(true, forKey: "scenes_was_copied_in_db_key") }
+        get { return UserDefaults.standard.bool(forKey: "scenes_was_copied_in_db_key") }
+    }
+    
     func copyScenes() -> Observable<Void> {
+        guard !wasCopied else {
+            return Observable<Void>.just(Void())
+        }
+        
         let fullScenes = whatCopy(resource: "scenes", map: { ScenesMapper.fullScenes(response: $0) })
         
         return fullScenes
@@ -216,7 +245,8 @@ private final class CacheScenes: Copy {
                     .flatMap { [weak self] _ -> Single<Void> in
                         return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
                     }
-                    .do(onNext: {
+                    .do(onNext: { [weak self] in
+                        self?.wasCopied = true 
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
             }
