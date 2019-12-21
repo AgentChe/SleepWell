@@ -35,7 +35,11 @@ class StoryCell: UITableViewCell {
         formatter.unitsStyle = .short
 
         if let time = formatter.string(from: TimeInterval(model.time)) {
-            readerLabel.text = "\(model.reader) · \(time)"
+            if let reader = model.reader {
+                readerLabel.text = "\(reader) · \(time)"
+            } else {
+                readerLabel.text = time
+            }
         } else {
             readerLabel.text = model.reader
         }
