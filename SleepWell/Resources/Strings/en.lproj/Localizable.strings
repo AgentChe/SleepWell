@@ -40,3 +40,26 @@
 "contact_us" = "Contact Us";
 "leave_a_review" = "Leave a Review";
 "settings" = "Settings";
+
+
+// LocalNotifications
+"local_notify_title_1" = "Your future depends on your dreams 💤😴🎼";
+"local_notify_body_1" = "Get ready for sleep with the soothing sounds of your choice ";
+"local_notify_title_2" = "Prepare yourself for bedtime 🥱🤤";
+"local_notify_body_2" = "A night without dreams is like a cupcake without frosting";
+"local_notify_title_3" = "Sleep is the best meditation 😴🛌";
+"local_notify_body_3" = "Prepare yourself for this pleasant session";
+"local_notify_title_4" = "🛌 Time to prepare for a bedtime! 🛌";
+"local_notify_body_4" = "No day is so bad it can’t be fixed with a nap";
+"local_notify_title_5" = "💤 Time has come for this pleasant routine!";
+"local_notify_body_5" = "Without enough sleep, we all become tall two-year-olds";
+"local_notify_title_6" = "We are all omnipotent when we dream 😴";
+"local_notify_body_6" = "Let's blend into this state with a nice story";
+"local_notify_title_7" = "Happy feelings attract happy circumstances";
+"local_notify_body_7" = "Tune in the right mood before bedtime 💤😴";
+"local_notify_title_8" = "💤Get ready with Sleep Well!💤";
+"local_notify_body_8" = "Tomorrow might be the best day ever if you're well prepared for it.";
+"local_notify_title_9" = "Relax and forget your worries 😴🛌";
+"local_notify_body_9" = "before going down to sleep for a better day tomorrow";
+"local_notify_title_10" = "Fatigue is the best pillow, 🛌🥱🤤";
+"local_notify_body_10" = "a good story is the best sleeping pill. Take one!";

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         navigate()
+        
+        PushMessagesService.shared.updateLocalNotification()
 
         return true
     }
