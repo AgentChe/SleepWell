@@ -143,7 +143,7 @@ final class PushMessagesService {
                 let date = Calendar.current.date(from: trigger.dateComponents)
             {
                 self?.addLocalNotification(currentDate: date)
-            } else {
+            } else if requests.count == 0 {
                 self?.addLocalNotification()
             }
         }
