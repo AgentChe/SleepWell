@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,8 +43,8 @@
                                                                         <constraint firstAttribute="width" constant="17.829999999999998" id="zwb-do-kbg"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-xg-j9I">
-                                                                    <rect key="frame" x="115" y="15" width="89" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sleep Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUg-xg-j9I">
+                                                                    <rect key="frame" x="118.33333333333336" y="15" width="160.66666666666663" height="21"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -54,9 +54,10 @@
                                                             <constraints>
                                                                 <constraint firstItem="OPi-Gx-fJY" firstAttribute="leading" secondItem="hhE-5P-Sg3" secondAttribute="leading" constant="94.430000000000007" id="2Po-oY-9vl"/>
                                                                 <constraint firstAttribute="height" constant="52" id="5xR-Gd-zQF"/>
+                                                                <constraint firstItem="OUg-xg-j9I" firstAttribute="leading" secondItem="OPi-Gx-fJY" secondAttribute="trailing" constant="6" id="71c-ny-01T"/>
                                                                 <constraint firstItem="OUg-xg-j9I" firstAttribute="top" secondItem="hhE-5P-Sg3" secondAttribute="top" constant="15" id="ESF-K0-MGm"/>
                                                                 <constraint firstItem="OPi-Gx-fJY" firstAttribute="top" secondItem="hhE-5P-Sg3" secondAttribute="top" constant="16.739999999999998" id="Qba-eF-tcT"/>
-                                                                <constraint firstAttribute="trailing" secondItem="OUg-xg-j9I" secondAttribute="trailing" constant="91" id="j3g-ec-Q2S"/>
+                                                                <constraint firstAttribute="trailing" secondItem="OUg-xg-j9I" secondAttribute="trailing" constant="16" id="j3g-ec-Q2S"/>
                                                                 <constraint firstAttribute="bottom" secondItem="OPi-Gx-fJY" secondAttribute="bottom" constant="17.43" id="jkI-dv-NI6"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
