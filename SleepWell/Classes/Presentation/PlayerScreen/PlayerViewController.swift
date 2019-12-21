@@ -169,12 +169,12 @@ extension PlayerViewController: BindsToViewModel {
                 Signal
                     .zip(
                         viewModel.add(recording: input.recording),
-                        viewModel.pauseScene(style: .gentle),
-                        viewModel.pauseRecording(style: .gentle)
+                        viewModel.pauseScene(style: .force),
+                        viewModel.pauseRecording(style: .force)
                     )
                     .take(1)
             }
-            .flatMapLatest { _ in viewModel.playRecording(style: .gentle) }
+            .flatMapLatest { _ in viewModel.playRecording(style: .force) }
             .emit()
             .disposed(by: disposeBag)
         
@@ -184,7 +184,7 @@ extension PlayerViewController: BindsToViewModel {
         didTapPauseButton.emit(onNext: input.didPause)
             .disposed(by: disposeBag)
         
-        didTapPauseButton.map { _ in .gentle }
+        didTapPauseButton.map { _ in .force }
             .flatMapFirst { viewModel.pauseRecording(style: $0) }
             .emit()
             .disposed(by: disposeBag)

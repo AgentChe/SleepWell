@@ -10,20 +10,76 @@ import RxSwift
 import Kingfisher
 
 final class CacheService {
-    private let updateMeditations = UpdateMeditations()
-    private let updateStories = UpdateStories()
-    private let updateScenes = UpdateScenes()
+    private let cacheMeditations = CacheMeditations()
+    private let cacheStories = CacheStories()
+    private let cacheScenes = CacheScenes()
     
-    func update() -> Observable<Void> {
-        return Observable.combineLatest(updateMeditations.updateMeditations().catchErrorJustReturn(Void()),
-                                        updateStories.update().catchErrorJustReturn(Void()),
-                                        updateScenes.update().catchErrorJustReturn(Void()),
-                                        updateMeditations.updateTags().catchErrorJustReturn(Void())) { _, _, _, _ in Void() }
+    func update() -> Single<Void> {
+        return Observable
+            .combineLatest(cacheMeditations.copyMeditations().catchErrorJustReturn(Void()),
+                           cacheStories.copyStories().catchErrorJustReturn(Void()),
+                           cacheScenes.copyScenes().catchErrorJustReturn(Void()))
+            .flatMap { [unowned self] _ -> Observable<Void> in
+                return Observable
+                    .combineLatest(self.cacheMeditations.updateMeditations().catchErrorJustReturn(Void()),
+                                   self.cacheStories.update().catchErrorJustReturn(Void()),
+                                   self.cacheScenes.update().catchErrorJustReturn(Void()),
+                                   self.cacheMeditations.updateTags().catchErrorJustReturn(Void())) { _, _, _, _ in Void() }
+            }
+            .asSingle()
     }
 }
 
-private final class UpdateMeditations {
-    private let imageCacheService = ImageCacheService()
+private protocol Copy {}
+private extension Copy {
+    func whatCopy<T>(resource: String, map: @escaping (Any) -> (T?)) -> Observable<T?> {
+        Observable<T?>.create { observer in
+            guard
+                let url = Bundle.main.url(forResource: resource, withExtension: "json"),
+                let jsonData = try? Data(contentsOf: url, options: .dataReadingMapped),
+                let json = try? JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers)
+            else {
+                observer.onError(RxError.noElements)
+                return Disposables.create()
+            }
+            
+            let data = map(json)
+            
+            observer.onNext(data)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+}
+
+private final class CacheMeditations: Copy {
+    private let downloadImagesService = DownloadImagesService()
+    private let copyImagesService = CopyImagesService()
+    
+    func copyMeditations() -> Observable<Void> {
+        let fullMeditations = whatCopy(resource: "meditations", map: { MeditationsMapper.fullMeditations(response: $0) })
+        
+        return fullMeditations
+            .flatMap { fullMeditations -> Observable<Void> in
+                guard let data = fullMeditations else {
+                    return .error(RxError.noElements)
+                }
+
+                let saveMeditations = RealmDBTransport().saveData(entities: data.meditations, map: { MeditationRealmMapper.map(from: $0) })
+                let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! MeditationDetailRealmMapper.map(from: $0) })
+                
+                return Observable
+                    .combineLatest(saveMeditations.asObservable(),
+                                   saveDetails.asObservable())
+                    .flatMap { [weak self] _ -> Single<Void> in
+                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                    }
+                    .do(onNext: {
+                        CacheHashCodes.meditationsHashCode = data.meditationsHashCode
+                    })
+            }
+    }
     
     func updateMeditations() -> Observable<Void> {
         return RestAPITransport()
@@ -52,7 +108,7 @@ private final class UpdateMeditations {
                             return result
                         }
                     }
-                .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -75,8 +131,33 @@ private final class UpdateMeditations {
     }
 }
 
-private final class UpdateStories {
-    private let imageCacheService = ImageCacheService()
+private final class CacheStories: Copy {
+    private let downloadImagesService = DownloadImagesService()
+    private let copyImagesService = CopyImagesService()
+    
+    func copyStories() -> Observable<Void> {
+        let fullStories = whatCopy(resource: "stories", map: { StoriesMapper.fullStories(response: $0) })
+        
+        return fullStories
+            .flatMap { fullStories -> Observable<Void> in
+                guard let data = fullStories else {
+                    return .error(RxError.noElements)
+                }
+
+                let saveStories = RealmDBTransport().saveData(entities: data.stories, map: { StoryRealmMapper.map(from: $0) })
+                let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! StoryDetailRealmMapper.map(from: $0) })
+                
+                return Observable
+                    .combineLatest(saveStories.asObservable(),
+                                   saveDetails.asObservable())
+                    .flatMap { [weak self] _ -> Single<Void> in
+                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                    }
+                    .do(onNext: {
+                        CacheHashCodes.storiesHashCode = data.storiesHashCode
+                    })
+            }
+    }
     
     func update() -> Observable<Void> {
         return RestAPITransport()
@@ -105,7 +186,7 @@ private final class UpdateStories {
                             return result
                         }
                     }
-                .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -113,8 +194,33 @@ private final class UpdateStories {
     }
 }
 
-private final class UpdateScenes {
-    private let imageCacheService = ImageCacheService()
+private final class CacheScenes: Copy {
+    private let downloadImagesService = DownloadImagesService()
+    private let copyImagesService = CopyImagesService()
+    
+    func copyScenes() -> Observable<Void> {
+        let fullScenes = whatCopy(resource: "scenes", map: { ScenesMapper.fullScenes(response: $0) })
+        
+        return fullScenes
+            .flatMap { fullScenes -> Observable<Void> in
+                guard let data = fullScenes else {
+                    return .error(RxError.noElements)
+                }
+
+                let saveScenes = RealmDBTransport().saveData(entities: data.scenes, map: { SceneRealmMapper.map(from: $0) })
+                let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
+                
+                return Observable
+                    .combineLatest(saveScenes.asObservable(),
+                                   saveDetails.asObservable())
+                    .flatMap { [weak self] _ -> Single<Void> in
+                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                    }
+                    .do(onNext: {
+                        CacheHashCodes.scenesHashCode = data.scenesHashCode
+                    })
+            }
+    }
     
     func update() -> Observable<Void> {
         return RestAPITransport()
@@ -136,7 +242,7 @@ private final class UpdateScenes {
                                    saveDetails.asObservable(),
                                    removeScenes.asObservable(),
                                    removeDetails.asObservable()) { _, _, _, _ -> [URL] in data.scenes.map { $0.url } }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.imageCacheService.cacheImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })

@@ -35,7 +35,7 @@ extension SceneCellModel {
             url: scene.url,
             paid: isActiveSubscription ? true : !scene.paid
         )
-        self = scene.hasVideoType
+        self = scene.mime.isVideo
             ? .video(sceneCellModelFields)
             : .image(sceneCellModelFields)
     }

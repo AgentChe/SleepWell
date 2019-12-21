@@ -97,6 +97,6 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
     }
     
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
-        dependencies.audioService.pauseScene(style: .gentle)
+        dependencies.audioService.pauseScene(style: style)
     }
 }
