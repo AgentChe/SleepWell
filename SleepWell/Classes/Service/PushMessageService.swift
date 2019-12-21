@@ -91,7 +91,7 @@ final class PushMessagesService {
         let center = UNUserNotificationCenter.current()
         
         PushMessagesService.messageArray.enumerated().forEach { index, notifyData in
-            guard let pushDate = calendar.date(byAdding: .day, value: index + 1, to: currentDate) else {
+            guard let pushDate = calendar.date(byAdding: .day, value: index, to: currentDate) else {
                 return
             }
             
