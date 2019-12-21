@@ -114,7 +114,7 @@ final class PushMessagesService {
                 guard let date = calendar.date(byAdding: .day, value: 10 * item, to: pushDate) else {
                     return
                 }
-                print(date)
+                
                 let content = UNMutableNotificationContent()
                 content.title = notifyData.title.localized
                 content.body = notifyData.body.localized
@@ -161,8 +161,5 @@ final class PushMessagesService {
         (title: "local_notify_title_9", body: "local_notify_body_9"),
         (title: "local_notify_title_10", body: "local_notify_body_10")
     ]
-    
-    static let titleKey = "titleNotify"
-    static let bodyKey = "bodyNotify"
 }
 
