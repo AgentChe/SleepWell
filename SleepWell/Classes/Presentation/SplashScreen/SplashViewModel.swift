@@ -26,7 +26,6 @@ class SplashViewModel {
     private func updateCacheAndCreateStep() -> Single<Step> {
         return cacheService
         .update()
-        .asSingle()
         .flatMap { [weak self] in
             return self?.createStep() ?? .never()
         }

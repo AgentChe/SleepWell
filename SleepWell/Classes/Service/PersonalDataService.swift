@@ -85,7 +85,14 @@ final class PersonalDataService {
     private static let personalDataKey = "personal_data_key"
     
     func hasPersonalData() -> Bool {
-        return UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey) != nil
+        guard
+            let data = UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey),
+            let _ = try? JSONDecoder().decode(PersonalData.self, from: data)
+         else {
+            return false
+        }
+        
+        return true
     }
     
     func sendPersonalData() -> Single<Void> {
@@ -123,5 +130,16 @@ final class PersonalDataService {
             
             return Disposables.create()
         }
+    }
+    
+    static func pushTime() -> String? {
+         guard
+            let data = UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey),
+            let personalData = try? JSONDecoder().decode(PersonalData.self, from: data)
+         else {
+            return nil
+        }
+        
+        return personalData.pushTime
     }
 }

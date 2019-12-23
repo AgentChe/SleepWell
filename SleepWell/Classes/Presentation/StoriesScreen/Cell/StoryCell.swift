@@ -16,7 +16,6 @@ class StoryCell: UITableViewCell {
     @IBOutlet private var avatarImage: UIImageView!
     @IBOutlet private var lockedImage: UIImageView!
     
-    
     func setup(model: StoryCellModel) {
         if let backgroundUrl = model.image {
             backgroundImage.kf.indicatorType = .activity
@@ -36,7 +35,11 @@ class StoryCell: UITableViewCell {
         formatter.unitsStyle = .short
 
         if let time = formatter.string(from: TimeInterval(model.time)) {
-            readerLabel.text = "\(model.reader) · \(time)"
+            if let reader = model.reader {
+                readerLabel.text = "\(reader) · \(time)"
+            } else {
+                readerLabel.text = time
+            }
         } else {
             readerLabel.text = model.reader
         }

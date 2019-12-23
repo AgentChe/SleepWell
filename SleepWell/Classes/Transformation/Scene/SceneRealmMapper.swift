@@ -15,7 +15,7 @@ struct SceneRealmMapper {
             paid: entity.paid,
             url: entity.url,
             hash: entity.hash,
-            hasVideoType: entity.hasVideoType
+            mimeValue: entity.mime.rawValue
         )
     }
     
@@ -25,7 +25,7 @@ struct SceneRealmMapper {
             paid: realm.paid,
             url: URL(string: realm.url)!,
             hash: realm.hashCode,
-            hasVideoType: realm.hasVideoType
+            mime: Mime(rawValue: realm.mimeValue)!
         )
     }
 }

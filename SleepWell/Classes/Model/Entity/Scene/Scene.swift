@@ -13,7 +13,7 @@ struct Scene: Model {
     let paid: Bool
     let url: URL
     let hash: String
-    let hasVideoType: Bool
+    let mime: Mime
 }
 
 extension Scene {
@@ -35,14 +35,8 @@ extension Scene {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let mime = try container.decode(Int?.self, forKey: .mime)
-        let hasVideoType: Bool
-        switch mime {
-        case 1, 2, 3, 4, 5:
-            hasVideoType = false
-        case 6, 7, 8, 9, 10:
-            hasVideoType = true
-        default:
+        let mimeValue = try container.decode(Int.self, forKey: .mime)
+        guard let mime = Mime(rawValue: mimeValue) else {
             throw Error.unsupportedType
         }
         
@@ -51,9 +45,9 @@ extension Scene {
         let videoUrlString = try? container.decode(String?.self, forKey: .videoUrl)?
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        if let videoUrl = URL(string: videoUrlString ?? ""), hasVideoType {
+        if let videoUrl = URL(string: videoUrlString ?? ""), mime.isVideo {
             self.url = videoUrl
-        } else if let imageUrl = URL(string: imageUrlString ?? ""), !hasVideoType {
+        } else if let imageUrl = URL(string: imageUrlString ?? ""), mime.isImage {
             self.url = imageUrl
         } else {
             throw Error.hasNotUrl
@@ -62,7 +56,7 @@ extension Scene {
         self.id = try container.decode(Int.self, forKey: .id)
         self.paid = try container.decode(Bool.self, forKey: .paid)
         self.hash = try container.decode(String.self, forKey: .hash)
-        self.hasVideoType = hasVideoType
+        self.mime = mime 
     }
 
     func encode(to encoder: Encoder) throws {}

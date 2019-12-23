@@ -16,5 +16,10 @@ final class AppStateProxy {
     
     struct ApplicationProxy {
         static let didBecomeActive = PublishRelay<Void>()
+        static let completeTransactions = PublishRelay<Void>()
+    }
+    
+    struct NavigateProxy {
+        static let openPaygateAtPromotionInApp = PublishRelay<Void>()
     }
 }

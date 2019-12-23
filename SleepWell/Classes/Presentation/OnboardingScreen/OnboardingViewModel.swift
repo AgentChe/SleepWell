@@ -56,19 +56,22 @@ final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface
     func complete(with paygateResult: PaygateCompletionResult, behave: Behave) -> Signal<MainScreenBehave> {
         switch behave {
         case .requirePersonalData:
+            guard let personalData = self.personalData else {
+                return .never()
+            }
+            
+            let storePersonalData = dependencies.personalDataService.store(personalData: personalData)
+            
             switch paygateResult {
             case .purchased, .restored:
-                return dependencies.personalDataService
-                    .sendPersonalData()
+                return storePersonalData
+                    .flatMap { [unowned self] in
+                        self.dependencies.personalDataService.sendPersonalData()
+                    }
                     .map { .withActiveSubscription }
                     .asSignal(onErrorSignalWith: .never())
             case .closed:
-                guard let personalData = self.personalData else {
-                    return .never()
-                }
-                
-                return dependencies.personalDataService
-                    .store(personalData: personalData)
+                return storePersonalData
                     .map { MainScreenBehave.withoutActiveSubscription }
                     .asSignal(onErrorSignalWith: .never())
             }

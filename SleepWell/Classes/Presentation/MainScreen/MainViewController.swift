@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupTabs()
+        RateManager.secondLaunch()
     }
 
     private func setupTabs() {
@@ -84,6 +85,7 @@ extension MainViewController: BindsToViewModel {
         
         let subscriptionExpired = viewModel
             .monitorSubscriptionExpiration(triggers: [AppStateProxy.ApplicationProxy.didBecomeActive.asObservable()])
+            .map { !$0 }
             .startWith(input.behave == .withActiveSubscription)
             .distinctUntilChanged()
             .asObservable()
@@ -137,14 +139,14 @@ extension MainViewController: BindsToViewModel {
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .pause }
-            .flatMapFirst { _ in viewModel.pauseRecording(style: .gentle) }
+            .flatMapFirst { _ in viewModel.pauseRecording(style: .force) }
             .emit()
             .disposed(by: disposeBag)
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .play }
-            .flatMapFirst { _ in viewModel.pauseScene(style: .gentle) }
-            .flatMapLatest { _ in viewModel.playRecording(style: .gentle) }
+            .flatMapFirst { _ in viewModel.pauseScene(style: .force) }
+            .flatMapLatest { _ in viewModel.playRecording(style: .force) }
             .emit()
             .disposed(by: disposeBag)
         

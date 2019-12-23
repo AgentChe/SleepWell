@@ -105,14 +105,18 @@ extension ScenesViewController: BindsToViewModel {
                 viewModel.sceneDetails(scene: scene)
             }
         
+        let cellIndex = visibleCellSignal
+            .scan((0, 0)) { ($0.1, $1) }
+
         input.subscription
             .filter { !$0 }
-            .withLatestFrom(visibleCellSignal)
-            .compactMap { index -> Int? in
-                guard index > 0 else {
+            .withLatestFrom(cellIndex)
+            .compactMap { tuple -> Int? in
+                let (last, new) = tuple
+                guard new > 0 else {
                     return nil
                 }
-                return index - 1
+                return abs(last - new) == 1 ? last : 0
             }
             .bind(to: Binder(collectionView) {
                 $0.scrollToItem(at: IndexPath(row: $1, section: 0), at: .centeredHorizontally, animated: true)
@@ -159,7 +163,9 @@ extension ScenesViewController: BindsToViewModel {
         let playSceneBySwipe = sceneDetail.skip(1)
             .filter { $0 != nil }
             .map { $0! }
-            .filter { viewModel.isOtherScenePlaying(scene: $0) }
+            .withLatestFrom(viewModel.isScenePlaying) { ($0, $1) }
+            .filter { $1 }
+            .map { $0.0 }
             .asObservable()
         
         let playSceneByOpeningSettings = settingsButton.rx.tap.asObservable()
@@ -197,7 +203,7 @@ extension ScenesViewController: BindsToViewModel {
             )
             .observeOn(MainScheduler.instance)
             .flatMapLatest { scene in
-                viewModel.pauseScene(style: .gentle).map { _ in scene }
+                viewModel.pauseScene(style: .force).map { _ in scene }
             }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: {
@@ -205,17 +211,17 @@ extension ScenesViewController: BindsToViewModel {
             })
             .asSignal(onErrorSignalWith: .empty())
             .flatMapFirst { _ in
-                viewModel.pauseRecording(style: .gentle)
+                viewModel.pauseRecording(style: .force)
             }
             .withLatestFrom(shouldPlayScene.asSignal(onErrorSignalWith: .empty()))
             .flatMapLatest { shouldPlay in
-                shouldPlay ? viewModel.playScene(style: .gentle) : .empty()
+                shouldPlay ? viewModel.playScene(style: .force) : .empty()
             }
             .emit()
             .disposed(by: disposeBag)
         
         pauseButton.rx.tap.asSignal()
-            .map { _ in .gentle }
+            .map { _ in .force }
             .flatMapFirst { viewModel.pauseScene(style: $0) }
             .emit()
             .disposed(by: disposeBag)

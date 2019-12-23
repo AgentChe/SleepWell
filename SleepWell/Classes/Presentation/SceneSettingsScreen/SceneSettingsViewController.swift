@@ -177,6 +177,7 @@ extension SceneSettingsViewController: BindsToViewModel {
                     completion: { [weak self] _ in
                         self?.view.removeFromSuperview()
                         self?.removeFromParent()
+                        RateManager.showRateController()
                     }
                 )
             })
@@ -197,6 +198,7 @@ extension SceneSettingsViewController: BindsToViewModel {
                     completion: { [weak self] _ in
                         self?.view.removeFromSuperview()
                         self?.removeFromParent()
+                        RateManager.showRateController()
                     }
                 )
             })

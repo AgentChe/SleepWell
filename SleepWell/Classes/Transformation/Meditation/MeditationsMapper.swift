@@ -8,16 +8,25 @@
 
 import Foundation
 
+struct FullMeditations {
+    let meditations: [Meditation]
+    let details: [MeditationDetail]
+    let meditationsHashCode: String
+    let deletedMeditationIds: [Int]
+    let copingLocalImages: [CopyResource]
+}
+
 struct MeditationsMapper {
-    typealias FullMeditations = (meditations: [Meditation], details: [MeditationDetail], meditationsHashCode: String)
-    
     static func fullMeditations(response: Any) -> FullMeditations? {
-        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullMeditations = data["meditations"] as? [[String: Any]] else {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
         }
         
+        let fullMeditations = data["meditations"] as? [[String: Any]] ?? []
+        
         var meditations: [Meditation] = []
         var meditationDetails: [MeditationDetail] = []
+        var copingLocalImages: [CopyResource] = []
         
         for fullMeditation in fullMeditations {
             guard
@@ -33,12 +42,26 @@ struct MeditationsMapper {
             
             let details = MeditationDetail(recording: meditation, readingSound: readingSound, ambientSound: ambientSound)
             
+            if let imageReaderUrl = meditation.imageReaderURL, let imageReaderLocalName = fullMeditation["image_reader_path"] as? String {
+                copingLocalImages.append(CopyResource(name: imageReaderLocalName, cacheKey: imageReaderUrl.absoluteString))
+            }
+            
+            if let imageMeditationUrl = meditation.imagePreviewUrl, let imageMeditationLocalName = fullMeditation["image_meditation_path"] as? String {
+                copingLocalImages.append(CopyResource(name: imageMeditationLocalName, cacheKey: imageMeditationUrl.absoluteString))
+            }
+            
             meditations.append(meditation)
             meditationDetails.append(details)
         }
         
         let hashCode = data["meditations_hash"] as? String ?? ""
         
-        return (meditations, meditationDetails, hashCode)
+        let deletedMeditationIds = data["deleted_meditations"] as? [Int] ?? []
+        
+        return FullMeditations(meditations: meditations,
+                               details: meditationDetails,
+                               meditationsHashCode: hashCode,
+                               deletedMeditationIds: deletedMeditationIds,
+                               copingLocalImages: copingLocalImages)
     }
 }

@@ -8,16 +8,25 @@
 
 import Foundation
 
+struct FullStories {
+    let stories: [Story]
+    let details: [StoryDetail]
+    let storiesHashCode: String
+    let deletedStoryIds: [Int]
+    let copingLocalImages: [CopyResource]
+}
+
 struct StoriesMapper {
-    typealias FullStories = (stories: [Story], details: [StoryDetail], storiesHashCode: String)
-    
     static func fullStories(response: Any) -> FullStories? {
-        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any], let fullStories = data["stories"] as? [[String: Any]] else {
+        guard let json = response as? [String: Any], let data = json["_data"] as? [String: Any] else {
             return nil
         }
         
+        let fullStories = data["stories"] as? [[String: Any]] ?? []
+        
         var stories: [Story] = []
         var storiesDetails: [StoryDetail] = []
+        var copingLocalImages: [CopyResource] = []
         
         for fullStory in fullStories {
             guard
@@ -33,12 +42,26 @@ struct StoriesMapper {
             
             let details = StoryDetail(recording: story, readingSound: readingSound, ambientSound: ambientSound)
             
+            if let imageReaderUrl = story.imageReaderURL, let imageReaderLocalName = fullStory["image_reader_path"] as? String {
+                copingLocalImages.append(CopyResource(name: imageReaderLocalName, cacheKey: imageReaderUrl.absoluteString))
+            }
+            
+            if let imageStoryUrl = story.imagePreviewUrl, let imageStoryLocalName = fullStory["image_story_path"] as? String {
+                copingLocalImages.append(CopyResource(name: imageStoryLocalName, cacheKey: imageStoryUrl.absoluteString))
+            }
+            
             stories.append(story)
             storiesDetails.append(details)
         }
         
         let hashCode = data["stories_hash"] as? String ?? ""
         
-        return (stories, storiesDetails, hashCode)
+        let deletedStoryIds = data["deleted_stories"] as? [Int] ?? []
+        
+        return FullStories(stories: stories,
+                           details: storiesDetails,
+                           storiesHashCode: hashCode,
+                           deletedStoryIds: deletedStoryIds,
+                           copingLocalImages: copingLocalImages)
     }
 }

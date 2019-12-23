@@ -11,9 +11,8 @@ final class GlobalDefinitions {
     static let privacyPolicyUrl = "https://www.s1eep.app/legal/policy"
     static let termsOfServiceUrl = "https://www.s1eep.app/legal/terms"
     static let contactUsUrl = "https://www.s1eep.app/legal/contact"
-    static let appStoreUrl = ""
+    static let appStoreUrl = "https://apps.apple.com/us/app/sleep-well-stories-and-sounds/id1490113879"
     
     static let tabBarHeight = CGFloat(125)
     static let tableBottomInsert = CGFloat(85)
 }
-
