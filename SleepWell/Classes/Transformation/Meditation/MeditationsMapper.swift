@@ -13,7 +13,7 @@ struct FullMeditations {
     let details: [MeditationDetail]
     let meditationsHashCode: String
     let deletedMeditationIds: [Int]
-    let copingLocalImages: [CopingLocalImage]
+    let copingLocalImages: [CopyResource]
 }
 
 struct MeditationsMapper {
@@ -26,7 +26,7 @@ struct MeditationsMapper {
         
         var meditations: [Meditation] = []
         var meditationDetails: [MeditationDetail] = []
-        var copingLocalImages: [CopingLocalImage] = []
+        var copingLocalImages: [CopyResource] = []
         
         for fullMeditation in fullMeditations {
             guard
@@ -43,11 +43,11 @@ struct MeditationsMapper {
             let details = MeditationDetail(recording: meditation, readingSound: readingSound, ambientSound: ambientSound)
             
             if let imageReaderUrl = meditation.imageReaderURL, let imageReaderLocalName = fullMeditation["image_reader_path"] as? String {
-                copingLocalImages.append(CopingLocalImage(imageName: imageReaderLocalName, imageCacheKey: imageReaderUrl.absoluteString))
+                copingLocalImages.append(CopyResource(name: imageReaderLocalName, cacheKey: imageReaderUrl.absoluteString))
             }
             
             if let imageMeditationUrl = meditation.imagePreviewUrl, let imageMeditationLocalName = fullMeditation["image_meditation_path"] as? String {
-                copingLocalImages.append(CopingLocalImage(imageName: imageMeditationLocalName, imageCacheKey: imageMeditationUrl.absoluteString))
+                copingLocalImages.append(CopyResource(name: imageMeditationLocalName, cacheKey: imageMeditationUrl.absoluteString))
             }
             
             meditations.append(meditation)

@@ -13,7 +13,7 @@ struct FullScenes {
     let details: [SceneDetail]
     let scenesHashCode: String
     let deletedSceneIds: [Int]
-    let copingLocalImages: [CopingLocalImage]
+    let copingLocalImages: [CopyResource]
 }
 
 struct ScenesMapper {
@@ -26,7 +26,7 @@ struct ScenesMapper {
         
         var scenes: [Scene] = []
         var scenesDetails: [SceneDetail] = []
-        var copingLocalImages: [CopingLocalImage] = []
+        var copingLocalImages: [CopyResource] = []
         
         for fullScene in fullScenes {
             guard let scene = Scene.parseFromDictionary(any: fullScene) else {
@@ -38,7 +38,7 @@ struct ScenesMapper {
             let details = SceneDetail(scene: scene, sounds: sounds)
             
             if scene.mime.isImage, let imageSceneLocalName = fullScene["image_path"] as? String {
-                copingLocalImages.append(CopingLocalImage(imageName: imageSceneLocalName, imageCacheKey: scene.url.absoluteString))
+                copingLocalImages.append(CopyResource(name: imageSceneLocalName, cacheKey: scene.url.absoluteString))
             }
             
             scenes.append(scene)

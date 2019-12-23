@@ -13,7 +13,7 @@ struct FullStories {
     let details: [StoryDetail]
     let storiesHashCode: String
     let deletedStoryIds: [Int]
-    let copingLocalImages: [CopingLocalImage]
+    let copingLocalImages: [CopyResource]
 }
 
 struct StoriesMapper {
@@ -26,7 +26,7 @@ struct StoriesMapper {
         
         var stories: [Story] = []
         var storiesDetails: [StoryDetail] = []
-        var copingLocalImages: [CopingLocalImage] = []
+        var copingLocalImages: [CopyResource] = []
         
         for fullStory in fullStories {
             guard
@@ -43,11 +43,11 @@ struct StoriesMapper {
             let details = StoryDetail(recording: story, readingSound: readingSound, ambientSound: ambientSound)
             
             if let imageReaderUrl = story.imageReaderURL, let imageReaderLocalName = fullStory["image_reader_path"] as? String {
-                copingLocalImages.append(CopingLocalImage(imageName: imageReaderLocalName, imageCacheKey: imageReaderUrl.absoluteString))
+                copingLocalImages.append(CopyResource(name: imageReaderLocalName, cacheKey: imageReaderUrl.absoluteString))
             }
             
             if let imageStoryUrl = story.imagePreviewUrl, let imageStoryLocalName = fullStory["image_story_path"] as? String {
-                copingLocalImages.append(CopingLocalImage(imageName: imageStoryLocalName, imageCacheKey: imageStoryUrl.absoluteString))
+                copingLocalImages.append(CopyResource(name: imageStoryLocalName, cacheKey: imageStoryUrl.absoluteString))
             }
             
             stories.append(story)

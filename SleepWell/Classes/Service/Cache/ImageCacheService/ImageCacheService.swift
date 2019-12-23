@@ -45,7 +45,7 @@ final class CopyImagesService {
         return queue
     }()
     
-    func copyImages(copingLocalImages: [CopingLocalImage]) -> Single<Void> {
+    func copyImages(copingLocalImages: [CopyResource]) -> Single<Void> {
         return Single.create { single in
             let operations = copingLocalImages.map { CopyInCacheLocalImageOperation(copingLocalImage: $0) }
             

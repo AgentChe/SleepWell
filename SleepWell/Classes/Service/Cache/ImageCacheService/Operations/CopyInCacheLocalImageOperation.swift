@@ -9,15 +9,10 @@
 import Foundation
 import Kingfisher
 
-struct CopingLocalImage {
-    let imageName: String
-    let imageCacheKey: String
-}
-
 final class CopyInCacheLocalImageOperation: Operation {
-    private let copingLocalImage: CopingLocalImage
+    private let copingLocalImage: CopyResource
     
-    init(copingLocalImage: CopingLocalImage) {
+    init(copingLocalImage: CopyResource) {
         self.copingLocalImage = copingLocalImage
         
         super.init()
@@ -60,12 +55,12 @@ final class CopyInCacheLocalImageOperation: Operation {
         
         state = .executing
         
-        guard let image = UIImage(named: copingLocalImage.imageName) else {
+        guard let image = UIImage(named: copingLocalImage.name) else {
             state = .finished
             return
         }
         
-        ImageCache.default.store(image, forKey: copingLocalImage.imageCacheKey) { [weak self] _ in
+        ImageCache.default.store(image, forKey: copingLocalImage.cacheKey) { [weak self] _ in
             self?.state = .finished
         }
     }
