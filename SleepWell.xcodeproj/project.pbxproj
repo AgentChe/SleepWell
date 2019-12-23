@@ -191,6 +191,7 @@
 		96B1DB8123AEA6860050A8E2 /* 1574760189Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96B1DB5723AEA6850050A8E2 /* 1574760189Card_03@jpg.jpg */; };
 		96B1DB8323B0EE220050A8E2 /* AudioCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1DB8223B0EE220050A8E2 /* AudioCacheService.swift */; };
 		96B1DB8723B0EFF80050A8E2 /* CopyResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1DB8623B0EFF80050A8E2 /* CopyResource.swift */; };
+		96B1DB8923B0F5510050A8E2 /* VideoCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1DB8823B0F5510050A8E2 /* VideoCacheService.swift */; };
 		96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29EC82362564000E93CB1 /* AppDelegate.swift */; };
 		96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED12362564200E93CB1 /* Assets.xcassets */; };
 		96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C29ED32362564200E93CB1 /* LaunchScreen.storyboard */; };
@@ -458,6 +459,7 @@
 		96B1DB5723AEA6850050A8E2 /* 1574760189Card_03@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1574760189Card_03@jpg.jpg"; sourceTree = "<group>"; };
 		96B1DB8223B0EE220050A8E2 /* AudioCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCacheService.swift; sourceTree = "<group>"; };
 		96B1DB8623B0EFF80050A8E2 /* CopyResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyResource.swift; sourceTree = "<group>"; };
+		96B1DB8823B0F5510050A8E2 /* VideoCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheService.swift; sourceTree = "<group>"; };
 		96C29EC52362564000E93CB1 /* SleepWell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepWell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C29EC82362564000E93CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96C29ED12362564200E93CB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1035,12 +1037,21 @@
 		96B1DB8523B0EEEE0050A8E2 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				96B1DB8A23B0F5600050A8E2 /* VideoCacheService */,
 				962FB4692396A76100B88FFC /* CacheService.swift */,
 				96B1DB8423B0EE3D0050A8E2 /* AudioCacheService */,
 				969BF22123AD6D54004A84B6 /* ImageCacheService */,
 				96B1DB8623B0EFF80050A8E2 /* CopyResource.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		96B1DB8A23B0F5600050A8E2 /* VideoCacheService */ = {
+			isa = PBXGroup;
+			children = (
+				96B1DB8823B0F5510050A8E2 /* VideoCacheService.swift */,
+			);
+			path = VideoCacheService;
 			sourceTree = "<group>";
 		};
 		96C29EBC2362564000E93CB1 = {
@@ -1758,6 +1769,7 @@
 				9623D33823988A510040CB43 /* Fonts.swift in Sources */,
 				84DD743523908CCF00B10777 /* SceneTimerAssembly.swift in Sources */,
 				847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */,
+				96B1DB8923B0F5510050A8E2 /* VideoCacheService.swift in Sources */,
 				84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */,
 				86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */,
 				86A7D6A12385E1EB0087CE87 /* FullScenesListRequest.swift in Sources */,
