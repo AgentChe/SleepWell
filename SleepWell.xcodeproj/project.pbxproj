@@ -32,6 +32,7 @@
 		84AB423423ABFE6F00E2A558 /* RecordingAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */; };
 		84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF4D2623945FF300E07784 /* ReactiveExtension.swift */; };
 		84D7543A2378BDF1003C084C /* SharedSequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D754392378BDF1003C084C /* SharedSequenceExtension.swift */; };
+		84DC62F723B169530032F47A /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC62F623B169530032F47A /* UrlExtension.swift */; };
 		84DD743523908CCF00B10777 /* SceneTimerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743423908CCF00B10777 /* SceneTimerAssembly.swift */; };
 		84DD743723908CD900B10777 /* SceneTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743623908CD900B10777 /* SceneTimerRouter.swift */; };
 		84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD743823908CE100B10777 /* SceneTimerViewModel.swift */; };
@@ -303,6 +304,7 @@
 		84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAudio.swift; sourceTree = "<group>"; };
 		84CF4D2623945FF300E07784 /* ReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExtension.swift; sourceTree = "<group>"; };
 		84D754392378BDF1003C084C /* SharedSequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSequenceExtension.swift; sourceTree = "<group>"; };
+		84DC62F623B169530032F47A /* UrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
 		84DD743423908CCF00B10777 /* SceneTimerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerAssembly.swift; sourceTree = "<group>"; };
 		84DD743623908CD900B10777 /* SceneTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerRouter.swift; sourceTree = "<group>"; };
 		84DD743823908CE100B10777 /* SceneTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTimerViewModel.swift; sourceTree = "<group>"; };
@@ -1220,6 +1222,7 @@
 				84CF4D2623945FF300E07784 /* ReactiveExtension.swift */,
 				9623D347239942630040CB43 /* UIDeviceExtension.swift */,
 				84AB422E23ABFD9200E2A558 /* ArrayExtension.swift */,
+				84DC62F623B169530032F47A /* UrlExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1707,6 +1710,7 @@
 				9623D348239942630040CB43 /* UIDeviceExtension.swift in Sources */,
 				86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */,
 				86E1052D2393ECD20092B194 /* MiniPlayerView.swift in Sources */,
+				84DC62F723B169530032F47A /* UrlExtension.swift in Sources */,
 				96C29F82236389A800E93CB1 /* StoryDetail.swift in Sources */,
 				96C29F1F236264D900E93CB1 /* Routing.swift in Sources */,
 				84AB422D23ABFD4C00E2A558 /* SceneAudio.swift in Sources */,

@@ -24,7 +24,7 @@ final class SceneVideoCell: UICollectionViewCell {
         playerLayer.frame = bounds
         layer.insertSublayer(playerLayer, at: 0)
         
-        playerItem = AVPlayerItem(url: model.url)
+        playerItem = AVPlayerItem(url: model.url.localUrl)
         playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         
         player.play()

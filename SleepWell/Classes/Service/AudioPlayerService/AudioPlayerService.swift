@@ -26,10 +26,10 @@ final class AudioPlayerService: ReactiveCompatible {
             return
         }
         
-        let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
+        let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl.localUrl)
         let ambientPlayer: AVPlayer?
         if let ambientUrl = recording.ambientSound?.soundUrl {
-            ambientPlayer = AVPlayer(url: ambientUrl)
+            ambientPlayer = AVPlayer(url: ambientUrl.localUrl)
         } else {
             ambientPlayer = nil
         }
@@ -50,10 +50,10 @@ final class AudioPlayerService: ReactiveCompatible {
         }
 
         return .deferred { [weak self] in
-            let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl)
+            let mainPlayer = AVPlayer(url: recording.readingSound.soundUrl.localUrl)
             let ambientPlayer: AVPlayer?
             if let ambientUrl = recording.ambientSound?.soundUrl {
-                ambientPlayer = AVPlayer(url: ambientUrl)
+                ambientPlayer = AVPlayer(url: ambientUrl.localUrl)
             } else {
                 ambientPlayer = nil
             }
@@ -79,7 +79,7 @@ final class AudioPlayerService: ReactiveCompatible {
         let players = sceneDetail.sounds
             .map {
                 SceneAudio.Player(
-                    player: AVPlayer(url: $0.soundUrl),
+                    player: AVPlayer(url: $0.soundUrl.localUrl),
                     id: $0.id
                 )
             }
