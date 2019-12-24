@@ -54,7 +54,7 @@ extension Scene {
         }
         
         self.id = try container.decode(Int.self, forKey: .id)
-        self.paid = try container.decode(Bool.self, forKey: .paid)
+        self.paid = false//try container.decode(Bool.self, forKey: .paid)
         self.hash = try container.decode(String.self, forKey: .hash)
         self.mime = mime 
     }

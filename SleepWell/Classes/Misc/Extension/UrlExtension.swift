@@ -11,28 +11,39 @@ import Foundation.NSURL
 extension URL {
     
     var localUrl: URL {
+        transformedToLocal ?? self
+    }
+    
+    var isContained: Bool {
+        transformedToLocal != nil
+    }
+    
+    var localPath: String {
         let string = absoluteString
-        do {
-            let regex = try NSRegularExpression(
-                pattern: "\\.|/|:",
-                options: NSRegularExpression.Options.caseInsensitive
-            )
-            let type = String(string.split(separator: ".").last ?? "")
-            let withoutType = String(string.dropLast(type.count + 1))
-            let range = NSMakeRange(0, withoutType.count)
-            let result = regex.stringByReplacingMatches(
-                in: withoutType,
-                options: [],
-                range: range,
-                withTemplate: "_"
-            )
-            
-            if let local = Bundle.main.path(forResource: result, ofType: type) {
-                return URL(fileURLWithPath: local)
-            }
-            return self
-        } catch {
-            return self
+        let type = String(string.split(separator: ".").last ?? "")
+        let withoutType = String(string.dropLast(type.count + 1))
+        return withoutType.replacingRegexMatches(pattern: "/|:", with: "_")
+            .replacingRegexMatches(pattern: "%20", with: " ")
+    }
+    
+    private var transformedToLocal: URL? {
+        let string = absoluteString
+        let type = String(string.split(separator: ".").last ?? "")
+        let withoutType = String(string.dropLast(type.count + 1))
+        let result = withoutType.replacingRegexMatches(pattern: "/|:", with: "_")
+            .replacingRegexMatches(pattern: "%20", with: " ")
+        
+        if let local = Bundle.main.path(forResource: result, ofType: type) {
+            return URL(fileURLWithPath: local)
         }
+        if let path = try? FileManager.default.url(
+            for: .cachesDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).path, FileManager.default.fileExists(atPath: path + "/" + result) {
+            return URL(fileURLWithPath: path + "/" + result)
+        }
+        return nil
     }
 }

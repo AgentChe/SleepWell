@@ -77,12 +77,27 @@ private final class CacheMeditations: Copy {
 
                 let saveMeditations = RealmDBTransport().saveData(entities: data.meditations, map: { MeditationRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! MeditationDetailRealmMapper.map(from: $0) })
+                let urls = data.details.reduce([URL]()) { result, detail in
+                    var result = result
+                    result.append(detail.readingSound.soundUrl)
+                    if let ambient = detail.ambientSound?.soundUrl {
+                        result.append(ambient)
+                    }
+                    return result
+                }
                 
                 return Observable
                     .combineLatest(saveMeditations.asObservable(),
                                    saveDetails.asObservable())
                     .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                        guard let self = self else {
+                            return .just(())
+                        }
+                        return Single
+                            .zip(
+                                AudioCacheService().copy(urls: urls),
+                                self.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages)
+                            ) { _, _ in () }
                     }
                     .do(onNext: { [weak self] in
                         self?.wasCopied = true

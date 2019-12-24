@@ -8,9 +8,44 @@
 
 import RxSwift
 
-// В Resources/Cache лежат аудиофайлы. Когда пользователь запускает проигрывание аудиофайла, мы должны проверять есть ли такой аудиофайл в кеше приложения и если есть - воспроизводить его, иначе - по удаленному url.
-protocol ___AudioCacheService {
-    // name - название файлы в Resource/Cache
-    // cacheName - название файла, сохраненого в кеш (будет передавать как remoteUrl.absoluteString)
-    func copy(audio: [CopyResource]) -> Single<Void>
+final class AudioCacheService {
+    
+    func copy(urls: [URL]) -> Single<Void> {
+        
+        let fileManager = FileManager.default
+        guard let path = try? fileManager
+            .url(
+                for: .cachesDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).path else {
+                return .just(())
+            }
+        let completables = urls.map { url -> Completable in
+            
+            Completable.create { completable in
+                guard !url.isContained else {
+                    completable(.completed)
+                    return Disposables.create()
+                }
+                
+                if let data = try? Data(contentsOf: url) {
+                    
+                    fileManager.createFile(
+                        atPath: path + "/" + url.localPath,
+                        contents: data,
+                        attributes: nil
+                    )
+                }
+                
+                completable(.completed)
+                return Disposables.create()
+            }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+        }
+        
+        return Completable.zip(completables)
+            .andThen(Single.just(()))
+    }
 }
