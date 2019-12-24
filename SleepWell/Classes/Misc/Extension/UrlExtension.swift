@@ -24,6 +24,7 @@ extension URL {
         let withoutType = String(string.dropLast(type.count + 1))
         return withoutType.replacingRegexMatches(pattern: "/|:", with: "_")
             .replacingRegexMatches(pattern: "%20", with: " ")
+            + "." + type
     }
     
     private var transformedToLocal: URL? {
@@ -36,13 +37,14 @@ extension URL {
         if let local = Bundle.main.path(forResource: result, ofType: type) {
             return URL(fileURLWithPath: local)
         }
+        let resultWithType = result + "." + type
         if let path = try? FileManager.default.url(
             for: .cachesDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).path, FileManager.default.fileExists(atPath: path + "/" + result) {
-            return URL(fileURLWithPath: path + "/" + result)
+        ).path, FileManager.default.fileExists(atPath: path + "/" + resultWithType) {
+            return URL(fileURLWithPath: path + "/" + resultWithType)
         }
         return nil
     }
