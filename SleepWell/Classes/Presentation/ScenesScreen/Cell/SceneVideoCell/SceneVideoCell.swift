@@ -9,6 +9,8 @@
 
 import AVFoundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SceneVideoCell: UICollectionViewCell {
     private var player: AVQueuePlayer!
@@ -16,7 +18,7 @@ final class SceneVideoCell: UICollectionViewCell {
     private var playerItem: AVPlayerItem!
     private var playerLooper: AVPlayerLooper!
     
-    func setup(model: SceneCellModelFields) {
+    func setup(model: SceneCellModelFields, didBecomeActive: Signal<Void>) {
         player = AVQueuePlayer()
         
         playerLayer = AVPlayerLayer(player: player)
@@ -28,5 +30,15 @@ final class SceneVideoCell: UICollectionViewCell {
         playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         
         player.play()
+        
+        didBecomeActive
+            .emit(to: Binder(self) { cell, _ in
+                if cell.player.rate != 1 {
+                    cell.player.play()
+                }
+            })
+            .disposed(by: disposeBag)
     }
+    
+    private let disposeBag = DisposeBag()
 }
