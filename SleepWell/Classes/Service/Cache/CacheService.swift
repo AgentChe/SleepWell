@@ -136,7 +136,7 @@ private final class CacheMeditations: Copy {
                         }
                         return Single
                             .zip(
-                                AudioCacheService().copy(urls: audios),
+                                MediaCacheService().copy(urls: audios),
                                 self.downloadImagesService.downloadImages(urls: images)
                             ) { _, _ in () }
                     }
@@ -244,7 +244,7 @@ private final class CacheStories: Copy {
                         }
                         return Single
                             .zip(
-                                AudioCacheService().copy(urls: audios),
+                                MediaCacheService().copy(urls: audios),
                                 self.downloadImagesService.downloadImages(urls: images)
                             ) { _, _ in () }
                     }
@@ -315,20 +315,22 @@ private final class CacheScenes: Copy {
                         saveDetails.asObservable(),
                         removeScenes.asObservable(),
                         removeDetails.asObservable()
-                    ) { _, _, _, _ -> (audios: [URL], images: [URL]) in
+                    ) { _, _, _, _ -> (videos: [URL], audios: [URL], images: [URL]) in
+                        let videos = data.scenes.map { $0.url }
                         let audios = data.details.flatMap { $0.sounds.map { $0.soundUrl } }
                         let images = data.scenes.map { $0.url }
-                        return (audios, images)
+                        return (videos, audios, images)
                     }
-                    .flatMap { [weak self] audios, images -> Single<Void> in
+                    .flatMap { [weak self] videos, audios, images -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
                         return Single
                             .zip(
-                                AudioCacheService().copy(urls: audios),
+                                MediaCacheService().copy(urls: videos),
+                                MediaCacheService().copy(urls: audios),
                                 self.downloadImagesService.downloadImages(urls: images)
-                            ) { _, _ in () }
+                            ) { _, _, _ in () }
                     }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode

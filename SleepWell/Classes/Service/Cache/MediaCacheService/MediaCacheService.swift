@@ -1,5 +1,5 @@
 //
-//  AudioCacheService.swift
+//  MediaCacheService.swift
 //  SleepWell
 //
 //  Created by Andrey Chernyshev on 23/12/2019.
@@ -8,7 +8,7 @@
 
 import RxSwift
 
-final class AudioCacheService {
+final class MediaCacheService {
     
     func copy(urls: [URL]) -> Single<Void> {
         
