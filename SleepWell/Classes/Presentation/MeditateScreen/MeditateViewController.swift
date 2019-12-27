@@ -89,6 +89,7 @@ extension MeditateViewController: BindsToViewModel {
             .asSignal()
             .flatMapFirst { cellType -> Signal<MainRoute> in
                 guard case let .meditate(meditate) = cellType else {
+                    Analytics.shared.log(with: .unlockPremiumMeditationsPaygateScr)
                     return Signal.just(.paygate)
                 }
                 
@@ -97,6 +98,7 @@ extension MeditateViewController: BindsToViewModel {
                     .map { action -> MainRoute in
                         switch action {
                         case .paygate:
+                            Analytics.shared.log(with: .blockedMeditationPaygateScr)
                             return .paygate
                         case let .detail(detail):
                             guard let recording = detail else {

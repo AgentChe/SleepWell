@@ -23,18 +23,18 @@ enum AnalyticEvent {
     case sceneDefaultTap
     case sceneSleepTimerTap
     case sceneSleepTimerSet
-    case blockedScenePaygateScr //
+    case blockedScenePaygateScr 
     
     case storiesScr
     case playRandomStoryTap
-    case blockedRandomStoryPaygateScr //
-    case blockedStoryPaygateScr //
-    case unlockPremiumStoriesPaygateScr // 
+    case blockedRandomStoryPaygateScr
+    case blockedStoryPaygateScr 
+    case unlockPremiumStoriesPaygateScr 
     
     case meditateScr
     case tagTap
-    case blockedMeditationPaygateScr //
-    case unlockPremiumMeditationsPaygateScr //
+    case blockedMeditationPaygateScr 
+    case unlockPremiumMeditationsPaygateScr
     
     case settingsScr 
 }

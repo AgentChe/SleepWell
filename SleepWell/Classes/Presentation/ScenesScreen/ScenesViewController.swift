@@ -147,6 +147,7 @@ extension ScenesViewController: BindsToViewModel {
                 return true
             }
             .map { _ in MainRoute.paygate }
+            .do(onNext: { _ in Analytics.shared.log(with: .blockedScenePaygateScr) })
             .asSignal(onErrorJustReturn: .paygate)
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
