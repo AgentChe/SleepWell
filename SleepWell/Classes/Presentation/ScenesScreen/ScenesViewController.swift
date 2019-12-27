@@ -23,6 +23,13 @@ final class ScenesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
     
     private func setupUI() {
@@ -68,6 +75,8 @@ extension ScenesViewController: BindsToViewModel {
         return storyboard.instantiateViewController(withIdentifier: "ScenesViewController") as! ScenesViewController
     }
     
+    @objc func didBecomeActive() {}
+    
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.elements(subscription: input.subscription)
 
@@ -78,7 +87,11 @@ extension ScenesViewController: BindsToViewModel {
             .compactMap { $0?.row }
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
-    
+        
+        let _didBecomeActive = rx.methodInvoked(#selector(didBecomeActive))
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+        
         elements
             .drive(collectionView.rx.items(infinite: true)) { collection, index, item in
                 switch item {
@@ -94,7 +107,7 @@ extension ScenesViewController: BindsToViewModel {
                         withReuseIdentifier: "SceneVideoCell",
                         for: IndexPath(row: index, section: 0)
                     ) as! SceneVideoCell
-                    cell.setup(model: fields)
+                    cell.setup(model: fields, didBecomeActive: _didBecomeActive)
                     return cell
                 }
             }

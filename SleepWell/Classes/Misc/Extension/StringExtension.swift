@@ -54,4 +54,24 @@ extension String {
         
         return attr
     }
+    
+    func replacingRegexMatches(
+        pattern: String,
+        with template: String
+    ) -> String {
+        do {
+            let regex = try NSRegularExpression(
+                pattern: pattern,
+                options: NSRegularExpression.Options.caseInsensitive
+            )
+            return regex.stringByReplacingMatches(
+                in: self,
+                options: [],
+                range: NSMakeRange(0, count),
+                withTemplate: template
+            )
+        } catch {
+            return self
+        }
+    }
 }

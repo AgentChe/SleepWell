@@ -82,7 +82,8 @@ private final class CacheMeditations: Copy {
                     .combineLatest(saveMeditations.asObservable(),
                                    saveDetails.asObservable())
                     .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
+                        self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages)
+                            ?? .just(())
                     }
                     .do(onNext: { [weak self] in
                         self?.wasCopied = true
@@ -107,18 +108,38 @@ private final class CacheMeditations: Copy {
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedMeditationIds))
                 
                 return Observable
-                    .combineLatest(saveMeditations.asObservable(),
-                                   saveDetails.asObservable(),
-                                   removeMeditations.asObservable(),
-                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in
-                        return data.meditations.reduce([]) { urls, meditation -> [URL] in
+                    .combineLatest(
+                        saveMeditations.asObservable(),
+                        saveDetails.asObservable(),
+                        removeMeditations.asObservable(),
+                        removeDetails.asObservable()
+                    ) { _, _, _, _ -> (audios: [URL], images: [URL]) in
+                        let audios = data.details.reduce([URL]()) { result, detail in
+                            var result = result
+                            result.append(detail.readingSound.soundUrl)
+                            if let ambient = detail.ambientSound?.soundUrl {
+                                result.append(ambient)
+                            }
+                            return result
+                        }
+                        let images = data.meditations.reduce([]) { urls, meditation -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
                             if let imageReaderURL = meditation.imageReaderURL { result.append(imageReaderURL) }
                             return result
                         }
+                        return (audios, images)
                     }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] audios, images -> Single<Void> in
+                        guard let self = self else {
+                            return .just(())
+                        }
+                        return Single
+                            .zip(
+                                MediaCacheService().copy(urls: audios),
+                                self.downloadImagesService.downloadImages(urls: images)
+                            ) { _, _ in () }
+                    }
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -195,18 +216,38 @@ private final class CacheStories: Copy {
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmStoryDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedStoryIds))
                 
                 return Observable
-                    .combineLatest(saveStories.asObservable(),
-                                   saveDetails.asObservable(),
-                                   removeStories.asObservable(),
-                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in
-                        return data.stories.reduce([]) { urls, story -> [URL] in
+                    .combineLatest(
+                        saveStories.asObservable(),
+                        saveDetails.asObservable(),
+                        removeStories.asObservable(),
+                        removeDetails.asObservable()
+                    ) { _, _, _, _ -> (audios: [URL], images: [URL]) in
+                        let audios = data.details.reduce([URL]()) { result, detail in
+                            var result = result
+                            result.append(detail.readingSound.soundUrl)
+                            if let ambient = detail.ambientSound?.soundUrl {
+                                result.append(ambient)
+                            }
+                            return result
+                        }
+                        let images = data.stories.reduce([]) { urls, story -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
                             if let imageReaderURL = story.imageReaderURL { result.append(imageReaderURL) }
                             return result
                         }
+                        return(audios, images)
                     }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
+                    .flatMap { [weak self] audios, images -> Single<Void> in
+                        guard let self = self else {
+                            return .just(())
+                        }
+                        return Single
+                            .zip(
+                                MediaCacheService().copy(urls: audios),
+                                self.downloadImagesService.downloadImages(urls: images)
+                            ) { _, _ in () }
+                    }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -267,12 +308,30 @@ private final class CacheScenes: Copy {
                 let removeScenes = RealmDBTransport().deleteData(realmType: RealmScene.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmSceneDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
                 
+                
                 return Observable
-                    .combineLatest(saveScenes.asObservable(),
-                                   saveDetails.asObservable(),
-                                   removeScenes.asObservable(),
-                                   removeDetails.asObservable()) { _, _, _, _ -> [URL] in data.scenes.map { $0.url } }
-                    .flatMap { [weak self] urls -> Single<Void> in self?.downloadImagesService.downloadImages(urls: urls) ?? .just(Void()) }
+                    .combineLatest(
+                        saveScenes.asObservable(),
+                        saveDetails.asObservable(),
+                        removeScenes.asObservable(),
+                        removeDetails.asObservable()
+                    ) { _, _, _, _ -> (videos: [URL], audios: [URL], images: [URL]) in
+                        let videos = data.scenes.map { $0.url }
+                        let audios = data.details.flatMap { $0.sounds.map { $0.soundUrl } }
+                        let images = data.scenes.map { $0.url }
+                        return (videos, audios, images)
+                    }
+                    .flatMap { [weak self] videos, audios, images -> Single<Void> in
+                        guard let self = self else {
+                            return .just(())
+                        }
+                        return Single
+                            .zip(
+                                MediaCacheService().copy(urls: videos),
+                                MediaCacheService().copy(urls: audios),
+                                self.downloadImagesService.downloadImages(urls: images)
+                            ) { _, _, _ in () }
+                    }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
