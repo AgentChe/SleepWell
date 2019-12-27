@@ -43,6 +43,7 @@ final class MediaCacheService {
                 return Disposables.create()
             }
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.asyncInstance)
         }
         
         return Completable.zip(completables)
