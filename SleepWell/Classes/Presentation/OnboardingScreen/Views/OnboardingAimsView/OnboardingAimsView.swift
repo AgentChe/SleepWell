@@ -57,6 +57,8 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
     }
     
     func show() {
+        Analytics.shared.log(with: .helpYouWithScr)
+        
         isHidden = false
         alpha = 0
         

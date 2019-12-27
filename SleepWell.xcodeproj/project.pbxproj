@@ -267,6 +267,7 @@
 		96E5EE7F23B6194300E01F96 /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96E5EE5E23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg */; };
 		96E5EE8023B6194300E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96E5EE5F23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */; };
 		96E5EE8123B6194300E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96E5EE6023B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */; };
+		96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8223B61D6E00E01F96 /* Analytics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -533,6 +534,7 @@
 		96E5EE5E23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg"; sourceTree = "<group>"; };
 		96E5EE5F23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg"; sourceTree = "<group>"; };
 		96E5EE6023B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg"; sourceTree = "<group>"; };
+		96E5EE8223B61D6E00E01F96 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1100,6 +1102,7 @@
 				9685528E236985EE00A22E21 /* PushMessageService.swift */,
 				968552902369871000A22E21 /* AppStateProxy.swift */,
 				86DD77AB23A7EEBB009213DF /* RateService.swift */,
+				96E5EE8223B61D6E00E01F96 /* Analytics.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1685,6 +1688,7 @@
 				84AB423223ABFDFD00E2A558 /* SceneTimer.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
+				96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
 				968552912369871000A22E21 /* AppStateProxy.swift in Sources */,

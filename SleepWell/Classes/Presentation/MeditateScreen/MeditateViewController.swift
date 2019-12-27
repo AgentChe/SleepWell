@@ -57,6 +57,7 @@ extension MeditateViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .meditateScr)
         
         viewModel.elements(subscription: input, selectedTag: tableHeaderView.selectTag)
             .drive(tableView.rx.items) { table, index, item in

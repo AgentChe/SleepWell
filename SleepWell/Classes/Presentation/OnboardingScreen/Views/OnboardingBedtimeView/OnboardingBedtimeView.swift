@@ -120,6 +120,8 @@ class OnboardingBedtimeView: UIView {
     }
     
     func show() {
+        Analytics.shared.log(with: .bedtimeScr)
+        
         isHidden = false
         alpha = 0
         

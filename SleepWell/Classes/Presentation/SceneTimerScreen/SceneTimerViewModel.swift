@@ -36,7 +36,9 @@ extension SceneTimerViewModel: SceneTimerViewModelInterface {
     }
     
     var setTimer: Binder<Int> {
-        dependencies.audioPlayerService.rx.setTimer
+        Analytics.shared.log(with: .sceneSleepTimerSet)
+        
+        return dependencies.audioPlayerService.rx.setTimer
     }
     
     var timerSeconds: Driver<Int> {

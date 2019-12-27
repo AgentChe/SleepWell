@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PushMessagesService.shared.configure()
         FirebaseApp.configure()
         RateManager.incrementRun()
+        Analytics.shared.configure()
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         

@@ -78,6 +78,8 @@ extension ScenesViewController: BindsToViewModel {
     @objc func didBecomeActive() {}
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .sceneScr)
+        
         let elements = viewModel.elements(subscription: input.subscription)
 
         let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
@@ -265,8 +267,8 @@ extension ScenesViewController: BindsToViewModel {
         
         let actions = Signal
             .merge(
-                pauseButton.rx.tap.asSignal(),
-                playButton.rx.tap.asSignal(),
+                pauseButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
+                playButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
                 settingsButton.rx.tap.asSignal(),
                 tapGesture.rx.event.asSignal()
                     .map { _ in () },

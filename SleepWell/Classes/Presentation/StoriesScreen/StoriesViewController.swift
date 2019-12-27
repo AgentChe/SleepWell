@@ -56,6 +56,8 @@ extension StoriesViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .storiesScr)
+        
         let elements = viewModel.elements(subscription: input)
 
         elements
