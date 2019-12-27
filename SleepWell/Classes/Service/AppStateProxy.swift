@@ -22,4 +22,9 @@ final class AppStateProxy {
     struct NavigateProxy {
         static let openPaygateAtPromotionInApp = PublishRelay<Void>()
     }
+    
+    struct UserTokenProxy {
+        static let didUpdatedUserToken = PublishRelay<Void>()
+        static let userTokenCheckedWithSuccessResult = PublishRelay<Void>()
+    }
 }

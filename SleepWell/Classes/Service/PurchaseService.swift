@@ -40,7 +40,11 @@ final class PurchaseService {
             .callServerApi(requestBody: request)
             .map { Session.parseFromDictionary(any: $0) }
             .do(onSuccess: { session in
-                SessionService.store(userToken: session?.userToken)
+                SessionService.store(session: session)
+                
+                if session?.userToken != nil {
+                    AppStateProxy.UserTokenProxy.didUpdatedUserToken.accept(Void())
+                }
             })
     }
     

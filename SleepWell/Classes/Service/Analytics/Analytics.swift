@@ -36,7 +36,9 @@ enum AnalyticEvent {
     case blockedMeditationPaygateScr 
     case unlockPremiumMeditationsPaygateScr
     
-    case settingsScr 
+    case settingsScr
+    
+    case searcgAdsClickAd
 }
 
 extension AnalyticEvent {
@@ -94,6 +96,9 @@ extension AnalyticEvent {
             
         case .settingsScr:
             return "Settings scr"
+            
+        case .searcgAdsClickAd:
+            return "SearchAds Ad Click"
         }
     }
 }

@@ -268,6 +268,10 @@
 		96E5EE8023B6194300E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96E5EE5F23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */; };
 		96E5EE8123B6194300E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96E5EE6023B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */; };
 		96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8223B61D6E00E01F96 /* Analytics.swift */; };
+		96E5EE8523B64B7000E01F96 /* AppRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */; };
+		96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8723B64C3000E01F96 /* IDFAService.swift */; };
+		96E5EE8A23B64C4600E01F96 /* AttributionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */; };
+		96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -535,6 +539,10 @@
 		96E5EE5F23B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg"; sourceTree = "<group>"; };
 		96E5EE6023B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg"; sourceTree = "<group>"; };
 		96E5EE8223B61D6E00E01F96 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegisterRequest.swift; sourceTree = "<group>"; };
+		96E5EE8723B64C3000E01F96 /* IDFAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAService.swift; sourceTree = "<group>"; };
+		96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributionAPIService.swift; sourceTree = "<group>"; };
+		96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchAdsInfoRequest.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1090,6 +1098,7 @@
 		96C29EE123625A9E00E93CB1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				96E5EE8623B64C1600E01F96 /* Analytics */,
 				96B1DB8523B0EEEE0050A8E2 /* Cache */,
 				84AB422923ABFBDE00E2A558 /* AudioPlayerService */,
 				96C29F49236343B600E93CB1 /* SessionService.swift */,
@@ -1102,7 +1111,6 @@
 				9685528E236985EE00A22E21 /* PushMessageService.swift */,
 				968552902369871000A22E21 /* AppStateProxy.swift */,
 				86DD77AB23A7EEBB009213DF /* RateService.swift */,
-				96E5EE8223B61D6E00E01F96 /* Analytics.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1215,6 +1223,8 @@
 				86B7A98823701501007A36BA /* MeditationTagsRequest.swift */,
 				86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */,
 				9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */,
+				96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */,
+				96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1444,6 +1454,16 @@
 				96E5EE6023B6194200E01F96 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */,
 			);
 			path = cache;
+			sourceTree = "<group>";
+		};
+		96E5EE8623B64C1600E01F96 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				96E5EE8223B61D6E00E01F96 /* Analytics.swift */,
+				96E5EE8723B64C3000E01F96 /* IDFAService.swift */,
+				96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		9DC2D87A62BE4923A2F99F36 /* Pods */ = {
@@ -1708,6 +1728,7 @@
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86A85479239317AA006A0CB1 /* TabItem.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
+				96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
@@ -1722,6 +1743,7 @@
 				96C29F6B23634D9900E93CB1 /* MainAssembly.swift in Sources */,
 				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
 				86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */,
+				96E5EE8523B64B7000E01F96 /* AppRegisterRequest.swift in Sources */,
 				96C29F6923634D8C00E93CB1 /* MainRouter.swift in Sources */,
 				86C848C12367007C00BC6EDA /* StoriesHeaderView.swift in Sources */,
 				96C29EEF23625D9000E93CB1 /* APIRequestBody.swift in Sources */,
@@ -1743,6 +1765,7 @@
 				96C29F8D23638B4700E93CB1 /* Sound.swift in Sources */,
 				96C29F1E236264D900E93CB1 /* ScreenAssembly.swift in Sources */,
 				969BF22623AD6E5F004A84B6 /* CopyInCacheLocalImageOperation.swift in Sources */,
+				96E5EE8A23B64C4600E01F96 /* AttributionAPIService.swift in Sources */,
 				96C29F6123634D5E00E93CB1 /* OnboardingRouter.swift in Sources */,
 				84A38E382383D21A004E7EBA /* SceneSettingsViewController.swift in Sources */,
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
@@ -1775,6 +1798,7 @@
 				96C29F072362610D00E93CB1 /* UIViewExtension.swift in Sources */,
 				86B7A985237012EF007A36BA /* FullMeditationsListRequest.swift in Sources */,
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
+				96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
 				962FB447239668BF00B88FFC /* RealmMeditationDetail.swift in Sources */,
