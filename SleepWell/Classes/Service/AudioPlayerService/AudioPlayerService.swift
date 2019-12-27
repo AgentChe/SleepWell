@@ -186,6 +186,20 @@ final class AudioPlayerService: ReactiveCompatible {
         sceneRelay.value?.currentScenePlayersVolume.map { (id: $0, value: $1) }
     }
     
+    var didTapPlayRecording: Signal<Void> {
+        audioRelay.flatMapLatest {
+            $0?.didTapPlay ?? .empty()
+        }
+        .asSignal(onErrorSignalWith: .empty())
+    }
+    
+    var playingForTwentySeconds: Signal<Void> {
+        audioRelay.flatMapLatest {
+            $0?.playingForTwentySeconds ?? .empty()
+        }
+        .asSignal(onErrorSignalWith: .empty())
+    }
+    
     fileprivate let sceneRelay = BehaviorRelay<SceneAudio?>(value: nil)
     fileprivate let audioRelay = BehaviorRelay<RecordingAudio?>(value: nil)
     fileprivate let audioType = BehaviorRelay<AudioType>(value: .none)

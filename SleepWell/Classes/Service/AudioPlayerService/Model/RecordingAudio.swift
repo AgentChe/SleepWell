@@ -82,6 +82,11 @@ final class RecordingAudio: ReactiveCompatible {
     }
     
     func play(style: PlayAndPauseStyle) -> Signal<Void> {
+        
+        if !isPlaying {
+            _didTapPlay.accept(())
+        }
+        
         switch style {
         case .force:
             return .deferred { [weak self] in
@@ -197,6 +202,24 @@ final class RecordingAudio: ReactiveCompatible {
         mainPlayer.rate == 1
     }
     
+    var didTapPlay: Signal<Void> {
+        _didTapPlay.asSignal()
+    }
+    
+    var playingForTwentySeconds: Signal<Void> {
+        didTapPlay.flatMapLatest { [weak self] _ -> Signal<Void> in
+            guard let self = self else {
+                return .empty()
+            }
+            return self.rx.isPlaying.debounce(.seconds(20))
+                .filter { $0 }
+                .map { _ in () }
+                .take(1)
+                .asSignal(onErrorSignalWith: .empty())
+        }
+    }
+    
+    private let _didTapPlay = PublishRelay<Void>()
     private let _mainPlayerVolume = BehaviorRelay<Float>(value: 0.75)
     private let _ambientPlayerVolume = BehaviorRelay<Float>(value: 0.75)
     private let isPausing = PublishRelay<Void>()
