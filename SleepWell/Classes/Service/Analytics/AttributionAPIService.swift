@@ -9,7 +9,7 @@
 import iAd
 import RxSwift
 
-class AttributionAPIService {
+final class AttributionAPIService {
     static let shared = AttributionAPIService()
     
     private let attributesWereSetKey = "attributes_were_set_key"

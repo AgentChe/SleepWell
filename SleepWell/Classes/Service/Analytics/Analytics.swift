@@ -8,116 +8,30 @@
 
 import Amplitude_iOS
 
-enum AnalyticEvent {
-    case welcomeScr
-    case welcomePaygateScr
-    case helpYouWithScr
-    case genderAngAgeScr
-    case bedtimeScr
-    case slideScr
-    
-    case sceneScr
-    case sceneSettingsScr
-    case scenePlayPauseTap
-    case sceneRandomTap
-    case sceneDefaultTap
-    case sceneSleepTimerTap
-    case sceneSleepTimerSet
-    case blockedScenePaygateScr 
-    
-    case storiesScr
-    case playRandomStoryTap
-    case blockedRandomStoryPaygateScr
-    case blockedStoryPaygateScr 
-    case unlockPremiumStoriesPaygateScr 
-    
-    case meditateScr
-    case tagTap
-    case blockedMeditationPaygateScr 
-    case unlockPremiumMeditationsPaygateScr
-    
-    case settingsScr
-    
-    case searcgAdsClickAd
-}
-
-extension AnalyticEvent {
-    var name: String {
-        switch self {
-        case .welcomeScr:
-            return "Welcome scr"
-        case .welcomePaygateScr:
-            return "Welcome paygate scr"
-        case .helpYouWithScr:
-            return "Help you with scr"
-        case .genderAngAgeScr:
-            return "Gender and age scr"
-        case .bedtimeScr:
-            return "Bedtime scr"
-        case .slideScr:
-            return "Slide scr"
-            
-        case .sceneScr:
-            return "Scene scr"
-        case .sceneSettingsScr:
-            return "Scene settings scr"
-        case .scenePlayPauseTap:
-            return "Scene play/pause tap"
-        case .sceneRandomTap:
-            return "Scene random tap"
-        case .sceneDefaultTap:
-            return "Scene default tap"
-        case .sceneSleepTimerTap:
-            return "Scene sleep timer tap"
-        case .sceneSleepTimerSet:
-            return "Scene sleep timer set"
-        case .blockedScenePaygateScr:
-            return "Blocked scene paygate scr"
-            
-        case .storiesScr:
-            return "Stories scr"
-        case .playRandomStoryTap:
-            return "Play random story tap"
-        case .blockedRandomStoryPaygateScr:
-            return "Blocked random story paygate scr"
-        case .blockedStoryPaygateScr:
-            return "Blocked story paygate scr"
-        case .unlockPremiumStoriesPaygateScr:
-            return "Unlock premium stories paygate scr"
-            
-        case .meditateScr:
-            return "Meditate scr"
-        case .tagTap:
-            return "Tag tap"
-        case .blockedMeditationPaygateScr:
-            return "Blocked meditation paygate scr"
-        case .unlockPremiumMeditationsPaygateScr:
-            return "Unlock premium meditations paygate scr"
-            
-        case .settingsScr:
-            return "Settings scr"
-            
-        case .searcgAdsClickAd:
-            return "SearchAds Ad Click"
-        }
-    }
-}
-
-class Analytics {
+final class Analytics {
     static let shared = Analytics()
     
     private init() {}
     
     func configure() {
         Amplitude.instance()?.initializeApiKey(GlobalDefinitions.analyticsAPIKey)
+        AttributionAPIService.shared.configure()
+        IDFAService.shared.configure()
+        UserAnalytics.shared.configure()
     }
     
     func setUserId(userId: Int) {
         Amplitude.instance()?.setUserId("\(userId)")
     }
     
-    func setUserAttributes(attributes: [String: NSObject]) {
+    func setUserAttributes(attributes: [String: Any]) {
         Amplitude.instance()?.setUserProperties(attributes)
+    }
+    
+    func updateUserAttribute(property: String, value: NSObject) {
+        let identity = AMPIdentify()
+        identity.add(property, value: value)
+        Amplitude.instance()?.identify(identity)
     }
     
     func log(with event: AnalyticEvent) {

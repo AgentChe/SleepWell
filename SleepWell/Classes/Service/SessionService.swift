@@ -17,7 +17,7 @@ final class SessionService {
     }
     
     static var userId: Int? {
-        return UserDefaults.standard.integer(forKey: SessionService.userIdKey)
+        return UserDefaults.standard.value(forKey: SessionService.userIdKey) as? Int
     }
     
     static func store(session: Session?) {

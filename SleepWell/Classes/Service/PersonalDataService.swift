@@ -132,14 +132,26 @@ final class PersonalDataService {
         }
     }
     
-    static func pushTime() -> String? {
+    static func cachedPersonalData() -> PersonalData? {
          guard
             let data = UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey),
             let personalData = try? JSONDecoder().decode(PersonalData.self, from: data)
          else {
             return nil
         }
+
+        return personalData
+    }
+    
+    static func downloadPersonalData() -> Single<PersonalData?> {
+        guard let userToken = SessionService.userToken else {
+            return .just(nil)
+        }
         
-        return personalData.pushTime
+        let request = GetPersonalDataRequest(userToken: userToken)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { PersonalData.parseFromDictionary(any: $0) }
     }
 }

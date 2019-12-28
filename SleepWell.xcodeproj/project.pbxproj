@@ -272,6 +272,9 @@
 		96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8723B64C3000E01F96 /* IDFAService.swift */; };
 		96E5EE8A23B64C4600E01F96 /* AttributionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */; };
 		96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */; };
+		96E5EE8F23B6583300E01F96 /* AnalyticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */; };
+		96E5EE9323B65AAC00E01F96 /* UserAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE9223B65AAC00E01F96 /* UserAnalytics.swift */; };
+		96E5EE9523B65FA700E01F96 /* GetPersonalDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -543,6 +546,9 @@
 		96E5EE8723B64C3000E01F96 /* IDFAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAService.swift; sourceTree = "<group>"; };
 		96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributionAPIService.swift; sourceTree = "<group>"; };
 		96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchAdsInfoRequest.swift; sourceTree = "<group>"; };
+		96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticEvent.swift; sourceTree = "<group>"; };
+		96E5EE9223B65AAC00E01F96 /* UserAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnalytics.swift; sourceTree = "<group>"; };
+		96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPersonalDataRequest.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D66A78C3AC833F2655057D /* Pods-SleepWell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.release.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1225,6 +1231,7 @@
 				9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */,
 				96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */,
 				96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */,
+				96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1459,11 +1466,21 @@
 		96E5EE8623B64C1600E01F96 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				96E5EE8D23B6581C00E01F96 /* Model */,
 				96E5EE8223B61D6E00E01F96 /* Analytics.swift */,
 				96E5EE8723B64C3000E01F96 /* IDFAService.swift */,
 				96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */,
+				96E5EE9223B65AAC00E01F96 /* UserAnalytics.swift */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		96E5EE8D23B6581C00E01F96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9DC2D87A62BE4923A2F99F36 /* Pods */ = {
@@ -1709,8 +1726,10 @@
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
 				96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */,
+				96E5EE8F23B6583300E01F96 /* AnalyticEvent.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				96DC8C8323675D6B004DC76A /* ErrorView.swift in Sources */,
+				96E5EE9323B65AAC00E01F96 /* UserAnalytics.swift in Sources */,
 				968552912369871000A22E21 /* AppStateProxy.swift in Sources */,
 				84AB423423ABFE6F00E2A558 /* RecordingAudio.swift in Sources */,
 				84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */,
@@ -1816,6 +1835,7 @@
 				96DC8C9D23684298004DC76A /* OnboardingAimTableHeader.swift in Sources */,
 				962FB45C2396800D00B88FFC /* RealmSceneSound.swift in Sources */,
 				962FB45A23967ED300B88FFC /* RealmScene.swift in Sources */,
+				96E5EE9523B65FA700E01F96 /* GetPersonalDataRequest.swift in Sources */,
 				96C29F7E2363889200E93CB1 /* Story.swift in Sources */,
 				96C29F6523634D7900E93CB1 /* MainViewController.swift in Sources */,
 				86C848BC2367001000BC6EDA /* StoriesViewController.swift in Sources */,

@@ -9,7 +9,7 @@
 import RxSwift
 import AdSupport
 
-class IDFAService {
+final class IDFAService {
     static let shared = IDFAService()
     
     private let appRegisteredKey = "app_registered_key"
