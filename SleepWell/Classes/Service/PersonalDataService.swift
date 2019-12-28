@@ -54,6 +54,21 @@ struct PersonalData: Model {
         self.pushIsEnabled = pushIsEnabled
     }
     
+    init(response: Any) throws {
+        guard let json = response as? [String: Any],
+            let data = response as? [String: Any]
+        else {
+            throw RxError.noElements
+        }
+        
+        aims = (data["aims"] as? [Int] ?? []).compactMap { Aim(rawValue: $0) }
+        gender = .other
+        birthYear = 1992
+        pushToken = nil
+        pushTime = data["push_time"] as? String
+        pushIsEnabled = data["push_notifications"] as? Bool ?? false
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -152,6 +167,6 @@ final class PersonalDataService {
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
-            .map { PersonalData.parseFromDictionary(any: $0) }
+            .map { try? PersonalData(response: $0) }
     }
 }
