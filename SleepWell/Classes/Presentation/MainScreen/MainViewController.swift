@@ -35,18 +35,21 @@ final class MainViewController: UIViewController {
     private func setupTabs() {
         storiesTabItem.title = "Stories"
         meditateTabItem.title = "Meditate"
-        sceneTabItem.title = "Scene"
+        sceneTabItem.title = "Scenes"
+        soundTabItem.title = "Sounds"
         
-        tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem]
+        tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem, soundTabItem]
     }
     
     private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
+    private var soundsAssambly: (vc: SoundsViewController, output: Void)!
     
     private let storiesTabItem = TabItem()
     private let meditateTabItem = TabItem()
     private let sceneTabItem = TabItem()
+    private let soundTabItem = TabItem()
     private let disposeBag = DisposeBag()
 }
 
@@ -55,6 +58,7 @@ extension MainViewController: BindsToViewModel {
         case stories
         case meditate
         case scene
+        case sound
     }
 
     typealias ViewModel = MainViewModel
@@ -113,6 +117,9 @@ extension MainViewController: BindsToViewModel {
                             .asDriver(onErrorDriveWith: .empty())
                             .startWith(true)
                     )
+                case .sound :
+                    self.sounds()
+                    return .empty()
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -192,6 +199,14 @@ private extension MainViewController {
         scenesAssambly.vc.view.frame = containerView.bounds
         add(scenesAssambly.vc)
         return scenesAssambly.output
+    }
+    
+    func sounds() {
+        if soundsAssambly == nil {
+            soundsAssambly = SoundsAssembly().assemble(input: ())
+        }
+        soundsAssambly.vc.view.frame = containerView.bounds
+        add(soundsAssambly.vc)
     }
 }
 
