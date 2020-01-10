@@ -11,7 +11,7 @@ import RxSwift
 final class PaygateService {
     func paygete() -> Single<Paygate?> {
         let request = GetPaygateRequest(userToken: SessionService.userToken,
-                                        locale: Locale.current.regionCode,
+                                        locale: Locale.current.languageCode,
                                         version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1")
         
         return RestAPITransport()
