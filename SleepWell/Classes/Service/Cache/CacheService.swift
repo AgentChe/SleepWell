@@ -113,32 +113,20 @@ private final class CacheMeditations: Copy {
                         saveDetails.asObservable(),
                         removeMeditations.asObservable(),
                         removeDetails.asObservable()
-                    ) { _, _, _, _ -> (audios: [URL], images: [URL]) in
-                        let audios = data.details.reduce([URL]()) { result, detail in
-                            var result = result
-                            result.append(detail.readingSound.soundUrl)
-                            if let ambient = detail.ambientSound?.soundUrl {
-                                result.append(ambient)
-                            }
-                            return result
-                        }
-                        let images = data.meditations.reduce([]) { urls, meditation -> [URL] in
+                    ) { _, _, _, _ -> [URL] in
+                        return data.meditations.reduce([]) { urls, meditation -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
                             if let imageReaderURL = meditation.imageReaderURL { result.append(imageReaderURL) }
                             return result
                         }
-                        return (audios, images)
                     }
-                    .flatMap { [weak self] audios, images -> Single<Void> in
+                    .flatMap { [weak self] images -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        return Single
-                            .zip(
-                                MediaCacheService().copy(urls: audios),
-                                self.downloadImagesService.downloadImages(urls: images)
-                            ) { _, _ in () }
+                        
+                        return self.downloadImagesService.downloadImages(urls: images)
                     }
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
@@ -221,32 +209,19 @@ private final class CacheStories: Copy {
                         saveDetails.asObservable(),
                         removeStories.asObservable(),
                         removeDetails.asObservable()
-                    ) { _, _, _, _ -> (audios: [URL], images: [URL]) in
-                        let audios = data.details.reduce([URL]()) { result, detail in
-                            var result = result
-                            result.append(detail.readingSound.soundUrl)
-                            if let ambient = detail.ambientSound?.soundUrl {
-                                result.append(ambient)
-                            }
-                            return result
-                        }
-                        let images = data.stories.reduce([]) { urls, story -> [URL] in
+                    ) { _, _, _, _ -> [URL] in
+                        return data.stories.reduce([]) { urls, story -> [URL] in
                             var result = urls
                             if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
                             if let imageReaderURL = story.imageReaderURL { result.append(imageReaderURL) }
                             return result
                         }
-                        return(audios, images)
                     }
-                    .flatMap { [weak self] audios, images -> Single<Void> in
+                    .flatMap { [weak self] images -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        return Single
-                            .zip(
-                                MediaCacheService().copy(urls: audios),
-                                self.downloadImagesService.downloadImages(urls: images)
-                            ) { _, _ in () }
+                        return self.downloadImagesService.downloadImages(urls: images)
                     }
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
@@ -315,22 +290,14 @@ private final class CacheScenes: Copy {
                         saveDetails.asObservable(),
                         removeScenes.asObservable(),
                         removeDetails.asObservable()
-                    ) { _, _, _, _ -> (videos: [URL], audios: [URL], images: [URL]) in
-                        let videos = data.scenes.map { $0.url }
-                        let audios = data.details.flatMap { $0.sounds.map { $0.soundUrl } }
-                        let images = data.scenes.map { $0.url }
-                        return (videos, audios, images)
+                    ) { _, _, _, _ -> [URL] in
+                        return data.scenes.map { $0.url }
                     }
-                    .flatMap { [weak self] videos, audios, images -> Single<Void> in
+                    .flatMap { [weak self] images -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        return Single
-                            .zip(
-                                MediaCacheService().copy(urls: videos),
-                                MediaCacheService().copy(urls: audios),
-                                self.downloadImagesService.downloadImages(urls: images)
-                            ) { _, _, _ in () }
+                        return self.downloadImagesService.downloadImages(urls: images)
                     }
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
