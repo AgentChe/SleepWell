@@ -161,14 +161,11 @@
 		968552912369871000A22E21 /* AppStateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552902369871000A22E21 /* AppStateProxy.swift */; };
 		9699A62D23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A60C23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */; };
 		9699A62E23C8FB8400CADE8B /* scenes.json in Resources */ = {isa = PBXBuildFile; fileRef = 9699A60D23C8FB8400CADE8B /* scenes.json */; };
-		9699A62F23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A60E23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */; };
 		9699A63023C8FB8400CADE8B /* meditations.json in Resources */ = {isa = PBXBuildFile; fileRef = 9699A60F23C8FB8400CADE8B /* meditations.json */; };
 		9699A63123C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1576351162Zen_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61023C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1576351162Zen_1080p.mov */; };
 		9699A63223C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61123C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */; };
 		9699A63323C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61223C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */; };
 		9699A63423C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61323C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */; };
-		9699A63523C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61423C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */; };
-		9699A63623C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61523C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */; };
 		9699A63723C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61623C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */; };
 		9699A63823C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61723C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */; };
 		9699A63923C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61823C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */; };
@@ -178,20 +175,22 @@
 		9699A63D23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1576351229Forest_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61C23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1576351229Forest_1080p.mov */; };
 		9699A63E23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894402echoes of the stars.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61D23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894402echoes of the stars.m4a */; };
 		9699A63F23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61E23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */; };
-		9699A64023C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9699A61F23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */; };
 		9699A64123C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62023C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */; };
 		9699A64223C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62123C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */; };
 		9699A64323C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62223C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */; };
 		9699A64423C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62323C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */; };
 		9699A64523C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62423C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */; };
-		9699A64623C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62523C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */; };
 		9699A64723C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62623C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */; };
-		9699A64823C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62723C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */; };
 		9699A64923C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62823C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */; };
 		9699A64A23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62923C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */; };
-		9699A64B23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62A23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg */; };
 		9699A64C23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62B23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */; };
 		9699A64D23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9699A62C23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */; };
+		9699A65623C912B600CADE8B /* NoiseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A65523C912B600CADE8B /* NoiseCategory.swift */; };
+		9699A65823C912C000CADE8B /* NoiseSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A65723C912C000CADE8B /* NoiseSound.swift */; };
+		9699A65A23C912CB00CADE8B /* Noise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A65923C912CB00CADE8B /* Noise.swift */; };
+		9699A65D23C91D4200CADE8B /* NoiseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A65C23C91D4200CADE8B /* NoiseMapper.swift */; };
+		9699A65F23C923D400CADE8B /* NoiseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A65E23C923D400CADE8B /* NoiseService.swift */; };
+		9699A66123C9241500CADE8B /* GetNoiseCategoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699A66023C9241500CADE8B /* GetNoiseCategoriesRequest.swift */; };
 		969BF22023AD6CB3004A84B6 /* Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BF21F23AD6CB3004A84B6 /* Mime.swift */; };
 		969BF22323AD6DA9004A84B6 /* DownloadRemoteImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BF22223AD6DA9004A84B6 /* DownloadRemoteImageOperation.swift */; };
 		969BF22623AD6E5F004A84B6 /* CopyInCacheLocalImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BF22523AD6E5F004A84B6 /* CopyInCacheLocalImageOperation.swift */; };
@@ -473,6 +472,12 @@
 		9699A62A23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg"; sourceTree = "<group>"; };
 		9699A62B23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg"; sourceTree = "<group>"; };
 		9699A62C23C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg"; sourceTree = "<group>"; };
+		9699A65523C912B600CADE8B /* NoiseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseCategory.swift; sourceTree = "<group>"; };
+		9699A65723C912C000CADE8B /* NoiseSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSound.swift; sourceTree = "<group>"; };
+		9699A65923C912CB00CADE8B /* Noise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noise.swift; sourceTree = "<group>"; };
+		9699A65C23C91D4200CADE8B /* NoiseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseMapper.swift; sourceTree = "<group>"; };
+		9699A65E23C923D400CADE8B /* NoiseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseService.swift; sourceTree = "<group>"; };
+		9699A66023C9241500CADE8B /* GetNoiseCategoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNoiseCategoriesRequest.swift; sourceTree = "<group>"; };
 		969BF21F23AD6CB3004A84B6 /* Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mime.swift; sourceTree = "<group>"; };
 		969BF22223AD6DA9004A84B6 /* DownloadRemoteImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRemoteImageOperation.swift; sourceTree = "<group>"; };
 		969BF22523AD6E5F004A84B6 /* CopyInCacheLocalImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyInCacheLocalImageOperation.swift; sourceTree = "<group>"; };
@@ -1069,6 +1074,24 @@
 			path = cache;
 			sourceTree = "<group>";
 		};
+		9699A64E23C9111600CADE8B /* Noise */ = {
+			isa = PBXGroup;
+			children = (
+				9699A65523C912B600CADE8B /* NoiseCategory.swift */,
+				9699A65723C912C000CADE8B /* NoiseSound.swift */,
+				9699A65923C912CB00CADE8B /* Noise.swift */,
+			);
+			path = Noise;
+			sourceTree = "<group>";
+		};
+		9699A65B23C91D2B00CADE8B /* Noise */ = {
+			isa = PBXGroup;
+			children = (
+				9699A65C23C91D4200CADE8B /* NoiseMapper.swift */,
+			);
+			path = Noise;
+			sourceTree = "<group>";
+		};
 		969BF22123AD6D54004A84B6 /* ImageCacheService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1231,6 +1254,7 @@
 				9685528E236985EE00A22E21 /* PushMessageService.swift */,
 				968552902369871000A22E21 /* AppStateProxy.swift */,
 				86DD77AB23A7EEBB009213DF /* RateService.swift */,
+				9699A65E23C923D400CADE8B /* NoiseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1238,6 +1262,7 @@
 		96C29EE223625AA300E93CB1 /* Transformation */ = {
 			isa = PBXGroup;
 			children = (
+				9699A65B23C91D2B00CADE8B /* Noise */,
 				962FB45723967CA300B88FFC /* Scene */,
 				962FB45223967AEC00B88FFC /* Story */,
 				962FB44823966AD200B88FFC /* Meditation */,
@@ -1307,6 +1332,7 @@
 		96C29EE723625AFC00E93CB1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9699A64E23C9111600CADE8B /* Noise */,
 				96C29F83236389EA00E93CB1 /* Meditations */,
 				96C29F7C2363888300E93CB1 /* Story */,
 				96C29F75236386B300E93CB1 /* Scene */,
@@ -1346,6 +1372,7 @@
 				96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */,
 				96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */,
 				96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */,
+				9699A66023C9241500CADE8B /* GetNoiseCategoriesRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -1647,7 +1674,6 @@
 				86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */,
 				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
 				868B5E4023C0C605007BC301 /* SoundsListView.xib in Resources */,
-				96E9423123B7761A008EB43B /* https___www.s1eep.app_stories_2019_11_1574760305Card_12@jpg.jpg in Resources */,
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
 				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
 				86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */,
@@ -1661,10 +1687,7 @@
 				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
 				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
-				96E9421523B7761A008EB43B /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */,
-				96E9421B23B7761A008EB43B /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */,
 				868B5E5123C0D36A007BC301 /* SoundGroupCell.xib in Resources */,
-				96E9422C23B7761A008EB43B /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
 				9699A64323C8FB8400CADE8B /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */,
 				9699A64123C8FB8400CADE8B /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */,
@@ -1681,9 +1704,6 @@
 				9699A63A23C8FB8400CADE8B /* https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */,
 				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
 				86A70294238C6F50005C877B /* ScrollTabBarView.xib in Resources */,
-				96E9422623B7761A008EB43B /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */,
-				96E9422E23B7761A008EB43B /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */,
-				96E9421C23B7761A008EB43B /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */,
 				868B5E4D23C0CCBD007BC301 /* SoundGroupView.xib in Resources */,
 				86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
@@ -1823,6 +1843,7 @@
 				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96B1DB8323B0EE220050A8E2 /* MediaCacheService.swift in Sources */,
+				9699A65D23C91D4200CADE8B /* NoiseMapper.swift in Sources */,
 				962FB445239665AB00B88FFC /* RealmMeditationSound.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86A85479239317AA006A0CB1 /* TabItem.swift in Sources */,
@@ -1830,6 +1851,7 @@
 				96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
+				9699A66123C9241500CADE8B /* GetNoiseCategoriesRequest.swift in Sources */,
 				96C29F5723634D1B00E93CB1 /* PaygateViewModel.swift in Sources */,
 				8441FB7923636932001DC085 /* AudioPlayerService.swift in Sources */,
 				86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */,
@@ -1852,12 +1874,14 @@
 				84DD743523908CCF00B10777 /* SceneTimerAssembly.swift in Sources */,
 				847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */,
 				84DD743923908CE100B10777 /* SceneTimerViewModel.swift in Sources */,
+				9699A65A23C912CB00CADE8B /* Noise.swift in Sources */,
 				86A7D69A2385DA510087CE87 /* ScenesAssembly.swift in Sources */,
 				86A7D6A12385E1EB0087CE87 /* FullScenesListRequest.swift in Sources */,
 				96C29F792363875E00E93CB1 /* SceneSound.swift in Sources */,
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				84DD743723908CD900B10777 /* SceneTimerRouter.swift in Sources */,
 				962FB4602396835400B88FFC /* SceneRealmMapper.swift in Sources */,
+				9699A65823C912C000CADE8B /* NoiseSound.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
 				86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */,
 				9685528F236985EE00A22E21 /* PushMessageService.swift in Sources */,
@@ -1870,6 +1894,7 @@
 				96C29F5523634D1100E93CB1 /* PaygateViewController.swift in Sources */,
 				8441FB7E2363732C001DC085 /* PlayerViewController.swift in Sources */,
 				962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */,
+				9699A65623C912B600CADE8B /* NoiseCategory.swift in Sources */,
 				96B1DB8723B0EFF80050A8E2 /* CopyResource.swift in Sources */,
 				96C29F7B236387C700E93CB1 /* SceneDetail.swift in Sources */,
 				96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */,
@@ -1912,6 +1937,7 @@
 				86F98CBE23645F7800B0F5EA /* MeditateHeaderView.swift in Sources */,
 				86C848BE2367001000BC6EDA /* StoriesViewModel.swift in Sources */,
 				962FB44A23966BDD00B88FFC /* MeditationSoundRealmMapper.swift in Sources */,
+				9699A65F23C923D400CADE8B /* NoiseService.swift in Sources */,
 				96C29EF123625DB600E93CB1 /* GlobalDefinitions.swift in Sources */,
 				86CA8C8123678A5300692EE5 /* StoriesCellType.swift in Sources */,
 				86A7D6A32385EAC20087CE87 /* ScenesMapper.swift in Sources */,

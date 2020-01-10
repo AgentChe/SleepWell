@@ -6,7 +6,7 @@
 //  Copyright © 2020 Andrey Chernyshev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct GroupModel {
     let name: String
@@ -17,4 +17,6 @@ struct SoundModel {
     let id: Int
     let name: String
     let image: String
+    let positionX: CGFloat
+    let positionY: CGFloat
 }
