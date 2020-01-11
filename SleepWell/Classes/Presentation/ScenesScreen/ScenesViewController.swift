@@ -221,10 +221,9 @@ extension ScenesViewController: BindsToViewModel {
             .flatMapLatest { scene in
                 viewModel.pauseScene(style: .force).map { _ in scene }
             }
-            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .do(onNext: {
+            .flatMapFirst {
                 viewModel.add(sceneDetail: $0)
-            })
+            }
             .asSignal(onErrorSignalWith: .empty())
             .flatMapFirst { _ in
                 viewModel.pauseRecording(style: .force)

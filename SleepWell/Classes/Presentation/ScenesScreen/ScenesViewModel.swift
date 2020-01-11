@@ -15,7 +15,7 @@ protocol ScenesViewModelInterface {
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
-    func add(sceneDetail: SceneDetail)
+    func add(sceneDetail: SceneDetail) -> Signal<Void>
     func playScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
@@ -91,7 +91,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
         dependencies.audioPlayerService.isScenePlaying
     }
     
-    func add(sceneDetail: SceneDetail) {
+    func add(sceneDetail: SceneDetail) -> Signal<Void> {
         dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
     }
     

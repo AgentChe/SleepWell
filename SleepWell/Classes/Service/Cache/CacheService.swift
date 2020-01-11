@@ -102,32 +102,57 @@ private final class CacheMeditations: Copy {
                     return .error(RxError.noElements)
                 }
                 
+                let oldMeditations = RealmDBTransport().loadData(
+                    realmType: RealmMeditationDetail.self,
+                    map: MeditationDetailRealmMapper.map
+                )
                 let saveMeditations = RealmDBTransport().saveData(entities: data.meditations, map: { MeditationRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! MeditationDetailRealmMapper.map(from: $0) })
                 let removeMeditations = RealmDBTransport().deleteData(realmType: RealmMeditation.self, filter: NSPredicate(format: "id IN %@", data.deletedMeditationIds))
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmMeditationDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedMeditationIds))
                 
-                return Observable
-                    .combineLatest(
-                        saveMeditations.asObservable(),
-                        saveDetails.asObservable(),
-                        removeMeditations.asObservable(),
-                        removeDetails.asObservable()
-                    ) { _, _, _, _ -> [URL] in
-                        return data.meditations.reduce([]) { urls, meditation -> [URL] in
-                            var result = urls
-                            if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
-                            if let imageReaderURL = meditation.imageReaderURL { result.append(imageReaderURL) }
-                            return result
+                return oldMeditations.asObservable()
+                    .catchErrorJustReturn([])
+                    .map { meditations -> [URL] in
+                        let oldArchivedMeditationsIds = meditations.compactMap {
+                            $0.readingSound.soundUrl.isContained ? $0.recording.id : nil
                         }
+                        return data.details
+                            .filter { oldArchivedMeditationsIds.contains($0.recording.id) }
+                            .flatMap { detail -> [URL] in
+                                if let ambient = detail.ambientSound?.soundUrl {
+                                    return [detail.readingSound.soundUrl, ambient]
+                                }
+                                return [detail.readingSound.soundUrl]
+                            }
                     }
-                    .flatMap { [weak self] images -> Single<Void> in
+                    .flatMap { audios in
+                        Observable
+                            .combineLatest(
+                                saveMeditations.asObservable(),
+                                saveDetails.asObservable(),
+                                removeMeditations.asObservable(),
+                                removeDetails.asObservable()
+                            ) { _, _, _, _ -> (images: [URL], audios: [URL]) in
+                                let images = data.meditations.reduce([]) { urls, meditation -> [URL] in
+                                    var result = urls
+                                    if let imagePreviewUrl = meditation.imagePreviewUrl { result.append(imagePreviewUrl) }
+                                    if let imageReaderURL = meditation.imageReaderURL { result.append(imageReaderURL) }
+                                    return result
+                                }
+                                return (images, audios)
+                            }
+                    }
+                    .flatMap { [weak self] tuple -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        
-                        return self.downloadImagesService.downloadImages(urls: images)
+                        return Single.zip(
+                            self.downloadImagesService.downloadImages(urls: tuple.images),
+                            MediaCacheService().copy(urls: tuple.audios)
+                        ) { _, _ in () }
                     }
+                    .observeOn(MainScheduler.instance)
                     .do(onNext: {
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -198,31 +223,57 @@ private final class CacheStories: Copy {
                     return .error(RxError.noElements)
                 }
                 
+                let oldStories = RealmDBTransport().loadData(
+                    realmType: RealmStoryDetail.self,
+                    map: StoryDetailRealmMapper.map
+                )
                 let saveStories = RealmDBTransport().saveData(entities: data.stories, map: { StoryRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { try! StoryDetailRealmMapper.map(from: $0) })
                 let removeStories = RealmDBTransport().deleteData(realmType: RealmStory.self, filter: NSPredicate(format: "id IN %@", data.deletedStoryIds))
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmStoryDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedStoryIds))
                 
-                return Observable
-                    .combineLatest(
-                        saveStories.asObservable(),
-                        saveDetails.asObservable(),
-                        removeStories.asObservable(),
-                        removeDetails.asObservable()
-                    ) { _, _, _, _ -> [URL] in
-                        return data.stories.reduce([]) { urls, story -> [URL] in
-                            var result = urls
-                            if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
-                            if let imageReaderURL = story.imageReaderURL { result.append(imageReaderURL) }
-                            return result
+                return oldStories.asObservable()
+                    .catchErrorJustReturn([])
+                    .map { stories -> [URL] in
+                        let oldArchivedStoriesIds = stories.compactMap {
+                            $0.readingSound.soundUrl.isContained ? $0.recording.id : nil
                         }
+                        return data.details
+                            .filter { oldArchivedStoriesIds.contains($0.recording.id) }
+                            .flatMap { detail -> [URL] in
+                                if let ambient = detail.ambientSound?.soundUrl {
+                                    return [detail.readingSound.soundUrl, ambient]
+                                }
+                                return [detail.readingSound.soundUrl]
+                            }
                     }
-                    .flatMap { [weak self] images -> Single<Void> in
+                    .flatMap { audios in
+                        Observable
+                            .combineLatest(
+                                saveStories.asObservable(),
+                                saveDetails.asObservable(),
+                                removeStories.asObservable(),
+                                removeDetails.asObservable()
+                            ) { _, _, _, _ -> (images: [URL], audios: [URL]) in
+                                let images = data.stories.reduce([]) { urls, story -> [URL] in
+                                    var result = urls
+                                    if let imagePreviewUrl = story.imagePreviewUrl { result.append(imagePreviewUrl) }
+                                    if let imageReaderURL = story.imageReaderURL { result.append(imageReaderURL) }
+                                    return result
+                                }
+                                return (images, audios)
+                            }
+                    }
+                    .flatMap { [weak self] tuple -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        return self.downloadImagesService.downloadImages(urls: images)
+                        return Single.zip(
+                            self.downloadImagesService.downloadImages(urls: tuple.images),
+                            MediaCacheService().copy(urls: tuple.audios)
+                        ) { _, _ in () }
                     }
+                    .observeOn(MainScheduler.instance)
                     .do(onNext: {
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -278,27 +329,62 @@ private final class CacheScenes: Copy {
                     return .error(RxError.noElements)
                 }
                 
+                let oldScenes = RealmDBTransport().loadData(
+                    realmType: RealmSceneDetail.self,
+                    map: SceneDetailRealmMapper.map
+                )
                 let saveScenes = RealmDBTransport().saveData(entities: data.scenes, map: { SceneRealmMapper.map(from: $0) })
                 let saveDetails = RealmDBTransport().saveData(entities: data.details, map: { SceneDetailRealmMapper.map(from: $0) })
                 let removeScenes = RealmDBTransport().deleteData(realmType: RealmScene.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
                 let removeDetails = RealmDBTransport().deleteData(realmType: RealmSceneDetail.self, filter: NSPredicate(format: "id IN %@", data.deletedSceneIds))
                 
-                
-                return Observable
-                    .combineLatest(
-                        saveScenes.asObservable(),
-                        saveDetails.asObservable(),
-                        removeScenes.asObservable(),
-                        removeDetails.asObservable()
-                    ) { _, _, _, _ -> [URL] in
-                        return data.scenes.map { $0.url }
+                return oldScenes.asObservable()
+                    .catchErrorJustReturn([])
+                    .map { scenes -> [URL] in
+                        let oldArchivedSceneAudioIds = scenes.compactMap { scene -> Int? in
+                            guard let sound = scene.sounds.first?.soundUrl else {
+                                return nil
+                            }
+                            return sound.isContained ? scene.scene.id : nil
+                        }
+                        let oldArchivedSceneVideoIds = scenes.compactMap {
+                            $0.scene.url.isContained ? $0.scene.id : nil
+                        }
+                        let audios = data.details
+                            .filter {
+                                $0.scene.mime.isVideo
+                                    && oldArchivedSceneAudioIds.contains($0.scene.id)
+                            }
+                            .flatMap { $0.sounds.map { $0.soundUrl } }
+                        let videos = data.details
+                            .filter { oldArchivedSceneVideoIds.contains($0.scene.id) }
+                            .map { $0.scene.url }
+                        
+                        return audios + videos
                     }
-                    .flatMap { [weak self] images -> Single<Void> in
+                    .flatMap { media in
+                        Observable
+                            .combineLatest(
+                                saveScenes.asObservable(),
+                                saveDetails.asObservable(),
+                                removeScenes.asObservable(),
+                                removeDetails.asObservable()
+                            ) { _, _, _, _ -> (media: [URL], images: [URL]) in
+                                let images = data.scenes.filter { $0.mime.isImage }
+                                    .map { $0.url }
+                                return (media, images)
+                            }
+                    }
+                    .flatMap { [weak self] tuple -> Single<Void> in
                         guard let self = self else {
                             return .just(())
                         }
-                        return self.downloadImagesService.downloadImages(urls: images)
+                        return Single.zip(
+                            self.downloadImagesService.downloadImages(urls: tuple.images),
+                            MediaCacheService().copy(urls: tuple.media)
+                        ) { _, _ in () }
                     }
+                    .observeOn(MainScheduler.instance)
                     .do(onNext: {
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
