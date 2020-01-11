@@ -76,10 +76,7 @@ final class AudioPlayerService: ReactiveCompatible {
                 return .just(())
         }
         
-        var urls = sceneDetail.sounds.map { $0.soundUrl }
-        if sceneDetail.scene.mime.isVideo {
-            urls.append(sceneDetail.scene.url)
-        }
+        let urls = sceneDetail.sounds.map { $0.soundUrl }
         return MediaCacheService().copy(urls: urls)
             .asSignal(onErrorJustReturn: ())
             .do(onNext: { [weak self] in
