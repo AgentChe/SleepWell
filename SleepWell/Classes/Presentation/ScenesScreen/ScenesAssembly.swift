@@ -13,7 +13,8 @@ final class ScenesAssembly: ScreenAssembly {
     func assembleDependencies() -> ScenesViewModel.Dependencies {
         return VC.ViewModel.Dependencies(
             sceneService: SceneService(),
-            audioPlayerService: AudioPlayerService.shared
+            audioPlayerService: AudioPlayerService.shared,
+            mediaCacheService: MediaCacheService()
         )
     }
 }

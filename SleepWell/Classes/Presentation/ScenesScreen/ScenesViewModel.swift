@@ -20,6 +20,7 @@ protocol ScenesViewModelInterface {
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func copyVideo(url: URL) -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
@@ -45,6 +46,7 @@ final class ScenesViewModel: BindableViewModel {
     struct Dependencies {
         let sceneService: SceneService
         let audioPlayerService: AudioPlayerService
+        let mediaCacheService: MediaCacheService
     }
 }
 
@@ -109,5 +111,10 @@ extension ScenesViewModel: ScenesViewModelInterface {
     
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {
         router.showSettings(sceneDetail: sceneDetail)
+    }
+    
+    func copyVideo(url: URL) -> Signal<Void> {
+        dependencies.mediaCacheService.copy(urls: [url])
+            .asSignal(onErrorSignalWith: .empty())
     }
 }

@@ -167,6 +167,24 @@ extension ScenesViewController: BindsToViewModel {
         let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
         
+        let videoScene = sceneDetail.filter { $0?.scene.mime.isVideo == true }
+            .map { $0! }
+        
+        let loadedVideo = videoScene
+            .map { $0.scene.id }
+            .scan(Set<Int>()) { set, id in
+                var set = set
+                set.insert(id)
+                return set
+            }
+        
+        videoScene.withLatestFrom(loadedVideo) { ($0, $1) }
+            .filter { !$1.contains($0.scene.id) }
+            .map { $0.0.scene.url }
+            .flatMap(viewModel.copyVideo)
+            .emit()
+            .disposed(by: disposeBag)
+        
         let initialScene = Observable
             .combineLatest(
                 viewDidAppear,
