@@ -88,7 +88,7 @@ final class AudioPlayerService: ReactiveCompatible {
             players: players,
             scene: sceneDetail.scene
         )
-        self.sceneRelay.accept(sceneAudio)
+        sceneRelay.accept(sceneAudio)
         sceneAudio.prepareToPlay()
     }
     
