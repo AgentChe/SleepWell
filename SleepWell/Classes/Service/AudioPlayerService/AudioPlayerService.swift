@@ -70,34 +70,26 @@ final class AudioPlayerService: ReactiveCompatible {
         }
     }
 
-    func add(sceneDetail: SceneDetail) -> Signal<Void> {
+    func add(sceneDetail: SceneDetail) {
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
-                return .just(())
+                return
         }
         
-        let urls = sceneDetail.sounds.map { $0.soundUrl }
-        return MediaCacheService().copy(urls: urls)
-            .asSignal(onErrorJustReturn: ())
-            .do(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                let players = sceneDetail.sounds
-                    .map {
-                        SceneAudio.Player(
-                            player: AVPlayer(url: $0.soundUrl.localUrl),
-                            id: $0.id
-                        )
-                    }
-                
-                let sceneAudio = SceneAudio(
-                    players: players,
-                    scene: sceneDetail.scene
+        let players = sceneDetail.sounds
+            .map {
+                SceneAudio.Player(
+                    player: AVPlayer(url: $0.soundUrl.localUrl),
+                    id: $0.id
                 )
-                self.sceneRelay.accept(sceneAudio)
-                sceneAudio.prepareToPlay()
-            })
+            }
+        
+        let sceneAudio = SceneAudio(
+            players: players,
+            scene: sceneDetail.scene
+        )
+        self.sceneRelay.accept(sceneAudio)
+        sceneAudio.prepareToPlay()
     }
     
     func time(for id: Int) -> Driver<Int> {

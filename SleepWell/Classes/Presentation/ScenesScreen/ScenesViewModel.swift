@@ -15,12 +15,12 @@ protocol ScenesViewModelInterface {
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
-    func add(sceneDetail: SceneDetail) -> Signal<Void>
+    func add(sceneDetail: SceneDetail)
     func playScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
-    func copyVideo(url: URL) -> Signal<Void>
+    func copy(url: [URL]) -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
@@ -93,7 +93,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
         dependencies.audioPlayerService.isScenePlaying
     }
     
-    func add(sceneDetail: SceneDetail) -> Signal<Void> {
+    func add(sceneDetail: SceneDetail) {
         dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
     }
     
@@ -113,8 +113,8 @@ extension ScenesViewModel: ScenesViewModelInterface {
         router.showSettings(sceneDetail: sceneDetail)
     }
     
-    func copyVideo(url: URL) -> Signal<Void> {
-        dependencies.mediaCacheService.copy(urls: [url])
+    func copy(url: [URL]) -> Signal<Void> {
+        dependencies.mediaCacheService.copy(urls: url)
             .asSignal(onErrorSignalWith: .empty())
     }
 }
