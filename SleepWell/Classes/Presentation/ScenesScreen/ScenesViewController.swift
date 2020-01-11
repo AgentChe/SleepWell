@@ -170,16 +170,15 @@ extension ScenesViewController: BindsToViewModel {
         let videoScene = sceneDetail.filter { $0?.scene.mime.isVideo == true }
             .map { $0! }
         
-        let loadedVideo = videoScene
-            .map { $0.scene.id }
-            .scan(Set<Int>()) { set, id in
-                var set = set
-                set.insert(id)
-                return set
-            }
+        let loadedVideo = BehaviorRelay<Set<Int>>(value: Set<Int>())
         
-        videoScene.withLatestFrom(loadedVideo) { ($0, $1) }
+        videoScene.withLatestFrom(loadedVideo.asDriver()) { ($0, $1) }
             .filter { !$1.contains($0.scene.id) }
+            .do(onNext: { scene, set in
+                var set = set
+                set.insert(scene.scene.id)
+                loadedVideo.accept(set)
+            })
             .map { $0.0.scene.url }
             .flatMap(viewModel.copyVideo)
             .emit()
