@@ -22,6 +22,8 @@
 		8454246A2364896D002862D9 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845424692364896D002862D9 /* AudioSlider.swift */; };
 		847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CC237212CD0005E84E /* VolumeSliderView.swift */; };
 		847127CF2372142E0005E84E /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847127CE2372142E0005E84E /* NSObjectExtension.swift */; };
+		8480340723CE7B7C00078442 /* NoiseAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480340623CE7B7C00078442 /* NoiseAudio.swift */; };
+		8480340923CE7F9700078442 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8480340823CE7F9700078442 /* Player.swift */; };
 		84A38E382383D21A004E7EBA /* SceneSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E372383D21A004E7EBA /* SceneSettingsViewController.swift */; };
 		84A38E3A2383D29B004E7EBA /* SceneSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */; };
 		84A38E3C2383D2CB004E7EBA /* SceneSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */; };
@@ -309,6 +311,8 @@
 		845424692364896D002862D9 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSlider.swift; path = SleepWell/Resources/Storyboards/AudioSlider.swift; sourceTree = SOURCE_ROOT; };
 		847127CC237212CD0005E84E /* VolumeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSliderView.swift; sourceTree = "<group>"; };
 		847127CE2372142E0005E84E /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		8480340623CE7B7C00078442 /* NoiseAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseAudio.swift; sourceTree = "<group>"; };
+		8480340823CE7F9700078442 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		84A38E372383D21A004E7EBA /* SceneSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsViewController.swift; sourceTree = "<group>"; };
 		84A38E392383D29B004E7EBA /* SceneSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsViewModel.swift; sourceTree = "<group>"; };
 		84A38E3B2383D2CB004E7EBA /* SceneSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingsRouter.swift; sourceTree = "<group>"; };
@@ -640,9 +644,11 @@
 		84AB423023ABFDEB00E2A558 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8480340823CE7F9700078442 /* Player.swift */,
 				84AB423123ABFDFD00E2A558 /* SceneTimer.swift */,
 				84AB422C23ABFD4C00E2A558 /* SceneAudio.swift */,
 				84AB423323ABFE6F00E2A558 /* RecordingAudio.swift */,
+				8480340623CE7B7C00078442 /* NoiseAudio.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1910,6 +1916,7 @@
 				96C29F01236260F600E93CB1 /* UILabelExtension.swift in Sources */,
 				86B0C3212379DEB600C60158 /* StoryRealmMapper.swift in Sources */,
 				96C29F6B23634D9900E93CB1 /* MainAssembly.swift in Sources */,
+				8480340923CE7F9700078442 /* Player.swift in Sources */,
 				96C29F8723638A8300E93CB1 /* MeditationSound.swift in Sources */,
 				86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */,
 				96E5EE8523B64B7000E01F96 /* AppRegisterRequest.swift in Sources */,
@@ -1929,6 +1936,7 @@
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				84DD743723908CD900B10777 /* SceneTimerRouter.swift in Sources */,
 				962FB4602396835400B88FFC /* SceneRealmMapper.swift in Sources */,
+				8480340723CE7B7C00078442 /* NoiseAudio.swift in Sources */,
 				9699A65823C912C000CADE8B /* NoiseSound.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
 				86B2BFF723663C7000AF2B33 /* PremiumUnlockCell.swift in Sources */,

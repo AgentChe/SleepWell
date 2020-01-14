@@ -88,10 +88,16 @@ extension SoundsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        soundsListView
+            .selectedItem
+            .map { $0.sounds }
+            .scan(Set<NoiseSound>()) { $0.union($1) }
+            .flatMap(viewModel.add)
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         soundsView.changeVolume
-            .emit(to: Binder(self) { base, tuple in
-                // TODO изменение звука по id
-            })
+            .emit(to: viewModel.noiseVolume)
             .disposed(by: disposeBag)
     }
 }

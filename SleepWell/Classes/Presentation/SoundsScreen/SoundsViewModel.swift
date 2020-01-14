@@ -11,6 +11,8 @@ import RxCocoa
 
 protocol SoundsViewModelInterface {
     func sounds() -> Driver<[NoiseCategory]>
+    func add(noises: Set<NoiseSound>) -> Completable
+    var noiseVolume: Binder<(to: Int, volume: Float)> { get }
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -33,4 +35,11 @@ extension SoundsViewModel: SoundsViewModelInterface {
             .asDriver(onErrorJustReturn: [])
     }
     
+    func add(noises: Set<NoiseSound>) -> Completable {
+        dependencies.audioPlayerService.add(noises: noises)
+    }
+    
+    var noiseVolume: Binder<(to: Int, volume: Float)> {
+        dependencies.audioPlayerService.rx.noiseVolume
+    }
 }
