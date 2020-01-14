@@ -73,7 +73,7 @@ final class AudioPlayerService: ReactiveCompatible {
     func add(sceneDetail: SceneDetail) {
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
-            return
+                return
         }
         
         let players = sceneDetail.sounds

@@ -167,6 +167,22 @@ extension ScenesViewController: BindsToViewModel {
         let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
         
+        let loadedVideo = BehaviorRelay<Set<Int>>(value: Set<Int>())
+        
+        sceneDetail.filter { $0?.scene.mime.isVideo == true }
+            .map { $0! }
+            .withLatestFrom(loadedVideo.asDriver()) { ($0, $1) }
+            .filter { !$1.contains($0.scene.id) }
+            .do(onNext: { scene, set in
+                var set = set
+                set.insert(scene.scene.id)
+                loadedVideo.accept(set)
+            })
+            .map { [$0.0.scene.url] }
+            .flatMap(viewModel.copy)
+            .emit()
+            .disposed(by: disposeBag)
+        
         let initialScene = Observable
             .combineLatest(
                 viewDidAppear,
@@ -210,13 +226,28 @@ extension ScenesViewController: BindsToViewModel {
                 pauseButton.rx.tap.asObservable().map { _ in false }
             )
         
-        Observable
+        let playScene = Observable
             .merge(
                 initialScene,
                 playSceneBySwipe,
                 playSceneByOpeningSettings,
                 didTapPlayScene
             )
+        
+        let loadedAudio = BehaviorRelay<Set<Int>>(value: Set<Int>())
+        playScene.withLatestFrom(loadedAudio.asDriver()) { ($0, $1) }
+            .filter { !$1.contains($0.scene.id) }
+            .do(onNext: { scene, set in
+                var set = set
+                set.insert(scene.scene.id)
+                loadedAudio.accept(set)
+            })
+            .map { $0.0.sounds.map { $0.soundUrl } }
+            .flatMap(viewModel.copy)
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        playScene
             .observeOn(MainScheduler.instance)
             .flatMapLatest { scene in
                 viewModel.pauseScene(style: .force).map { _ in scene }
