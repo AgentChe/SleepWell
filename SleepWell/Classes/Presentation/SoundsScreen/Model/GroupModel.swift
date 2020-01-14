@@ -7,16 +7,21 @@
 //
 
 import UIKit
-
-struct GroupModel {
-    let name: String
-    let sounds: [SoundModel]
-}
-
-struct SoundModel {
-    let id: Int
-    let name: String
-    let image: String
-    let positionX: CGFloat
-    let positionY: CGFloat
-}
+//
+//struct GroupModel {
+//    let name: String
+//    let sounds: [SoundModel]
+//}
+//
+//struct SoundModel {
+//    let id: Int
+//    let name: String
+//    let image: String
+//    let sounds: [SoundItem]
+//    let positionX: CGFloat?
+//    let positionY: CGFloat?
+//}
+//
+//struct SoundItem {
+//    let id: Int
+//}

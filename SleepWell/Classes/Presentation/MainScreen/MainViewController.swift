@@ -203,7 +203,9 @@ private extension MainViewController {
     
     func sounds() {
         if soundsAssambly == nil {
-            soundsAssambly = SoundsAssembly().assemble(input: ())
+            soundsAssambly = SoundsAssembly().assemble(input: .init(hideTabbarClosure: { [weak self] state in
+                self?.hideTabBar(isHidden: state)
+                }))
         }
         soundsAssambly.vc.view.frame = containerView.bounds
         add(soundsAssambly.vc)

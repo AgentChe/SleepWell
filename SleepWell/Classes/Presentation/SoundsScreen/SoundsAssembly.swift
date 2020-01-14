@@ -11,6 +11,8 @@ final class SoundsAssembly: ScreenAssembly {
     typealias VC = SoundsViewController
     
     func assembleDependencies() -> SoundsViewModel.Dependencies {
-        return VC.ViewModel.Dependencies()
+        return VC.ViewModel.Dependencies(
+            noiseService: NoiseService(),
+            audioPlayerService: AudioPlayerService.shared)
     }
 }

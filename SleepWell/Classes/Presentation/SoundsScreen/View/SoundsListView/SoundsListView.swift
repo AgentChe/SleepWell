@@ -34,20 +34,20 @@ class SoundsListView: UIView {
         tableView.dataSource = self
     }
     
-     private let selectedSoundRelay = PublishRelay<SoundModel>()
-    private var _elements: [GroupModel] = []
+     private let selectedSoundRelay = PublishRelay<Noise>()
+    private var _elements: [NoiseCategory] = []
 }
 
 extension SoundsListView {
 
-    var elements: Binder<[GroupModel]> {
+    var elements: Binder<[NoiseCategory]> {
         return Binder(self) { base, elements in
             base._elements = elements
             base.tableView.reloadData()
         }
     }
 
-    var items: [GroupModel] {
+    var items: [NoiseCategory] {
         set {
             _elements = newValue
             tableView.reloadData()
@@ -57,7 +57,7 @@ extension SoundsListView {
         }
     }
     
-    var selectedItem: Observable<SoundModel> {
+    var selectedItem: Observable<Noise> {
         return selectedSoundRelay.asObservable()
     }
 }

@@ -40,7 +40,13 @@
 "contact_us" = "Contact Us";
 "leave_a_review" = "Leave a Review";
 "settings" = "Settings";
+
+// Sounds
 "sounds_title" = "Set up your own scene to put yourself into the right mood for whetever you're up to.";
+"louder_title" = "Громче";
+"hush_title" = "Тише";
+"weaker_title" = "Слабее";
+"stronger_title" = "Сильнее";
 
 // LocalNotifications
 "local_notify_title_1" = "Your future depends on your dreams 💤😴🎼";

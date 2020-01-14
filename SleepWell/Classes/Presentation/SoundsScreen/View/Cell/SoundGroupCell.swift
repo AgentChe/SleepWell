@@ -12,7 +12,7 @@ class SoundGroupCell: UITableViewCell {
     
     @IBOutlet private var groupView: SoundGroupView!
     
-    func setup(model: GroupModel, closure: @escaping ((SoundModel) -> Void)) {
+    func setup(model: NoiseCategory, closure: @escaping ((Noise) -> Void)) {
         groupView.setup(model: model)
         groupView.selectedItem = closure
     }

@@ -12,31 +12,36 @@ import RxCocoa
 
 final class SoundsViewController: UIViewController {
     @IBOutlet private var addSoundButton: UIButton!
-    @IBOutlet private var addSound: UIButton!
-    @IBOutlet private var soundsView: UIView!
+    @IBOutlet private var soundsView: ViewportView!
     @IBOutlet private var emptyView: UIView!
-
+    
+    private let tapGesture = UITapGestureRecognizer()
     private let soundsListView = SoundsListView()
     private let closeButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         closeButton.setImage(UIImage(named: "close_sounds"), for: .normal)
+        soundsView.addGestureRecognizer(tapGesture)
     }
     
-    private let sounds = BehaviorRelay<[SoundModel]>(value: [])
+    private let sounds = BehaviorRelay<[Noise]>(value: [])
     private let disposeBag = DisposeBag()
 }
 
 extension SoundsViewController: BindsToViewModel {
     typealias ViewModel = SoundsViewModel
+    
+    struct Input {
+        let hideTabbarClosure: (Bool) -> Void
+    }
 
     static func make() -> SoundsViewController {
         let storyboard = UIStoryboard(name: "SoundsScreen", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "SoundsViewController") as! SoundsViewController
     }
     
-    func bind(to viewModel: SoundsViewModelInterface, with input: ()) -> () {
+    func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> () {
         let elements = viewModel.sounds()
         
         elements
@@ -53,18 +58,39 @@ extension SoundsViewController: BindsToViewModel {
             .bind(to: sounds)
             .disposed(by: disposeBag)
         
+        soundsListView
+            .selectedItem
+            .bind(to: soundsView.item)
+            .disposed(by: disposeBag)
+        
         let userAction = Observable<UserAction>
             .merge(
-                addSound.rx.tap.map { _ in .add },
+                soundsView.didTapAdd.asObservable().map { _ in .add },
                 addSoundButton.rx.tap.map { _ in .add },
                 closeButton.rx.tap.map { _ in .close },
                 soundsListView.selectedItem.map { _ in .close }
             )
         
+        let didUserAction = userAction
+            .map { action -> Bool in
+                guard case .add = action else { return false }
+                return true
+            }
+        
+        Observable.merge(soundsView.didMovingView.asObservable().filter { $0 }, didUserAction)
+            .bind(onNext: input.hideTabbarClosure)
+            .disposed(by: disposeBag)
+        
         userAction
             .withLatestFrom(sounds) { ($0, $1) }
             .bind(to: Binder(self) { base, elements in
                 base.showSoundsList(action: elements.0, isEmpty: elements.1.isEmpty)
+            })
+            .disposed(by: disposeBag)
+        
+        soundsView.changeVolume
+            .emit(to: Binder(self) { base, tuple in
+                // TODO изменение звука по id
             })
             .disposed(by: disposeBag)
     }
@@ -88,6 +114,7 @@ private extension SoundsViewController {
             view.addSubview(soundsListView)
             view.addSubview(closeButton)
             let originY = view.frame.origin.y + 88
+            soundsListView.frame.size.height -= 88
             soundsListView.frame.origin.y += view.frame.height
 
             UIView.animate(withDuration: 0.5) {
@@ -112,6 +139,7 @@ private extension SoundsViewController {
                     self.soundsView.transform = .identity
                 }
             }) { _ in
+                self.closeButton.transform = .identity
                 self.closeButton.removeFromSuperview()
                 self.soundsListView.removeFromSuperview()
             }

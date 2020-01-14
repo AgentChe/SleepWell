@@ -12,10 +12,10 @@ final class SoundGroupView: UIView {
 
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet private var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet private var conteinerView: UIView!
     
-    var selectedItem: ((SoundModel) -> Void)?
+    var selectedItem: ((Noise) -> Void)?
     
     override init(frame: CGRect) {
            super.init(frame: frame)
@@ -39,13 +39,13 @@ final class SoundGroupView: UIView {
         flowLayout.minimumLineSpacing = 40
     }
     
-    func setup(model: GroupModel) {
+    func setup(model: NoiseCategory) {
         titleLabel.text = model.name
-        elements = model.sounds
+        elements = model.noises
         collectionView.reloadData()
     }
     
-    private var elements: [SoundModel] = []
+    private var elements: [Noise] = []
 }
 
 extension SoundGroupView: UICollectionViewDelegate {
@@ -62,7 +62,7 @@ extension SoundGroupView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SoundCell", for: indexPath) as! SoundCell
         let element = elements[indexPath.row]
-        cell.setup(image: element.image, title: element.name)
+        cell.setup(image: element.imageUrl, title: element.name)
         return cell
     }
 }
