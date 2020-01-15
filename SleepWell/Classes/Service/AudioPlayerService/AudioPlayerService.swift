@@ -177,6 +177,10 @@ final class AudioPlayerService: ReactiveCompatible {
         audioRelay.value?.play(style: style) ?? .just(())
     }
     
+    func pauseNoise() -> Signal<Void> {
+        noiseRelay.value?.pause() ?? .just(())
+    }
+    
     var isScenePlaying: Driver<Bool> {
         
         sceneRelay.asDriver()
@@ -364,6 +368,7 @@ final class AudioPlayerService: ReactiveCompatible {
                 if info.isEmpty {
                     base.audioRelay.value?.forcePause()
                     base.sceneRelay.value?.forcePause()
+                    base.noiseRelay.value?.forcePause()
                     try? AVAudioSession.sharedInstance().setActive(
                         false,
                         options: .notifyOthersOnDeactivation
@@ -400,6 +405,7 @@ private extension AudioPlayerService {
                     let audio = self.audioRelay.value,
                     !audio.isPlaying {
                     
+                    self.noiseRelay.value?.forcePause()
                     audio.forcePlay()
                     return .success
                 }
@@ -408,6 +414,7 @@ private extension AudioPlayerService {
                     let scene = self.sceneRelay.value,
                     !scene.isPlaying {
                     
+                    self.noiseRelay.value?.forcePause()
                     scene.forcePlay()
                     return .success
                 }

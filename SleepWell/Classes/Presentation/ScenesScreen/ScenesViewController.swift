@@ -257,8 +257,11 @@ extension ScenesViewController: BindsToViewModel {
                 viewModel.add(sceneDetail: $0)
             })
             .asSignal(onErrorSignalWith: .empty())
-            .flatMapFirst { _ in
-                viewModel.pauseRecording(style: .force)
+            .flatMapFirst { _ -> Signal<Void> in
+                Signal.zip(
+                    viewModel.pauseNoise(),
+                    viewModel.pauseRecording(style: .force)
+                ) { _, _ in () }
             }
             .withLatestFrom(shouldPlayScene.asSignal(onErrorSignalWith: .empty()))
             .flatMapLatest { shouldPlay in

@@ -170,6 +170,7 @@ extension PlayerViewController: BindsToViewModel {
                     .zip(
                         viewModel.add(recording: input.recording),
                         viewModel.pauseScene(style: .force),
+                        viewModel.pauseNoise(),
                         viewModel.pauseRecording(style: .force)
                     )
                     .take(1)
