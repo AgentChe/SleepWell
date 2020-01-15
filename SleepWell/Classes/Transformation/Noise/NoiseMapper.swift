@@ -21,14 +21,24 @@ final class NoiseMapper {
         }
         
         let fullNoises = data["sound_categories"] as? [[String: Any]] ?? []
+        let deletedNoiseIds = data["deleted_sound_ids"] as? [Int] ?? []
         let noisesHashCode = data["sound_categories_hash"] as? String ?? ""
         
-        let categories = NoiseCategory.parseFromArray(any: fullNoises)
+        var categories: [NoiseCategory] = []
+        var copingLocalImages: [CopyResource] = []
+        
+        for fullNoise in fullNoises {
+            guard let noiseCategory = NoiseCategory.parseFromDictionary(any: fullNoise) else {
+                continue
+            }
+            
+            categories.append(noiseCategory)
+        }
         
         return FullNoises(noiseCategories: categories,
                           deletedNoiseCategoryIds: [],
-                          deletedNoiseIds: [],
+                          deletedNoiseIds: deletedNoiseIds,
                           noisesHashCode: noisesHashCode,
-                          copingLocalImages: [])
+                          copingLocalImages: copingLocalImages)
     }
 }

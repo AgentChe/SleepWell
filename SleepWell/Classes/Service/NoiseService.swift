@@ -10,8 +10,6 @@ import RxSwift
 
 final class NoiseService {
     func noiseCategories() -> Single<[NoiseCategory]> {
-        return RestAPITransport()
-            .callServerApi(requestBody: GetNoiseCategoriesRequest())
-            .map { NoiseMapper.fullNoises(response: $0)?.noiseCategories ?? [] }
+        return RealmDBTransport().loadData(realmType: RealmNoiseCategory.self, map: { NoiseCategoryRealmMapper.map(from: $0) })
     }
 }

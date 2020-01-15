@@ -9,17 +9,25 @@
 import Alamofire
 
 struct GetNoiseCategoriesRequest: APIRequestBody {
+    private let hashCode: String?
+    
+    init(hashCode: String?) {
+        self.hashCode = hashCode
+    }
+    
     var url: String {
-        return GlobalDefinitions.domainUrl + "/api/sounds/categories"
+        return GlobalDefinitions.domainUrl + "/api/sounds/categories?_api_key=\(GlobalDefinitions.apiKey)"
     }
     
     var method: HTTPMethod {
         return .post
     }
-
+    
     var parameters: Parameters? {
-        return [
-            "_api_key": GlobalDefinitions.apiKey
-        ]
+        if let hashCode = self.hashCode {
+            return ["hash": hashCode]
+        }
+        
+        return nil
     }
 }
