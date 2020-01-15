@@ -56,7 +56,6 @@
 		868B5E4D23C0CCBD007BC301 /* SoundGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868B5E4C23C0CCBD007BC301 /* SoundGroupView.xib */; };
 		868B5E5023C0D36A007BC301 /* SoundGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868B5E4E23C0D36A007BC301 /* SoundGroupCell.swift */; };
 		868B5E5123C0D36A007BC301 /* SoundGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868B5E4F23C0D36A007BC301 /* SoundGroupCell.xib */; };
-		868B5E5423C0D75F007BC301 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868B5E5323C0D75F007BC301 /* GroupModel.swift */; };
 		86A69BFE23C0766A00B07168 /* SoundsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A69BF923C0766A00B07168 /* SoundsScreen.storyboard */; };
 		86A69BFF23C0766A00B07168 /* SoundsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A69BFA23C0766A00B07168 /* SoundsRouter.swift */; };
 		86A69C0023C0766A00B07168 /* SoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A69BFB23C0766A00B07168 /* SoundsViewController.swift */; };
@@ -343,7 +342,6 @@
 		868B5E4C23C0CCBD007BC301 /* SoundGroupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundGroupView.xib; sourceTree = "<group>"; };
 		868B5E4E23C0D36A007BC301 /* SoundGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundGroupCell.swift; sourceTree = "<group>"; };
 		868B5E4F23C0D36A007BC301 /* SoundGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundGroupCell.xib; sourceTree = "<group>"; };
-		868B5E5323C0D75F007BC301 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		86A69BF923C0766A00B07168 /* SoundsScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SoundsScreen.storyboard; sourceTree = "<group>"; };
 		86A69BFA23C0766A00B07168 /* SoundsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsRouter.swift; sourceTree = "<group>"; };
 		86A69BFB23C0766A00B07168 /* SoundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewController.swift; sourceTree = "<group>"; };
@@ -708,7 +706,6 @@
 		868218FE23C0763100EA49F6 /* SoundsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				868B5E5223C0D74A007BC301 /* Model */,
 				868B5E3B23C0C5AB007BC301 /* View */,
 				86A69BFA23C0766A00B07168 /* SoundsRouter.swift */,
 				86A69BFB23C0766A00B07168 /* SoundsViewController.swift */,
@@ -751,14 +748,6 @@
 				868B5E4F23C0D36A007BC301 /* SoundGroupCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		868B5E5223C0D74A007BC301 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				868B5E5323C0D75F007BC301 /* GroupModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		86A7D6902385DA510087CE87 /* ScenesScreen */ = {
@@ -2041,7 +2030,6 @@
 				86C848BB2367001000BC6EDA /* StoriesRouter.swift in Sources */,
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
 				86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */,
-				868B5E5423C0D75F007BC301 /* GroupModel.swift in Sources */,
 				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
 				962FB45123967AB400B88FFC /* RealmStoryDetail.swift in Sources */,
 				86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */,
