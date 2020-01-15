@@ -13,6 +13,8 @@ final class SoundsAssembly: ScreenAssembly {
     func assembleDependencies() -> SoundsViewModel.Dependencies {
         return VC.ViewModel.Dependencies(
             noiseService: NoiseService(),
-            audioPlayerService: AudioPlayerService.shared)
+            audioPlayerService: AudioPlayerService.shared,
+            mediaCacheService: MediaCacheService()
+        )
     }
 }
