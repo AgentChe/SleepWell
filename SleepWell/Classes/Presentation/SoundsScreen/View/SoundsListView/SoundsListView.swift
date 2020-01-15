@@ -34,7 +34,7 @@ class SoundsListView: UIView {
         tableView.dataSource = self
     }
     
-     private let selectedSoundRelay = PublishRelay<Noise>()
+    private let selectedSoundRelay = PublishRelay<Noise>()
     private var _elements: [NoiseCategory] = []
 }
 
