@@ -21,6 +21,7 @@ protocol ScenesViewModelInterface {
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
     func copy(url: [URL]) -> Signal<Void>
+    func pauseNoise() -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
@@ -116,5 +117,9 @@ extension ScenesViewModel: ScenesViewModelInterface {
     func copy(url: [URL]) -> Signal<Void> {
         dependencies.mediaCacheService.copy(urls: url)
             .asSignal(onErrorSignalWith: .empty())
+    }
+    
+    func pauseNoise() -> Signal<Void> {
+        dependencies.audioPlayerService.pauseNoise()
     }
 }

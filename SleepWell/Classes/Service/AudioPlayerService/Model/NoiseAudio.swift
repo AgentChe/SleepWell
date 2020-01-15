@@ -28,9 +28,16 @@ final class NoiseAudio: ReactiveCompatible {
         }
     }
     
-    func pause() {
+    func forcePause() {
         players.forEach {
             $0.player.pause()
+        }
+    }
+    
+    func pause() -> Signal<Void> {
+        .deferred { [weak self] in
+            self?.forcePause()
+            return .just(())
         }
     }
     
