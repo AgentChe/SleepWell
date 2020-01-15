@@ -6,16 +6,11 @@
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
-import AVFoundation
+import AVFoundation.AVPlayer
 import RxCocoa
 import RxSwift
 
 final class SceneAudio: ReactiveCompatible {
-    
-    struct Player {
-        let player: AVPlayer
-        let id: Int
-    }
     
     let players: [Player]
     let scene: Scene

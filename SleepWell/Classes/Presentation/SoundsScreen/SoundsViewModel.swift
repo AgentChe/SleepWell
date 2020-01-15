@@ -11,6 +11,9 @@ import RxCocoa
 
 protocol SoundsViewModelInterface {
     func sounds() -> Driver<[NoiseCategory]>
+    func add(noises: Set<NoiseSound>) -> Completable
+    var noiseVolume: Binder<(to: Int, volume: Float)> { get }
+    func copy(url: [URL]) -> Signal<Void>
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -22,6 +25,7 @@ final class SoundsViewModel: BindableViewModel {
     struct Dependencies {
         let noiseService: NoiseService
         let audioPlayerService: AudioPlayerService
+        let mediaCacheService: MediaCacheService
     }
 }
 
@@ -33,4 +37,16 @@ extension SoundsViewModel: SoundsViewModelInterface {
             .asDriver(onErrorJustReturn: [])
     }
     
+    func add(noises: Set<NoiseSound>) -> Completable {
+        dependencies.audioPlayerService.add(noises: noises)
+    }
+    
+    var noiseVolume: Binder<(to: Int, volume: Float)> {
+        dependencies.audioPlayerService.rx.noiseVolume
+    }
+    
+    func copy(url: [URL]) -> Signal<Void> {
+        dependencies.mediaCacheService.copy(urls: url)
+            .asSignal(onErrorSignalWith: .empty())
+    }
 }

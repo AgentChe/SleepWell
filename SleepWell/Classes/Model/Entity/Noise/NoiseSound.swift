@@ -8,7 +8,7 @@
 
 import Foundation.NSURL
 
-struct NoiseSound: Sound {
+struct NoiseSound: Sound, Hashable {
     let id: Int
     let soundUrl: URL
     let soundSecs: Int

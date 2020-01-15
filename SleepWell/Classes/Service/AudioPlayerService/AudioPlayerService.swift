@@ -73,12 +73,12 @@ final class AudioPlayerService: ReactiveCompatible {
     func add(sceneDetail: SceneDetail) {
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
-            return
+                return
         }
         
         let players = sceneDetail.sounds
             .map {
-                SceneAudio.Player(
+                Player(
                     player: AVPlayer(url: $0.soundUrl.localUrl),
                     id: $0.id
                 )
@@ -90,6 +90,33 @@ final class AudioPlayerService: ReactiveCompatible {
         )
         sceneRelay.accept(sceneAudio)
         sceneAudio.prepareToPlay()
+    }
+    
+    func add(noises: Set<NoiseSound>) -> Completable {
+        let currentIds = Set(noiseRelay.value?.players.map { $0.id } ?? [])
+        let addedIds = Set(noises.map { $0.id })
+        let filtered = currentIds.intersection(addedIds)
+        let removed = currentIds.subtracting(filtered)
+        let newIds = addedIds.subtracting(filtered)
+        noiseRelay.value?.remove(ids: removed)
+        
+        let newPlayers = noises.filter { newIds.contains($0.id) }
+            .map {
+                Player(
+                    player: AVPlayer(url: $0.soundUrl.localUrl),
+                    id: $0.id
+                )
+            }
+        
+        if let value = noiseRelay.value {
+            value.add(players: newPlayers)
+        } else {
+            noiseRelay.accept(NoiseAudio(players: newPlayers))
+        }
+        
+        noiseRelay.value?.play()
+        
+        return .empty()
     }
     
     func time(for id: Int) -> Driver<Int> {
@@ -200,6 +227,7 @@ final class AudioPlayerService: ReactiveCompatible {
         .asSignal(onErrorSignalWith: .never())
     }
     
+    fileprivate let noiseRelay = BehaviorRelay<NoiseAudio?>(value: nil)
     fileprivate let sceneRelay = BehaviorRelay<SceneAudio?>(value: nil)
     fileprivate let audioRelay = BehaviorRelay<RecordingAudio?>(value: nil)
     fileprivate let audioType = BehaviorRelay<AudioType>(value: .none)
@@ -491,6 +519,12 @@ extension Reactive where Base: AudioPlayerService {
         }
     }
     
+    var noiseVolume: Binder<(to: Int, volume: Float)> {
+        
+        Binder(base) { base, tuple in
+            base.noiseRelay.value?.setVolume(to: tuple.to, value: tuple.volume)
+        }
+    }
     
     var setTimer: Binder<Int> {
         

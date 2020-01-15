@@ -88,10 +88,36 @@ extension SoundsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
+        let noiseSounds = soundsListView
+            .selectedItem
+            .map { $0.sounds }
+            .scan(Set<NoiseSound>()) { $0.union($1) }
+        
+        noiseSounds
+            .scan(Set<NoiseSound>()) { $0.union($1) }
+            .flatMap(viewModel.add)
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         soundsView.changeVolume
-            .emit(to: Binder(self) { base, tuple in
-                // TODO изменение звука по id
+            .emit(to: viewModel.noiseVolume)
+            .disposed(by: disposeBag)
+        
+        let loadedSounds = BehaviorRelay<Set<Int>>(value: Set<Int>())
+        
+        noiseSounds
+            .withLatestFrom(loadedSounds.asDriver()) { ($0, $1) }
+            .map { noises, loaded -> ([NoiseSound], Set<Int>)  in
+                
+                let ids = Set(noises.map { $0.id }).subtracting(loaded)
+                return (noises.filter { ids.contains($0.id) }, loaded)
+            }
+            .do(onNext: { noises, loaded in
+                loadedSounds.accept(loaded.union(noises.map { $0.id }))
             })
+            .map { $0.0.map { $0.soundUrl } }
+            .flatMap(viewModel.copy)
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
