@@ -22,6 +22,7 @@ final class NoiseMapper {
         
         let fullNoises = data["sound_categories"] as? [[String: Any]] ?? []
         let deletedNoiseIds = data["deleted_sound_ids"] as? [Int] ?? []
+        let deletedNoiseCategoryIds = data["deleted_sound_categories_ids"] as? [Int] ?? []
         let noisesHashCode = data["sound_categories_hash"] as? String ?? ""
         
         var categories: [NoiseCategory] = []
@@ -32,11 +33,19 @@ final class NoiseMapper {
                 continue
             }
             
+            let sounds = fullNoise["sounds"] as? [[String: Any]] ?? []
+            
+            for sound in sounds {
+                if let imageUrl = sound["image_url"] as? String, let imagePath = sound["image_path"] as? String {
+                    copingLocalImages.append(CopyResource(name: imagePath, cacheKey: imageUrl))
+                }
+            }
+            
             categories.append(noiseCategory)
         }
         
         return FullNoises(noiseCategories: categories,
-                          deletedNoiseCategoryIds: [],
+                          deletedNoiseCategoryIds: deletedNoiseCategoryIds,
                           deletedNoiseIds: deletedNoiseIds,
                           noisesHashCode: noisesHashCode,
                           copingLocalImages: copingLocalImages)
