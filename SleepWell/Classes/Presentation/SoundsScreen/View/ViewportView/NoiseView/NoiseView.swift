@@ -25,8 +25,8 @@ class NoiseView: UIView {
     @IBOutlet private var image: UIImageView!
     @IBOutlet private var containerView: UIView!
     
-    var imageSize: CGFloat {
-        return image.bounds.width
+    var imageSize: CGSize {
+        return image.bounds.size
     }
     
     var imageCenter: CGPoint {
@@ -91,7 +91,7 @@ class NoiseView: UIView {
         let newCenter = CGPoint(x: self.lastCenter.x + translation.x , y: self.lastCenter.y + translation.y)
         switch gesture.state {
         case .began:
-            self.superview?.bringSubviewToFront(self)
+//            self.superview?.bringSubviewToFront(self)
             self.lastCenter = center
             self.name.isHidden = false
             return .began(center)

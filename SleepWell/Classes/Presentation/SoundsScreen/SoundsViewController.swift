@@ -102,7 +102,7 @@ extension SoundsViewController: BindsToViewModel {
                 return sounds
                     .map { $0.sounds }
                     .reduce(Set<NoiseSound>()) { $0.union($1) }
-            }
+        }.share(replay: 1, scope: .forever).debug()
         
         noiseSounds
             .flatMap(viewModel.add)
