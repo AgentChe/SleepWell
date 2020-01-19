@@ -31,11 +31,12 @@ final class SoundsViewController: UIViewController {
 
 extension SoundsViewController: BindsToViewModel {
     typealias ViewModel = SoundsViewModel
+    typealias Output = Signal<MainRoute>
     
     struct Input {
         let isActiveSubscription: Observable<Bool>
-        let hideTabbarClosure: (Bool) -> Void
         let isMainScreen: Driver<Bool>
+        let hideTabbarClosure: (Bool) -> Void
     }
 
     static func make() -> SoundsViewController {
@@ -43,8 +44,15 @@ extension SoundsViewController: BindsToViewModel {
         return storyboard.instantiateViewController(withIdentifier: "SoundsViewController") as! SoundsViewController
     }
     
-    func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> () {
+    func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.sounds()
+        
+        let selectedCellModel = soundsListView
+            .selectedItem
+        
+        let selectedNoise = selectedCellModel
+            .filter { $0.paid }
+            .map { $0.noise }
         
         Driver
             .combineLatest(elements,
@@ -56,7 +64,7 @@ extension SoundsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        let addSound = soundsListView.selectedItem.map { NoiseAction.add($0) }
+        let addSound = selectedNoise.map { NoiseAction.add($0) }
         let deleteSound = soundsView.deletedSound.map { NoiseAction.delete($0) }
         
         Observable<NoiseAction>
@@ -75,8 +83,7 @@ extension SoundsViewController: BindsToViewModel {
             .bind(to: sounds)
             .disposed(by: disposeBag)
 
-        soundsListView
-            .selectedItem
+        selectedNoise
             .bind(to: soundsView.item)
             .disposed(by: disposeBag)
         
@@ -85,7 +92,7 @@ extension SoundsViewController: BindsToViewModel {
                 soundsView.didTapAdd.asObservable().map { _ in .add },
                 addSoundButton.rx.tap.map { _ in .add },
                 closeButton.rx.tap.map { _ in .close },
-                soundsListView.selectedItem.map { _ in .close }
+                selectedNoise.map { _ in .close }
             )
         
         let emptyViewTap = UITapGestureRecognizer()
@@ -161,6 +168,11 @@ extension SoundsViewController: BindsToViewModel {
             .flatMap(viewModel.copy)
             .subscribe()
             .disposed(by: disposeBag)
+        
+        return selectedCellModel
+            .filter { !$0.paid}
+            .map { _ in MainRoute.paygate }
+            .asSignal(onErrorSignalWith: .never())
     }
 }
 

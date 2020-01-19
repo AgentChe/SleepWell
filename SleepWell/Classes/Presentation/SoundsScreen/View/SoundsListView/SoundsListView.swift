@@ -34,7 +34,7 @@ class SoundsListView: UIView {
         tableView.dataSource = self
     }
     
-    private let selectedSoundRelay = PublishRelay<Noise>()
+    private let selectedSoundRelay = PublishRelay<SoundCellElement>()
     private var _elements: [NoiseCategory] = []
     private var isActiveSubscription: Bool = false
 }
@@ -47,7 +47,7 @@ extension SoundsListView {
         tableView.reloadData()
     }
     
-    var selectedItem: Observable<Noise> {
+    var selectedItem: Observable<SoundCellElement> {
         return selectedSoundRelay.asObservable()
     }
 }

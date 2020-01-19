@@ -44,7 +44,7 @@ final class MainViewController: UIViewController {
     private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
-    private var soundsAssambly: (vc: SoundsViewController, output: Void)!
+    private var soundsAssambly: (vc: SoundsViewController, output: Signal<MainRoute>)!
     
     private let storiesTabItem = TabItem()
     private let meditateTabItem = TabItem()
@@ -122,9 +122,7 @@ extension MainViewController: BindsToViewModel {
                         .map { $0 == Tab.sound.rawValue }
                         .asDriver(onErrorDriveWith: .empty())
                         .startWith(true)
-                    self.sounds(isMainScreen: isMainScreen, isActiveSubscription: isActiveSubscription)
-                    
-                    return .empty()
+                    return self.sounds(isMainScreen: isMainScreen, isActiveSubscription: isActiveSubscription)
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -188,10 +186,7 @@ private extension MainViewController {
         return storiesAssambly.output
     }
 
-    func scenes(
-        behave: Observable<Bool>,
-        isMainScreen: Driver<Bool>
-    ) -> Signal<MainRoute> {
+    func scenes(behave: Observable<Bool>, isMainScreen: Driver<Bool>) -> Signal<MainRoute> {
         if scenesAssambly == nil {
             scenesAssambly = ScenesAssembly().assemble(input: .init(
                 subscription: behave,
@@ -206,18 +201,19 @@ private extension MainViewController {
         return scenesAssambly.output
     }
     
-    func sounds(isMainScreen: Driver<Bool>, isActiveSubscription: Observable<Bool>) {
+    func sounds(isMainScreen: Driver<Bool>, isActiveSubscription: Observable<Bool>) -> Signal<MainRoute> {
         if soundsAssambly == nil {
             soundsAssambly = SoundsAssembly().assemble(input: .init(
                 isActiveSubscription: isActiveSubscription,
+                isMainScreen: isMainScreen,
                 hideTabbarClosure: { [weak self] state in
                     self?.hideTabBar(isHidden: state)
-                },
-                isMainScreen: isMainScreen
+                }
             ))
         }
         soundsAssambly.vc.view.frame = containerView.bounds
         add(soundsAssambly.vc)
+        return soundsAssambly.output
     }
 }
 
@@ -245,6 +241,3 @@ private extension MainViewController {
         }
     }
 }
-
-
-

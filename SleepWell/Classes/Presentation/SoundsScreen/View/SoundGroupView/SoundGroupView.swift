@@ -14,7 +14,7 @@ final class SoundGroupView: UIView {
     @IBOutlet private var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet private var conteinerView: UIView!
     
-    var selectedItem: ((Noise) -> Void)?
+    var selectedItem: ((SoundCellElement) -> Void)?
     
     override init(frame: CGRect) {
            super.init(frame: frame)
@@ -49,7 +49,7 @@ final class SoundGroupView: UIView {
 
 extension SoundGroupView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem?(elements[indexPath.row].noise)
+        selectedItem?(elements[indexPath.row])
     }
 }
 
