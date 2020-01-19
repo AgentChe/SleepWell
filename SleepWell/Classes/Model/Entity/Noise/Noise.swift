@@ -8,7 +8,7 @@
 
 import Foundation.NSURL
 
-struct Noise: Model {
+struct Noise: Model, Hashable {
     let id: Int
     let name: String
     let paid: Bool
