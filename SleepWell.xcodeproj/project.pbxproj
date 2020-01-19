@@ -123,6 +123,7 @@
 		86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CCD23646A3500B0F5EA /* MeditateCell.swift */; };
 		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
 		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
+		961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */; };
 		9623D336239885EF0040CB43 /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D335239885EF0040CB43 /* TextAttributes.swift */; };
 		9623D33823988A510040CB43 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D33723988A510040CB43 /* Fonts.swift */; };
 		9623D33923990A850040CB43 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6D236745D6004DC76A /* OpenSans-Semibold.ttf */; };
@@ -449,6 +450,7 @@
 		86F98CCE23646A3500B0F5EA /* MeditateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateCell.xib; sourceTree = "<group>"; };
 		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceUtils.swift; sourceTree = "<group>"; };
 		9623D335239885EF0040CB43 /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		9623D33723988A510040CB43 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		9623D342239911F90040CB43 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -1027,6 +1029,7 @@
 				9623D335239885EF0040CB43 /* TextAttributes.swift */,
 				965ABE7023A023770069307E /* SizeUtils.swift */,
 				969BF21F23AD6CB3004A84B6 /* Mime.swift */,
+				961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2141,6 +2144,7 @@
 				969BF22323AD6DA9004A84B6 /* DownloadRemoteImageOperation.swift in Sources */,
 				84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */,
 				9699A83123CF7A9500CADE8B /* RealmNoise.swift in Sources */,
+				961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
 				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
 				9699A83323CF7DDE00CADE8B /* RealmNoiseCategory.swift in Sources */,
