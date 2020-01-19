@@ -25,7 +25,7 @@ final class SoundsViewController: UIViewController {
         soundsView.addGestureRecognizer(tapGesture)
     }
     
-    private let sounds = BehaviorRelay<[Noise]>(value: [])
+    private let sounds = BehaviorRelay<Set<Noise>>(value: [])
     private let disposeBag = DisposeBag()
 }
 
@@ -48,16 +48,25 @@ extension SoundsViewController: BindsToViewModel {
             .drive(soundsListView.elements)
             .disposed(by: disposeBag)
         
-        soundsListView
-            .selectedItem
-            .scan([]) { old, new in
+        let addSound = soundsListView.selectedItem.map { NoiseAction.add($0) }
+        let deleteSound = soundsView.deletedSound.map { NoiseAction.delete($0) }
+        
+        Observable<NoiseAction>
+            .merge(addSound, deleteSound)
+            .scan([Noise]()) { old, action -> [Noise] in
                 var result = old
-                result.append(new)
+                switch action {
+                case let .add(noise):
+                    result.append(noise)
+                case let .delete(id):
+                    result.removeAll(where: { $0.id == id })
+                }
                 return result
             }
+            .map { Set($0) }
             .bind(to: sounds)
             .disposed(by: disposeBag)
-        
+
         soundsListView
             .selectedItem
             .bind(to: soundsView.item)
@@ -88,13 +97,14 @@ extension SoundsViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        let noiseSounds = soundsListView
-            .selectedItem
-            .map { $0.sounds }
-            .scan(Set<NoiseSound>()) { $0.union($1) }
+        let noiseSounds = sounds
+            .map { sounds -> Set<NoiseSound> in
+                return sounds
+                    .map { $0.sounds }
+                    .reduce(Set<NoiseSound>()) { $0.union($1) }
+            }
         
         noiseSounds
-            .scan(Set<NoiseSound>()) { $0.union($1) }
             .flatMap(viewModel.add)
             .subscribe()
             .disposed(by: disposeBag)
@@ -127,6 +137,11 @@ private extension SoundsViewController {
     enum UserAction {
         case add
         case close
+    }
+    
+    enum NoiseAction {
+        case add(Noise)
+        case delete(Int)
     }
     
     func showSoundsList(action: UserAction, isEmpty: Bool) {

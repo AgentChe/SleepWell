@@ -20,15 +20,15 @@ class ViewportView: UIView {
     @IBOutlet private var strongerLabel: UILabel!
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var addButton: UIButton!
-    
-    @IBOutlet private var contentView: UIView!
+    @IBOutlet private var deleteArea: UIImageView!
+    @IBOutlet private var trashContainerView: UIView!
     
     private var volumeValue: CGFloat {
-        (contentView.bounds.height - 120) / 100
+        (containerView.bounds.height - 60) / 100
     }
     
     private var volumeFactor: CGFloat {
-        (contentView.bounds.width - 76) / 100
+        (containerView.bounds.width - 38) / 100
     }
     
     override init(frame: CGRect) {
@@ -42,6 +42,11 @@ class ViewportView: UIView {
     }
     
     private func initialize() {
+        setupUI()
+        setupRx()
+    }
+    
+    private func setupUI() {
         UINib(nibName: "ViewportView", bundle: nil).instantiate(withOwner: self, options: nil)
         containerView.frame = bounds
         addSubview(containerView)
@@ -55,9 +60,16 @@ class ViewportView: UIView {
             $0?.alpha = 0
         }
         
+        trashContainerPath = semicirclePath(rect: trashContainerView.frame)
+        let mask = CAShapeLayer()
+        mask.path = trashContainerPath.cgPath
+        trashContainerView.layer.mask = mask
+        
         weakerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         strongerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        
+    }
+    
+    private func setupRx() {
         let sounds = noiseSounds
             .compactMap { $0 }
             .scan([Noise]()) { old, new in
@@ -66,14 +78,56 @@ class ViewportView: UIView {
                 return result
             }
         
-        let viewsTranslation = noiseSounds
+//        let noiseViews = noiseSounds
+//            .delay(.milliseconds(550), scheduler: MainScheduler.instance)
+//            .compactMap(setupNoiseView)
+//            .scan([NoiseView]()) { old, new in
+//                var result = old
+//                result.append(new)
+//                return result
+//            }
+        
+        let addNoiseView = noiseSounds
             .delay(.milliseconds(550), scheduler: MainScheduler.instance)
-            .compactMap(setupNoiseView)
-            .scan([NoiseView]()) { old, new in
-                var result = old
-                result.append(new)
-                return result
+            .compactMap { [weak self] soundModel -> NoiseViewAction? in
+                    guard let self = self, let model = soundModel else {
+                        return nil
+                    }
+                    // TODO: - Когда будут добавлены параметры в модель
+            //        let posX = (model.positionX ?? 50) * self.volumeFactor
+            //        let posY = (model.positionY ?? 50) * self.volumeValue
+                                
+                    let posX = 50 * self.volumeFactor
+                    let posY = 50 * self.volumeValue
+                    let noiseView = NoiseView(frame: CGRect(origin: .zero, size: CGSize(width: 76, height: 120)))
+                    noiseView.setStartPosition(point: CGPoint(x: posX, y: posY))
+                    noiseView.setup(noise: model)
+                    
+                return .add(view: noiseView)
+                }
+        
+        let testnoiseViews = Observable
+            .merge(deletedRelay.compactMap { $0 }, addNoiseView)
+            .scan([NoiseView]()) { [weak self] old, action -> [NoiseView] in
+                guard let self = self else { return old }
+                switch action {
+                case let .add(view):
+                    self.addSubview(view)
+                    return old + [view]
+                case let .delete(id):
+                    var result = old
+                    guard let view = result.first(where: { $0.id == id }) else {
+                        return old
+                    }
+                    result.removeAll(where: { $0.id == id })
+                    view.removeFromSuperview()
+                    return result
+                }
             }
+            .distinctUntilChanged()
+            .share(replay: 1, scope: .whileConnected)
+        
+        let viewsTranslation = testnoiseViews
             .flatMap(changeVolumeAction)
             .share(replay: 1, scope: .whileConnected)
         
@@ -88,7 +142,32 @@ class ViewportView: UIView {
                     return nil
                 }
             }
+            .distinctUntilChanged()
             .share(scope: .whileConnected)
+        
+        viewsTranslation
+            .compactMap { tuple -> Int? in
+                guard case .ended = tuple.1 else {
+                    return nil
+                }
+                return tuple.0
+        }
+        .withLatestFrom(testnoiseViews) { ($0, $1) }
+        .compactMap { [weak self] id, views -> NoiseViewAction? in
+            guard
+                let self = self,
+                let view = views.first(where: { $0.id == id })
+               
+            else { return nil }
+            
+            // Проверяем находится ли центр картинки звука внутри вьюхи корзины
+            guard self.deleteArea.frame.contains(view.convert(view.imageCenter, to: self.deleteArea)) else {
+                return nil }
+            
+            return .delete(id: id)
+        }
+        .bind(to: deletedRelay)
+        .disposed(by: disposeBag)
         
         viewActivity
             .bind(to: viewActionRelay)
@@ -106,7 +185,6 @@ class ViewportView: UIView {
             }
             .bind(to: changeVolumeRelay)
             .disposed(by: disposeBag)
-        
     }
     
     // Страшные штуки
@@ -125,7 +203,7 @@ class ViewportView: UIView {
         noiseView.setStartPosition(point: CGPoint(x: posX, y: posY))
         noiseView.setup(noise: model)
         
-        self.contentView.addSubview(noiseView)
+        self.containerView.addSubview(noiseView)
         return noiseView
     }
     
@@ -147,11 +225,13 @@ class ViewportView: UIView {
         guard let self = self else { return .empty() }
         switch action {
         case let .changed(center):
-            let posY = floor(center.y)
-            let posX = floor(center.x)
-            let volume = abs(Float(ceil((1 - posY / 100 / self.volumeValue) * 10) / 10))
-            let factor = abs(Float(ceil((1 - posX / 100 / self.volumeFactor) * 10) / 10))
+            let posY = center.y
+            let posX = center.x
+            let volume = Float(1 - posY / 100 / self.volumeValue)
+            let factor = Float(1 - posX / 100 / self.volumeFactor)
             let ids = sounds.first(where: { $0.id == id })?.sounds.map { $0.id } ?? []
+            print("volume: \(volume)")
+            print("factor: \(factor)")
             
             guard ids.count != 0 || ids.count == 2 else {
                 return .empty()
@@ -168,6 +248,8 @@ class ViewportView: UIView {
         }
     }
     
+    private let deletedRelay = BehaviorRelay<NoiseViewAction?>(value: nil)
+    private var trashContainerPath: UIBezierPath!
     private let viewActionRelay = PublishRelay<Bool>()
     private let changeVolumeRelay = PublishRelay<Volume>()
     private let noiseSounds = BehaviorRelay<Noise?>(value: nil)
@@ -193,9 +275,22 @@ extension ViewportView {
     var didTapAdd: Signal<Void> {
         return addButton.rx.tap.asSignal()
     }
+    
+    var deletedSound: Observable<Int> {
+        return deletedRelay
+            .compactMap { action in
+                guard case let .delete(id) = action else { return nil }
+                return id
+            }
+    }
 }
 
 private extension ViewportView {
+    
+    enum NoiseViewAction {
+        case add(view: NoiseView)
+        case delete(id: Int)
+    }
     
     var borderAnimation: Binder<Bool> {
         return Binder(self) { base, isHidden in
@@ -213,4 +308,18 @@ private extension ViewportView {
             }
         }
     }
+    
+    func semicirclePath(rect: CGRect) -> UIBezierPath {
+        let path = UIBezierPath()
+        let centerPoint = CGPoint(x: rect.origin.x, y: rect.origin.y + rect.height)
+        path.addArc(withCenter: centerPoint,
+                    radius: rect.width,
+                    startAngle: 3 * CGFloat.pi / 2,
+                    endAngle: 2 * CGFloat.pi,
+                    clockwise: true)
+        path.addLine(to: centerPoint)
+        path.close()
+        return path
+    }
+
 }

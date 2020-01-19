@@ -25,6 +25,14 @@ class NoiseView: UIView {
     @IBOutlet private var image: UIImageView!
     @IBOutlet private var containerView: UIView!
     
+    var imageSize: CGFloat {
+        return image.bounds.width
+    }
+    
+    var imageCenter: CGPoint {
+        return image.center
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -42,7 +50,7 @@ class NoiseView: UIView {
         addSubview(containerView)
         name.isHidden = true
         
-        addGestureRecognizer(panGesture)
+        image.addGestureRecognizer(panGesture)
     }
     
     func setup(noise: Noise) {
