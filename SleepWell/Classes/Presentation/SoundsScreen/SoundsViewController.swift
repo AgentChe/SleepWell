@@ -35,6 +35,7 @@ extension SoundsViewController: BindsToViewModel {
     struct Input {
         let isActiveSubscription: Observable<Bool>
         let hideTabbarClosure: (Bool) -> Void
+        let isMainScreen: Driver<Bool>
     }
 
     static func make() -> SoundsViewController {
@@ -78,14 +79,38 @@ extension SoundsViewController: BindsToViewModel {
                 soundsListView.selectedItem.map { _ in .close }
             )
         
-        let didUserAction = userAction
-            .map { action -> Bool in
-                guard case .add = action else { return false }
-                return true
-            }
+        let emptyViewTap = UITapGestureRecognizer()
+        emptyView.addGestureRecognizer(emptyViewTap)
+        let showTabbarByTapOnEmptyView = emptyViewTap.rx.event.asSignal().map { _ in false }
+        let hideTabbarByTimeout = Signal
+            .merge(
+                input.isMainScreen.asSignal(onErrorSignalWith: .empty()),
+                showTabbarByTapOnEmptyView,
+                soundsView.didTapAdd.asSignal().map { _ in false },
+                addSoundButton.rx.tap.asSignal().map { _ in false }
+            )
+            .withLatestFrom(userAction.asSignal(onErrorSignalWith: .empty()).startWith(.close)) { ($0, $1) }
+            .filter { $0.1 != .add }
+            .map { $0.0 }
+            .filter { $0 }
+            .debounce(.seconds(2))
         
-        Observable.merge(soundsView.didMovingView.asObservable().filter { $0 }, didUserAction)
-            .bind(onNext: input.hideTabbarClosure)
+        let showSoundsList = userAction
+            .filter { $0 == .add }
+        
+        Signal
+            .merge(
+                hideTabbarByTimeout.asSignal(),
+                soundsView.didMovingView.asSignal().filter { $0 },
+                showTabbarByTapOnEmptyView,
+                showSoundsList.asSignal(onErrorSignalWith: .empty()).map { _ in false },
+                tapGesture.rx.event.asSignal().map { _ in false }
+            )
+            .distinctUntilChanged()
+            .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) { ($0, $1) }
+            .filter { $0.1 }
+            .map { $0.0 }
+            .emit(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
         userAction

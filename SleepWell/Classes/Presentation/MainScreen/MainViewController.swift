@@ -118,7 +118,12 @@ extension MainViewController: BindsToViewModel {
                             .startWith(true)
                     )
                 case .sound :
-                    self.sounds(behave: isActiveSubscription)
+                    let isMainScreen = selectIndex
+                        .map { $0 == Tab.sound.rawValue }
+                        .asDriver(onErrorDriveWith: .empty())
+                        .startWith(true)
+                    self.sounds(isMainScreen: isMainScreen, isActiveSubscription: isActiveSubscription)
+                    
                     return .empty()
                 }
             }
@@ -201,13 +206,14 @@ private extension MainViewController {
         return scenesAssambly.output
     }
     
-    func sounds(behave: Observable<Bool>) {
+    func sounds(isMainScreen: Driver<Bool>, isActiveSubscription: Observable<Bool>) {
         if soundsAssambly == nil {
             soundsAssambly = SoundsAssembly().assemble(input: .init(
-                isActiveSubscription: behave,
+                isActiveSubscription: isActiveSubscription,
                 hideTabbarClosure: { [weak self] state in
                     self?.hideTabBar(isHidden: state)
-                }
+                },
+                isMainScreen: isMainScreen
             ))
         }
         soundsAssambly.vc.view.frame = containerView.bounds
