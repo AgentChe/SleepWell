@@ -125,7 +125,7 @@ class ViewportView: UIView {
             .share(replay: 1, scope: .whileConnected)
             
         changedNoisePosition
-            .bind(to: trashScaleAnimate)
+            .bind(to: trashAndScaleAnimate)
             .disposed(by: disposeBag)
         
         viewsTranslation
@@ -280,7 +280,7 @@ private extension ViewportView {
 
 }
 
-// Animate
+// Animations
 private extension ViewportView {
     
     var borderAnimation: Binder<Bool> {
@@ -301,38 +301,47 @@ private extension ViewportView {
         }
     }
     
-    var trashScaleAnimate: Binder<NoiseView> {
+    var trashAndScaleAnimate: Binder<NoiseView> {
         return Binder(self) { base, view in
             let imageCenter = view.convert(view.imageCenter, to: base.containerView)
-            let posY = imageCenter.y
-            let thirdOfScreen = base.containerView.bounds.height / 3
-            let areaY = base.containerView.bounds.height - thirdOfScreen
+            base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
             
-            if posY > areaY {
-                let alphaFactor = 1 / thirdOfScreen
-                let alpha = (base.containerView.bounds.height - posY) * alphaFactor
-                self.deleteArea.alpha = 1 - alpha
-            } else {
-                self.deleteArea.alpha = 0
-            }
-            
-            if base.trashContainerPath.contains(imageCenter) {
-                let imageSize = view.imageSize
-                let trashSize = base.deleteArea.bounds.size
-                let minScale = trashSize.width / imageSize.width
-                // TODO: 1 заменить на base.minScale когда будет реализован scale по громкости
-                let scaleFactor = 1 - minScale
-                
-                let distance = base.distance(from: imageCenter, to: base.trashCenter)
-                let scale = minScale + distance / base.trashScaleRadius * scaleFactor
-                
-                guard scale >= minScale && scale <= 1 else { return }
-                
+            let minSale = base.deleteArea.bounds.size.width / view.imageSize.width
+            if let scale = base.animateNoiseScale(center: imageCenter, minSale: minSale, posY: imageCenter.y) {
                 view.transform = CGAffineTransform(scaleX: scale, y: scale)
-            } else {
-                // TODO: Блок для scale по громкости
             }
         }
+    }
+    
+    func animateNoiseScale(center: CGPoint, minSale: CGFloat, posY: CGFloat) -> CGFloat?  {
+        if trashContainerPath.contains(center) {
+            let scaleFactor = minScale - minScale
+            
+            let distanceForTrash = distance(from: center, to: trashCenter)
+            let scale = minScale + distanceForTrash / trashScaleRadius * scaleFactor
+            
+            guard scale >= minScale && scale <= minScale else { return nil }
+            
+            return scale
+        } else {
+            let scaleFactor = 1 - (maxScale - minScale) / (containerView.bounds.height - trashScaleRadius)
+            let scale = maxScale - (posY - trashScaleRadius) / (containerView.bounds.height - trashScaleRadius) * scaleFactor
+            
+            guard scale >= minScale && scale <= maxScale else { return nil }
+            return scale
+        }
+    }
+    
+    func animateTrashAlpha(posY: CGFloat) -> CGFloat {
+        let thirdOfScreen = containerView.bounds.height / 3
+        let areaY = containerView.bounds.height - thirdOfScreen
+        guard posY > areaY else {
+            return 0
+        }
+        
+        let alphaFactor = 1 / thirdOfScreen
+        let alpha = 1 - (containerView.bounds.height - posY) * alphaFactor
+        return alpha
     }
 }
 
