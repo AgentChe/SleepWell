@@ -54,7 +54,7 @@ final class IDFAService {
                 let isAdvertisingTrackingEnabled = ASIdentifierManager.shared().isAdvertisingTrackingEnabled
                 
                 let request = SetRequest(userToken: userToken,
-                                         locale: Locale.current.languageCode ?? "en",
+                                         locale: UIDevice.deviceLanguageCode ?? "en",
                                          version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1",
                                          timezone: TimeZone.current.identifier,
                                          idfa: idfa,

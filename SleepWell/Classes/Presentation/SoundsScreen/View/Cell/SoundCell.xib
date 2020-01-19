@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +35,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abT-AO-Yc7">
-                        <rect key="frame" x="0.0" y="84" width="76" height="36"/>
+                        <rect key="frame" x="0.0" y="84" width="72" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="PGd-EN-1lI"/>
                         </constraints>
@@ -43,21 +43,44 @@
                         <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgO-o6-1QA">
+                        <rect key="frame" x="55" y="0.0" width="25" height="25"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_locked_sound" translatesAutoresizingMaskIntoConstraints="NO" id="P1W-4a-dyX">
+                                <rect key="frame" x="7.5" y="6" width="10" height="13"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="Q29-zb-L8z"/>
+                            <constraint firstAttribute="height" constant="25" id="XTF-1j-AA7"/>
+                            <constraint firstItem="P1W-4a-dyX" firstAttribute="centerX" secondItem="wgO-o6-1QA" secondAttribute="centerX" id="aoF-LP-87q"/>
+                            <constraint firstItem="P1W-4a-dyX" firstAttribute="centerY" secondItem="wgO-o6-1QA" secondAttribute="centerY" id="dKe-bg-atG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="dh2-On-xcY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8FZ-vO-68i"/>
                 <constraint firstItem="abT-AO-Yc7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8N5-Fu-WLM"/>
-                <constraint firstAttribute="trailing" secondItem="abT-AO-Yc7" secondAttribute="trailing" id="Lkw-Jl-fw0"/>
+                <constraint firstItem="dh2-On-xcY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="HUd-O3-Ei6"/>
+                <constraint firstAttribute="trailing" secondItem="abT-AO-Yc7" secondAttribute="trailing" constant="4" id="Lkw-Jl-fw0"/>
                 <constraint firstAttribute="bottom" secondItem="abT-AO-Yc7" secondAttribute="bottom" id="Uyk-u8-hO0"/>
+                <constraint firstItem="wgO-o6-1QA" firstAttribute="trailing" secondItem="dh2-On-xcY" secondAttribute="trailing" constant="4" id="Wxe-Vm-fg8"/>
+                <constraint firstItem="wgO-o6-1QA" firstAttribute="top" secondItem="dh2-On-xcY" secondAttribute="top" id="ZfG-EK-TuH"/>
                 <constraint firstItem="abT-AO-Yc7" firstAttribute="top" secondItem="dh2-On-xcY" secondAttribute="bottom" constant="8" id="duE-XE-uJw"/>
-                <constraint firstItem="dh2-On-xcY" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="wxb-6t-Tdl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="83" height="120"/>
             <connections>
                 <outlet property="imageView" destination="dh2-On-xcY" id="v17-Zd-LWe"/>
+                <outlet property="lockedView" destination="wgO-o6-1QA" id="NpA-C0-qda"/>
                 <outlet property="nameLabel" destination="abT-AO-Yc7" id="eAR-yF-IRr"/>
             </connections>
             <point key="canvasLocation" x="86.956521739130437" y="179.46428571428569"/>
@@ -65,5 +88,6 @@
     </objects>
     <resources>
         <image name="i_s_004" width="76" height="76"/>
+        <image name="ic_locked_sound" width="10" height="13"/>
     </resources>
 </document>

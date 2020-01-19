@@ -123,6 +123,7 @@
 		86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CCD23646A3500B0F5EA /* MeditateCell.swift */; };
 		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
 		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
+		961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */; };
 		9623D336239885EF0040CB43 /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D335239885EF0040CB43 /* TextAttributes.swift */; };
 		9623D33823988A510040CB43 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D33723988A510040CB43 /* Fonts.swift */; };
 		9623D33923990A850040CB43 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8C6D236745D6004DC76A /* OpenSans-Semibold.ttf */; };
@@ -155,6 +156,7 @@
 		962FB4622396847F00B88FFC /* SceneSoundRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */; };
 		962FB4642396878A00B88FFC /* SceneDetailRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */; };
 		962FB46A2396A76100B88FFC /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4692396A76100B88FFC /* CacheService.swift */; };
+		963F0E4423D4ADA600FD39CA /* SoundCellElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F0E4323D4ADA600FD39CA /* SoundCellElement.swift */; };
 		965ABE7123A023780069307E /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ABE7023A023770069307E /* SizeUtils.swift */; };
 		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
 		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
@@ -448,6 +450,7 @@
 		86F98CCE23646A3500B0F5EA /* MeditateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateCell.xib; sourceTree = "<group>"; };
 		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceUtils.swift; sourceTree = "<group>"; };
 		9623D335239885EF0040CB43 /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		9623D33723988A510040CB43 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		9623D342239911F90040CB43 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -475,6 +478,7 @@
 		962FB4612396847F00B88FFC /* SceneSoundRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSoundRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4632396878A00B88FFC /* SceneDetailRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailRealmMapper.swift; sourceTree = "<group>"; };
 		962FB4692396A76100B88FFC /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		963F0E4323D4ADA600FD39CA /* SoundCellElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCellElement.swift; sourceTree = "<group>"; };
 		965ABE7023A023770069307E /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
 		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
 		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 		868B5E4123C0C6B5007BC301 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				963F0E4523D4ADAA00FD39CA /* Model */,
 				868B5E4623C0C864007BC301 /* SoundCell.swift */,
 				868B5E4723C0C864007BC301 /* SoundCell.xib */,
 				868B5E4E23C0D36A007BC301 /* SoundGroupCell.swift */,
@@ -1024,6 +1029,7 @@
 				9623D335239885EF0040CB43 /* TextAttributes.swift */,
 				965ABE7023A023770069307E /* SizeUtils.swift */,
 				969BF21F23AD6CB3004A84B6 /* Mime.swift */,
+				961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1117,6 +1123,14 @@
 				962FB45D2396823C00B88FFC /* RealmSceneDetail.swift */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		963F0E4523D4ADAA00FD39CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				963F0E4323D4ADA600FD39CA /* SoundCellElement.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		968552802368875200A22E21 /* OnboardingPersonalDataView */ = {
@@ -2054,6 +2068,7 @@
 				86C848C72367027900BC6EDA /* StoryCell.swift in Sources */,
 				84DD743723908CD900B10777 /* SceneTimerRouter.swift in Sources */,
 				962FB4602396835400B88FFC /* SceneRealmMapper.swift in Sources */,
+				963F0E4423D4ADA600FD39CA /* SoundCellElement.swift in Sources */,
 				8480340723CE7B7C00078442 /* NoiseAudio.swift in Sources */,
 				9699A65823C912C000CADE8B /* NoiseSound.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
@@ -2129,6 +2144,7 @@
 				969BF22323AD6DA9004A84B6 /* DownloadRemoteImageOperation.swift in Sources */,
 				84CF4D2723945FF300E07784 /* ReactiveExtension.swift in Sources */,
 				9699A83123CF7A9500CADE8B /* RealmNoise.swift in Sources */,
+				961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */,
 				96C29F3D2363398200E93CB1 /* Session.swift in Sources */,
 				86B2BFF42366398D00AF2B33 /* MeditateCellType.swift in Sources */,
 				9699A83323CF7DDE00CADE8B /* RealmNoiseCategory.swift in Sources */,

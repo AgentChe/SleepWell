@@ -31,8 +31,11 @@ final class SoundsViewController: UIViewController {
 
 extension SoundsViewController: BindsToViewModel {
     typealias ViewModel = SoundsViewModel
+    typealias Output = Signal<MainRoute>
     
     struct Input {
+        let isActiveSubscription: Observable<Bool>
+        let isMainScreen: Driver<Bool>
         let hideTabbarClosure: (Bool) -> Void
     }
 
@@ -41,14 +44,27 @@ extension SoundsViewController: BindsToViewModel {
         return storyboard.instantiateViewController(withIdentifier: "SoundsViewController") as! SoundsViewController
     }
     
-    func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> () {
+    func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> Output {
         let elements = viewModel.sounds()
         
-        elements
-            .drive(soundsListView.elements)
+        let selectedCellModel = soundsListView
+            .selectedItem
+        
+        let selectedNoise = selectedCellModel
+            .filter { $0.paid }
+            .map { $0.noise }
+        
+        Driver
+            .combineLatest(elements,
+                           input.isActiveSubscription.asDriver(onErrorDriveWith: .never()))
+            .drive(onNext: { [weak self] stub in
+                let (noiseCategories, isActiveSubscription) = stub
+                
+                self?.soundsListView.setup(noiseCategories: noiseCategories, isActiveSubscription: isActiveSubscription)
+            })
             .disposed(by: disposeBag)
         
-        let addSound = soundsListView.selectedItem.map { NoiseAction.add($0) }
+        let addSound = selectedNoise.map { NoiseAction.add($0) }
         let deleteSound = soundsView.deletedSound.map { NoiseAction.delete($0) }
         
         Observable<NoiseAction>
@@ -67,8 +83,7 @@ extension SoundsViewController: BindsToViewModel {
             .bind(to: sounds)
             .disposed(by: disposeBag)
 
-        soundsListView
-            .selectedItem
+        selectedNoise
             .bind(to: soundsView.item)
             .disposed(by: disposeBag)
         
@@ -77,17 +92,41 @@ extension SoundsViewController: BindsToViewModel {
                 soundsView.didTapAdd.asObservable().map { _ in .add },
                 addSoundButton.rx.tap.map { _ in .add },
                 closeButton.rx.tap.map { _ in .close },
-                soundsListView.selectedItem.map { _ in .close }
+                selectedNoise.map { _ in .close }
             )
         
-        let didUserAction = userAction
-            .map { action -> Bool in
-                guard case .add = action else { return false }
-                return true
-            }
+        let emptyViewTap = UITapGestureRecognizer()
+        emptyView.addGestureRecognizer(emptyViewTap)
+        let showTabbarByTapOnEmptyView = emptyViewTap.rx.event.asSignal().map { _ in false }
+        let hideTabbarByTimeout = Signal
+            .merge(
+                input.isMainScreen.asSignal(onErrorSignalWith: .empty()),
+                showTabbarByTapOnEmptyView,
+                soundsView.didTapAdd.asSignal().map { _ in false },
+                addSoundButton.rx.tap.asSignal().map { _ in false }
+            )
+            .withLatestFrom(userAction.asSignal(onErrorSignalWith: .empty()).startWith(.close)) { ($0, $1) }
+            .filter { $0.1 != .add }
+            .map { $0.0 }
+            .filter { $0 }
+            .debounce(.seconds(2))
         
-        Observable.merge(soundsView.didMovingView.asObservable().filter { $0 }, didUserAction)
-            .bind(onNext: input.hideTabbarClosure)
+        let showSoundsList = userAction
+            .filter { $0 == .add }
+        
+        Signal
+            .merge(
+                hideTabbarByTimeout.asSignal(),
+                soundsView.didMovingView.asSignal().filter { $0 },
+                showTabbarByTapOnEmptyView,
+                showSoundsList.asSignal(onErrorSignalWith: .empty()).map { _ in false },
+                tapGesture.rx.event.asSignal().map { _ in false }
+            )
+            .distinctUntilChanged()
+            .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) { ($0, $1) }
+            .filter { $0.1 }
+            .map { $0.0 }
+            .emit(onNext: input.hideTabbarClosure)
             .disposed(by: disposeBag)
         
         userAction
@@ -129,6 +168,11 @@ extension SoundsViewController: BindsToViewModel {
             .flatMap(viewModel.copy)
             .subscribe()
             .disposed(by: disposeBag)
+        
+        return selectedCellModel
+            .filter { !$0.paid}
+            .map { _ in MainRoute.paygate }
+            .asSignal(onErrorSignalWith: .never())
     }
 }
 
