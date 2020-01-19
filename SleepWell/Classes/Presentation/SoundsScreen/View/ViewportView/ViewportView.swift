@@ -306,21 +306,21 @@ private extension ViewportView {
             let imageCenter = view.convert(view.imageCenter, to: base.containerView)
             base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
             
-            let minSale = base.deleteArea.bounds.size.width / view.imageSize.width
-            if let scale = base.animateNoiseScale(center: imageCenter, minSale: minSale, posY: imageCenter.y) {
+            let minimumScale = base.deleteArea.bounds.size.width / view.imageSize.width
+            if let scale = base.animateNoiseScale(center: imageCenter, minimumScale: minimumScale, posY: imageCenter.y) {
                 view.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
     }
     
-    func animateNoiseScale(center: CGPoint, minSale: CGFloat, posY: CGFloat) -> CGFloat?  {
+    func animateNoiseScale(center: CGPoint, minimumScale: CGFloat, posY: CGFloat) -> CGFloat?  {
         if trashContainerPath.contains(center) {
-            let scaleFactor = minScale - minScale
+            let scaleFactor = minScale - minimumScale
             
             let distanceForTrash = distance(from: center, to: trashCenter)
-            let scale = minScale + distanceForTrash / trashScaleRadius * scaleFactor
+            let scale = minimumScale + distanceForTrash / trashScaleRadius * scaleFactor
             
-            guard scale >= minScale && scale <= minScale else { return nil }
+            guard scale >= minimumScale && scale <= minScale else { return nil }
             
             return scale
         } else {
