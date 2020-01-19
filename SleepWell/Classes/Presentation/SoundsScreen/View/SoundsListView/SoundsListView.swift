@@ -36,25 +36,15 @@ class SoundsListView: UIView {
     
     private let selectedSoundRelay = PublishRelay<Noise>()
     private var _elements: [NoiseCategory] = []
+    private var isActiveSubscription: Bool = false
 }
 
 extension SoundsListView {
-
-    var elements: Binder<[NoiseCategory]> {
-        return Binder(self) { base, elements in
-            base._elements = elements
-            base.tableView.reloadData()
-        }
-    }
-
-    var items: [NoiseCategory] {
-        set {
-            _elements = newValue
-            tableView.reloadData()
-        }
-        get {
-            return _elements
-        }
+    func setup(noiseCategories: [NoiseCategory], isActiveSubscription: Bool) {
+        self._elements = noiseCategories
+        self.isActiveSubscription = isActiveSubscription
+        
+        tableView.reloadData()
     }
     
     var selectedItem: Observable<Noise> {
@@ -70,7 +60,7 @@ extension SoundsListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SoundGroupCell", for: indexPath) as! SoundGroupCell
         
-        cell.setup(model: _elements[indexPath.row]) { [weak self] element in
+        cell.setup(model: _elements[indexPath.row], isActiveSubscription: isActiveSubscription) { [weak self] element in
             self?.selectedSoundRelay.accept(element)
         }
         

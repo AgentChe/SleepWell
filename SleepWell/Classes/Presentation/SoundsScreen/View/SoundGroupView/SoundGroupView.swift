@@ -9,7 +9,6 @@
 import UIKit
 
 final class SoundGroupView: UIView {
-
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var flowLayout: UICollectionViewFlowLayout!
@@ -36,21 +35,21 @@ final class SoundGroupView: UIView {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         collectionView.delegate = self
         collectionView.dataSource = self
-        flowLayout.minimumLineSpacing = 40
+        flowLayout.minimumLineSpacing = 36
     }
     
-    func setup(model: NoiseCategory) {
+    func setup(model: NoiseCategory, isActiveSubscription: Bool) {
         titleLabel.text = model.name
-        elements = model.noises
+        elements = SoundCellElement.map(noises: model.noises, isActiveSubscription: isActiveSubscription)
         collectionView.reloadData()
     }
     
-    private var elements: [Noise] = []
+    private var elements: [SoundCellElement] = []
 }
 
 extension SoundGroupView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem?(elements[indexPath.row])
+        selectedItem?(elements[indexPath.row].noise)
     }
 }
 
@@ -62,13 +61,13 @@ extension SoundGroupView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SoundCell", for: indexPath) as! SoundCell
         let element = elements[indexPath.row]
-        cell.setup(image: element.imageUrl, title: element.name)
+        cell.setup(image: element.noise.imageUrl, title: element.noise.name, paid: element.paid)
         return cell
     }
 }
 
 extension SoundGroupView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 76, height: 120)
+        return CGSize(width: 80, height: 120)
     }
 }

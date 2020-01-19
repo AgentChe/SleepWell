@@ -33,6 +33,7 @@ extension SoundsViewController: BindsToViewModel {
     typealias ViewModel = SoundsViewModel
     
     struct Input {
+        let isActiveSubscription: Observable<Bool>
         let hideTabbarClosure: (Bool) -> Void
     }
 
@@ -44,8 +45,14 @@ extension SoundsViewController: BindsToViewModel {
     func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> () {
         let elements = viewModel.sounds()
         
-        elements
-            .drive(soundsListView.elements)
+        Driver
+            .combineLatest(elements,
+                           input.isActiveSubscription.asDriver(onErrorDriveWith: .never()))
+            .drive(onNext: { [weak self] stub in
+                let (noiseCategories, isActiveSubscription) = stub
+                
+                self?.soundsListView.setup(noiseCategories: noiseCategories, isActiveSubscription: isActiveSubscription)
+            })
             .disposed(by: disposeBag)
         
         soundsListView

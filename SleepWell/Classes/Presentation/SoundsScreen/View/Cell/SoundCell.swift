@@ -10,12 +10,13 @@ import UIKit
 import Kingfisher
 
 final class SoundCell: UICollectionViewCell {
-
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var lockedView: UIView!
     
-    func setup(image: URL, title: String) {
+    func setup(image: URL, title: String, paid: Bool) {
         imageView.kf.setImage(with: image, options: [.transition(.fade(0.2))])
         nameLabel.text = title
+        lockedView.isHidden = paid
     }
 }

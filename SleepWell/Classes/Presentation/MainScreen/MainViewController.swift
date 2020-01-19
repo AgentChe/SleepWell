@@ -118,7 +118,7 @@ extension MainViewController: BindsToViewModel {
                             .startWith(true)
                     )
                 case .sound :
-                    self.sounds()
+                    self.sounds(behave: isActiveSubscription)
                     return .empty()
                 }
             }
@@ -201,11 +201,14 @@ private extension MainViewController {
         return scenesAssambly.output
     }
     
-    func sounds() {
+    func sounds(behave: Observable<Bool>) {
         if soundsAssambly == nil {
-            soundsAssambly = SoundsAssembly().assemble(input: .init(hideTabbarClosure: { [weak self] state in
-                self?.hideTabBar(isHidden: state)
-                }))
+            soundsAssambly = SoundsAssembly().assemble(input: .init(
+                isActiveSubscription: behave,
+                hideTabbarClosure: { [weak self] state in
+                    self?.hideTabBar(isHidden: state)
+                }
+            ))
         }
         soundsAssambly.vc.view.frame = containerView.bounds
         add(soundsAssambly.vc)
