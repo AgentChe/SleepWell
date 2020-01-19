@@ -51,6 +51,8 @@ class ViewportView: UIView {
             $0?.alpha = 0
         }
         
+        deleteArea.alpha = 0
+        
         trashContainerPath = scalePath
         
         weakerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
@@ -68,22 +70,7 @@ class ViewportView: UIView {
         
         let addNoiseView = noiseSounds
             .delay(.milliseconds(550), scheduler: MainScheduler.instance)
-            .compactMap { [weak self] soundModel -> NoiseViewAction? in
-                guard let self = self, let model = soundModel else {
-                    return nil
-                }
-                // TODO: - Когда будут добавлены параметры в модель
-//                let posX = (model.positionX ?? 50) * self.volumeFactor
-//                let posY = (model.positionY ?? 50) * self.volumeValue
-                                
-                let posX = 50 * self.volumeFactor
-                let posY = 50 * self.volumeValue
-                let noiseView = NoiseView(frame: CGRect(origin: .zero, size: CGSize(width: 76, height: 120)))
-                noiseView.setStartPosition(point: CGPoint(x: posX, y: posY))
-                noiseView.setup(noise: model)
-                    
-                return .add(view: noiseView)
-            }
+            .compactMap(setupNoiseView)
         
         let noiseViews = Observable
             .merge(deletedRelay.compactMap { $0 }, addNoiseView)
@@ -127,16 +114,19 @@ class ViewportView: UIView {
             .distinctUntilChanged()
             .share(scope: .whileConnected)
         
-        viewsTranslation
+        let changedNoisePosition = viewsTranslation
             .withLatestFrom(noiseViews) { ($0, $1) }
             .compactMap { tuple, views -> NoiseView? in
                 guard case .changed = tuple.1, let view = views.first(where: { $0.id == tuple.0 }) else {
                     return nil
                 }
                 return view
-        }
-        .bind(to: trashScaleAnimate)
-        .disposed(by: disposeBag)
+            }
+            .share(replay: 1, scope: .whileConnected)
+            
+        changedNoisePosition
+            .bind(to: trashScaleAnimate)
+            .disposed(by: disposeBag)
         
         viewsTranslation
             .compactMap { tuple -> Int? in
@@ -152,12 +142,10 @@ class ViewportView: UIView {
                 let view = views.first(where: { $0.id == id })
                
             else { return nil }
-            
-            // Проверяем находится ли центр картинки звука внутри вьюхи корзины
+
             let imageCenter = view.convert(view.imageCenter, to: self.containerView)
             let deleteFrame = self.deleteArea.frame
-            guard deleteFrame.contains(imageCenter) else {
-                return nil }
+            guard deleteFrame.contains(imageCenter) else { return nil }
             
             return .delete(id: id)
         }
@@ -184,23 +172,20 @@ class ViewportView: UIView {
     
     // Страшные штуки
     
-    private lazy var setupNoiseView: (Noise?) throws -> NoiseView? = { [weak self] soundModel  in
-        guard let self = self, let model = soundModel else {
-            return nil
-        }
+    private lazy var setupNoiseView: (Noise?) throws -> NoiseViewAction? = { [weak self] soundModel in
+        guard let self = self, let model = soundModel else { return nil }
         // TODO: - Когда будут добавлены параметры в модель
 //        let posX = (model.positionX ?? 50) * self.volumeFactor
 //        let posY = (model.positionY ?? 50) * self.volumeValue
-                    
-        let posX = 50 * self.volumeFactor
-        let posY = 50 * self.volumeValue
-        let noiseView = NoiseView(frame: CGRect(origin: .zero, size: CGSize(width: 76, height: 120)))
-        noiseView.setStartPosition(point: CGPoint(x: posX, y: posY))
-        noiseView.setup(noise: model)
-        
-        self.containerView.addSubview(noiseView)
-        return noiseView
-    }
+                                    
+            let posX = 50 * self.volumeFactor
+            let posY = 50 * self.volumeValue
+            let noiseView = NoiseView(frame: CGRect(origin: .zero, size: CGSize(width: 76, height: 120)))
+            noiseView.setStartPosition(point: CGPoint(x: posX, y: posY))
+            noiseView.setup(noise: model)
+                
+            return .add(view: noiseView)
+        }
     
     private lazy var changeVolumeAction: ([NoiseView]) throws -> Observable<(Int, NoiseView.Action)> = { views in
         return Observable
@@ -225,8 +210,6 @@ class ViewportView: UIView {
             let volume = Float(1 - posY / 100 / self.volumeValue)
             let factor = Float(1 - posX / 100 / self.volumeFactor)
             let ids = sounds.first(where: { $0.id == id })?.sounds.map { $0.id } ?? []
-//            print("volume: \(volume)")
-//            print("factor: \(factor)")
             
             guard ids.count != 0 || ids.count == 2 else {
                 return .empty()
@@ -313,6 +296,7 @@ private extension ViewportView {
                 }
                 
                 base.addButton.alpha = !isHidden ? 0 : 1
+                base.deleteArea.alpha = isHidden ? 0 : base.deleteArea.alpha
             }
         }
     }
@@ -320,6 +304,18 @@ private extension ViewportView {
     var trashScaleAnimate: Binder<NoiseView> {
         return Binder(self) { base, view in
             let imageCenter = view.convert(view.imageCenter, to: base.containerView)
+            let posY = imageCenter.y
+            let thirdOfScreen = base.containerView.bounds.height / 3
+            let areaY = base.containerView.bounds.height - thirdOfScreen
+            
+            if posY > areaY {
+                let alphaFactor = 1 / thirdOfScreen
+                let alpha = (base.containerView.bounds.height - posY) * alphaFactor
+                self.deleteArea.alpha = 1 - alpha
+            } else {
+                self.deleteArea.alpha = 0
+            }
+            
             if base.trashContainerPath.contains(imageCenter) {
                 let imageSize = view.imageSize
                 let trashSize = base.deleteArea.bounds.size
@@ -328,11 +324,13 @@ private extension ViewportView {
                 let scaleFactor = 1 - minScale
                 
                 let distance = base.distance(from: imageCenter, to: base.trashCenter)
-                print(distance)
                 let scale = minScale + distance / base.trashScaleRadius * scaleFactor
-                print(scale)
+                
                 guard scale >= minScale && scale <= 1 else { return }
+                
                 view.transform = CGAffineTransform(scaleX: scale, y: scale)
+            } else {
+                // TODO: Блок для scale по громкости
             }
         }
     }

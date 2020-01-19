@@ -91,7 +91,7 @@ class NoiseView: UIView {
         let newCenter = CGPoint(x: self.lastCenter.x + translation.x , y: self.lastCenter.y + translation.y)
         switch gesture.state {
         case .began:
-//            self.superview?.bringSubviewToFront(self)
+            self.superview?.bringSubviewToFront(self)
             self.lastCenter = center
             self.name.isHidden = false
             return .began(center)
