@@ -114,6 +114,25 @@ class ViewportView: UIView {
             .distinctUntilChanged()
             .share(scope: .whileConnected)
         
+        viewsTranslation
+            .withLatestFrom(sounds) { ($0, $1) }
+            .compactMap { stub, noises -> (Bool, Bool)? in
+                let count = noises.first(where: { $0.id == stub.0 })?.sounds.count ?? 1
+                let isSingleSound = count == 1
+            
+                if case .began = stub.1 {
+                    return (false, isSingleSound)
+                } else if case .ended = stub.1 {
+                    return (true, isSingleSound)
+                }
+                
+                return nil
+            }
+            .distinctUntilChanged { $0.0 == $1.0 && $0.1 == $1.1 }
+            .bind(to: borderAnimation)
+            .disposed(by: disposeBag)
+        
+        
         let changedNoisePosition = viewsTranslation
             .withLatestFrom(noiseViews) { ($0, $1) }
             .compactMap { tuple, views -> NoiseView? in
@@ -154,10 +173,6 @@ class ViewportView: UIView {
         
         viewActivity
             .bind(to: viewActionRelay)
-            .disposed(by: disposeBag)
-            
-        viewActivity
-            .bind(to: borderAnimation)
             .disposed(by: disposeBag)
         
         viewsTranslation
@@ -283,15 +298,20 @@ private extension ViewportView {
 // Animations
 private extension ViewportView {
     
-    var borderAnimation: Binder<Bool> {
-        return Binder(self) { base, isHidden in
-            UIView.animate(withDuration: 0.2) {
-                [
-                    base.louderLabel,
-                    base.hushLabel,
+    var borderAnimation: Binder<(isHidden: Bool, isSingleSound: Bool)> {
+        return Binder(self) { base, stub in
+            let (isHidden, isSingleSound) = stub
+            print("___ call")
+            var views = [base.hushLabel, base.louderLabel]
+            if !isSingleSound {
+                views.append(contentsOf: [
                     base.weakerLabel,
                     base.strongerLabel
-                ].forEach {
+                ])
+            }
+            
+            UIView.animate(withDuration: 0.2) {
+                views.forEach {
                     $0?.alpha = isHidden ? 0 : 1
                 }
                 
