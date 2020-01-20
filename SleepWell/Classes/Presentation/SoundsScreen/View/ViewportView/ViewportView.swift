@@ -301,7 +301,7 @@ private extension ViewportView {
     var borderAnimation: Binder<(isHidden: Bool, isSingleSound: Bool)> {
         return Binder(self) { base, stub in
             let (isHidden, isSingleSound) = stub
-            print("___ call")
+            
             var views = [base.hushLabel, base.louderLabel]
             if !isSingleSound {
                 views.append(contentsOf: [
