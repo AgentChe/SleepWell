@@ -16,7 +16,8 @@ final class NoiseRealmMapper {
                           noiseCategoryId: entity.noiseCategoryId,
                           imageUrl: entity.imageUrl.absoluteString,
                           sounds: entity.sounds,
-                          hashCode: entity.hash)
+                          hashCode: entity.hash,
+                          sort: entity.sort)
     }
     
     static func map(from realm: RealmNoise) -> Noise {
@@ -26,6 +27,7 @@ final class NoiseRealmMapper {
                      noiseCategoryId: realm.noiseCategoryId,
                      imageUrl: URL(string: realm.imageUrl)!,
                      sounds: realm.sounds.map { NoiseSoundRealmMapper.map(from: $0)},
+                     sort: realm.sort,
                      hash: realm.hashCode)
     }
 }

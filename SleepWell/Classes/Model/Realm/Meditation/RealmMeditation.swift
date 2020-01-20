@@ -19,6 +19,7 @@ class RealmMeditation: Object {
     @objc dynamic var meditationHash: String = ""
     let tags = List<Int>()
     @objc dynamic var length: Int = 0
+    @objc dynamic var sort: Int = 0
     
     convenience init(id: Int,
                      name: String,
@@ -28,7 +29,8 @@ class RealmMeditation: Object {
                      imageReaderURL: URL?,
                      meditationHash: String,
                      tags: [Int],
-                     length: Int) {
+                     length: Int,
+                     sort: Int ) {
         self.init()
 
         self.id = id
@@ -40,6 +42,7 @@ class RealmMeditation: Object {
         self.meditationHash = meditationHash
         self.tags.append(objectsIn: tags)
         self.length = length
+        self.sort = sort 
     }
     
     @objc open override class func primaryKey() -> String? {

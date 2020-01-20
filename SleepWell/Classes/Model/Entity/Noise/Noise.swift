@@ -15,6 +15,7 @@ struct Noise: Model, Hashable {
     let noiseCategoryId: Int
     let imageUrl: URL
     let sounds: [NoiseSound]
+    let sort: Int
     let hash: String
 }
 
@@ -26,6 +27,7 @@ extension Noise {
         case noiseCategoryId = "sound_category_id"
         case imageUrl = "image_url"
         case sounds
+        case sort 
         case hash = "sound_hash"
     }
     
@@ -49,6 +51,7 @@ extension Noise {
         noiseCategoryId = try container.decode(Int.self, forKey: .noiseCategoryId)
         imageUrl = url
         sounds = try container.decode([NoiseSound].self, forKey: .sounds)
+        sort = try container.decode(Int.self, forKey: .sort)
         hash = try container.decode(String.self, forKey: .hash)
     }
 }

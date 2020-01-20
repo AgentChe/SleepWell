@@ -9,6 +9,7 @@
 struct NoiseCategory: Model {
     let id: Int
     let name: String
+    let sort: Int
     let noises: [Noise]
 }
 
@@ -16,6 +17,7 @@ extension NoiseCategory {
     private enum CodingKeys: String, CodingKey {
         case id
         case name
+        case sort
         case noises = "sounds"
     }
     
@@ -24,6 +26,7 @@ extension NoiseCategory {
         
         id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
+        sort = try container.decode(Int.self, forKey: .sort)
         noises = try container.decode([Noise].self, forKey: .noises)
     }
 }

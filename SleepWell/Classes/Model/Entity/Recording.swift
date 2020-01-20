@@ -16,4 +16,5 @@ protocol Recording: Model {
     var imagePreviewUrl: URL? { get }
     var imageReaderURL: URL? { get }
     var hash: String { get }
+    var sort: Int { get }
 }

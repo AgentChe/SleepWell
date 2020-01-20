@@ -39,6 +39,7 @@ extension MeditateViewModel: MeditateViewModelInterface {
         let meditations = dependencies
             .meditatationService
             .meditations()
+            .map { $0.sorted(by: { $0.sort < $1.sort }) }
             .asSignal(onErrorJustReturn: [])
 
         return Signal

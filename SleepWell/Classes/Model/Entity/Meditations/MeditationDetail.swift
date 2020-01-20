@@ -34,6 +34,7 @@ extension MeditationDetail {
         case imagePreview = "image_meditation_url"
         case imageReader = "image_reader_url"
         case tags
+        case sort
     }
     
     init(from decoder: Decoder) throws {
@@ -55,9 +56,8 @@ extension MeditationDetail {
                           imageReaderURL: URL(string: reader),
                           hash: try data.decode(String.self, forKey: .hash),
                           tags: try meditation.decode([Int].self, forKey: .tags),
-                          length: readingSound.soundSecs)
-        
-        print()
+                          length: readingSound.soundSecs,
+                          sort: try meditation.decode(Int.self, forKey: .sort))
     }
     
     func encode(to encoder: Encoder) throws {

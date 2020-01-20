@@ -56,6 +56,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]> {
         let scenes = dependencies.sceneService
             .scenes()
+            .map { $0.sorted(by: { $0.sort < $1.sort }) }
             .asDriver(onErrorJustReturn: [])
         
         return Driver

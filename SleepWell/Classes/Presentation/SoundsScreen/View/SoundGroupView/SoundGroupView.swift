@@ -40,7 +40,9 @@ final class SoundGroupView: UIView {
     
     func setup(model: NoiseCategory, isActiveSubscription: Bool) {
         titleLabel.text = model.name
-        elements = SoundCellElement.map(noises: model.noises, isActiveSubscription: isActiveSubscription)
+        elements = SoundCellElement
+            .map(noises: model.noises.sorted(by: { $0.sort < $1.sort }),
+                 isActiveSubscription: isActiveSubscription)
         collectionView.reloadData()
     }
     

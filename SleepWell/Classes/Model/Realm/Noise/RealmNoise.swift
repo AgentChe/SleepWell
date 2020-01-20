@@ -16,6 +16,7 @@ class RealmNoise: Object {
     @objc dynamic var imageUrl: String = ""
     let sounds = List<RealmNoiseSound>()
     @objc dynamic var hashCode: String = ""
+    @objc dynamic var sort: Int = 0
     
     convenience init(id: Int,
                      name: String,
@@ -23,7 +24,8 @@ class RealmNoise: Object {
                      noiseCategoryId: Int,
                      imageUrl: String,
                      sounds: [NoiseSound],
-                     hashCode: String) {
+                     hashCode: String,
+                     sort: Int) {
         self.init()
         
         self.id = id
@@ -33,6 +35,7 @@ class RealmNoise: Object {
         self.imageUrl = imageUrl
         self.sounds.append(objectsIn: sounds.map { NoiseSoundRealmMapper.map(from: $0) })
         self.hashCode = hashCode
+        self.sort = sort 
     }
     
     @objc open override class func primaryKey() -> String? {

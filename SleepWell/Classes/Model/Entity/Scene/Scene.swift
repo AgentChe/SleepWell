@@ -14,6 +14,7 @@ struct Scene: Model {
     let url: URL
     let hash: String
     let mime: Mime
+    let sort: Int
 }
 
 extension Scene {
@@ -25,6 +26,7 @@ extension Scene {
         case imageUrl = "image_url"
         case videoUrl = "video_url"
         case hash = "scene_hash"
+        case sort
     }
     
     private enum Error: Swift.Error {
@@ -56,7 +58,8 @@ extension Scene {
         self.id = try container.decode(Int.self, forKey: .id)
         self.paid = try container.decode(Bool.self, forKey: .paid)
         self.hash = try container.decode(String.self, forKey: .hash)
-        self.mime = mime 
+        self.mime = mime
+        self.sort = try container.decode(Int.self, forKey: .sort)
     }
 
     func encode(to encoder: Encoder) throws {}
