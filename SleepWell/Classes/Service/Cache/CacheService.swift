@@ -13,18 +13,21 @@ final class CacheService {
     private let cacheMeditations = CacheMeditations()
     private let cacheStories = CacheStories()
     private let cacheScenes = CacheScenes()
+    private let cacheNoise = CacheNoise()
     
     func update() -> Single<Void> {
         return Observable
             .combineLatest(cacheMeditations.copyMeditations().catchErrorJustReturn(Void()),
                            cacheStories.copyStories().catchErrorJustReturn(Void()),
-                           cacheScenes.copyScenes().catchErrorJustReturn(Void()))
+                           cacheScenes.copyScenes().catchErrorJustReturn(Void()),
+                           cacheNoise.copyNoises().catchErrorJustReturn(Void()))
             .flatMap { [unowned self] _ -> Observable<Void> in
                 return Observable
                     .combineLatest(self.cacheMeditations.updateMeditations().catchErrorJustReturn(Void()),
                                    self.cacheStories.update().catchErrorJustReturn(Void()),
                                    self.cacheScenes.update().catchErrorJustReturn(Void()),
-                                   self.cacheMeditations.updateTags().catchErrorJustReturn(Void())) { _, _, _, _ in Void() }
+                                   self.cacheMeditations.updateTags().catchErrorJustReturn(Void()),
+                                   self.cacheNoise.update().catchErrorJustReturn(Void())) { _, _, _, _, _ in Void() }
             }
             .asSingle()
     }
@@ -347,17 +350,17 @@ private final class CacheScenes: Copy {
                             }
                             return sound.isContained ? scene.scene.id : nil
                         }
+                        
                         let oldArchivedSceneVideoIds = scenes.compactMap {
                             $0.scene.url.isContained ? $0.scene.id : nil
                         }
+                        
                         let audios = data.details
-                            .filter {
-                                $0.scene.mime.isVideo
-                                    && oldArchivedSceneAudioIds.contains($0.scene.id)
-                            }
+                            .filter { oldArchivedSceneAudioIds.contains($0.scene.id) }
                             .flatMap { $0.sounds.map { $0.soundUrl } }
+                        
                         let videos = data.details
-                            .filter { oldArchivedSceneVideoIds.contains($0.scene.id) }
+                            .filter { $0.scene.mime.isVideo && oldArchivedSceneVideoIds.contains($0.scene.id) }
                             .map { $0.scene.url }
                         
                         return audios + videos
@@ -392,11 +395,106 @@ private final class CacheScenes: Copy {
     }
 }
 
+private final class CacheNoise: Copy {
+    private let downloadImagesService = DownloadImagesService()
+    private let copyImageService = CopyImagesService()
+    
+    var wasCopied: Bool {
+        set { UserDefaults.standard.set(true, forKey: "noises_was_copied_in_db_key") }
+        get { UserDefaults.standard.bool(forKey: "noises_was_copied_in_db_key") }
+    }
+    
+    func copyNoises() -> Observable<Void> {
+        guard !wasCopied else {
+            return .just(Void())
+        }
+
+        let fullNoises = whatCopy(resource: "sound_categories", map: { NoiseMapper.fullNoises(response: $0) })
+
+        return fullNoises
+            .flatMap { fullNoises -> Single<Void> in
+                guard let data = fullNoises else {
+                    return .error(RxError.noElements)
+                }
+
+                return RealmDBTransport()
+                    .saveData(entities: data.noiseCategories, map: { NoiseCategoryRealmMapper.map(from: $0) })
+                    .flatMap { [unowned self] _ -> Single<Void> in
+                        return self.copyImageService.copyImages(copingLocalImages: data.copingLocalImages)
+                }
+                .do(onSuccess: { [unowned self] in
+                    self.wasCopied = true
+                    CacheHashCodes.noiseCategoriesHashCode = data.noisesHashCode
+                })
+            }
+    }
+    
+    func update() -> Observable<Void> {
+        return RestAPITransport()
+            .callServerApi(requestBody: GetNoiseCategoriesRequest(hashCode: CacheHashCodes.noiseCategoriesHashCode))
+            .asObservable()
+            .map { NoiseMapper.fullNoises(response: $0) }
+            .flatMap { fullNoises -> Observable<Void> in
+                guard let data = fullNoises else {
+                    return .error(RxError.noElements)
+                }
+                
+                let saveCategories = RealmDBTransport().saveData(entities: data.noiseCategories, map: { NoiseCategoryRealmMapper.map(from: $0) })
+                let removeCategories = RealmDBTransport().deleteData(realmType: RealmNoiseCategory.self, filter: NSPredicate(format: "id IN %@", data.deletedNoiseCategoryIds))
+                let removeNoises = RealmDBTransport().deleteData(realmType: RealmNoise.self, filter: NSPredicate(format: "id IN %@", data.deletedNoiseIds))
+                
+                return RealmDBTransport()
+                    .loadData(realmType: RealmNoiseSound.self, map: { NoiseSoundRealmMapper.map(from: $0) })
+                    .catchErrorJustReturn([])
+                    .map { noiseSounds -> [URL] in
+                        let soundsWhereContainedCachedAudio = noiseSounds
+                            .filter { $0.soundUrl.isContained }
+                            .map { $0.id }
+                        
+                        return data.noiseCategories
+                            .flatMap {
+                                $0.noises
+                                    .reduce([]) { $0 + $1.sounds }
+                                    .filter { soundsWhereContainedCachedAudio.contains($0.id) }
+                                    .map { $0.soundUrl }
+                            }
+                    }
+                    .flatMap { audioUrlsForUpdate -> Single<Void> in
+                        return Single
+                            .zip(
+                                saveCategories,
+                                removeCategories,
+                                removeNoises
+                            )
+                            .map { _ -> [URL] in
+                                return data.noiseCategories
+                                    .flatMap {
+                                        $0.noises
+                                            .reduce([]) { $0 + [$1.imageUrl] }
+                                    }
+                            }
+                            .flatMap { [unowned self] imageUrlsForUpdate -> Single<Void> in
+                                return Single.zip(
+                                    self.downloadImagesService.downloadImages(urls: imageUrlsForUpdate),
+                                    MediaCacheService().copy(urls: audioUrlsForUpdate)
+                                ).map { _, _ in Void() }
+                            }
+                    }
+                    .observeOn(MainScheduler.asyncInstance)
+                    .asObservable()
+                    .do(onNext: {
+                        CacheHashCodes.noiseCategoriesHashCode = data.noisesHashCode
+                    })
+            }
+    }
+}
+
 private final class CacheHashCodes {
     private static let meditationsHashCodeKey = "meditations_hash_code_key"
     private static let storiesHashCodeKey = "stories_hash_code_key"
     private static let scenesHashCodeKey = "scenes_hash_code_key"
     private static let meditationTagsHashCodeKey = "meditation_tags_hash_code_key"
+    private static let noiseCategoriesHashCodeKey = "noise_categories_hash_code_key"
     
     static var meditationsHashCode: String? {
         set(hashCode) {
@@ -431,6 +529,15 @@ private final class CacheHashCodes {
         }
         get {
             return UserDefaults.standard.string(forKey: meditationTagsHashCodeKey)
+        }
+    }
+    
+    static var noiseCategoriesHashCode: String? {
+        set(hashCode) {
+            UserDefaults.standard.set(hashCode, forKey: noiseCategoriesHashCodeKey)
+        }
+        get {
+            return UserDefaults.standard.string(forKey: noiseCategoriesHashCodeKey)
         }
     }
 }

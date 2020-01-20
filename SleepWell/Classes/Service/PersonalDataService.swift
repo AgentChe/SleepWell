@@ -125,7 +125,7 @@ final class PersonalDataService {
         return RestAPITransport()
             .callServerApi(requestBody: SetRequest(userToken: userToken,
                                                    personalData: personalData,
-                                                   locale: Locale.current.languageCode,
+                                                   locale: UIDevice.deviceLanguageCode,
                                                    version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
                                                    timezone: TimeZone.current.identifier))
             .flatMap { response -> Single<Void> in

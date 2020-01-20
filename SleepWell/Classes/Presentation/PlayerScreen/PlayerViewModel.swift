@@ -20,6 +20,7 @@ protocol PlayerViewModelInterface {
     func add(recording: RecordingDetail) -> Signal<Void>
     func goToVolumeScreen(recording: RecordingDetail)
     var resetAudio: Binder<Void> { get }
+    func pauseNoise() -> Signal<Void>
 }
 
 final class PlayerViewModel: BindableViewModel {
@@ -73,5 +74,9 @@ extension PlayerViewModel: PlayerViewModelInterface {
     
     var resetAudio: Binder<Void> {
         dependencies.audioService.rx.resetAudio
+    }
+    
+    func pauseNoise() -> Signal<Void> {
+        dependencies.audioService.pauseNoise()
     }
 }

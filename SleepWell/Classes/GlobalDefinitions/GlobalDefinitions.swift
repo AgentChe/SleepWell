@@ -5,8 +5,8 @@
 import UIKit
 
 final class GlobalDefinitions {
-    static let domainUrl = "https://www.s1eep.app" // https://www.s1eep.app - prod, http://test.s1eep.app - dev
-    static let apiKey = "xPh20WC5EYuboYQ" // xPh20WC5EYuboYQ - prod, 1yyl1WBNrlD2MVK - dev
+    static let domainUrl = "https://test.s1eep.app" // https://www.s1eep.app - prod, https://test.s1eep.app - dev
+    static let apiKey = "1yyl1WBNrlD2MVK" // xPh20WC5EYuboYQ - prod, 1yyl1WBNrlD2MVK - dev
     static let analyticsAPIKey = "a498c18db5e8a94d8de1d7bb7178dc9e"
     
     static let privacyPolicyUrl = "https://www.s1eep.app/legal/policy"
