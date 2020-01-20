@@ -14,6 +14,9 @@ protocol SoundsViewModelInterface {
     func add(noises: Set<NoiseSound>) -> Completable
     var noiseVolume: Binder<(to: Int, volume: Float)> { get }
     func copy(url: [URL]) -> Signal<Void>
+    var playNoise: Binder<Void> { get }
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -48,5 +51,17 @@ extension SoundsViewModel: SoundsViewModelInterface {
     func copy(url: [URL]) -> Signal<Void> {
         dependencies.mediaCacheService.copy(urls: url)
             .asSignal(onErrorSignalWith: .empty())
+    }
+    
+    var playNoise: Binder<Void> {
+        dependencies.audioPlayerService.rx.playNoise
+    }
+    
+    func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioPlayerService.pauseScene(style: style)
+    }
+    
+    func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
+        dependencies.audioPlayerService.pauseRecording(style: style)
     }
 }

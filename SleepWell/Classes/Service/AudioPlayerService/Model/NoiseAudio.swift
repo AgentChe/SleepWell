@@ -43,7 +43,9 @@ final class NoiseAudio: ReactiveCompatible {
     
     func play() {
         players.forEach {
-            $0.player.play()
+            if $0.player.rate == 0 {
+                $0.player.play()
+            }
         }
     }
     

@@ -148,6 +148,20 @@ extension SoundsViewController: BindsToViewModel {
             .subscribe()
             .disposed(by: disposeBag)
         
+        input.isMainScreen
+            .filter { $0 }
+            .withLatestFrom(noiseSounds.asDriver(onErrorDriveWith: .empty()))
+            .filter { !$0.isEmpty }
+            .flatMapFirst { _ in
+                Signal
+                    .zip(
+                        viewModel.pauseScene(style: .force),
+                        viewModel.pauseRecording(style: .force)
+                    ) { _, _ in () }
+            }
+            .emit(to: viewModel.playNoise)
+            .disposed(by: disposeBag)
+        
         soundsView.changeVolume
             .emit(to: viewModel.noiseVolume)
             .disposed(by: disposeBag)

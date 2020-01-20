@@ -478,6 +478,13 @@ private extension AudioPlayerService {
 
 extension Reactive where Base: AudioPlayerService {
     
+    var playNoise: Binder<Void> {
+        
+        Binder(base) { base, _ in
+            base.noiseRelay.value?.play()
+        }
+    }
+    
     var clear: Binder<Void> {
         
         Binder(base) { base, _ in
