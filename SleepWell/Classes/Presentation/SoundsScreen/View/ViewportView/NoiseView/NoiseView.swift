@@ -14,7 +14,7 @@ extension NoiseView {
     
     enum Action {
         case began(CGPoint)
-        case changed(CGPoint)
+        case changed(CGPoint, CGFloat)
         case ended(CGPoint)
     }
 }
@@ -79,7 +79,7 @@ class NoiseView: UIView {
             center.y = currentCenter.y
         }
         
-        return center
+        return self.containerView.convert(imageCenter, to: superview)
     }
     
     private lazy var panHandler: (UIPanGestureRecognizer) throws -> Action? = { [weak self] gesture in
@@ -96,7 +96,7 @@ class NoiseView: UIView {
             self.name.isHidden = false
             return .began(center)
         case .changed:
-            return .changed(self.moving(to: newCenter))
+            return .changed(self.moving(to: newCenter), self.frame.size.width)
         case .ended:
             self.name.isHidden = true
             return .ended(self.moving(to: newCenter))

@@ -219,11 +219,11 @@ class ViewportView: UIView {
         let (id, action) = args
         guard let self = self else { return .empty() }
         switch action {
-        case let .changed(center):
-            let posY = center.y
-            let posX = center.x
-            let volume = Float(1 - posY / 100 / self.volumeValue)
-            let factor = Float(1 - posX / 100 / self.volumeFactor)
+        case let .changed(center, width):
+            let posY = floor(center.y > self.containerView.center.y ? center.y + width / 2 : center.y - width / 2)
+            let posX = floor(center.x > self.containerView.center.x ? center.x + width / 2 : center.x - width / 2)
+            let volume = Float(round((1 - posY / 100 / self.volumeValue) * 100) / 100)
+            let factor = Float(round((1 - posX / 100 / self.volumeFactor) * 100) / 100)
             let ids = sounds.first(where: { $0.id == id })?.sounds.map { $0.id } ?? []
             
             guard ids.count != 0 || ids.count == 2 else {
@@ -368,11 +368,11 @@ private extension ViewportView {
 private extension ViewportView {
     
     private var volumeValue: CGFloat {
-        (containerView.bounds.height - 60) / 100
+        containerView.bounds.height / 100
     }
     
     private var volumeFactor: CGFloat {
-        (containerView.bounds.width - 38) / 100
+        containerView.bounds.width / 100
     }
     
     private var trashCenter: CGPoint {
