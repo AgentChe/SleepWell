@@ -100,20 +100,6 @@ class ViewportView: UIView {
             .flatMap(changeVolumeAction)
             .share(replay: 1, scope: .whileConnected)
         
-        let viewActivity = viewsTranslation
-            .compactMap { value -> Bool? in
-                switch value.1 {
-                case .began:
-                    return false
-                case .ended:
-                    return true
-                default:
-                    return nil
-                }
-            }
-            .distinctUntilChanged()
-            .share(scope: .whileConnected)
-        
         viewsTranslation
             .withLatestFrom(sounds) { ($0, $1) }
             .compactMap { stub, noises -> (Bool, Bool)? in
@@ -168,7 +154,18 @@ class ViewportView: UIView {
         .bind(to: deletedRelay)
         .disposed(by: disposeBag)
         
-        viewActivity
+        viewsTranslation
+            .compactMap { value -> Bool? in
+                switch value.1 {
+                case .began:
+                    return false
+                case .ended:
+                    return true
+                default:
+                    return nil
+                }
+            }
+            .distinctUntilChanged()
             .bind(to: viewActionRelay)
             .disposed(by: disposeBag)
         
@@ -313,7 +310,6 @@ private extension ViewportView {
                 }
                 
                 base.addButton.alpha = !isHidden ? 0 : 1
-                base.deleteArea.alpha = isHidden ? 0 : base.deleteArea.alpha
             }
         }
     }
@@ -322,7 +318,7 @@ private extension ViewportView {
         return Binder(self) { base, tuple in
             let (action, view) = tuple
             let imageCenter = view.convert(view.imageCenter, to: base.containerView)
-            base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
+            
             
             let minimumScale = base.deleteArea.bounds.size.width / view.imageSize.width
             
@@ -337,8 +333,10 @@ private extension ViewportView {
             case .ended:
                 UIView.animate(withDuration: 0.2) {
                     view.transform = CGAffineTransform(scaleX: scale, y: scale)
+                    base.deleteArea.alpha = 0
                 }
             default:
+                base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
                 let newScale = scale * 1.2
                 view.transform = CGAffineTransform(scaleX: newScale, y: newScale)
             }
