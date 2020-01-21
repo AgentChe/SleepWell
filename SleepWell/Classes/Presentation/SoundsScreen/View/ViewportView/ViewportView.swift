@@ -100,20 +100,6 @@ class ViewportView: UIView {
             .flatMap(changeVolumeAction)
             .share(replay: 1, scope: .whileConnected)
         
-        let viewActivity = viewsTranslation
-            .compactMap { value -> Bool? in
-                switch value.1 {
-                case .began:
-                    return false
-                case .ended:
-                    return true
-                default:
-                    return nil
-                }
-            }
-            .distinctUntilChanged()
-            .share(scope: .whileConnected)
-        
         viewsTranslation
             .withLatestFrom(sounds) { ($0, $1) }
             .compactMap { stub, noises -> (Bool, Bool)? in
@@ -133,17 +119,14 @@ class ViewportView: UIView {
             .disposed(by: disposeBag)
         
         
-        let changedNoisePosition = viewsTranslation
+        viewsTranslation
             .withLatestFrom(noiseViews) { ($0, $1) }
-            .compactMap { tuple, views -> NoiseView? in
-                guard case .changed = tuple.1, let view = views.first(where: { $0.id == tuple.0 }) else {
+            .compactMap { tuple, views -> (NoiseView.Action, NoiseView)? in
+                guard let view = views.first(where: { $0.id == tuple.0 }) else {
                     return nil
                 }
-                return view
+                return (tuple.1, view)
             }
-            .share(replay: 1, scope: .whileConnected)
-            
-        changedNoisePosition
             .bind(to: trashAndScaleAnimate)
             .disposed(by: disposeBag)
         
@@ -171,7 +154,18 @@ class ViewportView: UIView {
         .bind(to: deletedRelay)
         .disposed(by: disposeBag)
         
-        viewActivity
+        viewsTranslation
+            .compactMap { value -> Bool? in
+                switch value.1 {
+                case .began:
+                    return false
+                case .ended:
+                    return true
+                default:
+                    return nil
+                }
+            }
+            .distinctUntilChanged()
             .bind(to: viewActionRelay)
             .disposed(by: disposeBag)
         
@@ -316,38 +310,67 @@ private extension ViewportView {
                 }
                 
                 base.addButton.alpha = !isHidden ? 0 : 1
-                base.deleteArea.alpha = isHidden ? 0 : base.deleteArea.alpha
             }
         }
     }
     
-    var trashAndScaleAnimate: Binder<NoiseView> {
-        return Binder(self) { base, view in
+    var trashAndScaleAnimate: Binder<(NoiseView.Action, NoiseView)> {
+        return Binder(self) { base, tuple in
+            let (action, view) = tuple
             let imageCenter = view.convert(view.imageCenter, to: base.containerView)
-            base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
+            
             
             let minimumScale = base.deleteArea.bounds.size.width / view.imageSize.width
-            if let scale = base.animateNoiseScale(center: imageCenter, minimumScale: minimumScale, posY: imageCenter.y) {
-                view.transform = CGAffineTransform(scaleX: scale, y: scale)
+            
+            let scale = base.animateNoiseScale(center: imageCenter, minimumScale: minimumScale, posY: imageCenter.y)
+            
+            switch action {
+            case .touchBegan:
+                let newScale = scale * 1.2
+                UIView.animate(withDuration: 0.2) {
+                    view.transform = CGAffineTransform(scaleX: newScale, y: newScale)
+                }
+            case .ended:
+                UIView.animate(withDuration: 0.2) {
+                    view.transform = CGAffineTransform(scaleX: scale, y: scale)
+                    base.deleteArea.alpha = 0
+                }
+            default:
+                base.deleteArea.alpha = base.animateTrashAlpha(posY: imageCenter.y)
+                let newScale = scale * 1.2
+                view.transform = CGAffineTransform(scaleX: newScale, y: newScale)
             }
         }
     }
     
-    func animateNoiseScale(center: CGPoint, minimumScale: CGFloat, posY: CGFloat) -> CGFloat?  {
+    func animateNoiseScale(center: CGPoint, minimumScale: CGFloat, posY: CGFloat) -> CGFloat {
         if trashContainerPath.contains(center) {
             let scaleFactor = minScale - minimumScale
             
             let distanceForTrash = distance(from: center, to: trashCenter)
             let scale = minimumScale + distanceForTrash / trashScaleRadius * scaleFactor
             
-            guard scale >= minimumScale && scale <= minScale else { return nil }
+            guard scale >= minimumScale else {
+                return minimumScale
+            }
+            
+            guard scale <= minScale else {
+                return minScale
+            }
             
             return scale
         } else {
-            let scaleFactor = 1 - (maxScale - minScale) / (containerView.bounds.height - trashScaleRadius)
-            let scale = maxScale - (posY - trashScaleRadius) / (containerView.bounds.height - trashScaleRadius) * scaleFactor
+            let scaleFactor = 1 - (maxScale - minScale) / (containerView.bounds.height)
+            let scale = maxScale - (posY - trashScaleRadius) / (containerView.bounds.height) * scaleFactor
             
-            guard scale >= minScale && scale <= maxScale else { return nil }
+            guard scale >= minScale else {
+                return minScale
+            }
+            
+            guard scale <= maxScale else {
+                return maxScale
+            }
+            
             return scale
         }
     }

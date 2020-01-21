@@ -13,6 +13,7 @@ import RxCocoa
 extension NoiseView {
     
     enum Action {
+        case touchBegan
         case began(CGPoint)
         case changed(CGPoint, CGFloat)
         case ended(CGPoint)
@@ -31,6 +32,13 @@ class NoiseView: UIView {
     
     var imageCenter: CGPoint {
         return image.center
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if let touch = touches.first, image.frame.contains(touch.location(in: self)) {
+            didTouch.accept(.touchBegan)
+        }
     }
     
     override init(frame: CGRect) {
@@ -104,9 +112,11 @@ class NoiseView: UIView {
             return nil
         }
     }
+
     
     private var lastCenter: CGPoint = .zero
     private let disposeBag = DisposeBag()
+    private let didTouch = PublishRelay<Action>()
     private let panGesture = UIPanGestureRecognizer()
     private(set) var id: Int?
 }
@@ -114,6 +124,6 @@ class NoiseView: UIView {
 extension NoiseView {
     
     var centerView: Observable<Action> {
-        return panGesture.rx.event.compactMap(panHandler)
+        return Observable.merge(panGesture.rx.event.compactMap(panHandler), didTouch.asObservable())
     }
 }
