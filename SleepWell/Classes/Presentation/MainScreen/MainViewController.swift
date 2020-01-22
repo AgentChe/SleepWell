@@ -149,15 +149,30 @@ extension MainViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        tabBarView.didTapMiniPlayer
+        let didPauseRecording = tabBarView.didTapMiniPlayer
             .filter { $0 == .pause }
             .flatMapFirst { _ in viewModel.pauseRecording(style: .force) }
+        
+        didPauseRecording
             .emit()
+            .disposed(by: disposeBag)
+        
+        didPauseRecording
+            .withLatestFrom(
+                selectIndex
+                    .map { $0 == Tab.sound.rawValue }
+                    .asDriver(onErrorDriveWith: .empty())
+            )
+            .filter { $0 }
+            .map { _ in () }
+            .emit(to: viewModel.playNoise)
             .disposed(by: disposeBag)
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .play }
-            .flatMapFirst { _ in viewModel.pauseScene(style: .force) }
+            .flatMapFirst { _ in
+                Signal.zip(viewModel.pauseNoise(), viewModel.pauseScene(style: .force))
+            }
             .flatMapLatest { _ in viewModel.playRecording(style: .force) }
             .emit()
             .disposed(by: disposeBag)

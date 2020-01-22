@@ -141,17 +141,20 @@ extension SoundsViewController: BindsToViewModel {
                 return sounds
                     .map { $0.sounds }
                     .reduce(Set<NoiseSound>()) { $0.union($1) }
-        }.share(replay: 1, scope: .forever).debug()
+            }
+            .share(replay: 1, scope: .forever)
         
         noiseSounds
             .flatMap(viewModel.add)
             .subscribe()
             .disposed(by: disposeBag)
         
-        input.isMainScreen
-            .filter { $0 }
-            .withLatestFrom(noiseSounds.asDriver(onErrorDriveWith: .empty()))
-            .filter { !$0.isEmpty }
+        Driver
+            .combineLatest(
+                input.isMainScreen,
+                noiseSounds.asDriver(onErrorDriveWith: .empty())
+            ) { ($0, $1) }
+            .filter { $0 && !$1.isEmpty }
             .flatMapFirst { _ in
                 Signal
                     .zip(
