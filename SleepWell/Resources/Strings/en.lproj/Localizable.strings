@@ -43,10 +43,10 @@
 
 // Sounds
 "sounds_title" = "Set up your own scene to put yourself into the right mood for whetever you're up to.";
-"louder_title" = "Громче";
-"hush_title" = "Тише";
-"weaker_title" = "Слабее";
-"stronger_title" = "Сильнее";
+"louder_title" = "loud";
+"hush_title" = "quiet";
+"weaker_title" = "light";
+"stronger_title" = "intense";
 
 // LocalNotifications
 "local_notify_title_1" = "Your future depends on your dreams 💤😴🎼";
