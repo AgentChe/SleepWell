@@ -105,19 +105,19 @@ class ViewportView: UIView {
             .compactMap { stub, noises -> (Bool, Bool)? in
                 let count = noises.first(where: { $0.id == stub.0 })?.sounds.count ?? 1
                 let isSingleSound = count == 1
-            
-                if case .began = stub.1 {
-                    return (false, isSingleSound)
-                } else if case .ended = stub.1 {
-                    return (true, isSingleSound)
-                }
                 
-                return nil
+                switch stub.1 {
+                case .began(_), .touchBegan:
+                    return (false, isSingleSound)
+                case .ended(_):
+                    return (true, isSingleSound)
+                default:
+                    return nil 
+                }
             }
             .distinctUntilChanged { $0.0 == $1.0 && $0.1 == $1.1 }
             .bind(to: borderAnimation)
             .disposed(by: disposeBag)
-        
         
         viewsTranslation
             .withLatestFrom(noiseViews) { ($0, $1) }

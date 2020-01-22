@@ -36,6 +36,7 @@ class NoiseView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
         if let touch = touches.first, image.frame.contains(touch.location(in: self)) {
             didTouch.accept(.touchBegan)
         }
@@ -112,7 +113,6 @@ class NoiseView: UIView {
             return nil
         }
     }
-
     
     private var lastCenter: CGPoint = .zero
     private let disposeBag = DisposeBag()
