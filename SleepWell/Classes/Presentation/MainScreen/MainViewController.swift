@@ -38,6 +38,8 @@ final class MainViewController: UIViewController {
         sceneTabItem.title = "Scenes"
         soundTabItem.title = "Sounds"
         
+        sceneTabItem.select = true 
+        
         tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem, soundTabItem]
     }
     

@@ -24,7 +24,6 @@ class ScrollTabBarView: UIView {
         didSet {
             items.forEach {
                 stackView.addArrangedSubview($0)
-                items.last?.select = true
             }
         }
     }
@@ -105,7 +104,12 @@ class ScrollTabBarView: UIView {
             .asSignal(onErrorSignalWith: .empty())
             .take(1)
             .emit(to: Binder(self) { view, _ in
-                let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
+//                let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
+                
+                let c = UIScreen.main.bounds.width / 4
+                let cx3 = c * 3
+                let center = cx3 - c / 2
+                
                 view.selectedIndicator.frame = CGRect(
                     origin: CGPoint(x: center, y: view.frame.height - 30),
                     size: CGSize(width: 5, height: 5)
@@ -194,7 +198,7 @@ extension ScrollTabBarView {
                         return indexItem
                     }
             }
-            .startWith(items.count - 1)
+            .startWith(2)
             .asSignal(onErrorJustReturn: 0)
     }
     // true - отображает кнопку паузы, false - плей
