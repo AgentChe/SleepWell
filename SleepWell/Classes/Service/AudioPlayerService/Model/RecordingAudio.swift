@@ -61,8 +61,8 @@ final class RecordingAudio: ReactiveCompatible {
     
     func prepareToPlay() {
         
-        setMainPlayerVolume(value: 0.75)
-        setAmbientPlayerVolume(value: 0.75)
+        setMainPlayerVolume(value: 1)
+        setAmbientPlayerVolume(value: 0.3)
     }
     
     private func prepareAmbient() {
@@ -220,8 +220,8 @@ final class RecordingAudio: ReactiveCompatible {
     }
     
     private let _didTapPlay = PublishRelay<Void>()
-    private let _mainPlayerVolume = BehaviorRelay<Float>(value: 0.75)
-    private let _ambientPlayerVolume = BehaviorRelay<Float>(value: 0.75)
+    private let _mainPlayerVolume = BehaviorRelay<Float>(value: 1)
+    private let _ambientPlayerVolume = BehaviorRelay<Float>(value: 0.3)
     private let isPausing = PublishRelay<Void>()
     private let disposeBag = DisposeBag()
 }
