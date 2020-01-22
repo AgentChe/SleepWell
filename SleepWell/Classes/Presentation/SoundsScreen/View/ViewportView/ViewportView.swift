@@ -107,9 +107,9 @@ class ViewportView: UIView {
                 let isSingleSound = count == 1
                 
                 switch stub.1 {
-                case .began(_), .touchBegan:
+                case .began, .touchBegan:
                     return (false, isSingleSound)
-                case .ended(_):
+                case .ended, .touchCancelled:
                     return (true, isSingleSound)
                 default:
                     return nil 
@@ -330,7 +330,7 @@ private extension ViewportView {
                 UIView.animate(withDuration: 0.2) {
                     view.transform = CGAffineTransform(scaleX: newScale, y: newScale)
                 }
-            case .ended:
+            case .ended, .touchCancelled:
                 UIView.animate(withDuration: 0.2) {
                     view.transform = CGAffineTransform(scaleX: scale, y: scale)
                     base.deleteArea.alpha = 0

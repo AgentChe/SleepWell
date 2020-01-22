@@ -14,6 +14,7 @@ extension NoiseView {
     
     enum Action {
         case touchBegan
+        case touchCancelled
         case began(CGPoint)
         case changed(CGPoint, CGFloat)
         case ended(CGPoint)
@@ -39,6 +40,13 @@ class NoiseView: UIView {
         
         if let touch = touches.first, image.frame.contains(touch.location(in: self)) {
             didTouch.accept(.touchBegan)
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        if let touch = touches.first, image.frame.contains(touch.location(in: self)) {
+            didTouch.accept(.touchCancelled)
         }
     }
     
@@ -124,6 +132,15 @@ class NoiseView: UIView {
 extension NoiseView {
     
     var centerView: Observable<Action> {
-        return Observable.merge(panGesture.rx.event.compactMap(panHandler), didTouch.asObservable())
+        let panAction = panGesture.rx.event.compactMap(panHandler)
+        let tapAction = didTouch
+            .withLatestFrom(panAction.startWith(.touchBegan)) { ($0, $1) }
+            .compactMap { tap, pan -> Action? in
+                guard case .began = pan else {
+                    return tap
+                }
+                return nil
+            }
+        return Observable.merge(panAction, tapAction)
     }
 }
