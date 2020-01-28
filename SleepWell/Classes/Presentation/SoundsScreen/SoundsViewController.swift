@@ -184,6 +184,11 @@ extension SoundsViewController: BindsToViewModel {
             .subscribe()
             .disposed(by: disposeBag)
         
+        soundsView
+            .didTapSleepTimer
+            .emit(onNext: { _ = viewModel.showSleepTimerScreen() })
+            .disposed(by: disposeBag)
+        
         return selectedCellModel
             .filter { !$0.paid}
             .map { _ in MainRoute.paygate }

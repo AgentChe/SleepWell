@@ -17,6 +17,7 @@ protocol SoundsViewModelInterface {
     var playNoise: Binder<Void> { get }
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func showSleepTimerScreen() -> SceneTimerViewController.Output
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -64,5 +65,9 @@ extension SoundsViewModel: SoundsViewModelInterface {
     
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void> {
         dependencies.audioPlayerService.pauseRecording(style: style)
+    }
+    
+    func showSleepTimerScreen() -> SceneTimerViewController.Output {
+        router.showSleepTimerScreen()
     }
 }

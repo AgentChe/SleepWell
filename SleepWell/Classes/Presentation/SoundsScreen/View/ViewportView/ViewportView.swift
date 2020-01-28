@@ -267,6 +267,10 @@ class ViewportView: UIView {
 
 extension ViewportView {
     
+    var didTapSleepTimer: Signal<Void> {
+        return menuView.didTapSleep
+    }
+    
     var didTap: Signal<Void> {
         return tapGesture.rx.event
             .map { _ in Void() }
