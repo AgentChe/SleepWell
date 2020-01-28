@@ -17,6 +17,6 @@ final class SceneSettingsRouter: Routing {
     }
     
     func showSleepTimerScreen(sceneDetail: SceneDetail) -> SceneTimerViewController.Output {
-        router.present(type: SceneTimerAssembly.self, input: .init(sceneDetail: sceneDetail))
+        router.present(type: SceneTimerAssembly.self, input: Void())
     }
 }

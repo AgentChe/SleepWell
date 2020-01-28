@@ -27,10 +27,7 @@ final class SceneTimerViewController: UIViewController {
 extension SceneTimerViewController: BindsToViewModel {
     
     typealias ViewModel = SceneTimerViewModel
-
-    struct Input {
-        let sceneDetail: SceneDetail
-    }
+    typealias Input = Void
     
     struct Output {
         let appeared: Signal<Void>
