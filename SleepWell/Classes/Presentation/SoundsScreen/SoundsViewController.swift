@@ -15,14 +15,12 @@ final class SoundsViewController: UIViewController {
     @IBOutlet private var soundsView: ViewportView!
     @IBOutlet private var emptyView: UIView!
     
-    private let tapGesture = UITapGestureRecognizer()
     private let soundsListView = SoundsListView()
     private let closeButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         closeButton.setImage(UIImage(named: "close_sounds"), for: .normal)
-        soundsView.addGestureRecognizer(tapGesture)
     }
     
     private let sounds = BehaviorRelay<Set<Noise>>(value: [])
@@ -120,7 +118,7 @@ extension SoundsViewController: BindsToViewModel {
                 soundsView.didMovingView.asSignal().filter { $0 },
                 showTabbarByTapOnEmptyView,
                 showSoundsList.asSignal(onErrorSignalWith: .empty()).map { _ in false },
-                tapGesture.rx.event.asSignal().map { _ in false }
+                soundsView.didTap.map { _ in false }
             )
             .distinctUntilChanged()
             .withLatestFrom(input.isMainScreen.asSignal(onErrorSignalWith: .empty())) { ($0, $1) }

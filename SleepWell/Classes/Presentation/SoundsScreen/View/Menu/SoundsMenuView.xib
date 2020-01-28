@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="sf-pro-text-regular.ttf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundsMenuView" customModule="SleepWell" customModuleProvider="target">
+            <connections>
+                <outlet property="clearAllItemView" destination="cB4-ao-frC" id="nIB-l7-UdE"/>
+                <outlet property="containerView" destination="P44-EZ-8HC" id="rOb-PJ-6WE"/>
+                <outlet property="sleepItemView" destination="QLs-aA-qeg" id="GI6-OF-fy5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="P44-EZ-8HC">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLs-aA-qeg">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon_2" translatesAutoresizingMaskIntoConstraints="NO" id="eFZ-Do-cjz">
+                            <rect key="frame" x="14" y="12.5" width="36" height="37"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="sleep_timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHL-Xo-Q4w">
+                            <rect key="frame" x="58" y="18" width="348" height="26.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="19"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="sleep_timer"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZn-90-Trp">
+                            <rect key="frame" x="0.0" y="61" width="414" height="1"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="p0g-bX-qRJ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="JZn-90-Trp" secondAttribute="bottom" id="4N8-Ww-TxA"/>
+                        <constraint firstItem="eFZ-Do-cjz" firstAttribute="leading" secondItem="QLs-aA-qeg" secondAttribute="leading" constant="14" id="FJc-J9-XZ3"/>
+                        <constraint firstAttribute="height" constant="62" id="M0h-PV-2dr"/>
+                        <constraint firstAttribute="trailing" secondItem="JZn-90-Trp" secondAttribute="trailing" id="PPw-Q7-YEr"/>
+                        <constraint firstItem="JZn-90-Trp" firstAttribute="leading" secondItem="QLs-aA-qeg" secondAttribute="leading" id="aUn-0k-qeV"/>
+                        <constraint firstItem="eFZ-Do-cjz" firstAttribute="centerY" secondItem="QLs-aA-qeg" secondAttribute="centerY" id="bAG-AP-VfH"/>
+                        <constraint firstItem="ZHL-Xo-Q4w" firstAttribute="leading" secondItem="eFZ-Do-cjz" secondAttribute="trailing" constant="8" id="bzq-w2-dkx"/>
+                        <constraint firstItem="ZHL-Xo-Q4w" firstAttribute="centerY" secondItem="QLs-aA-qeg" secondAttribute="centerY" id="srL-Kb-cbP"/>
+                        <constraint firstAttribute="trailing" secondItem="ZHL-Xo-Q4w" secondAttribute="trailing" constant="8" id="ueb-pX-Rqs"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cB4-ao-frC">
+                    <rect key="frame" x="0.0" y="62" width="414" height="62"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basket" translatesAutoresizingMaskIntoConstraints="NO" id="QX7-eK-nl3">
+                            <rect key="frame" x="14" y="12.5" width="36" height="37"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="clear_all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwm-BG-iFu">
+                            <rect key="frame" x="58" y="18" width="348" height="26.5"/>
+                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="19"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textLocalize" value="clear_all"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="62" id="SiB-oq-vEz"/>
+                        <constraint firstItem="QX7-eK-nl3" firstAttribute="leading" secondItem="cB4-ao-frC" secondAttribute="leading" constant="14" id="jV5-Sr-Fpk"/>
+                        <constraint firstItem="QX7-eK-nl3" firstAttribute="centerY" secondItem="cB4-ao-frC" secondAttribute="centerY" id="mKe-81-LwQ"/>
+                        <constraint firstItem="zwm-BG-iFu" firstAttribute="centerY" secondItem="cB4-ao-frC" secondAttribute="centerY" id="us8-17-MbU"/>
+                        <constraint firstItem="zwm-BG-iFu" firstAttribute="leading" secondItem="QX7-eK-nl3" secondAttribute="trailing" constant="8" id="vwK-QS-rF1"/>
+                        <constraint firstAttribute="trailing" secondItem="zwm-BG-iFu" secondAttribute="trailing" constant="8" id="zXf-xV-UbW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="cB4-ao-frC" firstAttribute="top" secondItem="QLs-aA-qeg" secondAttribute="bottom" id="32Q-yz-fvi"/>
+                <constraint firstItem="cB4-ao-frC" firstAttribute="trailing" secondItem="odf-gn-HMg" secondAttribute="trailing" id="Sdd-eb-utF"/>
+                <constraint firstItem="QLs-aA-qeg" firstAttribute="top" secondItem="P44-EZ-8HC" secondAttribute="top" id="Sw2-vT-dnP"/>
+                <constraint firstItem="odf-gn-HMg" firstAttribute="trailing" secondItem="QLs-aA-qeg" secondAttribute="trailing" id="ax2-mK-rie"/>
+                <constraint firstItem="QLs-aA-qeg" firstAttribute="leading" secondItem="odf-gn-HMg" secondAttribute="leading" id="eSy-6b-501"/>
+                <constraint firstItem="cB4-ao-frC" firstAttribute="leading" secondItem="odf-gn-HMg" secondAttribute="leading" id="l9s-4g-CWz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="odf-gn-HMg"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="13"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="28.985507246376812" y="-34.821428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="basket" width="36" height="37"/>
+        <image name="moon_2" width="36" height="37"/>
+    </resources>
+</document>
