@@ -64,6 +64,7 @@ class ViewportView: UIView {
     }
     
     private func setupRx() {
+        
         let sounds = noiseSounds
             .compactMap { $0 }
             .scan([Noise]()) { old, new in
@@ -71,6 +72,16 @@ class ViewportView: UIView {
                 result.append(new)
                 return result
             }
+        
+        menuView
+            .didTapClearAll
+            .withLatestFrom(sounds.asSignal(onErrorSignalWith: .never()))
+            .emit(onNext: { [weak self] sounds in
+                for sound in sounds {
+                    self?.deletedRelay.accept(.delete(id: sound.id))
+                }
+            })
+            .disposed(by: disposeBag)
         
         let addNoiseView = noiseSounds
             .delay(.milliseconds(550), scheduler: MainScheduler.instance)
@@ -188,7 +199,9 @@ class ViewportView: UIView {
         Observable
             .merge(menuTitleTapGesture.rx.event.map { _ in 1 },
                    didTap.asObservable().map { _ in 0 },
-                   viewsTranslation.map { _ in 0 })
+                   viewsTranslation.map { _ in 0 },
+                   didTapSleepTimer.asObservable().map { _ in 0 },
+                   menuView.didTapClearAll.asObservable().map { _ in 0 })
             .subscribe(onNext: { [weak self] alpha in
                 UIView.animate(withDuration: 0.3, animations: {
                     self?.menuView.alpha = alpha
