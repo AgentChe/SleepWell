@@ -15,4 +15,8 @@ final class SoundsRouter: Routing {
     init(transitionHandler: UIViewController) {
         router = Router(transitionHandler: transitionHandler)
     }
+    
+    func showSleepTimerScreen() -> SceneTimerViewController.Output {
+        router.present(type: SceneTimerAssembly.self, input: Void())
+    }
 }

@@ -40,6 +40,8 @@
 "contact_us" = "Contact Us";
 "leave_a_review" = "Leave a Review";
 "settings" = "Settings";
+"sleep_timer" = "Sleep Timer";
+"clear_all" = "Clear All";
 
 // Sounds
 "sounds_title" = "Set up your own scene to put yourself into the right mood for whetever you're up to.";
@@ -47,6 +49,7 @@
 "hush_title" = "quiet";
 "weaker_title" = "light";
 "stronger_title" = "intense";
+"sounds_menu_title" = "Custom Set";
 
 // LocalNotifications
 "local_notify_title_1" = "Your future depends on your dreams 💤😴🎼";

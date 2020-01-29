@@ -21,6 +21,8 @@ class ViewportView: UIView {
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var addButton: UIButton!
     @IBOutlet private var deleteArea: UIImageView!
+    @IBOutlet private var menuTitleView: UIView!
+    @IBOutlet private var menuView: SoundsMenuView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +44,8 @@ class ViewportView: UIView {
         containerView.frame = bounds
         addSubview(containerView)
         
+        addGestureRecognizer(tapGesture)
+        
         [
             louderLabel,
             hushLabel,
@@ -60,6 +64,7 @@ class ViewportView: UIView {
     }
     
     private func setupRx() {
+        
         let sounds = noiseSounds
             .compactMap { $0 }
             .scan([Noise]()) { old, new in
@@ -67,6 +72,16 @@ class ViewportView: UIView {
                 result.append(new)
                 return result
             }
+        
+        menuView
+            .didTapClearAll
+            .withLatestFrom(sounds.asSignal(onErrorSignalWith: .never()))
+            .emit(onNext: { [weak self] sounds in
+                for sound in sounds {
+                    self?.deletedRelay.accept(.delete(id: sound.id))
+                }
+            })
+            .disposed(by: disposeBag)
         
         let addNoiseView = noiseSounds
             .delay(.milliseconds(550), scheduler: MainScheduler.instance)
@@ -177,6 +192,22 @@ class ViewportView: UIView {
             }
             .bind(to: changeVolumeRelay)
             .disposed(by: disposeBag)
+        
+        let menuTitleTapGesture = UITapGestureRecognizer()
+        menuTitleView.addGestureRecognizer(menuTitleTapGesture)
+        
+        Observable
+            .merge(menuTitleTapGesture.rx.event.map { _ in 1 },
+                   didTap.asObservable().map { _ in 0 },
+                   viewsTranslation.map { _ in 0 },
+                   didTapSleepTimer.asObservable().map { _ in 0 },
+                   menuView.didTapClearAll.asObservable().map { _ in 0 })
+            .subscribe(onNext: { [weak self] alpha in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self?.menuView.alpha = alpha
+                })
+            })
+            .disposed(by: disposeBag)
     }
     
     // Страшные штуки
@@ -235,6 +266,8 @@ class ViewportView: UIView {
         }
     }
     
+    private let tapGesture = UITapGestureRecognizer()
+    
     private let deletedRelay = BehaviorRelay<NoiseViewAction?>(value: nil)
     private var trashContainerPath: UIBezierPath!
     private let minScale: CGFloat = 0.8
@@ -246,6 +279,16 @@ class ViewportView: UIView {
 }
 
 extension ViewportView {
+    
+    var didTapSleepTimer: Signal<Void> {
+        return menuView.didTapSleep
+    }
+    
+    var didTap: Signal<Void> {
+        return tapGesture.rx.event
+            .map { _ in Void() }
+            .asSignal(onErrorSignalWith: .never())
+    }
     
     var changeVolume: Signal<(to: Int, volume: Float)> {
         return changeVolumeRelay.asSignal()
@@ -310,6 +353,7 @@ private extension ViewportView {
                 }
                 
                 base.addButton.alpha = !isHidden ? 0 : 1
+                base.menuTitleView.alpha = !isHidden ? 0 : 1
             }
         }
     }
