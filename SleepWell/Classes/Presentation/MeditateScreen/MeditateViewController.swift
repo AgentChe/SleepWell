@@ -48,7 +48,10 @@ final class MeditateViewController: UIViewController {
 
 extension MeditateViewController: BindsToViewModel {
     typealias ViewModel = MeditateViewModel
-    typealias Input = Observable<Bool>
+    struct Input {
+        let subscription: Observable<Bool>
+        let scrollToTop: Signal<Void>
+    }
     typealias Output = Signal<MainRoute>
 
     static func make() -> MeditateViewController {
@@ -59,7 +62,10 @@ extension MeditateViewController: BindsToViewModel {
     func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> Output {
         Analytics.shared.log(with: .meditateScr)
         
-        viewModel.elements(subscription: input, selectedTag: tableHeaderView.selectTag)
+        input.scrollToTop.emit(to: tableView.rx.scrollToTop)
+            .disposed(by: disposeBag)
+        
+        viewModel.elements(subscription: input.subscription, selectedTag: tableHeaderView.selectTag)
             .drive(tableView.rx.items) { table, index, item in
                 switch item {
                 case let .meditate(element):
@@ -94,7 +100,7 @@ extension MeditateViewController: BindsToViewModel {
                 }
                 
                 return viewModel
-                    .getMeditationDetails(meditationId: meditate.id, subscription: input)
+                    .getMeditationDetails(meditationId: meditate.id, subscription: input.subscription)
                     .map { action -> MainRoute in
                         switch action {
                         case .paygate:
