@@ -47,7 +47,10 @@ final class StoriesViewController: UIViewController {
 
 extension StoriesViewController: BindsToViewModel {
     typealias ViewModel = StoriesViewModel
-    typealias Input = Observable<Bool>
+    struct Input {
+        let subscription: Observable<Bool>
+        let scrollToTop: Signal<Void>
+    }
     typealias Output = Signal<MainRoute>
 
     static func make() -> StoriesViewController {
@@ -58,7 +61,10 @@ extension StoriesViewController: BindsToViewModel {
     func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
         Analytics.shared.log(with: .storiesScr)
         
-        let elements = viewModel.elements(subscription: input)
+        input.scrollToTop.emit(to: tableView.rx.scrollToTop)
+            .disposed(by: disposeBag)
+        
+        let elements = viewModel.elements(subscription: input.subscription)
 
         elements
             .drive(tableView.rx.items) { table, index, item in
@@ -100,7 +106,7 @@ extension StoriesViewController: BindsToViewModel {
             }
             
             return viewModel
-                .getStoryDetails(id: story.id, subscription: input)
+                .getStoryDetails(id: story.id, subscription: input.subscription)
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:

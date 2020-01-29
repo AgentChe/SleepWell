@@ -102,15 +102,29 @@ extension MainViewController: BindsToViewModel {
 
         let selectIndex = tabBarView.selectIndex
         
+        let storiesScroll = selectIndex
+            .scan((old: Int?.none, new: Tab.stories.rawValue)) { old, new in
+                (old: old.new, new: new)
+            }
+            .filter { $0.old == $0.new && $0.new == Tab.stories.rawValue  }
+            .map { _ in () }
+        
+        let meditationScroll = selectIndex
+            .scan((old: Int?.none, new: Tab.meditate.rawValue)) { old, new in
+                (old: old.new, new: new)
+            }
+            .filter { $0.old == $0.new && $0.new == Tab.meditate.rawValue  }
+            .map { _ in () }
+        
         selectIndex
             .map { Tab(rawValue: $0) ?? .scene }
             .flatMapLatest { [weak self] tab -> Signal<MainRoute> in
                 guard let self = self else { return .empty() }
                 switch tab {
                 case .meditate:
-                    return self.meditate(behave: isActiveSubscription)
+                    return self.meditate(behave: isActiveSubscription, scrollToTop: meditationScroll)
                 case .stories:
-                    return self.stories(behave: isActiveSubscription)
+                    return self.stories(behave: isActiveSubscription, scrollToTop: storiesScroll)
                 case .scene:
                     return self.scenes(
                         behave: isActiveSubscription,
@@ -185,18 +199,24 @@ extension MainViewController: BindsToViewModel {
 
 private extension MainViewController {
     
-    func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
+    func meditate(behave: Observable<Bool>, scrollToTop: Signal<Void>) -> Signal<MainRoute> {
         if meditateAssambly == nil {
-            meditateAssambly = MeditateAssembly().assemble(input: behave)
+            meditateAssambly = MeditateAssembly().assemble(input: .init(
+                subscription: behave,
+                scrollToTop: scrollToTop
+            ))
         }
         meditateAssambly.vc.view.frame = containerView.bounds
         add(meditateAssambly.vc)
         return meditateAssambly.output
     }
     
-    func stories(behave: Observable<Bool>) -> Signal<MainRoute> {
+    func stories(behave: Observable<Bool>, scrollToTop: Signal<Void>) -> Signal<MainRoute> {
         if storiesAssambly == nil {
-            storiesAssambly = StoriesAssembly().assemble(input: behave)
+            storiesAssambly = StoriesAssembly().assemble(input: .init(
+                subscription: behave,
+                scrollToTop: scrollToTop
+            ))
         }
         storiesAssambly.vc.view.frame = containerView.bounds
         add(storiesAssambly.vc)
