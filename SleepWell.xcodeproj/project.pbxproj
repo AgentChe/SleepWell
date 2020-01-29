@@ -110,6 +110,8 @@
 		86DD77AC23A7EEBB009213DF /* RateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DD77AB23A7EEBB009213DF /* RateService.swift */; };
 		86E1052C2393ECD20092B194 /* MiniPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E1052A2393ECD20092B194 /* MiniPlayerView.xib */; };
 		86E1052D2393ECD20092B194 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1052B2393ECD20092B194 /* MiniPlayerView.swift */; };
+		86ED928A23E0D8D700443EF2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED928923E0D8D700443EF2 /* LoadingView.swift */; };
+		86ED928C23E0D91300443EF2 /* LoadingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ED928B23E0D91300443EF2 /* LoadingLayer.swift */; };
 		86F6E53523CD1A9D00353F8D /* NoiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F6E53423CD1A9D00353F8D /* NoiseView.xib */; };
 		86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */; };
 		86F98CB823645C3B00B0F5EA /* MeditateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */; };
@@ -464,6 +466,8 @@
 		86DD77AB23A7EEBB009213DF /* RateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateService.swift; sourceTree = "<group>"; };
 		86E1052A2393ECD20092B194 /* MiniPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniPlayerView.xib; sourceTree = "<group>"; };
 		86E1052B2393ECD20092B194 /* MiniPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
+		86ED928923E0D8D700443EF2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		86ED928B23E0D91300443EF2 /* LoadingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLayer.swift; sourceTree = "<group>"; };
 		86F6E53423CD1A9D00353F8D /* NoiseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoiseView.xib; sourceTree = "<group>"; };
 		86F98CB223645C3B00B0F5EA /* MeditateScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeditateScreen.storyboard; sourceTree = "<group>"; };
 		86F98CB323645C3B00B0F5EA /* MeditateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateRouter.swift; sourceTree = "<group>"; };
@@ -979,6 +983,7 @@
 		86BC57EF23CBB85B00AA909B /* NoiseView */ = {
 			isa = PBXGroup;
 			children = (
+				86ED928823E0D8BC00443EF2 /* LoadingView */,
 				86BC57F223CBB87B00AA909B /* NoiseView.swift */,
 				86F6E53423CD1A9D00353F8D /* NoiseView.xib */,
 			);
@@ -1042,6 +1047,15 @@
 				86B5F39A236B5CD7000E43A0 /* StoryCellModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		86ED928823E0D8BC00443EF2 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				86ED928923E0D8D700443EF2 /* LoadingView.swift */,
+				86ED928B23E0D91300443EF2 /* LoadingLayer.swift */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 		86F98C832364589C00B0F5EA /* MeditateScreen */ = {
@@ -2137,6 +2151,7 @@
 				86B7A98D23701F85007A36BA /* MeditationsMapper.swift in Sources */,
 				84AB422F23ABFD9200E2A558 /* ArrayExtension.swift in Sources */,
 				8441FB8423637366001DC085 /* PlayerAssembly.swift in Sources */,
+				86ED928C23E0D91300443EF2 /* LoadingLayer.swift in Sources */,
 				96DC8C8F23679010004DC76A /* OnboardingAimsView.swift in Sources */,
 				96B1DB8323B0EE220050A8E2 /* MediaCacheService.swift in Sources */,
 				9699A65D23C91D4200CADE8B /* NoiseMapper.swift in Sources */,
@@ -2144,6 +2159,7 @@
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
 				86A85479239317AA006A0CB1 /* TabItem.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
+				86ED928A23E0D8D700443EF2 /* LoadingView.swift in Sources */,
 				96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
