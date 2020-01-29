@@ -282,6 +282,13 @@ final class AudioPlayerService: ReactiveCompatible {
             })
             .disposed(by: disposeBag)
         
+        timer.shouldSleep
+            .withLatestFrom(noiseRelay.asDriver())
+            .emit(onNext: {
+                $0?.forcePause()
+            })
+            .disposed(by: disposeBag)
+        
         let isSoundsEmpty = Driver
             .combineLatest(
                 sceneRelay.asDriver(),
