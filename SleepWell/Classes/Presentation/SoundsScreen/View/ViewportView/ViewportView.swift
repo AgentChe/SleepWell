@@ -111,6 +111,23 @@ class ViewportView: UIView {
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
         
+        Observable
+            .combineLatest(noiseViews, loadingSoundsRelay.asObservable())
+            .distinctUntilChanged { $0.1 == $1.1 }
+            .withLatestFrom(sounds) { ($0, $1) }
+            .bind { tuple, sounds in
+                let (views, elements)  = tuple
+                let loadingIds = sounds.filter { noise in
+                    return noise.sounds.contains(where: { sound in
+                        elements.contains(where: { sound.id == $0 })
+                    })
+                }
+                views.forEach { view in
+                    view.isLoading = loadingIds.contains(where: { view.id == $0.id })
+                }
+            }
+            .disposed(by: disposeBag)
+        
         let viewsTranslation = noiseViews
             .flatMap(changeVolumeAction)
             .share(replay: 1, scope: .whileConnected)
@@ -274,6 +291,7 @@ class ViewportView: UIView {
     private let maxScale: CGFloat = 1.5
     private let viewActionRelay = PublishRelay<Bool>()
     private let changeVolumeRelay = PublishRelay<Volume>()
+    private let loadingSoundsRelay = PublishRelay<[Int]>()
     private let noiseSounds = BehaviorRelay<Noise?>(value: nil)
     private let disposeBag = DisposeBag()
 }
@@ -314,6 +332,12 @@ extension ViewportView {
                 guard case let .delete(id) = action else { return nil }
                 return id
             }
+    }
+    
+    var loadingSounds: Binder<[Int]> {
+        return Binder(self) { base, elements in
+            base.loadingSoundsRelay.accept(elements)
+        }
     }
 }
 

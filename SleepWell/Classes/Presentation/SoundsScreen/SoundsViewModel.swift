@@ -18,6 +18,7 @@ protocol SoundsViewModelInterface {
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
     func showSleepTimerScreen() -> SceneTimerViewController.Output
+    func noiseStates() -> Driver<[(id: Int, state: LoadState)]>
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -69,5 +70,9 @@ extension SoundsViewModel: SoundsViewModelInterface {
     
     func showSleepTimerScreen() -> SceneTimerViewController.Output {
         router.showSleepTimerScreen()
+    }
+    
+    func noiseStates() -> Driver<[(id: Int, state: LoadState)]> {
+        dependencies.audioPlayerService.noiseStates()
     }
 }

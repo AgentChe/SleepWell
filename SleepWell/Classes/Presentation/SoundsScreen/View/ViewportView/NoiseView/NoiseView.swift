@@ -26,6 +26,7 @@ class NoiseView: UIView {
     @IBOutlet private var name: UILabel!
     @IBOutlet private var image: UIImageView!
     @IBOutlet private var containerView: UIView!
+    @IBOutlet private var loadingView: LoadingView!
     
     var imageSize: CGSize {
         return image.bounds.size
@@ -33,6 +34,18 @@ class NoiseView: UIView {
     
     var imageCenter: CGPoint {
         return image.center
+    }
+    
+    var isLoading: Bool = false {
+        didSet {
+            if isLoading && !loadingView.spinning {
+                loadingView.start()
+            }
+            
+            if !isLoading {
+                loadingView.stop()
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,16 +72,6 @@ class NoiseView: UIView {
         super.init(coder: coder)
         initialize()
     }
-
-    private func initialize() {
-        UINib(nibName: "NoiseView", bundle: nil).instantiate(withOwner: self, options: nil)
-        containerView.frame = bounds
-        
-        addSubview(containerView)
-        name.isHidden = true
-        
-        image.addGestureRecognizer(panGesture)
-    }
     
     func setup(noise: Noise) {
         id = noise.id
@@ -77,9 +80,22 @@ class NoiseView: UIView {
     }
     
     func setStartPosition(point: CGPoint) {
-        center = moving(to: point)
+        moving(to: point)
     }
 
+    private func initialize() {
+        UINib(nibName: "NoiseView", bundle: nil).instantiate(withOwner: self, options: nil)
+        containerView.frame = bounds
+        
+        addSubview(containerView)
+        name.isHidden = true
+        image.addGestureRecognizer(panGesture)
+        loadingView.layer.cornerRadius = bounds.width / 2
+        loadingView.backgroundColor = .clear
+        loadingView.tintColor = UIColor.black.withAlphaComponent(0.65)
+    }
+
+    @discardableResult
     private func moving(to newCenter: CGPoint) -> CGPoint {
         let currentCenter = center
         center.x = newCenter.x

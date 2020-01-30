@@ -169,6 +169,12 @@ extension SoundsViewController: BindsToViewModel {
         
         let loadedSounds = BehaviorRelay<Set<Int>>(value: Set<Int>())
         
+        //массив с id загружающихся звуков
+        viewModel.noiseStates()
+            .map { $0.filter { $0.state == .loadStarted }.map { $0.id } }
+            .drive(soundsView.loadingSounds)
+            .disposed(by: disposeBag)
+        
         noiseSounds
             .withLatestFrom(loadedSounds.asDriver()) { ($0, $1) }
             .map { noises, loaded -> ([NoiseSound], Set<Int>)  in
