@@ -38,13 +38,13 @@ class NoiseView: UIView {
     
     var isLoading: Bool = false {
         didSet {
-            if isLoading {
-                loadingView.layer.cornerRadius = image.frame.width / 2
+            if isLoading && !loadingView.spinning {
                 loadingView.start()
-            } else {
-                loadingView.stop()
             }
             
+            if !isLoading {
+                loadingView.stop()
+            }
         }
     }
     
@@ -80,7 +80,7 @@ class NoiseView: UIView {
     }
     
     func setStartPosition(point: CGPoint) {
-        center = moving(to: point)
+        moving(to: point)
     }
 
     private func initialize() {
@@ -90,11 +90,12 @@ class NoiseView: UIView {
         addSubview(containerView)
         name.isHidden = true
         image.addGestureRecognizer(panGesture)
-        loadingView.percentage = 0.12
+        loadingView.layer.cornerRadius = bounds.width / 2
         loadingView.backgroundColor = .clear
         loadingView.tintColor = UIColor.black.withAlphaComponent(0.65)
     }
 
+    @discardableResult
     private func moving(to newCenter: CGPoint) -> CGPoint {
         let currentCenter = center
         center.x = newCenter.x

@@ -172,6 +172,8 @@ extension SoundsViewController: BindsToViewModel {
         //массив с id загружающихся звуков
         viewModel.noiseStates()
             .map { $0.filter { $0.state == .loadStarted }.map { $0.id } }
+            .drive(soundsView.loadingSounds)
+            .disposed(by: disposeBag)
         
         noiseSounds
             .withLatestFrom(loadedSounds.asDriver()) { ($0, $1) }
