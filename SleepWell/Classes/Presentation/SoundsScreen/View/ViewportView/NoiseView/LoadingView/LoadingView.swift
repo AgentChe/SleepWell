@@ -50,10 +50,6 @@ class LoadingView: UIView {
     }
     
     func stop() {
-        if let currentVal = loadingLayer.presentation()?.percentage {
-            loadingLayer.percentage = currentVal
-        }
-        
         loadingLayer.removeAnimation(forKey: "spin")
         spinning = false
     }
