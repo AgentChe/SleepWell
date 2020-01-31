@@ -20,3 +20,21 @@ extension Driver {
             .asDriver(onErrorDriveWith: .empty())
     }
 }
+
+extension Observable {
+    
+    func retryWithDelay(
+        interval: RxTimeInterval,
+        repeat attempts: Int = .max
+    ) -> Observable<Element> {
+        retryWhen {
+            $0.enumerated().flatMap  { index, error -> Observable<Int> in
+                if index <= attempts {
+                    return Observable<Int>
+                        .timer(interval, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+                }
+                return Observable<Int>.error(error)
+            }
+        }
+    }
+}

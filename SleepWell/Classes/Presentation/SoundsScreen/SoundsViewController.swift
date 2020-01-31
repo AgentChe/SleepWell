@@ -142,11 +142,6 @@ extension SoundsViewController: BindsToViewModel {
             }
             .share(replay: 1, scope: .forever)
         
-        noiseSounds
-            .flatMap(viewModel.add)
-            .subscribe()
-            .disposed(by: disposeBag)
-        
         Driver
             .combineLatest(
                 input.isMainScreen,
@@ -167,36 +162,64 @@ extension SoundsViewController: BindsToViewModel {
             .emit(to: viewModel.noiseVolume)
             .disposed(by: disposeBag)
         
+        let loadableSounds = BehaviorRelay<Set<Int>>(value: Set<Int>())
         let loadedSounds = BehaviorRelay<Set<Int>>(value: Set<Int>())
         
         //массив с id загружающихся звуков
-        viewModel.noiseStates()
-            .map { $0.filter { $0.state == .loadStarted }.map { $0.id } }
+        Driver
+            .combineLatest(
+                noiseSounds.map { Set($0.map { $0.id }) }.asDriver(onErrorDriveWith: .empty()),
+                loadableSounds.asDriver()
+            ) { Array($0.intersection($1)) }
+            .distinctUntilChanged()
             .drive(soundsView.loadingSounds)
             .disposed(by: disposeBag)
         
         noiseSounds
-            .withLatestFrom(loadedSounds.asDriver()) { ($0, $1) }
-            .map { noises, loaded -> ([NoiseSound], Set<Int>)  in
+            .withLatestFrom(loadableSounds.asDriver()) { ($0, $1) }
+            .withLatestFrom(loadedSounds.asDriver()) { ($0.0, $0.1, $1) }
+            .map { noises, loadable, loaded -> ([NoiseSound], Set<Int>)  in
                 
-                let ids = Set(noises.map { $0.id }).subtracting(loaded)
-                return (noises.filter { ids.contains($0.id) }, loaded)
+                let ids = Set(noises.map { $0.id }).subtracting(loadable)
+                    .subtracting(loaded)
+                return (noises.filter { ids.contains($0.id) }, loadable)
             }
-            .do(onNext: { noises, loaded in
-                loadedSounds.accept(loaded.union(noises.map { $0.id }))
+            .do(onNext: { noises, loadable in
+                loadableSounds.accept(loadable.union(noises.map { $0.id }))
             })
-            .map { $0.0.map { $0.soundUrl } }
-            .flatMap(viewModel.copy)
-            .subscribe()
+            .flatMap { tuple in
+                viewModel.copy(url: tuple.0.map { $0.soundUrl })
+                    .map { _ in tuple.0.map { $0.id } }
+            }
+            .withLatestFrom(loadedSounds.asDriver()) { $1.union($0) }
+            .asSignal(onErrorSignalWith: .empty())
+            .emit(to: loadedSounds)
+            .disposed(by: disposeBag)
+        
+        loadedSounds.asDriver()
+            .withLatestFrom(loadableSounds.asDriver()) { $1.subtracting($0) }
+            .drive(loadableSounds)
+            .disposed(by: disposeBag)
+        
+        Driver
+            .combineLatest(
+                noiseSounds.asDriver(onErrorDriveWith: .empty()),
+                loadedSounds.asDriver()
+            ) { noises, loaded in
+                noises.filter { loaded.contains($0.id) }
+            }
+            .distinctUntilChanged()
+            .flatMap { viewModel.add(noises: $0).asDriver(onErrorDriveWith: .empty()) }
+            .drive()
             .disposed(by: disposeBag)
         
         soundsView
             .didTapSleepTimer
-            .emit(onNext: { _ = viewModel.showSleepTimerScreen() })
+            .emit(onNext: { viewModel.showSleepTimerScreen() })
             .disposed(by: disposeBag)
         
         return selectedCellModel
-            .filter { !$0.paid}
+            .filter { !$0.paid }
             .map { _ in MainRoute.paygate }
             .asSignal(onErrorSignalWith: .never())
     }

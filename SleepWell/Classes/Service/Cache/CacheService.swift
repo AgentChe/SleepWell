@@ -153,6 +153,7 @@ private final class CacheMeditations: Copy {
                         return Single.zip(
                             self.downloadImagesService.downloadImages(urls: tuple.images),
                             MediaCacheService().copy(urls: tuple.audios)
+                                .catchErrorJustReturn(())
                         ) { _, _ in () }
                     }
                     .observeOn(MainScheduler.instance)
@@ -274,6 +275,7 @@ private final class CacheStories: Copy {
                         return Single.zip(
                             self.downloadImagesService.downloadImages(urls: tuple.images),
                             MediaCacheService().copy(urls: tuple.audios)
+                                .catchErrorJustReturn(())
                         ) { _, _ in () }
                     }
                     .observeOn(MainScheduler.instance)
@@ -385,6 +387,7 @@ private final class CacheScenes: Copy {
                         return Single.zip(
                             self.downloadImagesService.downloadImages(urls: tuple.images),
                             MediaCacheService().copy(urls: tuple.media)
+                                .catchErrorJustReturn(())
                         ) { _, _ in () }
                     }
                     .observeOn(MainScheduler.instance)
@@ -477,6 +480,7 @@ private final class CacheNoise: Copy {
                                 return Single.zip(
                                     self.downloadImagesService.downloadImages(urls: imageUrlsForUpdate),
                                     MediaCacheService().copy(urls: audioUrlsForUpdate)
+                                        .catchErrorJustReturn(())
                                 ).map { _, _ in Void() }
                             }
                     }

@@ -113,7 +113,6 @@ class ViewportView: UIView {
         
         Observable
             .combineLatest(noiseViews, loadingSoundsRelay.asObservable())
-            .distinctUntilChanged { $0.1 == $1.1 }
             .withLatestFrom(sounds) { ($0, $1) }
             .bind { tuple, sounds in
                 let (views, elements)  = tuple

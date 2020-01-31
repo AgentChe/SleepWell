@@ -70,30 +70,38 @@ final class AudioPlayerService: ReactiveCompatible {
         }
     }
 
-    func add(sceneDetail: SceneDetail) {
+    func add(sceneDetail: SceneDetail) -> Completable {
+        
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
-                return
+                return .empty()
         }
         
-        let players = sceneDetail.sounds
-            .map {
-                Player(
-                    player: AVPlayer(url: $0.soundUrl.localUrl),
-                    id: $0.id
-                )
-            }
-        
-        let sceneAudio = SceneAudio(
-            players: players,
-            scene: sceneDetail.scene
-        )
-        sceneRelay.accept(sceneAudio)
-        sceneAudio.prepareToPlay()
+        return .deferred { [weak self] in
+            let players = sceneDetail.sounds
+                .compactMap { detail -> AudioPlayer? in
+                    guard let player = try? AVAudioPlayer(contentsOf: detail.soundUrl.localUrl) else {
+                        assertionFailure("There is no local file")
+                        return nil
+                    }
+                    return AudioPlayer(
+                        player: player,
+                        id: detail.id
+                    )
+                }
+            
+            let sceneAudio = SceneAudio(
+                players: players,
+                scene: sceneDetail.scene
+            )
+            self?.sceneRelay.accept(sceneAudio)
+            sceneAudio.prepareToPlay()
+            return .empty()
+        }
     }
     
     func add(noises: Set<NoiseSound>) -> Completable {
-        let currentIds = Set(noiseRelay.value?.statePlayers.map { $0.id } ?? [])
+        let currentIds = Set(noiseRelay.value?.audioPlayers.map { $0.id } ?? [])
         let addedIds = Set(noises.map { $0.id })
         let filtered = currentIds.intersection(addedIds)
         let removed = currentIds.subtracting(filtered)
@@ -101,48 +109,24 @@ final class AudioPlayerService: ReactiveCompatible {
         noiseRelay.value?.remove(ids: removed)
         
         let newPlayers = noises.filter { newIds.contains($0.id) }
-            .map { noise -> NoiseAudio.StatePlayer in
-                let player = AVPlayer(url: noise.soundUrl.localUrl)
-                let state: Driver<LoadState>
-                if noise.soundUrl.isContained {
-                    state = .just(.cached)
-                } else {
-                    state = player.rx.observe(AVPlayer.Status.self, "status")
-                        .asDriver(onErrorDriveWith: .empty())
-                        .filter { $0 == .readyToPlay }
-                        .map { _ in .loadEnded }
-                        .take(1)
-                        .startWith(.loadStarted)
+            .compactMap { noise -> AudioPlayer? in
+                guard let player = try? AVAudioPlayer(contentsOf: noise.soundUrl.localUrl) else {
+                    assertionFailure("There is no local file")
+                    return nil
                 }
-                return NoiseAudio.StatePlayer(id: noise.id, player: player, state: state)
+                return AudioPlayer(player: player, id: noise.id)
             }
         
         if let value = noiseRelay.value {
-            value.add(statePlayers: newPlayers)
+            value.add(audioPlayers: newPlayers)
             noiseRelay.accept(value)
         } else {
-            noiseRelay.accept(NoiseAudio(statePlayers: newPlayers))
+            noiseRelay.accept(NoiseAudio(audioPlayers: newPlayers))
         }
         
         noiseRelay.value?.play()
         
         return .empty()
-    }
-    
-    func noiseStates() -> Driver<[(id: Int, state: LoadState)]> {
-        noiseRelay.asDriver()
-            .flatMapLatest { noises -> Driver<[(id: Int, state: LoadState)]> in
-                guard let noises = noises else {
-                    return .just([])
-                }
-                return Driver
-                    .combineLatest(
-                        noises.statePlayers
-                            .map { player -> Driver<(id: Int, state: LoadState)> in
-                                player.state.map { (player.id, $0) }
-                            }
-                    )
-            }
     }
     
     func time(for id: Int) -> Driver<Int> {

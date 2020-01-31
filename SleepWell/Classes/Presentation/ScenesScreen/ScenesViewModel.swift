@@ -15,12 +15,12 @@ protocol ScenesViewModelInterface {
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
-    func add(sceneDetail: SceneDetail)
+    func add(sceneDetail: SceneDetail) -> Completable
     func playScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
-    func copy(url: [URL]) -> Signal<Void>
+    func copy(url: [URL]) -> Observable<Void>
     func pauseNoise() -> Signal<Void>
 }
 
@@ -95,7 +95,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
         dependencies.audioPlayerService.isScenePlaying
     }
     
-    func add(sceneDetail: SceneDetail) {
+    func add(sceneDetail: SceneDetail) -> Completable {
         dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
     }
     
@@ -115,9 +115,10 @@ extension ScenesViewModel: ScenesViewModelInterface {
         router.showSettings(sceneDetail: sceneDetail)
     }
     
-    func copy(url: [URL]) -> Signal<Void> {
+    func copy(url: [URL]) -> Observable<Void> {
         dependencies.mediaCacheService.copy(urls: url)
-            .asSignal(onErrorSignalWith: .empty())
+            .asObservable()
+            .retryWithDelay(interval: .seconds(2), repeat: 3)
     }
     
     func pauseNoise() -> Signal<Void> {
