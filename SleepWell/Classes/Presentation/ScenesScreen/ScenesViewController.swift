@@ -179,7 +179,7 @@ extension ScenesViewController: BindsToViewModel {
                 loadedVideo.accept(set)
             })
             .map { [$0.0.scene.url] }
-            .flatMap(viewModel.copy)
+            .flatMap { viewModel.copy(url: $0).asSignal(onErrorSignalWith: .empty()) }
             .emit()
             .disposed(by: disposeBag)
         
@@ -229,33 +229,25 @@ extension ScenesViewController: BindsToViewModel {
         let playScene = Observable
             .merge(
                 initialScene,
-                playSceneBySwipe,
+                playSceneBySwipe.debounce(.seconds(1), scheduler: MainScheduler.instance),
                 playSceneByOpeningSettings,
                 didTapPlayScene
             )
         
-        let loadedAudio = BehaviorRelay<Set<Int>>(value: Set<Int>())
-        playScene.withLatestFrom(loadedAudio.asDriver()) { ($0, $1) }
-            .filter { !$1.contains($0.scene.id) }
-            .do(onNext: { scene, set in
-                var set = set
-                set.insert(scene.scene.id)
-                loadedAudio.accept(set)
-            })
-            .map { $0.0.sounds.map { $0.soundUrl } }
-            .flatMap(viewModel.copy)
-            .subscribe()
-            .disposed(by: disposeBag)
-        
         playScene
-            .observeOn(MainScheduler.instance)
             .flatMapLatest { scene in
                 viewModel.pauseScene(style: .force).map { _ in scene }
             }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .do(onNext: {
+            .flatMapLatest { sceneDetail in
+                viewModel.copy(url: sceneDetail.sounds.map { $0.soundUrl })
+                    .map { _ in sceneDetail }
+            }
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest {
                 viewModel.add(sceneDetail: $0)
-            })
+                    .andThen(Single.just(()))
+            }
             .asSignal(onErrorSignalWith: .empty())
             .flatMapFirst { _ -> Signal<Void> in
                 Signal.zip(

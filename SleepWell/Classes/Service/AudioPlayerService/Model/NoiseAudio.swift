@@ -16,7 +16,7 @@ final class NoiseAudio: ReactiveCompatible {
     
     init(audioPlayers: [AudioPlayer]) {
         self.audioPlayers = audioPlayers
-        self.prepareRetry(players: self.audioPlayers.map { $0.player })
+        self.prepare(players: self.audioPlayers.map { $0.player })
     }
     
     func setVolume(to id: Int, value: Float) {
@@ -50,7 +50,7 @@ final class NoiseAudio: ReactiveCompatible {
     }
     
     func add(audioPlayers: [AudioPlayer]) {
-        prepareRetry(players: audioPlayers.map { $0.player })
+        prepare(players: audioPlayers.map { $0.player })
         self.audioPlayers.append(contentsOf: audioPlayers)
     }
     
@@ -58,7 +58,7 @@ final class NoiseAudio: ReactiveCompatible {
         audioPlayers = audioPlayers.filter { !ids.contains($0.id) }
     }
     
-    private func prepareRetry(players: [AVAudioPlayer]) {
+    private func prepare(players: [AVAudioPlayer]) {
         players.forEach {
             $0.prepareToPlay()
             $0.numberOfLoops = -1

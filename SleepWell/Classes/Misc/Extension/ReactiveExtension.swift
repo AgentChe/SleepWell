@@ -25,7 +25,7 @@ extension Observable {
     
     func retryWithDelay(
         interval: RxTimeInterval,
-        repeatFor attempts: Int = .max
+        repeat attempts: Int = .max
     ) -> Observable<Element> {
         retryWhen {
             $0.enumerated().flatMap  { index, error -> Observable<Int> in

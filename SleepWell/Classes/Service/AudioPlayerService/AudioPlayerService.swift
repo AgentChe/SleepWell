@@ -70,26 +70,34 @@ final class AudioPlayerService: ReactiveCompatible {
         }
     }
 
-    func add(sceneDetail: SceneDetail) {
+    func add(sceneDetail: SceneDetail) -> Completable {
+        
         guard sceneDetail.scene.id != sceneRelay.value?.scene.id
             && !sceneDetail.sounds.isEmpty else {
-                return
+                return .empty()
         }
         
-        let players = sceneDetail.sounds
-            .map {
-                Player(
-                    player: AVPlayer(url: $0.soundUrl.localUrl),
-                    id: $0.id
-                )
-            }
-        
-        let sceneAudio = SceneAudio(
-            players: players,
-            scene: sceneDetail.scene
-        )
-        sceneRelay.accept(sceneAudio)
-        sceneAudio.prepareToPlay()
+        return .deferred { [weak self] in
+            let players = sceneDetail.sounds
+                .compactMap { detail -> AudioPlayer? in
+                    guard let player = try? AVAudioPlayer(contentsOf: detail.soundUrl.localUrl) else {
+                        assertionFailure("There is no local file")
+                        return nil
+                    }
+                    return AudioPlayer(
+                        player: player,
+                        id: detail.id
+                    )
+                }
+            
+            let sceneAudio = SceneAudio(
+                players: players,
+                scene: sceneDetail.scene
+            )
+            self?.sceneRelay.accept(sceneAudio)
+            sceneAudio.prepareToPlay()
+            return .empty()
+        }
     }
     
     func add(noises: Set<NoiseSound>) -> Completable {
@@ -103,7 +111,7 @@ final class AudioPlayerService: ReactiveCompatible {
         let newPlayers = noises.filter { newIds.contains($0.id) }
             .compactMap { noise -> AudioPlayer? in
                 guard let player = try? AVAudioPlayer(contentsOf: noise.soundUrl.localUrl) else {
-                    assertionFailure("нет локального файла")
+                    assertionFailure("There is no local file")
                     return nil
                 }
                 return AudioPlayer(player: player, id: noise.id)
