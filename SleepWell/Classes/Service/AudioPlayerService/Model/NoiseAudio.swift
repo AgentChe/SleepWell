@@ -12,30 +12,24 @@ import RxSwift
 
 final class NoiseAudio: ReactiveCompatible {
     
-    struct StatePlayer {
-        let id: Int
-        let player: AVPlayer
-        let state: Driver<LoadState>
-    }
+    private(set) var audioPlayers: [AudioPlayer]
     
-    private(set) var statePlayers: [StatePlayer]
-    
-    init(statePlayers: [StatePlayer]) {
-        self.statePlayers = statePlayers
-        self.prepareRetry(players: self.statePlayers.map { $0.player })
+    init(audioPlayers: [AudioPlayer]) {
+        self.audioPlayers = audioPlayers
+        self.prepareRetry(players: self.audioPlayers.map { $0.player })
     }
     
     func setVolume(to id: Int, value: Float) {
         guard value >= 0.0 && value <= 1.0 else {
             return
         }
-        if let player = statePlayers.first(where: { $0.id == id }) {
+        if let player = audioPlayers.first(where: { $0.id == id }) {
             player.player.volume = value
         }
     }
     
     func forcePause() {
-        statePlayers.forEach {
+        audioPlayers.forEach {
             $0.player.pause()
         }
     }
@@ -48,34 +42,26 @@ final class NoiseAudio: ReactiveCompatible {
     }
     
     func play() {
-        statePlayers.forEach {
-            if $0.player.rate == 0 {
+        audioPlayers.forEach {
+            if !$0.player.isPlaying {
                 $0.player.play()
             }
         }
     }
     
-    func add(statePlayers: [StatePlayer]) {
-        prepareRetry(players: statePlayers.map { $0.player })
-        self.statePlayers.append(contentsOf: statePlayers)
+    func add(audioPlayers: [AudioPlayer]) {
+        prepareRetry(players: audioPlayers.map { $0.player })
+        self.audioPlayers.append(contentsOf: audioPlayers)
     }
     
     func remove(ids: Set<Int>) {
-        statePlayers = statePlayers.filter { !ids.contains($0.id) }
+        audioPlayers = audioPlayers.filter { !ids.contains($0.id) }
     }
     
-    private func prepareRetry(players: [AVPlayer]) {
+    private func prepareRetry(players: [AVAudioPlayer]) {
         players.forEach {
-            NotificationCenter.default.rx
-                .notification(
-                    .AVPlayerItemDidPlayToEndTime,
-                    object: $0.currentItem
-                )
-                .bind(to: Binder($0) { player, _ in
-                    player.seek(to: CMTime.zero)
-                    player.play()
-                })
-                .disposed(by: disposeBag)
+            $0.prepareToPlay()
+            $0.numberOfLoops = -1
         }
     }
     

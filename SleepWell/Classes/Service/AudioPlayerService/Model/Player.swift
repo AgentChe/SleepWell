@@ -12,3 +12,8 @@ struct Player {
     let player: AVPlayer
     let id: Int
 }
+
+struct AudioPlayer {
+    let player: AVAudioPlayer
+    let id: Int
+}

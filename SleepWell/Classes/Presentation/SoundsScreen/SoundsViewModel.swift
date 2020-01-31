@@ -17,8 +17,7 @@ protocol SoundsViewModelInterface {
     var playNoise: Binder<Void> { get }
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
-    func showSleepTimerScreen() -> SceneTimerViewController.Output
-    func noiseStates() -> Driver<[(id: Int, state: LoadState)]>
+    func showSleepTimerScreen()
 }
 
 final class SoundsViewModel: BindableViewModel {
@@ -53,6 +52,8 @@ extension SoundsViewModel: SoundsViewModelInterface {
     
     func copy(url: [URL]) -> Signal<Void> {
         dependencies.mediaCacheService.copy(urls: url)
+            .asObservable()
+            .retryWithDelay(interval: .seconds(2))
             .asSignal(onErrorSignalWith: .empty())
     }
     
@@ -68,11 +69,7 @@ extension SoundsViewModel: SoundsViewModelInterface {
         dependencies.audioPlayerService.pauseRecording(style: style)
     }
     
-    func showSleepTimerScreen() -> SceneTimerViewController.Output {
+    func showSleepTimerScreen() {
         router.showSleepTimerScreen()
-    }
-    
-    func noiseStates() -> Driver<[(id: Int, state: LoadState)]> {
-        dependencies.audioPlayerService.noiseStates()
     }
 }

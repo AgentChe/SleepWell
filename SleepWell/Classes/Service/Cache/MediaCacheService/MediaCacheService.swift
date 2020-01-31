@@ -10,6 +10,10 @@ import RxSwift
 
 final class MediaCacheService {
     
+    enum Error: Swift.Error {
+        case internetConnection
+    }
+    
     func copy(urls: [URL]) -> Single<Void> {
         
         let fileManager = FileManager.default
@@ -37,9 +41,12 @@ final class MediaCacheService {
                         contents: data,
                         attributes: nil
                     )
+                    
+                    completable(.completed)
+                    return Disposables.create()
                 }
                 
-                completable(.completed)
+                completable(.error(Error.internetConnection))
                 return Disposables.create()
             }
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
