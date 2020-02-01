@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="woJ-BK-SnQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="woJ-BK-SnQ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,10 +56,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Onq-BA-zMT" firstAttribute="centerX" secondItem="ZLL-qb-JHp" secondAttribute="centerX" id="2Av-oY-RMb"/>
+                                    <constraint firstItem="Snq-Wj-8sP" firstAttribute="centerY" secondItem="ZLL-qb-JHp" secondAttribute="centerY" constant="-74" id="2sD-1e-KJP"/>
                                     <constraint firstAttribute="trailing" secondItem="Snq-Wj-8sP" secondAttribute="trailing" constant="50" id="UeU-Eb-VHA"/>
                                     <constraint firstItem="Snq-Wj-8sP" firstAttribute="leading" secondItem="ZLL-qb-JHp" secondAttribute="leading" constant="50" id="afH-JF-09q"/>
                                     <constraint firstItem="Onq-BA-zMT" firstAttribute="top" secondItem="Snq-Wj-8sP" secondAttribute="bottom" constant="80" id="cyd-7S-zxn"/>
-                                    <constraint firstItem="Snq-Wj-8sP" firstAttribute="top" secondItem="ZLL-qb-JHp" secondAttribute="top" constant="244" id="lbI-JZ-71J"/>
                                 </constraints>
                             </view>
                         </subviews>
