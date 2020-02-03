@@ -199,6 +199,14 @@ final class AudioPlayerService: ReactiveCompatible {
             }
     }
     
+    var isNoisePlaying: Driver<Bool> {
+        
+        noiseRelay.asDriver()
+            .flatMapLatest {
+                $0?.isPlaying ?? .just(false)
+            }
+    }
+    
     var isPlaying: Driver<Bool> {
         
         audioRelay.asDriver()
@@ -273,11 +281,12 @@ final class AudioPlayerService: ReactiveCompatible {
             })
             .disposed(by: disposeBag)
         
-        let isSoundsEmpty = Driver
+        let isSoundsEmpty: Driver<AudioType> = Driver
             .combineLatest(
                 sceneRelay.asDriver(),
-                audioRelay.asDriver()
-            ) { $0 == nil && $1 == nil }
+                audioRelay.asDriver(),
+                noiseRelay.asDriver()
+            ) { $0 == nil && $1 == nil && $2 == nil }
             .filter { $0 }
             .map { _ in AudioType.none }
         
@@ -285,7 +294,8 @@ final class AudioPlayerService: ReactiveCompatible {
             .merge(
                 isSoundsEmpty,
                 isScenePlaying.filter { $0 }.map { _ in .scene },
-                isPlaying.filter { $0 }.map { _ in .recording }
+                isPlaying.filter { $0 }.map { _ in .recording },
+                isNoisePlaying.filter { $0 }.map { _ in .noise }
             )
             .distinctUntilChanged()
             .drive(audioType)
@@ -325,6 +335,7 @@ final class AudioPlayerService: ReactiveCompatible {
             .combineLatest(
                 sceneRelay.asDriver(),
                 audioRelay.asDriver(),
+                noiseRelay.asDriver(),
                 time,
                 isPlaying,
                 audioImage.startWith(nil)
@@ -335,15 +346,19 @@ final class AudioPlayerService: ReactiveCompatible {
                     .distinctUntilChanged(),
                 audioType.asDriver()
             )
-            .map { scene, audio, time, isPlaying, audioImage, sceneImage, type -> [String: Any] in
+            .map {
+                scene,
+                audio,
+                noise,
+                time,
+                isPlaying,
+                audioImage,
+                sceneImage,
+                type -> [String: Any] in
                 
-                guard type != .none else {
-                    return [:]
-                }
-                
-                let commandCenter = MPRemoteCommandCenter.shared()
-                
-                if scene != nil && type == .scene {
+                switch type {
+                case .scene where scene != nil:
+                    let commandCenter = MPRemoteCommandCenter.shared()
                     commandCenter.skipForwardCommand.isEnabled = false
                     commandCenter.skipBackwardCommand.isEnabled = false
                     
@@ -357,28 +372,42 @@ final class AudioPlayerService: ReactiveCompatible {
                     }
                     
                     return nowPlayingInfo
-                }
-                
-                guard let audio = audio else {
+                    
+                case .recording:
+                    guard let audio = audio else {
+                        return [:]
+                    }
+                    
+                    let commandCenter = MPRemoteCommandCenter.shared()
+                    commandCenter.skipForwardCommand.isEnabled = true
+                    commandCenter.skipBackwardCommand.isEnabled = true
+
+                    var nowPlayingInfo: [String: Any] = [
+                        MPMediaItemPropertyTitle: audio.recording.recording.name,
+                        MPNowPlayingInfoPropertyElapsedPlaybackTime: time,
+                        MPMediaItemPropertyPlaybackDuration: audio.recording.readingSound.soundSecs,
+                        MPNowPlayingInfoPropertyPlaybackRate: isPlaying && time != 0 ? 1.0 : 0.0
+                    ]
+
+                    if let image = audioImage {
+                        nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                            MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                    }
+
+                    return nowPlayingInfo
+                case .noise where noise != nil:
+                    let commandCenter = MPRemoteCommandCenter.shared()
+                    commandCenter.skipForwardCommand.isEnabled = false
+                    commandCenter.skipBackwardCommand.isEnabled = false
+                    
+                    let nowPlayingInfo: [String: Any] = [
+                        MPMediaItemPropertyTitle: "Noise"
+                    ]
+                    
+                    return nowPlayingInfo
+                default:
                     return [:]
                 }
-                
-                commandCenter.skipForwardCommand.isEnabled = true
-                commandCenter.skipBackwardCommand.isEnabled = true
-                
-                var nowPlayingInfo: [String: Any] = [
-                    MPMediaItemPropertyTitle: audio.recording.recording.name,
-                    MPNowPlayingInfoPropertyElapsedPlaybackTime: time,
-                    MPMediaItemPropertyPlaybackDuration: audio.recording.readingSound.soundSecs,
-                    MPNowPlayingInfoPropertyPlaybackRate: isPlaying && time != 0 ? 1.0 : 0.0
-                ]
-                
-                if let image = audioImage {
-                    nowPlayingInfo[MPMediaItemPropertyArtwork] =
-                        MPMediaItemArtwork(boundsSize: image.size) { _ in image }
-                }
-                
-                return nowPlayingInfo
             }
             .drive(Binder(self) { base, info in
                 base.nowPlayingInfoCenter.nowPlayingInfo = info
@@ -406,6 +435,7 @@ private extension AudioPlayerService {
     enum AudioType {
         case scene
         case recording
+        case noise
         case none
     }
 }
@@ -435,6 +465,14 @@ private extension AudioPlayerService {
                     scene.forcePlay()
                     return .success
                 }
+                if
+                    let self = self,
+                    let noise = self.noiseRelay.value,
+                    !noise._isPlaying
+                {
+                    noise.play()
+                    return .success
+                }
                 return .commandFailed
             }
 
@@ -452,6 +490,14 @@ private extension AudioPlayerService {
                     scene.isPlaying {
                     
                     scene.forcePause()
+                    return .success
+                }
+                if
+                    let self = self,
+                    let noise = self.noiseRelay.value,
+                    noise._isPlaying
+                {
+                    noise.forcePause()
                     return .success
                 }
                 return .commandFailed

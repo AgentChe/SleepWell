@@ -58,6 +58,19 @@ final class NoiseAudio: ReactiveCompatible {
         audioPlayers = audioPlayers.filter { !ids.contains($0.id) }
     }
     
+    var isPlaying: Driver<Bool> {
+        
+        Driver<Int>.timer(.milliseconds(0), period: .milliseconds(100))
+            .map { [weak self] _ in
+                self?._isPlaying ?? false
+            }
+            .distinctUntilChanged()
+    }
+    
+    var _isPlaying: Bool {
+        audioPlayers.first?.player.isPlaying ?? false
+    }
+    
     private func prepare(players: [AVAudioPlayer]) {
         players.forEach {
             $0.prepareToPlay()
