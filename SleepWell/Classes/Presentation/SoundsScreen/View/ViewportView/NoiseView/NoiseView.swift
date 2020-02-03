@@ -74,7 +74,7 @@ class NoiseView: UIView {
     }
     
     func setup(noise: Noise) {
-        id = noise.id
+        self.noise = noise
         image.kf.setImage(with: noise.imageUrl, options: [.transition(.fade(0.2))])
         name.text = noise.name
     }
@@ -142,7 +142,7 @@ class NoiseView: UIView {
     private let disposeBag = DisposeBag()
     private let didTouch = PublishRelay<Action>()
     private let panGesture = UIPanGestureRecognizer()
-    private(set) var id: Int?
+    private(set) var noise: Noise?
 }
 
 extension NoiseView {

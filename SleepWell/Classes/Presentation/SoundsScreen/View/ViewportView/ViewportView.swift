@@ -77,6 +77,8 @@ class ViewportView: UIView {
             .didTapClearAll
             .withLatestFrom(sounds.asSignal(onErrorSignalWith: .never()))
             .emit(onNext: { [weak self] sounds in
+                Analytics.shared.log(with: .soundsCleared)
+                
                 for sound in sounds {
                     self?.deletedRelay.accept(.delete(id: sound.id))
                 }
@@ -94,16 +96,16 @@ class ViewportView: UIView {
                 var result = old
                 switch action {
                 case let .add(view):
-                    guard !result.contains(where: { $0.id == view.id }) else {
+                    guard !result.contains(where: { $0.noise?.id == view.noise?.id }) else {
                         return old
                     }
                     result.append(view)
                     self.addSubview(view)
                 case let .delete(id):
-                    guard let view = result.first(where: { $0.id == id }) else {
+                    guard let view = result.first(where: { $0.noise?.id == id }) else {
                         return old
                     }
-                    result.removeAll(where: { $0.id == id })
+                    result.removeAll(where: { $0.noise?.id == id })
                     view.removeFromSuperview()
                 }
                 return result
@@ -122,7 +124,7 @@ class ViewportView: UIView {
                     })
                 }
                 views.forEach { view in
-                    view.isLoading = loadingIds.contains(where: { view.id == $0.id })
+                    view.isLoading = loadingIds.contains(where: { view.noise?.id == $0.id })
                 }
             }
             .disposed(by: disposeBag)
@@ -153,7 +155,7 @@ class ViewportView: UIView {
         viewsTranslation
             .withLatestFrom(noiseViews) { ($0, $1) }
             .compactMap { tuple, views -> (NoiseView.Action, NoiseView)? in
-                guard let view = views.first(where: { $0.id == tuple.0 }) else {
+                guard let view = views.first(where: { $0.noise?.id == tuple.0 }) else {
                     return nil
                 }
                 return (tuple.1, view)
@@ -172,13 +174,15 @@ class ViewportView: UIView {
         .compactMap { [weak self] id, views -> NoiseViewAction? in
             guard
                 let self = self,
-                let view = views.first(where: { $0.id == id })
+                let view = views.first(where: { $0.noise?.id == id })
                
             else { return nil }
 
             let imageCenter = view.convert(view.imageCenter, to: self.containerView)
             let deleteFrame = self.deleteArea.frame
             guard deleteFrame.contains(imageCenter) else { return nil }
+            
+            Analytics.shared.log(with: .soundRemoved(view.noise?.name ?? ""))
             
             return .delete(id: id)
         }
@@ -247,7 +251,7 @@ class ViewportView: UIView {
         return Observable
             .from(views)
             .flatMap { view -> Observable<(Int, NoiseView.Action)> in
-                guard let id = view.id else {
+                guard let id = view.noise?.id else {
                     return .empty()
                 }
                 
@@ -317,6 +321,7 @@ extension ViewportView {
     
     var item: Binder<Noise> {
         return Binder(self) { base, element in
+            Analytics.shared.log(with: .soundAdded(element.name))
             base.noiseSounds.accept(element)
         }
     }

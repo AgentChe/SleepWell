@@ -43,6 +43,8 @@ extension SoundsViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .soundsScr)
+        
         let elements = viewModel.sounds()
         
         let selectedCellModel = soundsListView

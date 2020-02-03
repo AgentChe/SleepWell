@@ -17,6 +17,6 @@ final class SoundsRouter: Routing {
     }
     
     func showSleepTimerScreen() {
-        router.present(type: SceneTimerAssembly.self, input: Void())
+        router.present(type: SceneTimerAssembly.self, input: .sounds)
     }
 }

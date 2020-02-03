@@ -35,6 +35,10 @@ final class Analytics {
     }
     
     func log(with event: AnalyticEvent) {
-        Amplitude.instance()?.logEvent(event.name)
+        if let params = event.params {
+            Amplitude.instance()?.logEvent(event.name, withEventProperties: params)
+        } else {
+            Amplitude.instance()?.logEvent(event.name)
+        }
     }
 }

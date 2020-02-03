@@ -34,6 +34,12 @@ enum AnalyticEvent {
     case blockedMeditationPaygateScr
     case unlockPremiumMeditationsPaygateScr
     
+    case soundsScr
+    case soundAdded(String)
+    case soundsCleared
+    case soundsTimerOn
+    case soundRemoved(String)
+    
     case settingsScr
     
     case searcgAdsClickAd
@@ -92,11 +98,33 @@ extension AnalyticEvent {
         case .unlockPremiumMeditationsPaygateScr:
             return "Unlock premium meditations paygate scr"
             
+        case .soundsScr:
+            return "Sounds scr"
+        case .soundAdded:
+            return "Sound added"
+        case .soundsCleared:
+            return "Sounds cleared"
+        case .soundsTimerOn:
+            return "Sounds timer on"
+        case .soundRemoved:
+            return "Sound removed"
+            
         case .settingsScr:
             return "Settings scr"
             
         case .searcgAdsClickAd:
             return "SearchAds Ad Click"
+        }
+    }
+    
+    var params: [AnyHashable: Any]? {
+        switch self {
+        case .soundAdded(let name):
+            return ["sound_name": name]
+        case .soundRemoved(let name):
+            return ["sound_name": name]
+        default:
+            return nil
         }
     }
 }
