@@ -14,6 +14,6 @@ final class GlobalDefinitions {
     static let contactUsUrl = "https://www.s1eep.app/legal/contact"
     static let appStoreUrl = "https://apps.apple.com/us/app/sleep-well-stories-and-sounds/id1490113879"
     
-    static let tabBarHeight = CGFloat(125)
+    static let tabBarHeight = CGFloat(155)
     static let tableBottomInsert = CGFloat(85)
 }

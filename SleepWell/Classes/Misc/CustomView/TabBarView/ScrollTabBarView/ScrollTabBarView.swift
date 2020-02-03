@@ -104,14 +104,12 @@ class ScrollTabBarView: UIView {
             .asSignal(onErrorSignalWith: .empty())
             .take(1)
             .emit(to: Binder(self) { view, _ in
-//                let center = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3) / 2
-                
                 let c = UIScreen.main.bounds.width / 4
                 let cx3 = c * 3
                 let center = cx3 - c / 2
                 
                 view.selectedIndicator.frame = CGRect(
-                    origin: CGPoint(x: center, y: view.frame.height - 30),
+                    origin: CGPoint(x: center, y: view.frame.height - 40),
                     size: CGSize(width: 5, height: 5)
                 )
             })
