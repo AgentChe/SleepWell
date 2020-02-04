@@ -162,114 +162,120 @@
 		962FB46A2396A76100B88FFC /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB4692396A76100B88FFC /* CacheService.swift */; };
 		963F0E4423D4ADA600FD39CA /* SoundCellElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F0E4323D4ADA600FD39CA /* SoundCellElement.swift */; };
 		965ABE7123A023780069307E /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ABE7023A023770069307E /* SizeUtils.swift */; };
-		96832BD823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B6C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */; };
-		96832BD923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B6D23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */; };
-		96832BDA23E4F78B000E2966 /* scenes.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832B6E23E4F78B000E2966 /* scenes.json */; };
-		96832BDB23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B6F23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */; };
-		96832BDC23E4F78B000E2966 /* meditations.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7023E4F78B000E2966 /* meditations.json */; };
-		96832BDD23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */; };
-		96832BDE23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */; };
-		96832BDF23E4F78B000E2966 /* sound_categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7323E4F78B000E2966 /* sound_categories.json */; };
-		96832BE023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */; };
-		96832BE123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */; };
-		96832BE223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */; };
-		96832BE323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */; };
-		96832BE423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */; };
-		96832BE523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */; };
-		96832BE623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */; };
-		96832BE723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */; };
-		96832BE823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */; };
-		96832BE923E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7D23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */; };
-		96832BEA23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7E23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */; };
-		96832BEB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B7F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */; };
-		96832BEC23E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8023E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */; };
-		96832BED23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */; };
-		96832BEE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */; };
-		96832BEF23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */; };
-		96832BF023E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */; };
-		96832BF123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */; };
-		96832BF223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */; };
-		96832BF323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */; };
-		96832BF423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */; };
-		96832BF523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */; };
-		96832BF623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */; };
-		96832BF723E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8B23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */; };
-		96832BF823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */; };
-		96832BF923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */; };
-		96832BFA23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */; };
-		96832BFB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B8F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */; };
-		96832BFC23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */; };
-		96832BFD23E4F78B000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9123E4F78B000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */; };
-		96832BFE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */; };
-		96832BFF23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */; };
-		96832C0023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3 */; };
-		96832C0123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */; };
-		96832C0223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */; };
-		96832C0323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */; };
-		96832C0423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */; };
-		96832C0523E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9923E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */; };
-		96832C0623E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9A23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */; };
-		96832C0723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */; };
-		96832C0823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */; };
-		96832C0923E4F78B000E2966 /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9D23E4F78B000E2966 /* stories.json */; };
-		96832C0A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */; };
-		96832C0B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832B9F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */; };
-		96832C0C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */; };
-		96832C0D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */; };
-		96832C0E23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */; };
-		96832C0F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */; };
-		96832C1023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */; };
-		96832C1123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */; };
-		96832C1223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */; };
-		96832C1323E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA723E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */; };
-		96832C1423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */; };
-		96832C1523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BA923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */; };
-		96832C1623E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAA23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */; };
-		96832C1723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */; };
-		96832C1823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */; };
-		96832C1923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */; };
-		96832C1A23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */; };
-		96832C1B23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BAF23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */; };
-		96832C1C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */; };
-		96832C1D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */; };
-		96832C1E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */; };
-		96832C1F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */; };
-		96832C2023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */; };
-		96832C2123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */; };
-		96832C2223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */; };
-		96832C2323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */; };
-		96832C2423E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB823E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */; };
-		96832C2523E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BB923E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */; };
-		96832C2623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBA23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */; };
-		96832C2723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */; };
-		96832C2823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */; };
-		96832C2923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */; };
-		96832C2A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBE23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3 */; };
-		96832C2B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BBF23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */; };
-		96832C2C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */; };
-		96832C2D23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */; };
-		96832C2E23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC223E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */; };
-		96832C2F23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */; };
-		96832C3023E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC423E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */; };
-		96832C3123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */; };
-		96832C3223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */; };
-		96832C3323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */; };
-		96832C3423E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC823E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */; };
-		96832C3523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832BC923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */; };
-		96832C3623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCA23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */; };
-		96832C3723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */; };
-		96832C3823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */; };
-		96832C3923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCD23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */; };
-		96832C3A23E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCE23E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */; };
-		96832C3B23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav in Resources */ = {isa = PBXBuildFile; fileRef = 96832BCF23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */; };
-		96832C3C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD023E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */; };
-		96832C3D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */; };
-		96832C3E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */; };
-		96832C3F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */; };
-		96832C4023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */; };
-		96832C4123E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD523E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */; };
-		96832C4223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */; };
-		96832C4323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832BD723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */; };
+		96832CB923E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */; };
+		96832CBA23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */; };
+		96832CBB23E98971000E2966 /* scenes.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4923E98971000E2966 /* scenes.json */; };
+		96832CBC23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4A23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */; };
+		96832CBD23E98971000E2966 /* meditations.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4B23E98971000E2966 /* meditations.json */; };
+		96832CBE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */; };
+		96832CBF23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */; };
+		96832CC023E98971000E2966 /* sound_categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4E23E98971000E2966 /* sound_categories.json */; };
+		96832CC123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C4F23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */; };
+		96832CC223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */; };
+		96832CC323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */; };
+		96832CC423E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */; };
+		96832CC523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5323E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */; };
+		96832CC623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */; };
+		96832CC723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */; };
+		96832CC823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */; };
+		96832CC923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */; };
+		96832CCA23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */; };
+		96832CCB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */; };
+		96832CCC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */; };
+		96832CCD23E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5B23E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */; };
+		96832CCE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */; };
+		96832CCF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */; };
+		96832CD023E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf */; };
+		96832CD123E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C5F23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */; };
+		96832CD223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */; };
+		96832CD323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */; };
+		96832CD423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */; };
+		96832CD523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */; };
+		96832CD623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */; };
+		96832CD723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */; };
+		96832CD823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png */; };
+		96832CD923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */; };
+		96832CDA23E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */; };
+		96832CDB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */; };
+		96832CDC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */; };
+		96832CDD23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */; };
+		96832CDE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */; };
+		96832CDF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */; };
+		96832CE023E98971000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6E23E98971000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */; };
+		96832CE123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C6F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */; };
+		96832CE223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */; };
+		96832CE323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */; };
+		96832CE423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */; };
+		96832CE523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */; };
+		96832CE623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */; };
+		96832CE723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */; };
+		96832CE823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */; };
+		96832CE923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */; };
+		96832CEA23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */; };
+		96832CEB23E98971000E2966 /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7923E98971000E2966 /* stories.json */; };
+		96832CEC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */; };
+		96832CED23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */; };
+		96832CEE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */; };
+		96832CEF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png */; };
+		96832CF023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */; };
+		96832CF123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C7F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */; };
+		96832CF223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */; };
+		96832CF323E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8123E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf */; };
+		96832CF423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */; };
+		96832CF523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */; };
+		96832CF623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */; };
+		96832CF723E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8523E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */; };
+		96832CF823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */; };
+		96832CF923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */; };
+		96832CFA23E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */; };
+		96832CFB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */; };
+		96832CFC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */; };
+		96832CFD23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */; };
+		96832CFE23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */; };
+		96832CFF23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8D23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */; };
+		96832D0023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */; };
+		96832D0123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C8F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png */; };
+		96832D0223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */; };
+		96832D0323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */; };
+		96832D0423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */; };
+		96832D0523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */; };
+		96832D0623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */; };
+		96832D0723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */; };
+		96832D0823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */; };
+		96832D0923E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9723E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */; };
+		96832D0A23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9823E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */; };
+		96832D0B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */; };
+		96832D0C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9A23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */; };
+		96832D0D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */; };
+		96832D0E23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */; };
+		96832D0F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */; };
+		96832D1023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */; };
+		96832D1123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832C9F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */; };
+		96832D1223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */; };
+		96832D1323E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA123E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */; };
+		96832D1423E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA223E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */; };
+		96832D1523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */; };
+		96832D1623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */; };
+		96832D1723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */; };
+		96832D1823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA623E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */; };
+		96832D1923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */; };
+		96832D1A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA823E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf */; };
+		96832D1B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CA923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */; };
+		96832D1C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAA23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */; };
+		96832D1D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAB23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */; };
+		96832D1E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */; };
+		96832D1F23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAD23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */; };
+		96832D2023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */; };
+		96832D2123E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96832CAF23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf */; };
+		96832D2223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */; };
+		96832D2323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */; };
+		96832D2423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */; };
+		96832D2523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */; };
+		96832D2623E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB423E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav */; };
+		96832D2723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */; };
+		96832D2823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */; };
+		96832D2923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */; };
+		96832D2A23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96832CB823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */; };
 		968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968552812368877000A22E21 /* OnboardingPersonalDataView.swift */; };
 		968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 968552832368878000A22E21 /* OnboardingPersonalDataView.xib */; };
 		9685528623688C1100A22E21 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685528523688C1100A22E21 /* CheckView.swift */; };
@@ -543,114 +549,120 @@
 		962FB4692396A76100B88FFC /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		963F0E4323D4ADA600FD39CA /* SoundCellElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCellElement.swift; sourceTree = "<group>"; };
 		965ABE7023A023770069307E /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
-		96832B6C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg"; sourceTree = "<group>"; };
-		96832B6D23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png"; sourceTree = "<group>"; };
-		96832B6E23E4F78B000E2966 /* scenes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scenes.json; sourceTree = "<group>"; };
-		96832B6F23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg"; sourceTree = "<group>"; };
-		96832B7023E4F78B000E2966 /* meditations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meditations.json; sourceTree = "<group>"; };
-		96832B7123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3"; sourceTree = "<group>"; };
-		96832B7223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3"; sourceTree = "<group>"; };
-		96832B7323E4F78B000E2966 /* sound_categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_categories.json; sourceTree = "<group>"; };
-		96832B7423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3"; sourceTree = "<group>"; };
-		96832B7523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png"; sourceTree = "<group>"; };
-		96832B7623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3"; sourceTree = "<group>"; };
-		96832B7723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg"; sourceTree = "<group>"; };
-		96832B7823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg"; sourceTree = "<group>"; };
-		96832B7923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png"; sourceTree = "<group>"; };
-		96832B7A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3"; sourceTree = "<group>"; };
-		96832B7B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png"; sourceTree = "<group>"; };
-		96832B7C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png"; sourceTree = "<group>"; };
-		96832B7D23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg"; sourceTree = "<group>"; };
-		96832B7E23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png"; sourceTree = "<group>"; };
-		96832B7F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3"; sourceTree = "<group>"; };
-		96832B8023E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a"; sourceTree = "<group>"; };
-		96832B8123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3"; sourceTree = "<group>"; };
-		96832B8223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png"; sourceTree = "<group>"; };
-		96832B8323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg"; sourceTree = "<group>"; };
-		96832B8423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg"; sourceTree = "<group>"; };
-		96832B8523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png"; sourceTree = "<group>"; };
-		96832B8623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png"; sourceTree = "<group>"; };
-		96832B8723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3"; sourceTree = "<group>"; };
-		96832B8823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png"; sourceTree = "<group>"; };
-		96832B8923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png"; sourceTree = "<group>"; };
-		96832B8A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3"; sourceTree = "<group>"; };
-		96832B8B23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a"; sourceTree = "<group>"; };
-		96832B8C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png"; sourceTree = "<group>"; };
-		96832B8D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3"; sourceTree = "<group>"; };
-		96832B8E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3"; sourceTree = "<group>"; };
-		96832B8F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3"; sourceTree = "<group>"; };
-		96832B9023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png"; sourceTree = "<group>"; };
-		96832B9123E4F78B000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg"; sourceTree = "<group>"; };
-		96832B9223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png"; sourceTree = "<group>"; };
-		96832B9323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png"; sourceTree = "<group>"; };
-		96832B9423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3"; sourceTree = "<group>"; };
-		96832B9523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png"; sourceTree = "<group>"; };
-		96832B9623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png"; sourceTree = "<group>"; };
-		96832B9723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3"; sourceTree = "<group>"; };
-		96832B9823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3"; sourceTree = "<group>"; };
-		96832B9923E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg"; sourceTree = "<group>"; };
-		96832B9A23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg"; sourceTree = "<group>"; };
-		96832B9B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png"; sourceTree = "<group>"; };
-		96832B9C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg"; sourceTree = "<group>"; };
-		96832B9D23E4F78B000E2966 /* stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
-		96832B9E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3"; sourceTree = "<group>"; };
-		96832B9F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png"; sourceTree = "<group>"; };
-		96832BA023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3"; sourceTree = "<group>"; };
-		96832BA123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3"; sourceTree = "<group>"; };
-		96832BA223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png"; sourceTree = "<group>"; };
-		96832BA323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3"; sourceTree = "<group>"; };
-		96832BA423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png"; sourceTree = "<group>"; };
-		96832BA523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png"; sourceTree = "<group>"; };
-		96832BA623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3"; sourceTree = "<group>"; };
-		96832BA723E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov"; sourceTree = "<group>"; };
-		96832BA823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg"; sourceTree = "<group>"; };
-		96832BA923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3"; sourceTree = "<group>"; };
-		96832BAA23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a"; sourceTree = "<group>"; };
-		96832BAB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png"; sourceTree = "<group>"; };
-		96832BAC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3"; sourceTree = "<group>"; };
-		96832BAD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png"; sourceTree = "<group>"; };
-		96832BAE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png"; sourceTree = "<group>"; };
-		96832BAF23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg"; sourceTree = "<group>"; };
-		96832BB023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3"; sourceTree = "<group>"; };
-		96832BB123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3"; sourceTree = "<group>"; };
-		96832BB223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3"; sourceTree = "<group>"; };
-		96832BB323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png"; sourceTree = "<group>"; };
-		96832BB423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png"; sourceTree = "<group>"; };
-		96832BB523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3"; sourceTree = "<group>"; };
-		96832BB623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png"; sourceTree = "<group>"; };
-		96832BB723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png"; sourceTree = "<group>"; };
-		96832BB823E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830466reader4.png"; sourceTree = "<group>"; };
-		96832BB923E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830430reader.png"; sourceTree = "<group>"; };
-		96832BBA23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3"; sourceTree = "<group>"; };
-		96832BBB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png"; sourceTree = "<group>"; };
-		96832BBC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3"; sourceTree = "<group>"; };
-		96832BBD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png"; sourceTree = "<group>"; };
-		96832BBE23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3"; sourceTree = "<group>"; };
-		96832BBF23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png"; sourceTree = "<group>"; };
-		96832BC023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3"; sourceTree = "<group>"; };
-		96832BC123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png"; sourceTree = "<group>"; };
-		96832BC223E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg"; sourceTree = "<group>"; };
-		96832BC323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg"; sourceTree = "<group>"; };
-		96832BC423E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830442reader2.png"; sourceTree = "<group>"; };
-		96832BC523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3"; sourceTree = "<group>"; };
-		96832BC623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png"; sourceTree = "<group>"; };
-		96832BC723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg"; sourceTree = "<group>"; };
-		96832BC823E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a"; sourceTree = "<group>"; };
-		96832BC923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_01_1580281283new.m4a"; sourceTree = "<group>"; };
-		96832BCA23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png"; sourceTree = "<group>"; };
-		96832BCB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3"; sourceTree = "<group>"; };
-		96832BCC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3"; sourceTree = "<group>"; };
-		96832BCD23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3"; sourceTree = "<group>"; };
-		96832BCE23E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830461reader3.png"; sourceTree = "<group>"; };
-		96832BCF23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav"; sourceTree = "<group>"; };
-		96832BD023E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg"; sourceTree = "<group>"; };
-		96832BD123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3"; sourceTree = "<group>"; };
-		96832BD223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3"; sourceTree = "<group>"; };
-		96832BD323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png"; sourceTree = "<group>"; };
-		96832BD423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png"; sourceTree = "<group>"; };
-		96832BD523E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg"; sourceTree = "<group>"; };
-		96832BD623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png"; sourceTree = "<group>"; };
-		96832BD723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg"; sourceTree = "<group>"; };
+		96832C4723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg"; sourceTree = "<group>"; };
+		96832C4823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png"; sourceTree = "<group>"; };
+		96832C4923E98971000E2966 /* scenes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scenes.json; sourceTree = "<group>"; };
+		96832C4A23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg"; sourceTree = "<group>"; };
+		96832C4B23E98971000E2966 /* meditations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meditations.json; sourceTree = "<group>"; };
+		96832C4C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3"; sourceTree = "<group>"; };
+		96832C4D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3"; sourceTree = "<group>"; };
+		96832C4E23E98971000E2966 /* sound_categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_categories.json; sourceTree = "<group>"; };
+		96832C4F23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3"; sourceTree = "<group>"; };
+		96832C5023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png"; sourceTree = "<group>"; };
+		96832C5123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3"; sourceTree = "<group>"; };
+		96832C5223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg"; sourceTree = "<group>"; };
+		96832C5323E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg"; sourceTree = "<group>"; };
+		96832C5423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png"; sourceTree = "<group>"; };
+		96832C5523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3"; sourceTree = "<group>"; };
+		96832C5623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png"; sourceTree = "<group>"; };
+		96832C5723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png"; sourceTree = "<group>"; };
+		96832C5823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg"; sourceTree = "<group>"; };
+		96832C5923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png"; sourceTree = "<group>"; };
+		96832C5A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3"; sourceTree = "<group>"; };
+		96832C5B23E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a"; sourceTree = "<group>"; };
+		96832C5C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3"; sourceTree = "<group>"; };
+		96832C5D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png"; sourceTree = "<group>"; };
+		96832C5E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf"; sourceTree = "<group>"; };
+		96832C5F23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg"; sourceTree = "<group>"; };
+		96832C6023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg"; sourceTree = "<group>"; };
+		96832C6123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png"; sourceTree = "<group>"; };
+		96832C6223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png"; sourceTree = "<group>"; };
+		96832C6323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3"; sourceTree = "<group>"; };
+		96832C6423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png"; sourceTree = "<group>"; };
+		96832C6523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png"; sourceTree = "<group>"; };
+		96832C6623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png"; sourceTree = "<group>"; };
+		96832C6723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3"; sourceTree = "<group>"; };
+		96832C6823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a"; sourceTree = "<group>"; };
+		96832C6923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png"; sourceTree = "<group>"; };
+		96832C6A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3"; sourceTree = "<group>"; };
+		96832C6B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3"; sourceTree = "<group>"; };
+		96832C6C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3"; sourceTree = "<group>"; };
+		96832C6D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png"; sourceTree = "<group>"; };
+		96832C6E23E98971000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg"; sourceTree = "<group>"; };
+		96832C6F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png"; sourceTree = "<group>"; };
+		96832C7023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png"; sourceTree = "<group>"; };
+		96832C7123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png"; sourceTree = "<group>"; };
+		96832C7223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png"; sourceTree = "<group>"; };
+		96832C7323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3"; sourceTree = "<group>"; };
+		96832C7423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3"; sourceTree = "<group>"; };
+		96832C7523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg"; sourceTree = "<group>"; };
+		96832C7623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg"; sourceTree = "<group>"; };
+		96832C7723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png"; sourceTree = "<group>"; };
+		96832C7823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg"; sourceTree = "<group>"; };
+		96832C7923E98971000E2966 /* stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
+		96832C7A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3"; sourceTree = "<group>"; };
+		96832C7B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png"; sourceTree = "<group>"; };
+		96832C7C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3"; sourceTree = "<group>"; };
+		96832C7D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png"; sourceTree = "<group>"; };
+		96832C7E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3"; sourceTree = "<group>"; };
+		96832C7F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png"; sourceTree = "<group>"; };
+		96832C8023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3"; sourceTree = "<group>"; };
+		96832C8123E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf"; sourceTree = "<group>"; };
+		96832C8223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png"; sourceTree = "<group>"; };
+		96832C8323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png"; sourceTree = "<group>"; };
+		96832C8423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3"; sourceTree = "<group>"; };
+		96832C8523E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov"; sourceTree = "<group>"; };
+		96832C8623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg"; sourceTree = "<group>"; };
+		96832C8723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3"; sourceTree = "<group>"; };
+		96832C8823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a"; sourceTree = "<group>"; };
+		96832C8923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png"; sourceTree = "<group>"; };
+		96832C8A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3"; sourceTree = "<group>"; };
+		96832C8B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png"; sourceTree = "<group>"; };
+		96832C8C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png"; sourceTree = "<group>"; };
+		96832C8D23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg"; sourceTree = "<group>"; };
+		96832C8E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3"; sourceTree = "<group>"; };
+		96832C8F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png"; sourceTree = "<group>"; };
+		96832C9023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3"; sourceTree = "<group>"; };
+		96832C9123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3"; sourceTree = "<group>"; };
+		96832C9223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png"; sourceTree = "<group>"; };
+		96832C9323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png"; sourceTree = "<group>"; };
+		96832C9423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3"; sourceTree = "<group>"; };
+		96832C9523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png"; sourceTree = "<group>"; };
+		96832C9623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png"; sourceTree = "<group>"; };
+		96832C9723E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830466reader4.png"; sourceTree = "<group>"; };
+		96832C9823E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830430reader.png"; sourceTree = "<group>"; };
+		96832C9923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3"; sourceTree = "<group>"; };
+		96832C9A23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png"; sourceTree = "<group>"; };
+		96832C9B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3"; sourceTree = "<group>"; };
+		96832C9C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png"; sourceTree = "<group>"; };
+		96832C9D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png"; sourceTree = "<group>"; };
+		96832C9E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3"; sourceTree = "<group>"; };
+		96832C9F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png"; sourceTree = "<group>"; };
+		96832CA023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg"; sourceTree = "<group>"; };
+		96832CA123E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg"; sourceTree = "<group>"; };
+		96832CA223E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830442reader2.png"; sourceTree = "<group>"; };
+		96832CA323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3"; sourceTree = "<group>"; };
+		96832CA423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png"; sourceTree = "<group>"; };
+		96832CA523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg"; sourceTree = "<group>"; };
+		96832CA623E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a"; sourceTree = "<group>"; };
+		96832CA723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_01_1580281283new.m4a"; sourceTree = "<group>"; };
+		96832CA823E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf"; sourceTree = "<group>"; };
+		96832CA923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png"; sourceTree = "<group>"; };
+		96832CAA23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3"; sourceTree = "<group>"; };
+		96832CAB23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3"; sourceTree = "<group>"; };
+		96832CAC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3"; sourceTree = "<group>"; };
+		96832CAD23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_readers_2019_11_1573830461reader3.png"; sourceTree = "<group>"; };
+		96832CAE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav"; sourceTree = "<group>"; };
+		96832CAF23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf"; sourceTree = "<group>"; };
+		96832CB023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg"; sourceTree = "<group>"; };
+		96832CB123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3"; sourceTree = "<group>"; };
+		96832CB223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3"; sourceTree = "<group>"; };
+		96832CB323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png"; sourceTree = "<group>"; };
+		96832CB423E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav"; sourceTree = "<group>"; };
+		96832CB523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png"; sourceTree = "<group>"; };
+		96832CB623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg"; sourceTree = "<group>"; };
+		96832CB723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png"; sourceTree = "<group>"; };
+		96832CB823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg"; sourceTree = "<group>"; };
 		968552812368877000A22E21 /* OnboardingPersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPersonalDataView.swift; sourceTree = "<group>"; };
 		968552832368878000A22E21 /* OnboardingPersonalDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingPersonalDataView.xib; sourceTree = "<group>"; };
 		9685528523688C1100A22E21 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
@@ -1263,117 +1275,123 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		96832B6B23E4F78B000E2966 /* cache */ = {
+		96832C4623E98971000E2966 /* cache */ = {
 			isa = PBXGroup;
 			children = (
-				96832B6C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */,
-				96832B6D23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */,
-				96832B6E23E4F78B000E2966 /* scenes.json */,
-				96832B6F23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */,
-				96832B7023E4F78B000E2966 /* meditations.json */,
-				96832B7123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */,
-				96832B7223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */,
-				96832B7323E4F78B000E2966 /* sound_categories.json */,
-				96832B7423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */,
-				96832B7523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */,
-				96832B7623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */,
-				96832B7723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */,
-				96832B7823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */,
-				96832B7923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */,
-				96832B7A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */,
-				96832B7B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */,
-				96832B7C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */,
-				96832B7D23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */,
-				96832B7E23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */,
-				96832B7F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */,
-				96832B8023E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */,
-				96832B8123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */,
-				96832B8223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */,
-				96832B8323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */,
-				96832B8423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */,
-				96832B8523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */,
-				96832B8623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */,
-				96832B8723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */,
-				96832B8823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */,
-				96832B8923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */,
-				96832B8A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */,
-				96832B8B23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */,
-				96832B8C23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */,
-				96832B8D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */,
-				96832B8E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */,
-				96832B8F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */,
-				96832B9023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */,
-				96832B9123E4F78B000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */,
-				96832B9223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */,
-				96832B9323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */,
-				96832B9423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3 */,
-				96832B9523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */,
-				96832B9623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */,
-				96832B9723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */,
-				96832B9823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */,
-				96832B9923E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */,
-				96832B9A23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */,
-				96832B9B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */,
-				96832B9C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */,
-				96832B9D23E4F78B000E2966 /* stories.json */,
-				96832B9E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */,
-				96832B9F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */,
-				96832BA023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */,
-				96832BA123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */,
-				96832BA223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */,
-				96832BA323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */,
-				96832BA423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */,
-				96832BA523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */,
-				96832BA623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */,
-				96832BA723E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */,
-				96832BA823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */,
-				96832BA923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */,
-				96832BAA23E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */,
-				96832BAB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */,
-				96832BAC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */,
-				96832BAD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */,
-				96832BAE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */,
-				96832BAF23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */,
-				96832BB023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */,
-				96832BB123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */,
-				96832BB223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */,
-				96832BB323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */,
-				96832BB423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */,
-				96832BB523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */,
-				96832BB623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */,
-				96832BB723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */,
-				96832BB823E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */,
-				96832BB923E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */,
-				96832BBA23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */,
-				96832BBB23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */,
-				96832BBC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */,
-				96832BBD23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */,
-				96832BBE23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3 */,
-				96832BBF23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */,
-				96832BC023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */,
-				96832BC123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */,
-				96832BC223E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */,
-				96832BC323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */,
-				96832BC423E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */,
-				96832BC523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */,
-				96832BC623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */,
-				96832BC723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */,
-				96832BC823E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */,
-				96832BC923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */,
-				96832BCA23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */,
-				96832BCB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */,
-				96832BCC23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */,
-				96832BCD23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */,
-				96832BCE23E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */,
-				96832BCF23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */,
-				96832BD023E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */,
-				96832BD123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */,
-				96832BD223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */,
-				96832BD323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */,
-				96832BD423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */,
-				96832BD523E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */,
-				96832BD623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */,
-				96832BD723E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */,
+				96832C4723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg */,
+				96832C4823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png */,
+				96832C4923E98971000E2966 /* scenes.json */,
+				96832C4A23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg */,
+				96832C4B23E98971000E2966 /* meditations.json */,
+				96832C4C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 */,
+				96832C4D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 */,
+				96832C4E23E98971000E2966 /* sound_categories.json */,
+				96832C4F23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 */,
+				96832C5023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png */,
+				96832C5123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 */,
+				96832C5223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg */,
+				96832C5323E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg */,
+				96832C5423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png */,
+				96832C5523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 */,
+				96832C5623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png */,
+				96832C5723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png */,
+				96832C5823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg */,
+				96832C5923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png */,
+				96832C5A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 */,
+				96832C5B23E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a */,
+				96832C5C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 */,
+				96832C5D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png */,
+				96832C5E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf */,
+				96832C5F23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg */,
+				96832C6023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg */,
+				96832C6123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png */,
+				96832C6223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png */,
+				96832C6323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 */,
+				96832C6423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png */,
+				96832C6523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png */,
+				96832C6623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png */,
+				96832C6723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 */,
+				96832C6823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a */,
+				96832C6923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png */,
+				96832C6A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 */,
+				96832C6B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 */,
+				96832C6C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 */,
+				96832C6D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png */,
+				96832C6E23E98971000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg */,
+				96832C6F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png */,
+				96832C7023E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png */,
+				96832C7123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png */,
+				96832C7223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png */,
+				96832C7323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 */,
+				96832C7423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 */,
+				96832C7523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg */,
+				96832C7623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg */,
+				96832C7723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png */,
+				96832C7823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg */,
+				96832C7923E98971000E2966 /* stories.json */,
+				96832C7A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 */,
+				96832C7B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png */,
+				96832C7C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 */,
+				96832C7D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png */,
+				96832C7E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 */,
+				96832C7F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png */,
+				96832C8023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 */,
+				96832C8123E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf */,
+				96832C8223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png */,
+				96832C8323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png */,
+				96832C8423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 */,
+				96832C8523E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */,
+				96832C8623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg */,
+				96832C8723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 */,
+				96832C8823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a */,
+				96832C8923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png */,
+				96832C8A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 */,
+				96832C8B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png */,
+				96832C8C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png */,
+				96832C8D23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg */,
+				96832C8E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 */,
+				96832C8F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png */,
+				96832C9023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 */,
+				96832C9123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 */,
+				96832C9223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png */,
+				96832C9323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png */,
+				96832C9423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 */,
+				96832C9523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png */,
+				96832C9623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png */,
+				96832C9723E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png */,
+				96832C9823E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png */,
+				96832C9923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 */,
+				96832C9A23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png */,
+				96832C9B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 */,
+				96832C9C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png */,
+				96832C9D23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png */,
+				96832C9E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 */,
+				96832C9F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png */,
+				96832CA023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg */,
+				96832CA123E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg */,
+				96832CA223E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png */,
+				96832CA323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 */,
+				96832CA423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png */,
+				96832CA523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg */,
+				96832CA623E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a */,
+				96832CA723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a */,
+				96832CA823E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf */,
+				96832CA923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png */,
+				96832CAA23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 */,
+				96832CAB23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 */,
+				96832CAC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 */,
+				96832CAD23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png */,
+				96832CAE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav */,
+				96832CAF23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf */,
+				96832CB023E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg */,
+				96832CB123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 */,
+				96832CB223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 */,
+				96832CB323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png */,
+				96832CB423E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav */,
+				96832CB523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png */,
+				96832CB623E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg */,
+				96832CB723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png */,
+				96832CB823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -1511,7 +1529,7 @@
 			isa = PBXGroup;
 			children = (
 				96C29EC82362564000E93CB1 /* AppDelegate.swift */,
-				96832B6B23E4F78B000E2966 /* cache */,
+				96832C4623E98971000E2966 /* cache */,
 				96C29EDE23625A4900E93CB1 /* Storyboards */,
 				96C29F112362649100E93CB1 /* Strings */,
 				96DC8C612367444C004DC76A /* Fonts */,
@@ -2006,174 +2024,180 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96832C0023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793976white noise.mp3 in Resources */,
-				96832C2E23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg in Resources */,
-				96832BEA23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png in Resources */,
+				96832CFA23E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */,
+				96832CF123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png in Resources */,
+				96832CCB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795179i_Snd_Mech_05@3x.png in Resources */,
 				86BC57EC23CB8A5F00AA909B /* ViewportView.xib in Resources */,
-				96832BF723E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a in Resources */,
-				96832C0F23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 in Resources */,
-				96832C0D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 in Resources */,
-				96832C1423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg in Resources */,
+				96832D2423E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 in Resources */,
 				9623D34023990C720040CB43 /* OpenSans-Regular.ttf in Resources */,
+				96832CDE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 in Resources */,
 				9623D33E23990B800040CB43 /* Montserrat-Regular.ttf in Resources */,
 				9623D33923990A850040CB43 /* OpenSans-Semibold.ttf in Resources */,
 				96D8E9C023E0D9FC00835459 /* SoundsMenuView.xib in Resources */,
-				96832BE623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 in Resources */,
+				96832D0623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 in Resources */,
+				96832CC723E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796082camp fire (small).mp3 in Resources */,
 				9623D33B23990A850040CB43 /* OpenSans-Light.ttf in Resources */,
-				96832BEC23E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a in Resources */,
-				96832BE023E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 in Resources */,
+				96832CCD23E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578936114echos of the stars.m4a in Resources */,
+				96832CD823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580650228i_Snd_Asmr_07@3x.png in Resources */,
+				96832D2923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png in Resources */,
+				96832CC123E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796035cicada (light).mp3 in Resources */,
 				9623D33C23990A850040CB43 /* OpenSans-Italic.ttf in Resources */,
+				96832D1423E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */,
+				96832D0F23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png in Resources */,
+				96832CDD23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 in Resources */,
 				9623D33D23990A850040CB43 /* OpenSans-Bold.ttf in Resources */,
+				96832CF223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579755247writing with a pencil .mp3 in Resources */,
+				96832D0323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 in Resources */,
 				86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */,
-				96832C2023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png in Resources */,
-				96832BD823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg in Resources */,
-				96832C2C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 in Resources */,
+				96832CB923E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760168Card_01@jpg.jpg in Resources */,
+				96832D0B23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 in Resources */,
 				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
+				96832CE223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png in Resources */,
+				96832CF823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760314Card_13@jpg.jpg in Resources */,
+				96832CD423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png in Resources */,
 				868B5E4023C0C605007BC301 /* SoundsListView.xib in Resources */,
+				96832CF923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 in Resources */,
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
-				96832BFA23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794466spring birds.mp3 in Resources */,
-				96832C2423E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png in Resources */,
-				96832C2A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793999pink noise.mp3 in Resources */,
-				96832C0723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png in Resources */,
-				96832C3123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 in Resources */,
-				96832C2F23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg in Resources */,
 				86F6E53523CD1A9D00353F8D /* NoiseView.xib in Resources */,
 				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
 				86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */,
-				96832BFE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png in Resources */,
-				96832C1123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png in Resources */,
-				96832C3623E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png in Resources */,
-				96832C1823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 in Resources */,
-				96832BEF23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */,
-				96832BE323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg in Resources */,
-				96832C0B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png in Resources */,
-				96832BDC23E4F78B000E2966 /* meditations.json in Resources */,
-				96832BE223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 in Resources */,
+				96832D0A23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */,
+				96832CDC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 in Resources */,
+				96832CD123E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760240Card_09@jpg.jpg in Resources */,
+				96832CC423E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760249Card_10@jpg.jpg in Resources */,
+				96832CBD23E98971000E2966 /* meditations.json in Resources */,
+				96832CC323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796167diesel car idling (inside car).mp3 in Resources */,
 				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
-				96832C0E23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794154i_Snd_Noise_03@3x.png in Resources */,
 				844F025B23777002004C062B /* VolumeScreen.storyboard in Resources */,
-				96832BF023E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */,
 				9623D34E2399878E0040CB43 /* GoogleService-Info.plist in Resources */,
-				96832C1623E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894479space sonar.m4a in Resources */,
-				96832BF223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795260i_Snd_Mech_06@3x.png in Resources */,
+				96832D0C23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png in Resources */,
 				86A69BFE23C0766A00B07168 /* SoundsScreen.storyboard in Resources */,
-				96832BF523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png in Resources */,
-				96832BFB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795117keyboard typing.mp3 in Resources */,
-				96832BF123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png in Resources */,
-				96832C2123E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795989river (small stream).mp3 in Resources */,
-				96832C0523E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg in Resources */,
 				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
+				96832CEA23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg in Resources */,
 				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
-				96832BEB23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 in Resources */,
+				96832CCC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795322eternity.mp3 in Resources */,
+				96832CFD23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png in Resources */,
+				96832CDB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png in Resources */,
+				96832CE123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793814i_Snd_Asmr_07@3x.png in Resources */,
 				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
-				96832C3B23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav in Resources */,
-				96832BDB23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */,
-				96832C4323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */,
+				96832D1A23E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701630white_noise_16_22050.caf in Resources */,
+				96832CD523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 in Resources */,
+				96832CBC23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760231Card_08@jpg.jpg in Resources */,
 				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
-				96832BE823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png in Resources */,
+				96832CC923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795344i_Snd_Melodies_02@3x.png in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
-				96832BF323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794560mysterious owls.mp3 in Resources */,
-				96832BE123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png in Resources */,
-				96832C3523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a in Resources */,
-				96832C1023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png in Resources */,
+				96832CC223E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579857129i_Snd_Asmr_04@3x.png in Resources */,
 				868B5E5123C0D36A007BC301 /* SoundGroupCell.xib in Resources */,
-				96832BED23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 in Resources */,
-				96832C0923E4F78B000E2966 /* stories.json in Resources */,
-				96832BFF23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795087i_Snd_Mech_08@3x.png in Resources */,
+				96832CF423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795794i_Snd_Melodies_04@3x.png in Resources */,
+				96832CCE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795043submarine.mp3 in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
-				96832C4223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794273i_Snd_Nature_11@3x.png in Resources */,
-				96832C3923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 in Resources */,
-				96832C1523E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795461music box.mp3 in Resources */,
 				9685528D23690F5C00A22E21 /* OnboardingBedtimeView.xib in Resources */,
 				86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */,
 				84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */,
-				96832C3723E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 in Resources */,
-				96832C3823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 in Resources */,
-				96832C0123E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png in Resources */,
+				96832D0523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794593i_Snd_Nature_01@3x.png in Resources */,
+				96832D1B23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793976i_Snd_Noise_01@3x.png in Resources */,
+				96832CD323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795043i_Snd_Mech_07@3x.png in Resources */,
+				96832CED23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794428i_Snd_Nature_10@3x.png in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
-				96832BDE23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 in Resources */,
+				96832D1C23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795211dishwasher.mp3 in Resources */,
+				96832D0123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701735i_Snd_Asmr_06@3x.png in Resources */,
+				96832CE823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg in Resources */,
+				96832D2823E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */,
+				96832CBF23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795865tibetian bowls (light).mp3 in Resources */,
+				96832D1823E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
+				96832CF723E98971000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */,
+				96832CDA23E98971000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894430space voices.m4a in Resources */,
 				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
+				96832CFF23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */,
+				96832CFE23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png in Resources */,
+				96832D0E23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png in Resources */,
+				96832D1723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg in Resources */,
 				86A70294238C6F50005C877B /* ScrollTabBarView.xib in Resources */,
-				96832BFD23E4F78B000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg in Resources */,
-				96832C0A23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 in Resources */,
-				96832BF823E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794081i_Snd_Noise_02@3x.png in Resources */,
+				96832CE523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 in Resources */,
 				868B5E4D23C0CCBD007BC301 /* SoundGroupView.xib in Resources */,
-				96832C3A23E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png in Resources */,
-				96832BE423E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg in Resources */,
-				96832C3423E4F78B000E2966 /* https___www.s1eep.app_scenes_2019_12_1575894442whales.m4a in Resources */,
-				96832C0C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 in Resources */,
+				96832CE323E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793999i_Snd_Noise_04@3x.png in Resources */,
+				96832CC523E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921636Card_15@jpg.jpg in Resources */,
+				96832CF023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794273whales.mp3 in Resources */,
+				96832CD923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 in Resources */,
 				86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */,
-				96832C3E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795179drone engine.mp3 in Resources */,
-				96832C4123E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921574Card_18@jpg.jpg in Resources */,
+				96832D2323E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 in Resources */,
+				96832D0023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 in Resources */,
+				96832D1623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png in Resources */,
+				96832CE423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
+				96832CF323E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580650112pink_noise_16_44100.caf in Resources */,
+				96832D2023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580285128guitar (1).wav in Resources */,
+				96832CEE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796265dried wood (light).mp3 in Resources */,
 				86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */,
-				96832C2923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796265i_Snd_Asmr_01@3x.png in Resources */,
+				96832D1323E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921775Card_20@jpg.jpg in Resources */,
 				968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */,
-				96832C3023E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830442reader2.png in Resources */,
+				96832D1523E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795488piano.mp3 in Resources */,
+				96832D0223E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 in Resources */,
+				96832D1223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921608Card_16@jpg.jpg in Resources */,
+				96832CEC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795528sweet dreams.mp3 in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
-				96832C2223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
-				96832C1E23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794593crickets.mp3 in Resources */,
-				96832BF923E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794504night bird.mp3 in Resources */,
-				96832C1B23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760223Card_07@jpg.jpg in Resources */,
+				96832D2623E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580701906white_noise.wav in Resources */,
+				96832D2A23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760197Card_04@jpg.jpg in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
-				96832C1723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png in Resources */,
-				96832C3223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796082i_Snd_Nature_06@3x.png in Resources */,
-				96832BE723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png in Resources */,
-				96832BF423E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png in Resources */,
+				96832CC823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579793894i_Snd_Asmr_02@3x.png in Resources */,
+				96832D2723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png in Resources */,
 				868B5E4923C0C864007BC301 /* SoundCell.xib in Resources */,
-				96832C2723E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795322i_Snd_Melodies_01@3x.png in Resources */,
-				96832C0223E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794504i_Snd_Nature_03@3x.png in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
-				96832C1923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796342i_Snd_Asmr_05@3x.png in Resources */,
+				96832D0923E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830466reader4.png in Resources */,
 				86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */,
-				96832C2D23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png in Resources */,
-				96832C1A23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796214i_Snd_Asmr_06@3x.png in Resources */,
 				86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */,
-				96832C1223E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 in Resources */,
-				96832C1D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795794wind chimes (light).mp3 in Resources */,
-				96832BE523E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png in Resources */,
-				96832C0623E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921590Card_17@jpg.jpg in Resources */,
+				96832D0D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 in Resources */,
+				96832CE923E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795865i_Snd_Melodies_03@3x.png in Resources */,
+				96832CF523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795151i_Snd_Mech_03@3x.png in Resources */,
+				96832CC623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795989i_Snd_Nature_08@3x.png in Resources */,
 				86C848C32367008A00BC6EDA /* StoriesHeaderView.xib in Resources */,
-				96832C2B23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579755247i_Snd_Asmr_08@3x.png in Resources */,
-				96832C2623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579862340snowy steps (light).mp3 in Resources */,
-				96832BD923E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png in Resources */,
+				96832CBA23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794108i_Snd_Noise_05@3x.png in Resources */,
 				86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */,
+				96832CFC23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794108brown noise.mp3 in Resources */,
+				96832D2523E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png in Resources */,
+				96832CDF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png in Resources */,
+				96832CD023E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720559tibetian_bowls_intense_22050.caf in Resources */,
 				86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */,
-				96832C2523E4F78B000E2966 /* https___www.s1eep.app_readers_2019_11_1573830430reader.png in Resources */,
+				96832D1F23E98971000E2966 /* https___www.s1eep.app_readers_2019_11_1573830461reader3.png in Resources */,
+				96832CFB23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794560i_Snd_Nature_04@3x.png in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
-				96832C3F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795211i_Snd_Mech_02@3x.png in Resources */,
-				96832C0323E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796214boiling vater (small).mp3 in Resources */,
-				96832BE923E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg in Resources */,
+				96832CCA23E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760189Card_03@jpg.jpg in Resources */,
+				96832CE623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 in Resources */,
+				96832D2223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg in Resources */,
+				96832CD223E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574760178Card_02@jpg.jpg in Resources */,
+				96832D1D23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796322rustling grass (light).mp3 in Resources */,
+				96832CD723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796112i_Snd_Mech_04@3x.png in Resources */,
+				96832D1123E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796290i_Snd_Asmr_03@3x.png in Resources */,
+				96832D0423E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png in Resources */,
+				96832D1E23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795260alien spaceship.mp3 in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
+				96832D0723E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795528i_Snd_Melodies_07@3x.png in Resources */,
 				86E1052C2393ECD20092B194 /* MiniPlayerView.xib in Resources */,
 				86C848C82367027900BC6EDA /* StoryCell.xib in Resources */,
-				96832C1C23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794428space voices.mp3 in Resources */,
-				96832C1323E4F78B000E2966 /* https___www.s1eep.app_scenes_2020_01_1578931433https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */,
-				96832C3D23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795151hairdryer.mp3 in Resources */,
-				96832C2823E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793814vinyl crackle.mp3 in Resources */,
+				96832D1923E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1580281283new.m4a in Resources */,
 				86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */,
-				96832C4023E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579794466i_Snd_Nature_09@3x.png in Resources */,
-				96832BDF23E4F78B000E2966 /* sound_categories.json in Resources */,
-				96832BDA23E4F78B000E2966 /* scenes.json in Resources */,
+				96832CF623E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579795087space sonar.mp3 in Resources */,
+				96832CD623E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795461i_Snd_Melodies_06@3x.png in Resources */,
+				96832CC023E98971000E2966 /* sound_categories.json in Resources */,
+				96832CBB23E98971000E2966 /* scenes.json in Resources */,
 				84DD743D23908E8000B10777 /* SceneTimerScreen.storyboard in Resources */,
-				96832BF623E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796290ice cubes (light).mp3 in Resources */,
-				96832BFC23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796167i_Snd_Mech_01@3x.png in Resources */,
+				96832D1023E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579794081green noise.mp3 in Resources */,
 				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
+				96832CEB23E98971000E2966 /* stories.json in Resources */,
 				86A7D69B2385DA510087CE87 /* SceneImageCell.xib in Resources */,
-				96832C3C23E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760296Card_11@jpg.jpg in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
-				96832C0823E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574760217Card_06@jpg.jpg in Resources */,
+				96832D2123E98971000E2966 /* https___www.s1eep.app_sounds_2020_02_1580720605music_box_22050.caf in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
-				96832BDD23E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 in Resources */,
-				96832C2323E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png in Resources */,
+				96832CBE23E98971000E2966 /* https___www.s1eep.app_sounds_2020_01_1579793894fur stroking.mp3 in Resources */,
 				96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */,
-				96832C0423E4F78B000E2966 /* https___www.s1eep.app_sounds_2020_01_1579796112highway (light).mp3 in Resources */,
-				96832BEE23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png in Resources */,
-				96832C1F23E4F78B000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795117i_Snd_Mech_09@3x.png in Resources */,
-				96832C3323E4F78B000E2966 /* https___www.s1eep.app_stories_2019_11_1574921684Card_14@jpg.jpg in Resources */,
+				96832CEF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_02_1580701680i_Snd_Asmr_08@3x.png in Resources */,
+				96832CE723E98971000E2966 /* https___www.s1eep.app_stories_2019_11_1574921544Card_19@jpg.jpg in Resources */,
+				96832CE023E98971000E2966 /* https___www.s1eep.app_meditations_2020_01_1578937060card12.jpg in Resources */,
+				96832CCF23E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579796035i_Snd_Nature_02@3x.png in Resources */,
+				96832D0823E98971000E2966 /* https___www.s1eep.app_sound_images_2020_01_1579795488i_Snd_Melodies_05@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2590,7 +2614,7 @@
 				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = W644U2Y4YS;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2598,7 +2622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.18;
+				MARKETING_VERSION = 1.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.li.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "SleepWell Development";
@@ -2615,7 +2639,7 @@
 				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = W644U2Y4YS;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2623,7 +2647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.18;
+				MARKETING_VERSION = 1.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.li.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "SleepWell AppStore";
