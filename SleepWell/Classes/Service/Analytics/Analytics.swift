@@ -7,6 +7,7 @@
 //
 
 import Amplitude_iOS
+import FBSDKCoreKit
 
 final class Analytics {
     static let shared = Analytics()
@@ -22,6 +23,7 @@ final class Analytics {
     
     func setUserId(userId: Int) {
         Amplitude.instance()?.setUserId("\(userId)")
+        AppEvents.userID = "\(userId)"
     }
     
     func setUserAttributes(attributes: [String: Any]) {
