@@ -23,11 +23,14 @@ final class Analytics {
     
     func setUserId(userId: Int) {
         Amplitude.instance()?.setUserId("\(userId)")
+        
+        AppEvents.activateApp()
         AppEvents.userID = "\(userId)"
     }
     
     func setUserAttributes(attributes: [String: Any]) {
         Amplitude.instance()?.setUserProperties(attributes)
+        AppEvents.updateUserProperties(["city":"none"])
     }
     
     func updateUserAttribute(property: String, value: NSObject) {
