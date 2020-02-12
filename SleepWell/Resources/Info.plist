@@ -31,6 +31,8 @@
 	<string>748183789016421</string>
 	<key>FacebookDisplayName</key>
 	<string>Sleep Well</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
