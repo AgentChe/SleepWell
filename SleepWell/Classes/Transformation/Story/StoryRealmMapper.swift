@@ -17,7 +17,8 @@ struct StoryRealmMapper {
                      imagePreviewUrl: URL(string: realm.imagePreviewUrl ?? ""),
                      imageReaderURL: URL(string: realm.imageReaderURL ?? ""),
                      hash: realm.storyHash,
-                     length: realm.length)
+                     length: realm.length,
+                     sort: realm.sort)
     }
 
     static func map(from entity: Story) -> RealmStory {
@@ -28,6 +29,7 @@ struct StoryRealmMapper {
                           imagePreviewUrl: entity.imagePreviewUrl,
                           imageReaderURL: entity.imageReaderURL,
                           storyHash: entity.hash,
-                          length: entity.length)
+                          length: entity.length,
+                          sort: entity.sort)
     }
 }

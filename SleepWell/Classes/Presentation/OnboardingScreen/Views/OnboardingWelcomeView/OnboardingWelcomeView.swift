@@ -107,6 +107,8 @@ class OnboardingWelcomeView: UIView {
     }
     
     func show() {
+        Analytics.shared.log(with: .slideScr)
+        
         isHidden = false
         alpha = 0
         

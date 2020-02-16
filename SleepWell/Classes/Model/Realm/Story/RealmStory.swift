@@ -10,14 +10,15 @@ import Foundation
 import RealmSwift
 
 class RealmStory: Object {
-   @objc dynamic var id: Int = 0
-   @objc dynamic var name: String = ""
-   @objc dynamic var paid: Bool = true
-   @objc dynamic var reader: String?
-   @objc dynamic var imagePreviewUrl: String?
-   @objc dynamic var imageReaderURL: String?
-   @objc dynamic var storyHash: String = ""
-   @objc dynamic var length: Int = 0
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var paid: Bool = true
+    @objc dynamic var reader: String?
+    @objc dynamic var imagePreviewUrl: String?
+    @objc dynamic var imageReaderURL: String?
+    @objc dynamic var storyHash: String = ""
+    @objc dynamic var length: Int = 0
+    @objc dynamic var sort: Int = 0
     
     convenience init(id: Int,
                      name: String,
@@ -26,7 +27,8 @@ class RealmStory: Object {
                      imagePreviewUrl: URL?,
                      imageReaderURL: URL?,
                      storyHash: String,
-                     length: Int) {
+                     length: Int,
+                     sort: Int) {
         self.init()
     
         self.id = id
@@ -37,6 +39,7 @@ class RealmStory: Object {
         self.imageReaderURL = imageReaderURL?.absoluteString
         self.storyHash = storyHash
         self.length = length
+        self.sort = sort
     }
 
     @objc open override class func primaryKey() -> String? {

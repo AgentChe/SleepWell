@@ -66,7 +66,7 @@ final class PushMessagesService {
     }
     
     private func getRepeatDate(time: String? = nil) -> Date? {
-        guard let time = time ?? PersonalDataService.pushTime() else {
+        guard let time = time ?? PersonalDataService.cachedPersonalData()?.pushTime else {
             return nil
         }
         

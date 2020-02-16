@@ -23,6 +23,13 @@ final class ScenesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
     
     private func setupUI() {
@@ -68,7 +75,11 @@ extension ScenesViewController: BindsToViewModel {
         return storyboard.instantiateViewController(withIdentifier: "ScenesViewController") as! ScenesViewController
     }
     
+    @objc func didBecomeActive() {}
+    
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .sceneScr)
+        
         let elements = viewModel.elements(subscription: input.subscription)
 
         let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
@@ -78,7 +89,11 @@ extension ScenesViewController: BindsToViewModel {
             .compactMap { $0?.row }
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
-    
+        
+        let _didBecomeActive = rx.methodInvoked(#selector(didBecomeActive))
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+        
         elements
             .drive(collectionView.rx.items(infinite: true)) { collection, index, item in
                 switch item {
@@ -94,7 +109,7 @@ extension ScenesViewController: BindsToViewModel {
                         withReuseIdentifier: "SceneVideoCell",
                         for: IndexPath(row: index, section: 0)
                     ) as! SceneVideoCell
-                    cell.setup(model: fields)
+                    cell.setup(model: fields, didBecomeActive: _didBecomeActive)
                     return cell
                 }
             }
@@ -132,6 +147,7 @@ extension ScenesViewController: BindsToViewModel {
                 return true
             }
             .map { _ in MainRoute.paygate }
+            .do(onNext: { _ in Analytics.shared.log(with: .blockedScenePaygateScr) })
             .asSignal(onErrorJustReturn: .paygate)
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
@@ -150,6 +166,22 @@ extension ScenesViewController: BindsToViewModel {
         
         let viewDidAppear = rx.methodInvoked(#selector(UIViewController.viewDidAppear))
             .take(1)
+        
+        let loadedVideo = BehaviorRelay<Set<Int>>(value: Set<Int>())
+        
+        sceneDetail.filter { $0?.scene.mime.isVideo == true }
+            .map { $0! }
+            .withLatestFrom(loadedVideo.asDriver()) { ($0, $1) }
+            .filter { !$1.contains($0.scene.id) }
+            .do(onNext: { scene, set in
+                var set = set
+                set.insert(scene.scene.id)
+                loadedVideo.accept(set)
+            })
+            .map { [$0.0.scene.url] }
+            .flatMap { viewModel.copy(url: $0).asSignal(onErrorSignalWith: .empty()) }
+            .emit()
+            .disposed(by: disposeBag)
         
         let initialScene = Observable
             .combineLatest(
@@ -194,24 +226,34 @@ extension ScenesViewController: BindsToViewModel {
                 pauseButton.rx.tap.asObservable().map { _ in false }
             )
         
-        Observable
+        let playScene = Observable
             .merge(
                 initialScene,
-                playSceneBySwipe,
+                playSceneBySwipe.debounce(.seconds(1), scheduler: MainScheduler.instance),
                 playSceneByOpeningSettings,
                 didTapPlayScene
             )
-            .observeOn(MainScheduler.instance)
+        
+        playScene
             .flatMapLatest { scene in
                 viewModel.pauseScene(style: .force).map { _ in scene }
             }
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .do(onNext: {
+            .flatMapLatest { sceneDetail in
+                viewModel.copy(url: sceneDetail.sounds.map { $0.soundUrl })
+                    .map { _ in sceneDetail }
+            }
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest {
                 viewModel.add(sceneDetail: $0)
-            })
+                    .andThen(Single.just(()))
+            }
             .asSignal(onErrorSignalWith: .empty())
-            .flatMapFirst { _ in
-                viewModel.pauseRecording(style: .force)
+            .flatMapFirst { _ -> Signal<Void> in
+                Signal.zip(
+                    viewModel.pauseNoise(),
+                    viewModel.pauseRecording(style: .force)
+                ) { _, _ in () }
             }
             .withLatestFrom(shouldPlayScene.asSignal(onErrorSignalWith: .empty()))
             .flatMapLatest { shouldPlay in
@@ -252,8 +294,8 @@ extension ScenesViewController: BindsToViewModel {
         
         let actions = Signal
             .merge(
-                pauseButton.rx.tap.asSignal(),
-                playButton.rx.tap.asSignal(),
+                pauseButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
+                playButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
                 settingsButton.rx.tap.asSignal(),
                 tapGesture.rx.event.asSignal()
                     .map { _ in () },

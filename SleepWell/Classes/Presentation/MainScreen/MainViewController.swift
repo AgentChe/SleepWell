@@ -35,18 +35,23 @@ final class MainViewController: UIViewController {
     private func setupTabs() {
         storiesTabItem.title = "Stories"
         meditateTabItem.title = "Meditate"
-        sceneTabItem.title = "Scene"
+        sceneTabItem.title = "Scenes"
+        soundTabItem.title = "Sounds"
         
-        tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem]
+        sceneTabItem.select = true 
+        
+        tabBarView.items = [storiesTabItem, meditateTabItem, sceneTabItem, soundTabItem]
     }
     
     private var meditateAssambly: (vc: MeditateViewController, output: Signal<MainRoute>)!
     private var storiesAssambly: (vc: StoriesViewController, output: Signal<MainRoute>)!
     private var scenesAssambly: (vc: ScenesViewController, output: Signal<MainRoute>)!
+    private var soundsAssambly: (vc: SoundsViewController, output: Signal<MainRoute>)!
     
     private let storiesTabItem = TabItem()
     private let meditateTabItem = TabItem()
     private let sceneTabItem = TabItem()
+    private let soundTabItem = TabItem()
     private let disposeBag = DisposeBag()
 }
 
@@ -55,6 +60,7 @@ extension MainViewController: BindsToViewModel {
         case stories
         case meditate
         case scene
+        case sound
     }
 
     typealias ViewModel = MainViewModel
@@ -96,15 +102,29 @@ extension MainViewController: BindsToViewModel {
 
         let selectIndex = tabBarView.selectIndex
         
+        let storiesScroll = selectIndex
+            .scan((old: Int?.none, new: Tab.stories.rawValue)) { old, new in
+                (old: old.new, new: new)
+            }
+            .filter { $0.old == $0.new && $0.new == Tab.stories.rawValue  }
+            .map { _ in () }
+        
+        let meditationScroll = selectIndex
+            .scan((old: Int?.none, new: Tab.meditate.rawValue)) { old, new in
+                (old: old.new, new: new)
+            }
+            .filter { $0.old == $0.new && $0.new == Tab.meditate.rawValue  }
+            .map { _ in () }
+        
         selectIndex
             .map { Tab(rawValue: $0) ?? .scene }
             .flatMapLatest { [weak self] tab -> Signal<MainRoute> in
                 guard let self = self else { return .empty() }
                 switch tab {
                 case .meditate:
-                    return self.meditate(behave: isActiveSubscription)
+                    return self.meditate(behave: isActiveSubscription, scrollToTop: meditationScroll)
                 case .stories:
-                    return self.stories(behave: isActiveSubscription)
+                    return self.stories(behave: isActiveSubscription, scrollToTop: storiesScroll)
                 case .scene:
                     return self.scenes(
                         behave: isActiveSubscription,
@@ -113,6 +133,12 @@ extension MainViewController: BindsToViewModel {
                             .asDriver(onErrorDriveWith: .empty())
                             .startWith(true)
                     )
+                case .sound :
+                    let isMainScreen = selectIndex
+                        .map { $0 == Tab.sound.rawValue }
+                        .asDriver(onErrorDriveWith: .empty())
+                        .startWith(true)
+                    return self.sounds(isMainScreen: isMainScreen, isActiveSubscription: isActiveSubscription)
                 }
             }
             .emit(to: Binder(self) { base, route in
@@ -137,15 +163,30 @@ extension MainViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        tabBarView.didTapMiniPlayer
+        let didPauseRecording = tabBarView.didTapMiniPlayer
             .filter { $0 == .pause }
             .flatMapFirst { _ in viewModel.pauseRecording(style: .force) }
+        
+        didPauseRecording
             .emit()
+            .disposed(by: disposeBag)
+        
+        didPauseRecording
+            .withLatestFrom(
+                selectIndex
+                    .map { $0 == Tab.sound.rawValue }
+                    .asDriver(onErrorDriveWith: .empty())
+            )
+            .filter { $0 }
+            .map { _ in () }
+            .emit(to: viewModel.playNoise)
             .disposed(by: disposeBag)
         
         tabBarView.didTapMiniPlayer
             .filter { $0 == .play }
-            .flatMapFirst { _ in viewModel.pauseScene(style: .force) }
+            .flatMapFirst { _ in
+                Signal.zip(viewModel.pauseNoise(), viewModel.pauseScene(style: .force))
+            }
             .flatMapLatest { _ in viewModel.playRecording(style: .force) }
             .emit()
             .disposed(by: disposeBag)
@@ -158,28 +199,31 @@ extension MainViewController: BindsToViewModel {
 
 private extension MainViewController {
     
-    func meditate(behave: Observable<Bool>) -> Signal<MainRoute> {
+    func meditate(behave: Observable<Bool>, scrollToTop: Signal<Void>) -> Signal<MainRoute> {
         if meditateAssambly == nil {
-            meditateAssambly = MeditateAssembly().assemble(input: behave)
+            meditateAssambly = MeditateAssembly().assemble(input: .init(
+                subscription: behave,
+                scrollToTop: scrollToTop
+            ))
         }
         meditateAssambly.vc.view.frame = containerView.bounds
         add(meditateAssambly.vc)
         return meditateAssambly.output
     }
     
-    func stories(behave: Observable<Bool>) -> Signal<MainRoute> {
+    func stories(behave: Observable<Bool>, scrollToTop: Signal<Void>) -> Signal<MainRoute> {
         if storiesAssambly == nil {
-            storiesAssambly = StoriesAssembly().assemble(input: behave)
+            storiesAssambly = StoriesAssembly().assemble(input: .init(
+                subscription: behave,
+                scrollToTop: scrollToTop
+            ))
         }
         storiesAssambly.vc.view.frame = containerView.bounds
         add(storiesAssambly.vc)
         return storiesAssambly.output
     }
 
-    func scenes(
-        behave: Observable<Bool>,
-        isMainScreen: Driver<Bool>
-    ) -> Signal<MainRoute> {
+    func scenes(behave: Observable<Bool>, isMainScreen: Driver<Bool>) -> Signal<MainRoute> {
         if scenesAssambly == nil {
             scenesAssambly = ScenesAssembly().assemble(input: .init(
                 subscription: behave,
@@ -192,6 +236,21 @@ private extension MainViewController {
         scenesAssambly.vc.view.frame = containerView.bounds
         add(scenesAssambly.vc)
         return scenesAssambly.output
+    }
+    
+    func sounds(isMainScreen: Driver<Bool>, isActiveSubscription: Observable<Bool>) -> Signal<MainRoute> {
+        if soundsAssambly == nil {
+            soundsAssambly = SoundsAssembly().assemble(input: .init(
+                isActiveSubscription: isActiveSubscription,
+                isMainScreen: isMainScreen,
+                hideTabbarClosure: { [weak self] state in
+                    self?.hideTabBar(isHidden: state)
+                }
+            ))
+        }
+        soundsAssambly.vc.view.frame = containerView.bounds
+        add(soundsAssambly.vc)
+        return soundsAssambly.output
     }
 }
 
@@ -219,6 +278,3 @@ private extension MainViewController {
         }
     }
 }
-
-
-

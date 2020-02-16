@@ -44,6 +44,7 @@ extension SceneSettingsViewController: BindsToViewModel {
     }
 
     func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) -> Output {
+        Analytics.shared.log(with: .sceneSettingsScr)
         
         let soundsCount = input.sceneDetail.sounds.count
         let maxHeight = view.frame.height - 304
@@ -78,17 +79,23 @@ extension SceneSettingsViewController: BindsToViewModel {
         let defaultTapGesture = UITapGestureRecognizer()
         defaultView.addGestureRecognizer(defaultTapGesture)
         let defaultVolumes = defaultTapGesture.rx.event.asSignal()
+            .do(onNext: { _ in Analytics.shared.log(with: .sceneDefaultTap) })
             .map { _ in Float(0.75) }
         
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
         let randomVolumes = randomTapGesture.rx.event.asSignal()
+            .do(onNext: { _ in Analytics.shared.log(with: .sceneRandomTap) })
         
         let sleepTimerTapGesture = UITapGestureRecognizer()
         sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
         
         let showSleepTimer = sleepTimerTapGesture.rx.event.asSignal()
-            .do(onNext: { _ in self.view.alpha = 0 })
+            .do(onNext: { [weak self] _ in
+                self?.view.alpha = 0
+                
+                Analytics.shared.log(with: .sceneSleepTimerTap)
+            })
             .map { _ in
                 viewModel.showSleepTimerScreen(sceneDetail: input.sceneDetail)
             }

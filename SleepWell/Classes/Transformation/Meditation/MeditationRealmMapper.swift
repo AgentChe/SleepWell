@@ -18,7 +18,8 @@ struct MeditationRealmMapper {
                           imageReaderURL: URL(string: realm.imageReaderURL ?? ""),
                           hash: realm.meditationHash,
                           tags: Array(realm.tags),
-                          length: realm.length)
+                          length: realm.length,
+                          sort: realm.sort)
     }
 
     static func map(from entity: Meditation) -> RealmMeditation {
@@ -30,6 +31,7 @@ struct MeditationRealmMapper {
                                imageReaderURL: entity.imageReaderURL,
                                meditationHash: entity.hash,
                                tags: entity.tags,
-                               length: entity.length)
+                               length: entity.length,
+                               sort: entity.sort)
     }
 }

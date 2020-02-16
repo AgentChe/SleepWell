@@ -47,7 +47,10 @@ final class StoriesViewController: UIViewController {
 
 extension StoriesViewController: BindsToViewModel {
     typealias ViewModel = StoriesViewModel
-    typealias Input = Observable<Bool>
+    struct Input {
+        let subscription: Observable<Bool>
+        let scrollToTop: Signal<Void>
+    }
     typealias Output = Signal<MainRoute>
 
     static func make() -> StoriesViewController {
@@ -56,7 +59,12 @@ extension StoriesViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
-        let elements = viewModel.elements(subscription: input)
+        Analytics.shared.log(with: .storiesScr)
+        
+        input.scrollToTop.emit(to: tableView.rx.scrollToTop)
+            .disposed(by: disposeBag)
+        
+        let elements = viewModel.elements(subscription: input.subscription)
 
         elements
             .drive(tableView.rx.items) { table, index, item in
@@ -86,19 +94,24 @@ extension StoriesViewController: BindsToViewModel {
         
        return Signal
         .merge(
-           randomElement,
-           tableView.rx.modelSelected(StoriesCellType.self).asSignal()
+            randomElement.map { ($0, 1) },
+            tableView.rx.modelSelected(StoriesCellType.self).asSignal().map { ($0, 2) }
         )
-        .flatMapFirst { cellType -> Signal<MainRoute> in
+        .flatMapFirst { stub -> Signal<MainRoute> in
+            let (cellType, id) = stub
+            
             guard case let .story(story) = cellType else {
+                Analytics.shared.log(with: .unlockPremiumStoriesPaygateScr)
                 return Signal.just(.paygate)
             }
             
             return viewModel
-                .getStoryDetails(id: story.id, subscription: input)
+                .getStoryDetails(id: story.id, subscription: input.subscription)
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:
+                        if id == 1 { Analytics.shared.log(with: .blockedRandomStoryPaygateScr) }
+                        if id == 2 { Analytics.shared.log(with: .blockedStoryPaygateScr) }
                         return .paygate
                     case let .detail(detail):
                         guard let recording = detail else {

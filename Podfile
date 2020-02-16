@@ -13,6 +13,7 @@ target 'SleepWell' do
   pod 'Firebase/Messaging'
   pod 'InfiniteLayout/Rx'
   pod 'FacebookSDK'
+  pod 'Amplitude-iOS'
 end
 
 post_install do |installer|

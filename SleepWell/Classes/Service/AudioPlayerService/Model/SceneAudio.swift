@@ -6,21 +6,16 @@
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
-import AVFoundation
+import AVFoundation.AVPlayer
 import RxCocoa
 import RxSwift
 
 final class SceneAudio: ReactiveCompatible {
     
-    struct Player {
-        let player: AVPlayer
-        let id: Int
-    }
-    
-    let players: [Player]
+    var players: [AudioPlayer]
     let scene: Scene
     
-    init(players: [Player], scene: Scene) {
+    init(players: [AudioPlayer], scene: Scene) {
         self.players = players
         self.scene = scene
     }
@@ -36,22 +31,7 @@ final class SceneAudio: ReactiveCompatible {
             return result
         }
         _currentScenePlayersVolume.accept(volumes)
-        prepareRetry()
-    }
-    
-    func prepareRetry() {
-        players.forEach {
-            NotificationCenter.default.rx
-                .notification(
-                    .AVPlayerItemDidPlayToEndTime,
-                    object: $0.player.currentItem
-                )
-                .bind(to: Binder($0.player) { player, _ in
-                    player.seek(to: CMTime.zero)
-                    player.play()
-                })
-                .disposed(by: disposeBag)
-        }
+        prepare()
     }
     
     func play(style: PlayAndPauseStyle) -> Signal<Void> {
@@ -161,7 +141,7 @@ final class SceneAudio: ReactiveCompatible {
         guard let player = players.first?.player else {
             return false
         }
-        return player.rate != 0 && player.error == nil
+        return player.isPlaying
     }
     
     func forcePause() {
@@ -178,6 +158,13 @@ final class SceneAudio: ReactiveCompatible {
     
     var currentScenePlayersVolume: [Int: Float] {
         _currentScenePlayersVolume.value
+    }
+    
+    private func prepare() {
+        players.forEach {
+            $0.player.prepareToPlay()
+            $0.player.numberOfLoops = -1
+        }
     }
     
     private let _currentScenePlayersVolume = BehaviorRelay<[Int: Float]>(value: [:])

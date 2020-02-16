@@ -19,22 +19,34 @@ struct SetRequest: APIRequestBody {
     private let locale: String?
     private let version: String?
     private let timezone: String?
+    private let idfa: String?
+    private let isAdvertisingTrackingEnabled: Bool?
+    private let randomKey: String?
+    private let storeCountry: String?
     
     init(userToken: String,
-         personalData: PersonalData,
+         personalData: PersonalData? = nil,
          locale: String? = nil,
          version: String? = nil,
-         timezone: String? = nil) {
+         timezone: String? = nil,
+         idfa: String? = nil,
+         isAdvertisingTrackingEnabled: Bool? = nil,
+         randomKey: String? = nil,
+         storeCountry: String? = nil) {
         self.userToken = userToken
-        self.aims = personalData.aims
-        self.gender = personalData.gender
-        self.birthYear = personalData.birthYear
-        self.pushToken = personalData.pushToken
-        self.pushTime = personalData.pushTime
-        self.isPushEnabled = personalData.pushIsEnabled
+        self.aims = personalData?.aims
+        self.gender = personalData?.gender
+        self.birthYear = personalData?.birthYear
+        self.pushToken = personalData?.pushToken
+        self.pushTime = personalData?.pushTime
+        self.isPushEnabled = personalData?.pushIsEnabled
         self.locale = locale
         self.version = version
         self.timezone = timezone
+        self.idfa = idfa
+        self.isAdvertisingTrackingEnabled = isAdvertisingTrackingEnabled
+        self.randomKey = randomKey
+        self.storeCountry = storeCountry
     }
     
     var url: String {
@@ -82,6 +94,22 @@ struct SetRequest: APIRequestBody {
         
         if let timezone = self.timezone {
             params["timezone"] = timezone
+        }
+        
+        if let idfa = self.idfa {
+            params["idfa"] = idfa
+        }
+        
+        if let isAdvertisingTrackingEnabled = self.isAdvertisingTrackingEnabled {
+            params["ad_tracking"] = isAdvertisingTrackingEnabled
+        }
+        
+        if let randomKey = self.randomKey {
+            params["random_string"] = randomKey
+        }
+        
+        if let storeCountry = self.storeCountry {
+            params["store_country"] = storeCountry
         }
         
         return params

@@ -54,6 +54,21 @@ struct PersonalData: Model {
         self.pushIsEnabled = pushIsEnabled
     }
     
+    init(response: Any) throws {
+        guard let json = response as? [String: Any],
+            let data = response as? [String: Any]
+        else {
+            throw RxError.noElements
+        }
+        
+        aims = (data["aims"] as? [Int] ?? []).compactMap { Aim(rawValue: $0) }
+        gender = .other
+        birthYear = 1992
+        pushToken = nil
+        pushTime = data["push_time"] as? String
+        pushIsEnabled = data["push_notifications"] as? Bool ?? false
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -110,7 +125,7 @@ final class PersonalDataService {
         return RestAPITransport()
             .callServerApi(requestBody: SetRequest(userToken: userToken,
                                                    personalData: personalData,
-                                                   locale: Locale.current.regionCode,
+                                                   locale: UIDevice.deviceLanguageCode,
                                                    version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String,
                                                    timezone: TimeZone.current.identifier))
             .flatMap { response -> Single<Void> in
@@ -132,14 +147,26 @@ final class PersonalDataService {
         }
     }
     
-    static func pushTime() -> String? {
+    static func cachedPersonalData() -> PersonalData? {
          guard
             let data = UserDefaults.standard.data(forKey: PersonalDataService.personalDataKey),
             let personalData = try? JSONDecoder().decode(PersonalData.self, from: data)
          else {
             return nil
         }
+
+        return personalData
+    }
+    
+    static func downloadPersonalData() -> Single<PersonalData?> {
+        guard let userToken = SessionService.userToken else {
+            return .just(nil)
+        }
         
-        return personalData.pushTime
+        let request = GetPersonalDataRequest(userToken: userToken)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { try? PersonalData(response: $0) }
     }
 }

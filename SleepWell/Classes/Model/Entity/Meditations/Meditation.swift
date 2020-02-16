@@ -18,6 +18,7 @@ struct Meditation: Recording {
     let hash: String
     let tags: [Int]
     let length: Int
+    let sort: Int 
 }
 
 extension Meditation {
@@ -31,6 +32,7 @@ extension Meditation {
         case hash = "meditation_hash"
         case tags
         case length = "length_secs"
+        case sort
     }
     
     init(from decoder: Decoder) throws {
@@ -48,5 +50,6 @@ extension Meditation {
         hash = try data.decode(String.self, forKey: .hash)
         tags = try data.decode([Int].self, forKey: .tags)
         length = try data.decode(Int.self, forKey: .length)
+        sort = try data.decode(Int.self, forKey: .sort)
     }
 }

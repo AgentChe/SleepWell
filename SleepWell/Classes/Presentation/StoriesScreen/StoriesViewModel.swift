@@ -39,7 +39,7 @@ extension StoriesViewModel: StoriesViewModelInterface {
         return Signal
             .combineLatest(
                 subscription.asSignal(onErrorJustReturn: false),
-                dependencies.storyService.stories().asSignal(onErrorJustReturn: []))
+                dependencies.storyService.stories().map { $0.sorted(by: { $0.sort < $1.sort }) }.asSignal(onErrorJustReturn: []))
             .map { StoriesCellType.map(items: $1, isSubscription: $0) }
             .asDriver(onErrorJustReturn: [])
     }

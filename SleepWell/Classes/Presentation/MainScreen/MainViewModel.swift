@@ -23,6 +23,8 @@ protocol MainViewModelInterface {
     func playRecording(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
+    func pauseNoise() -> Signal<Void>
+    var playNoise: Binder<Void> { get }
 }
 
 final class MainViewModel: BindableViewModel, MainViewModelInterface {
@@ -98,5 +100,13 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
     
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void> {
         dependencies.audioService.pauseScene(style: style)
+    }
+    
+    func pauseNoise() -> Signal<Void> {
+        dependencies.audioService.pauseNoise()
+    }
+    
+    var playNoise: Binder<Void> {
+        dependencies.audioService.rx.playNoise
     }
 }

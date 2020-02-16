@@ -33,6 +33,7 @@ extension StoryDetail {
         case reader
         case imagePreview = "image_story_url"
         case imageReader = "image_reader_url"
+        case sort
     }
     
     init(from decoder: Decoder) throws {
@@ -56,7 +57,8 @@ extension StoryDetail {
                           imagePreviewUrl: URL(string: preview),
                           imageReaderURL: URL(string: reader),
                           hash: try data.decode(String.self, forKey: .hash),
-                          length: readingSound.soundSecs)
+                          length: readingSound.soundSecs,
+                          sort: try story.decode(Int.self, forKey: .sort))
         
     }
 

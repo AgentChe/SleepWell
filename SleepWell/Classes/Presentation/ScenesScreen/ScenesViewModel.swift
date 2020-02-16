@@ -15,11 +15,13 @@ protocol ScenesViewModelInterface {
     func isPlaying(scene: SceneDetail) -> Driver<Bool>
     func isOtherScenePlaying(scene: SceneDetail) -> Bool
     var isScenePlaying: Driver<Bool> { get }
-    func add(sceneDetail: SceneDetail)
+    func add(sceneDetail: SceneDetail) -> Completable
     func playScene(style: PlayAndPauseStyle) -> Signal<Void>
     func pauseScene(style: PlayAndPauseStyle) -> Signal<Void>
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void>
     func pauseRecording(style: PlayAndPauseStyle) -> Signal<Void>
+    func copy(url: [URL]) -> Observable<Void>
+    func pauseNoise() -> Signal<Void>
 }
 
 final class ScenesViewModel: BindableViewModel {
@@ -45,6 +47,7 @@ final class ScenesViewModel: BindableViewModel {
     struct Dependencies {
         let sceneService: SceneService
         let audioPlayerService: AudioPlayerService
+        let mediaCacheService: MediaCacheService
     }
 }
 
@@ -53,6 +56,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
     func elements(subscription: Observable<Bool>) -> Driver<[SceneCellModel]> {
         let scenes = dependencies.sceneService
             .scenes()
+            .map { $0.sorted(by: { $0.sort < $1.sort }) }
             .asDriver(onErrorJustReturn: [])
         
         return Driver
@@ -91,7 +95,7 @@ extension ScenesViewModel: ScenesViewModelInterface {
         dependencies.audioPlayerService.isScenePlaying
     }
     
-    func add(sceneDetail: SceneDetail) {
+    func add(sceneDetail: SceneDetail) -> Completable {
         dependencies.audioPlayerService.add(sceneDetail: sceneDetail)
     }
     
@@ -109,5 +113,15 @@ extension ScenesViewModel: ScenesViewModelInterface {
     
     func showSettings(sceneDetail: SceneDetail) -> Signal<Void> {
         router.showSettings(sceneDetail: sceneDetail)
+    }
+    
+    func copy(url: [URL]) -> Observable<Void> {
+        dependencies.mediaCacheService.copy(urls: url)
+            .asObservable()
+            .retryWithDelay(interval: .seconds(2), repeat: 3)
+    }
+    
+    func pauseNoise() -> Signal<Void> {
+        dependencies.audioPlayerService.pauseNoise()
     }
 }

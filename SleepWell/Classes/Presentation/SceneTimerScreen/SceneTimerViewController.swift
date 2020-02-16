@@ -25,12 +25,13 @@ final class SceneTimerViewController: UIViewController {
 }
 
 extension SceneTimerViewController: BindsToViewModel {
+    enum OpenedFrom {
+        case scene, sounds
+    }
     
     typealias ViewModel = SceneTimerViewModel
-
-    struct Input {
-        let sceneDetail: SceneDetail
-    }
+    
+    typealias Input = OpenedFrom
     
     struct Output {
         let appeared: Signal<Void>
@@ -49,32 +50,31 @@ extension SceneTimerViewController: BindsToViewModel {
         
         let fifteenMinTapGesture = UITapGestureRecognizer()
         fifteenMinView.addGestureRecognizer(fifteenMinTapGesture)
-        fifteenMinTapGesture.rx.event.asSignal()
-            .map { _ in 15 * 60 }
-            .emit(to: viewModel.setTimer)
-            .disposed(by: disposeBag)
         
         let thirtyMinTapGesture = UITapGestureRecognizer()
         thirtyView.addGestureRecognizer(thirtyMinTapGesture)
-        thirtyMinTapGesture.rx.event.asSignal()
-            .map { _ in 30 * 60 }
-            .emit(to: viewModel.setTimer)
-            .disposed(by: disposeBag)
         
         let fortyFiveMinTapGesture = UITapGestureRecognizer()
         fortyFiveView.addGestureRecognizer(fortyFiveMinTapGesture)
-        fortyFiveMinTapGesture.rx.event.asSignal()
-            .map { _ in 45 * 60 }
-            .emit(to: viewModel.setTimer)
-            .disposed(by: disposeBag)
         
         let sixtyMinTapGesture = UITapGestureRecognizer()
         sixtyView.addGestureRecognizer(sixtyMinTapGesture)
-        sixtyMinTapGesture.rx.event.asSignal()
-            .map { _ in 60 * 60 }
+        
+        Signal
+            .merge(fifteenMinTapGesture.rx.event.asSignal().map { _ in 15 * 60 },
+                   thirtyMinTapGesture.rx.event.asSignal().map { _ in 30 * 60 },
+                   fortyFiveMinTapGesture.rx.event.asSignal().map { _ in 45 * 60 },
+                   sixtyMinTapGesture.rx.event.asSignal().map { _ in 60 * 60 })
+            .do(onNext: { _ in
+                switch input {
+                case .scene:
+                    Analytics.shared.log(with: .sceneSleepTimerSet)
+                case .sounds:
+                    Analytics.shared.log(with: .soundsTimerOn)
+                }
+            })
             .emit(to: viewModel.setTimer)
             .disposed(by: disposeBag)
-        
         
         let cancelTapGesture = UITapGestureRecognizer()
         cancelView.addGestureRecognizer(cancelTapGesture)

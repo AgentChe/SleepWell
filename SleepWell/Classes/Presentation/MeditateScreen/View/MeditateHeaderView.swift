@@ -60,6 +60,7 @@ extension MeditateHeaderView {
 
 extension MeditateHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        Analytics.shared.log(with: .tagTap)
         didTapCell.accept(_elements[indexPath.row].id)
     }
     

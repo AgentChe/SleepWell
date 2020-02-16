@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
+  - Amplitude-iOS (4.8.2)
   - Differentiator (4.0.1)
   - FacebookSDK (5.11.0):
     - FacebookSDK/CoreKit (= 5.11.0)
@@ -105,6 +106,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Amplitude-iOS
   - FacebookSDK
   - Firebase/Messaging
   - InfiniteLayout/Rx
@@ -118,6 +120,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Amplitude-iOS
     - Differentiator
     - FacebookSDK
     - FBSDKCoreKit
@@ -147,6 +150,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Amplitude-iOS: 46c8e6e65c49bb1ad1909a9add1a68e1f8562b3f
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FacebookSDK: b15ad4ed9bcbefaa04bdcb8bdddfc269a9d2d221
   FBSDKCoreKit: 9fbfb5b0022d34861bfa6b79f56f8e2ddcd8170b
@@ -174,6 +178,6 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: ba92c524c4fbdbba05a96b9575167baee10543dc
+PODFILE CHECKSUM: 96e86aef4656df852e3dbb8d085a4cae722689ac
 
 COCOAPODS: 1.8.4
