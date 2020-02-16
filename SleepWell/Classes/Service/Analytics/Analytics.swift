@@ -46,4 +46,8 @@ final class Analytics {
             Amplitude.instance()?.logEvent(event.name)
         }
     }
+    
+    func logFBAboutPurchase() {
+        AppEvents.logPurchase(0, currency: "USD", parameters: [:])
+    }
 }
