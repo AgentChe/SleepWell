@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         RateManager.incrementRun()
         Analytics.shared.configure()
+        AmplitudeAnalytics.shared.configure()
+        FacebookAnalytics.shared.configure()
+        AttributionAPIService.shared.configure()
+        IDFAService.shared.configure()
+        UserAnalytics.shared.configure()
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         

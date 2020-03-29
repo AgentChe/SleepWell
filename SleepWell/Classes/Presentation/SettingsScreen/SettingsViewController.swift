@@ -93,7 +93,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics.shared.log(with: .settingsScr)
+        AmplitudeAnalytics.shared.log(with: .settingsScr)
         
         configure()
     }

@@ -31,7 +31,8 @@ final class UserAnalytics {
             }
             .subscribe(onNext: { personalData in
                 if let userId = SessionService.userId {
-                    Analytics.shared.setUserId(userId: userId)
+                    AmplitudeAnalytics.shared.set(userId: "\(userId)")
+                    FacebookAnalytics.shared.set(userId: "\(userId)")
                 }
                 
                 guard let personalData = personalData else {
@@ -56,7 +57,8 @@ final class UserAnalytics {
                     "push access": personalData.pushIsEnabled
                 ]
                 
-                Analytics.shared.setUserAttributes(attributes: properties)
+                AmplitudeAnalytics.shared.set(userAttributes: properties)
+                FacebookAnalytics.shared.set(userAttributes: ["city": "none"])
             })
     }
     
@@ -64,22 +66,22 @@ final class UserAnalytics {
         _ = AudioPlayerService.shared.didTapPlayRecording
             .emit(onNext: { recording in
                 if let _ = recording as? MeditationDetail {
-                    Analytics.shared.updateUserAttribute(property: "meditations started", value: 1 as NSObject)
+                    AmplitudeAnalytics.shared.increment(identity: "meditations started", value: 1 as NSObject)
                 }
                 
                 if let _ = recording as? StoryDetail {
-                    Analytics.shared.updateUserAttribute(property: "stories started", value: 1 as NSObject)
+                    AmplitudeAnalytics.shared.increment(identity: "stories started", value: 1 as NSObject)
                 }
             })
         
         _ = AudioPlayerService.shared.playingForTwentySeconds
             .emit(onNext: { recording in
                 if let _ = recording as? MeditationDetail {
-                    Analytics.shared.updateUserAttribute(property: "meditations 20sec", value: 1 as NSObject)
+                    AmplitudeAnalytics.shared.increment(identity: "meditations 20sec", value: 1 as NSObject)
                 }
                 
                 if let _ = recording as? StoryDetail {
-                    Analytics.shared.updateUserAttribute(property: "stories 20sec", value: 1 as NSObject)
+                    AmplitudeAnalytics.shared.increment(identity: "stories 20sec", value: 1 as NSObject)
                 }
             })
     }

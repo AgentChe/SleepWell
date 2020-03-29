@@ -117,14 +117,20 @@ extension AnalyticEvent {
         }
     }
     
-    var params: [AnyHashable: Any]? {
+    var params: [AnyHashable: Any] {
+        var result: [AnyHashable: Any] = [
+            "app": "SLEEP"
+        ]
+        
         switch self {
         case .soundAdded(let name):
-            return ["sound_name": name]
+            result["sound_name"] = name
         case .soundRemoved(let name):
-            return ["sound_name": name]
+            result["sound_name"] = name
         default:
-            return nil
+            break
         }
+        
+        return result 
     }
 }

@@ -332,6 +332,8 @@
 		96C29F9723638F7000E93CB1 /* StoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9623638F7000E93CB1 /* StoryService.swift */; };
 		96D8E9BE23E0D14100835459 /* SoundsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */; };
 		96D8E9C023E0D9FC00835459 /* SoundsMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */; };
+		96D9150C243079C2008B101F /* AmplitudeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */; };
+		96D9150E24307CD2008B101F /* FacebookAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9150D24307CD2008B101F /* FacebookAnalytics.swift */; };
 		96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C572366352E004DC76A /* PersonalDataService.swift */; };
 		96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */; };
 		96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7A23674CB3004DC76A /* PaygateService.swift */; };
@@ -351,7 +353,6 @@
 		96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA323684CFC004DC76A /* Poppins-Medium.ttf */; };
 		96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA123684CFC004DC76A /* Poppins-Regular.ttf */; };
 		96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */; };
-		96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8223B61D6E00E01F96 /* Analytics.swift */; };
 		96E5EE8523B64B7000E01F96 /* AppRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */; };
 		96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8723B64C3000E01F96 /* IDFAService.swift */; };
 		96E5EE8A23B64C4600E01F96 /* AttributionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */; };
@@ -685,6 +686,8 @@
 		96C29F9623638F7000E93CB1 /* StoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryService.swift; sourceTree = "<group>"; };
 		96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsMenuView.swift; sourceTree = "<group>"; };
 		96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundsMenuView.xib; sourceTree = "<group>"; };
+		96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalytics.swift; sourceTree = "<group>"; };
+		96D9150D24307CD2008B101F /* FacebookAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAnalytics.swift; sourceTree = "<group>"; };
 		96DC8C572366352E004DC76A /* PersonalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataService.swift; sourceTree = "<group>"; };
 		96DC8C69236745C2004DC76A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		96DC8C6A236745C8004DC76A /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -709,7 +712,6 @@
 		96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		96DC8CA323684CFC004DC76A /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		96DC8CA423684CFC004DC76A /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
-		96E5EE8223B61D6E00E01F96 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegisterRequest.swift; sourceTree = "<group>"; };
 		96E5EE8723B64C3000E01F96 /* IDFAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAService.swift; sourceTree = "<group>"; };
 		96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributionAPIService.swift; sourceTree = "<group>"; };
@@ -1823,10 +1825,11 @@
 			isa = PBXGroup;
 			children = (
 				96E5EE8D23B6581C00E01F96 /* Model */,
-				96E5EE8223B61D6E00E01F96 /* Analytics.swift */,
 				96E5EE8723B64C3000E01F96 /* IDFAService.swift */,
 				96E5EE8923B64C4600E01F96 /* AttributionAPIService.swift */,
 				96E5EE9223B65AAC00E01F96 /* UserAnalytics.swift */,
+				96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */,
+				96D9150D24307CD2008B101F /* FacebookAnalytics.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2135,7 +2138,6 @@
 				84AB423223ABFDFD00E2A558 /* SceneTimer.swift in Sources */,
 				96C29F5B23634D3300E93CB1 /* PaygateAssembly.swift in Sources */,
 				96C29F392363321300E93CB1 /* SplashViewModel.swift in Sources */,
-				96E5EE8323B61D6E00E01F96 /* Analytics.swift in Sources */,
 				96E5EE8F23B6583300E01F96 /* AnalyticEvent.swift in Sources */,
 				86F98CBA23645C3B00B0F5EA /* MeditateAssembly.swift in Sources */,
 				86BC57EA23CB8A4D00AA909B /* ViewportView.swift in Sources */,
@@ -2147,6 +2149,7 @@
 				9685528B23690F5300A22E21 /* OnboardingBedtimeView.swift in Sources */,
 				969BF22023AD6CB3004A84B6 /* Mime.swift in Sources */,
 				962A777D236A2A09000E2683 /* SetRequest.swift in Sources */,
+				96D9150E24307CD2008B101F /* FacebookAnalytics.swift in Sources */,
 				96C29F05236260FF00E93CB1 /* UITextFieldExtension.swift in Sources */,
 				844F025923776E64004C062B /* VolumeAssembly.swift in Sources */,
 				96D8E9BE23E0D14100835459 /* SoundsMenuView.swift in Sources */,
@@ -2246,6 +2249,7 @@
 				96DC8C7B23674CB3004DC76A /* PaygateService.swift in Sources */,
 				96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
+				96D9150C243079C2008B101F /* AmplitudeAnalytics.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
 				962FB447239668BF00B88FFC /* RealmMeditationDetail.swift in Sources */,
 				844F025723776E4F004C062B /* VolumeRouter.swift in Sources */,

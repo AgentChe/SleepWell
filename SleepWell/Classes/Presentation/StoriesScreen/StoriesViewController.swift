@@ -59,7 +59,7 @@ extension StoriesViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
-        Analytics.shared.log(with: .storiesScr)
+        AmplitudeAnalytics.shared.log(with: .storiesScr)
         
         input.scrollToTop.emit(to: tableView.rx.scrollToTop)
             .disposed(by: disposeBag)
@@ -101,7 +101,7 @@ extension StoriesViewController: BindsToViewModel {
             let (cellType, id) = stub
             
             guard case let .story(story) = cellType else {
-                Analytics.shared.log(with: .unlockPremiumStoriesPaygateScr)
+                AmplitudeAnalytics.shared.log(with: .unlockPremiumStoriesPaygateScr)
                 return Signal.just(.paygate)
             }
             
@@ -110,8 +110,8 @@ extension StoriesViewController: BindsToViewModel {
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:
-                        if id == 1 { Analytics.shared.log(with: .blockedRandomStoryPaygateScr) }
-                        if id == 2 { Analytics.shared.log(with: .blockedStoryPaygateScr) }
+                        if id == 1 { AmplitudeAnalytics.shared.log(with: .blockedRandomStoryPaygateScr) }
+                        if id == 2 { AmplitudeAnalytics.shared.log(with: .blockedStoryPaygateScr) }
                         return .paygate
                     case let .detail(detail):
                         guard let recording = detail else {

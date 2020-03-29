@@ -26,7 +26,8 @@ final class AttributionAPIService {
                AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
             .subscribe(onNext: {
                 if let userId = SessionService.userId {
-                    Analytics.shared.setUserId(userId: userId)
+                    AmplitudeAnalytics.shared.set(userId: "\(userId)")
+                    FacebookAnalytics.shared.set(userId: "\(userId)")
                 }
                 
                 if UserDefaults.standard.bool(forKey: self.attributesWereSetKey) {
@@ -38,10 +39,11 @@ final class AttributionAPIService {
                         return
                     }
                     
-                    Analytics.shared.setUserAttributes(attributes: dict)
+                    AmplitudeAnalytics.shared.set(userAttributes: dict)
+                    FacebookAnalytics.shared.set(userAttributes: ["city": "none"])
                     
                     if dict["iad-attribution"] as? String == "true" {
-                        Analytics.shared.log(with: .searcgAdsClickAd)
+                        AmplitudeAnalytics.shared.log(with: .searcgAdsClickAd)
                     }
                     
                     UserDefaults.standard.set(true, forKey: self.attributesWereSetKey)

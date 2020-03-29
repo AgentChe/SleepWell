@@ -46,7 +46,7 @@ final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface
     private var personalData: PersonalData?
     
     func goToPaygate(paygateCompletion: @escaping (PaygateCompletionResult) -> ()) {
-        Analytics.shared.log(with: .welcomePaygateScr)
+        AmplitudeAnalytics.shared.log(with: .welcomePaygateScr)
         
         router.goToPaygate(completion: paygateCompletion)
     }

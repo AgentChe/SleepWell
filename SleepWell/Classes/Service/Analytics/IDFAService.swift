@@ -22,6 +22,7 @@ final class IDFAService {
         setAttributionsWhenUserTokenUpdated()
     }
     
+    
     private func appRegister() {
         if UserDefaults.standard.bool(forKey: appRegisteredKey) {
             return

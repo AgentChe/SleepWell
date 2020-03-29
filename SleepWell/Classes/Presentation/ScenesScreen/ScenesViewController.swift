@@ -78,7 +78,7 @@ extension ScenesViewController: BindsToViewModel {
     @objc func didBecomeActive() {}
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
-        Analytics.shared.log(with: .sceneScr)
+        AmplitudeAnalytics.shared.log(with: .sceneScr)
         
         let elements = viewModel.elements(subscription: input.subscription)
 
@@ -147,7 +147,7 @@ extension ScenesViewController: BindsToViewModel {
                 return true
             }
             .map { _ in MainRoute.paygate }
-            .do(onNext: { _ in Analytics.shared.log(with: .blockedScenePaygateScr) })
+            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .blockedScenePaygateScr) })
             .asSignal(onErrorJustReturn: .paygate)
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
@@ -294,8 +294,8 @@ extension ScenesViewController: BindsToViewModel {
         
         let actions = Signal
             .merge(
-                pauseButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
-                playButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
+                pauseButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
+                playButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
                 settingsButton.rx.tap.asSignal(),
                 tapGesture.rx.event.asSignal()
                     .map { _ in () },

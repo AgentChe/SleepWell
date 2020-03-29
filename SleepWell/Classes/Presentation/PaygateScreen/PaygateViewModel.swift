@@ -73,7 +73,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
         
         let purchase = dependencies.purchaseService
             .buySubscription(productId: productId)
-            .do(onSuccess: { _ in Analytics.shared.logFBAboutPurchase() })
+            .do(onSuccess: { _ in FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD") })
             .flatMap { [dependencies, openedFrom] _ -> Single<Void> in
                 return dependencies.purchaseService
                     .paymentValidate()

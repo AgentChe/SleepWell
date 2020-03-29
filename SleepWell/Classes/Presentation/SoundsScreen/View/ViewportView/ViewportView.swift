@@ -77,7 +77,7 @@ class ViewportView: UIView {
             .didTapClearAll
             .withLatestFrom(sounds.asSignal(onErrorSignalWith: .never()))
             .emit(onNext: { [weak self] sounds in
-                Analytics.shared.log(with: .soundsCleared)
+                AmplitudeAnalytics.shared.log(with: .soundsCleared)
                 
                 for sound in sounds {
                     self?.deletedRelay.accept(.delete(id: sound.id))
@@ -182,7 +182,7 @@ class ViewportView: UIView {
             let deleteFrame = self.deleteArea.frame
             guard deleteFrame.contains(imageCenter) else { return nil }
             
-            Analytics.shared.log(with: .soundRemoved(view.noise?.name ?? ""))
+            AmplitudeAnalytics.shared.log(with: .soundRemoved(view.noise?.name ?? ""))
             
             return .delete(id: id)
         }
@@ -321,7 +321,7 @@ extension ViewportView {
     
     var item: Binder<Noise> {
         return Binder(self) { base, element in
-            Analytics.shared.log(with: .soundAdded(element.name))
+            AmplitudeAnalytics.shared.log(with: .soundAdded(element.name))
             base.noiseSounds.accept(element)
         }
     }
