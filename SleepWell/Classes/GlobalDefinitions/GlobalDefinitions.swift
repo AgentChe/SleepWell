@@ -24,4 +24,6 @@ final class GlobalDefinitions {
     
     static let tabBarHeight = CGFloat(155)
     static let tableBottomInsert = CGFloat(85)
+    
+    static let appNameForAmplitude = "SLEEP"
 }

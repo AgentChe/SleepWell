@@ -7,6 +7,7 @@
 //
 
 import FBSDKCoreKit
+import RxSwift
 
 final class FacebookAnalytics {
     static let shared = FacebookAnalytics()
@@ -15,6 +16,9 @@ final class FacebookAnalytics {
     
     func configure() {
         AppEvents.activateApp()
+        
+        setInitialProperties()
+        syncedUserPropertiesWithUserId()
     }
     
     func set(userId: String) {
@@ -27,5 +31,30 @@ final class FacebookAnalytics {
     
     func logPurchase(amount: Double, currency: String) {
         AppEvents.logPurchase(amount, currency: currency)
+    }
+    
+    private func setInitialProperties() {
+        guard !UserDefaults.standard.bool(forKey: "facebook_initial_properties_is_set") else {
+            return
+        }
+        
+        set(userAttributes: ["city": "none"])
+        
+        UserDefaults.standard.set(true, forKey: "facebook_initial_properties_is_set")
+    }
+    
+    private func syncedUserPropertiesWithUserId() {
+        guard !UserDefaults.standard.bool(forKey: "facebook_initial_properties_is_synced") else {
+            return
+        }
+        
+        _ = Observable
+            .merge(AppStateProxy.UserTokenProxy.didUpdatedUserToken.asObservable(),
+                   AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
+            .subscribe(onNext: {
+                if let userId = SessionService.userId {
+                    self.set(userId: "\(userId)")
+                }
+            })
     }
 }

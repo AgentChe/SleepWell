@@ -8,6 +8,7 @@
 
 import RxSwift
 import AdSupport
+import iAd
 
 final class IDFAService {
     static let shared = IDFAService()
@@ -22,19 +23,27 @@ final class IDFAService {
         setAttributionsWhenUserTokenUpdated()
     }
     
+    func getIDFA() -> String {
+        ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }
+    
+    func isAdvertisingTrackingEnabled() -> Bool {
+        ASIdentifierManager.shared().isAdvertisingTrackingEnabled
+    }
     
     private func appRegister() {
         if UserDefaults.standard.bool(forKey: appRegisteredKey) {
             return
         }
-        
+
         let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         let randomKey = getRandomKey()
         let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        
-        AttributionAPIService.shared.getAttributionDetails { attributions in
+
+        ADClient.shared().requestAttributionDetails { details, _ in
+            let attributions = details?.first?.value as? [String: NSObject] ?? [:]
             let request = AppRegisterRequest(idfa: idfa, randomKey: randomKey, version: version, attributions: attributions)
-            
+
             _ = RestAPITransport().callServerApi(requestBody: request)
                 .subscribe(onSuccess: { _ in
                     UserDefaults.standard.set(true, forKey: self.appRegisteredKey)
@@ -76,11 +85,12 @@ final class IDFAService {
                    AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
             .flatMapLatest {
                 return Observable<[String: NSObject]?>.create { observer in
-                    AttributionAPIService.shared.getAttributionDetails { attributions in
+                    ADClient.shared().requestAttributionDetails { details, _ in
+                        let attributions = details?.first?.value as? [String: NSObject] ?? [:]
                         observer.onNext(attributions)
                         observer.onCompleted()
                     }
-                    
+
                     return Disposables.create()
                 }
             }
@@ -88,9 +98,9 @@ final class IDFAService {
                 guard let attr = attributions, let userToken = SessionService.userToken else {
                     return .never()
                 }
-            
+
                 let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attr)
-                
+
                 return RestAPITransport()
                     .callServerApi(requestBody: request)
                     .catchError { _ in .never() }
