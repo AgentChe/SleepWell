@@ -55,6 +55,8 @@ final class FacebookAnalytics {
                 if let userId = SessionService.userId {
                     self.set(userId: "\(userId)")
                 }
+                
+                UserDefaults.standard.set(true, forKey: "facebook_initial_properties_is_synced")
             })
     }
 }
