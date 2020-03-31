@@ -7,7 +7,7 @@ import UIKit
 final class GlobalDefinitions {
 //    https://www.s1eep.app - prod
 //    https://test.s1eep.app - dev
-    static let domainUrl = "https://www.s1eep.app"
+    static let domainUrl = "https://test.s1eep.app"
     
 //    xPh20WC5EYuboYQ - prod
 //    1yyl1WBNrlD2MVK - dev

@@ -47,18 +47,23 @@ final class AmplitudeAnalytics {
         }
         
         ADClient.shared().requestAttributionDetails { details, _ in
-            var userAttributes = details?.first?.value as? [String: Any] ?? [:]
-            userAttributes["app"] = GlobalDefinitions.appNameForAmplitude
-            userAttributes["IDFA"] = IDFAService.shared.getIDFA()
-            userAttributes["ad_tracking"] = IDFAService.shared.isAdvertisingTrackingEnabled() ? "idfa enabled" : "idfa disabled"
+            let attributionsDetails = details?.first?.value as? [String: Any] ?? [:]
             
-            self.set(userAttributes: userAttributes)
+            var userAttributes: [String: Any] = [
+                "app": GlobalDefinitions.appNameForAmplitude,
+                "IDFA": IDFAService.shared.getIDFA(),
+                "ad_tracking": IDFAService.shared.isAdvertisingTrackingEnabled() ? "idfa enabled" : "idfa disabled"
+            ]
             
             self.log(with: .firstLaunch)
             
-            if userAttributes["iad-attribution"] as? String == "true" {
+            if attributionsDetails["campaign-id"] as? String == "1234567890" {
+                userAttributes.merge(dict: attributionsDetails)
+                
                 self.log(with: .searchAdsInstall)
             }
+            
+            self.set(userAttributes: userAttributes)
             
             UserDefaults.standard.set(true, forKey: "amplitude_initial_properties_is_set")
         }
