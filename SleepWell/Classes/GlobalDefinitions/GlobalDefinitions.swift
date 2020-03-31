@@ -11,7 +11,7 @@ final class GlobalDefinitions {
     
 //    xPh20WC5EYuboYQ - prod
 //    1yyl1WBNrlD2MVK - dev
-    static let apiKey = "xPh20WC5EYuboYQ"
+    static let apiKey = "1yyl1WBNrlD2MVK"
     
 //    b503251969f4b1d7901d2f7d1388d476 - prod
 //    dde6c038a32c3082b6debe249fad5d34 - dev
