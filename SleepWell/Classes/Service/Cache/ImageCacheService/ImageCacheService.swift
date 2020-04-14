@@ -64,4 +64,9 @@ final class CopyImagesService {
             }
         }
     }
+    
+    func backgroundCopyImages(copingLocalImages: [CopyResource]) {
+        let operations = copingLocalImages.map { CopyInCacheLocalImageOperation(copingLocalImage: $0) }
+        queue.addOperations(operations, waitUntilFinished: false)
+    }
 }

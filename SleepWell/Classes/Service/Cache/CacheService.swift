@@ -84,11 +84,9 @@ private final class CacheMeditations: Copy {
                 return Observable
                     .combineLatest(saveMeditations.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages)
-                            ?? .just(())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -207,10 +205,9 @@ private final class CacheStories: Copy {
                 return Observable
                     .combineLatest(saveStories.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -314,10 +311,9 @@ private final class CacheScenes: Copy {
                 return Observable
                     .combineLatest(saveScenes.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true 
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
@@ -422,10 +418,8 @@ private final class CacheNoise: Copy {
 
                 return RealmDBTransport()
                     .saveData(entities: data.noiseCategories, map: { NoiseCategoryRealmMapper.map(from: $0) })
-                    .flatMap { [unowned self] _ -> Single<Void> in
-                        return self.copyImageService.copyImages(copingLocalImages: data.copingLocalImages)
-                }
                 .do(onSuccess: { [unowned self] in
+                    self.copyImageService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                     self.wasCopied = true
                     CacheHashCodes.noiseCategoriesHashCode = data.noisesHashCode
                 })
