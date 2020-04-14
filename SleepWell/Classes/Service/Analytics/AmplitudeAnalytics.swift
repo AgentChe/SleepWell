@@ -45,26 +45,26 @@ final class AmplitudeAnalytics {
         guard !UserDefaults.standard.bool(forKey: "amplitude_initial_properties_is_set") else {
             return
         }
-        
-        ADClient.shared().requestAttributionDetails { details, _ in
-            let attributionsDetails = details?.first?.value as? [String: Any] ?? [:]
-            
+
+        set(userAttributes: ["app": GlobalDefinitions.appNameForAmplitude])
+
+        SearchAttributionsDetails.request { attributionsDetails in
             var userAttributes: [String: Any] = [
                 "app": GlobalDefinitions.appNameForAmplitude,
                 "IDFA": IDFAService.shared.getIDFA(),
                 "ad_tracking": IDFAService.shared.isAdvertisingTrackingEnabled() ? "idfa enabled" : "idfa disabled"
             ]
-            
+
             self.log(with: .firstLaunch)
-            
-            if attributionsDetails["campaign-id"] as? String == "1234567890" {
+
+            if !SearchAttributionsDetails.isTest(attributionsDetails: attributionsDetails) {
                 userAttributes.merge(dict: attributionsDetails)
-                
+
                 self.log(with: .searchAdsInstall)
             }
-            
+
             self.set(userAttributes: userAttributes)
-            
+
             UserDefaults.standard.set(true, forKey: "amplitude_initial_properties_is_set")
         }
     }
@@ -97,20 +97,20 @@ final class AmplitudeAnalytics {
         guard !UserDefaults.standard.bool(forKey: "amplitude_initial_properties_is_synced") else {
             return
         }
-        
+
         _ = Observable
             .merge(AppStateProxy.UserTokenProxy.didUpdatedUserToken.asObservable(),
                    AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
             .flatMapLatest { self.getPersonalDataProperties() }
             .subscribe(onNext: { properties in
                 self.set(userAttributes: properties)
-                
+
                 if let userId = SessionService.userId {
                     self.set(userId: String(format: "%@_%i", GlobalDefinitions.appNameForAmplitude, userId))
                 }
-                
+
                 self.log(with: .userIdSynced)
-                
+
                 UserDefaults.standard.set(true, forKey: "amplitude_initial_properties_is_synced")
             })
     }

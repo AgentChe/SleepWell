@@ -8,7 +8,6 @@
 
 import RxSwift
 import AdSupport
-import iAd
 
 final class IDFAService {
     static let shared = IDFAService()
@@ -36,13 +35,15 @@ final class IDFAService {
             return
         }
 
-        let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        let idfa = getIDFA()
         let randomKey = getRandomKey()
         let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
 
-        ADClient.shared().requestAttributionDetails { details, _ in
-            let attributions = details?.first?.value as? [String: NSObject] ?? [:]
-            let request = AppRegisterRequest(idfa: idfa, randomKey: randomKey, version: version, attributions: attributions)
+        SearchAttributionsDetails.request { attributionsDetails in
+            let request = AppRegisterRequest(idfa: idfa,
+                                             randomKey: randomKey,
+                                             version: version,
+                                             attributions: SearchAttributionsDetails.isTest(attributionsDetails: attributionsDetails) ? nil : attributionsDetails)
 
             _ = RestAPITransport().callServerApi(requestBody: request)
                 .subscribe(onSuccess: { _ in
@@ -59,16 +60,13 @@ final class IDFAService {
                 guard let userToken = SessionService.userToken else {
                     return .never()
                 }
-
-                let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-                let isAdvertisingTrackingEnabled = ASIdentifierManager.shared().isAdvertisingTrackingEnabled
                 
                 let request = SetRequest(userToken: userToken,
                                          locale: UIDevice.deviceLanguageCode ?? "en",
                                          version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1",
                                          timezone: TimeZone.current.identifier,
-                                         idfa: idfa,
-                                         isAdvertisingTrackingEnabled: isAdvertisingTrackingEnabled,
+                                         idfa: self.getIDFA(),
+                                         isAdvertisingTrackingEnabled: self.isAdvertisingTrackingEnabled(),
                                          randomKey: self.getRandomKey(),
                                          storeCountry: Locale.current.currencyCode ?? "")
 
@@ -84,22 +82,21 @@ final class IDFAService {
             .merge(AppStateProxy.UserTokenProxy.didUpdatedUserToken.asObservable(),
                    AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
             .flatMapLatest {
-                return Observable<[String: NSObject]?>.create { observer in
-                    ADClient.shared().requestAttributionDetails { details, _ in
-                        let attributions = details?.first?.value as? [String: NSObject] ?? [:]
-                        observer.onNext(attributions)
+                Observable<[String: Any]>.create { observer in
+                    SearchAttributionsDetails.request { attributionsDetails in
+                        observer.onNext(attributionsDetails)
                         observer.onCompleted()
                     }
 
                     return Disposables.create()
                 }
             }
-            .flatMapLatest { attributions -> Single<Any> in
-                guard let attr = attributions, let userToken = SessionService.userToken else {
+            .flatMapLatest { attributionsDetails -> Single<Any> in
+                guard !SearchAttributionsDetails.isTest(attributionsDetails: attributionsDetails), let userToken = SessionService.userToken else {
                     return .never()
                 }
 
-                let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attr)
+                let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attributionsDetails)
 
                 return RestAPITransport()
                     .callServerApi(requestBody: request)

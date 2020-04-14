@@ -10,9 +10,9 @@ import Alamofire
 
 struct AddSearchAdsInfoRequest: APIRequestBody {
     private let userToken: String
-    private let attributions: [String: NSObject]
+    private let attributions: [String: Any]
     
-    init(userToken: String, attributions: [String: NSObject]) {
+    init(userToken: String, attributions: [String: Any]) {
         self.userToken = userToken
         self.attributions = attributions
     }

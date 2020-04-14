@@ -127,6 +127,7 @@
 		86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CCD23646A3500B0F5EA /* MeditateCell.swift */; };
 		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
 		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
+		961969D32446529800DC2A72 /* SearchAttributionsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */; };
 		961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */; };
 		9623D336239885EF0040CB43 /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D335239885EF0040CB43 /* TextAttributes.swift */; };
 		9623D33823988A510040CB43 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D33723988A510040CB43 /* Fonts.swift */; };
@@ -483,6 +484,7 @@
 		86F98CCE23646A3500B0F5EA /* MeditateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeditateCell.xib; sourceTree = "<group>"; };
 		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
+		961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAttributionsDetails.swift; sourceTree = "<group>"; };
 		961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceUtils.swift; sourceTree = "<group>"; };
 		9623D335239885EF0040CB43 /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		9623D33723988A510040CB43 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -1827,6 +1829,7 @@
 				96E5EE8723B64C3000E01F96 /* IDFAService.swift */,
 				96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */,
 				96D9150D24307CD2008B101F /* FacebookAnalytics.swift */,
+				961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2170,6 +2173,7 @@
 				86F98CB923645C3B00B0F5EA /* MeditateViewController.swift in Sources */,
 				96C29EC92362564000E93CB1 /* AppDelegate.swift in Sources */,
 				96C29F1C236264D900E93CB1 /* View.swift in Sources */,
+				961969D32446529800DC2A72 /* SearchAttributionsDetails.swift in Sources */,
 				86BC57F323CBB87B00AA909B /* NoiseView.swift in Sources */,
 				86C848BD2367001000BC6EDA /* StoriesAssembly.swift in Sources */,
 				86B0C31F2379DE0D00C60158 /* MeditationTagRealmMapper.swift in Sources */,
