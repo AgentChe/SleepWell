@@ -128,121 +128,84 @@
 		86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F98CCE23646A3500B0F5EA /* MeditateCell.xib */; };
 		86F98CD223646A9C00B0F5EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F98CD123646A9C00B0F5EA /* GradientView.swift */; };
 		961969D32446529800DC2A72 /* SearchAttributionsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */; };
-		96196A48244658DA00DC2A72 /* scenes.json in Resources */ = {isa = PBXBuildFile; fileRef = 961969D5244658D900DC2A72 /* scenes.json */; };
-		96196A49244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969D6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3 */; };
-		96196A4A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969D7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3 */; };
-		96196A4B244658DA00DC2A72 /* meditations.json in Resources */ = {isa = PBXBuildFile; fileRef = 961969D8244658D900DC2A72 /* meditations.json */; };
-		96196A4C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969D9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg */; };
-		96196A4D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969DA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg */; };
-		96196A4E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969DB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg */; };
-		96196A4F244658DA00DC2A72 /* sound_categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 961969DC244658D900DC2A72 /* sound_categories.json */; };
-		96196A50244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969DD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png */; };
-		96196A51244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969DE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png */; };
-		96196A52244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969DF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg */; };
-		96196A53244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png */; };
-		96196A54244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png */; };
-		96196A55244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969E2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3 */; };
-		96196A56244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969E3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3 */; };
-		96196A57244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png */; };
-		96196A58244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 961969E5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a */; };
-		96196A59244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969E6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg */; };
-		96196A5A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png */; };
-		96196A5B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png */; };
-		96196A5C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969E9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png */; };
-		96196A5D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969EA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg */; };
-		96196A5E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969EB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png */; };
-		96196A5F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969EC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3 */; };
-		96196A60244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969ED244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3 */; };
-		96196A61244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969EE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3 */; };
-		96196A62244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969EF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3 */; };
-		96196A63244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969F0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png */; };
-		96196A64244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969F1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3 */; };
-		96196A65244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969F2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png */; };
-		96196A66244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969F3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3 */; };
-		96196A67244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969F4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png */; };
-		96196A68244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969F5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3 */; };
-		96196A69244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969F6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3 */; };
-		96196A6A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969F7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3 */; };
-		96196A6B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969F8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png */; };
-		96196A6C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969F9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png */; };
-		96196A6D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 961969FA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg */; };
-		96196A6E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969FB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3 */; };
-		96196A6F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969FC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3 */; };
-		96196A70244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png in Resources */ = {isa = PBXBuildFile; fileRef = 961969FD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png */; };
-		96196A71244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 961969FE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a */; };
-		96196A72244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 961969FF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3 */; };
-		96196A73244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A00244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png */; };
-		96196A74244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A01244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg */; };
-		96196A75244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A02244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png */; };
-		96196A76244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A03244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3 */; };
-		96196A77244658DA00DC2A72 /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96196A04244658D900DC2A72 /* stories.json */; };
-		96196A78244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A05244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png */; };
-		96196A79244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A06244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3 */; };
-		96196A7A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A07244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png */; };
-		96196A7B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A08244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3 */; };
-		96196A7C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A09244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3 */; };
-		96196A7D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3 */; };
-		96196A7E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg */; };
-		96196A7F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3 */; };
-		96196A80244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3 */; };
-		96196A81244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3 */; };
-		96196A82244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A0F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3 */; };
-		96196A83244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A10244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png */; };
-		96196A84244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A11244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3 */; };
-		96196A85244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A12244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png */; };
-		96196A86244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A13244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg */; };
-		96196A87244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A14244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png */; };
-		96196A88244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A15244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg */; };
-		96196A89244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A16244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3 */; };
-		96196A8A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A17244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png */; };
-		96196A8B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A18244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3 */; };
-		96196A8C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A19244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg */; };
-		96196A8D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3 */; };
-		96196A8E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png */; };
-		96196A8F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png */; };
-		96196A90244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3 */; };
-		96196A91244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov */; };
-		96196A92244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A1F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3 */; };
-		96196A93244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A20244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png */; };
-		96196A94244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A21244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3 */; };
-		96196A95244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A22244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png */; };
-		96196A96244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A23244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg */; };
-		96196A97244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A24244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png */; };
-		96196A98244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A25244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg */; };
-		96196A99244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A26244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3 */; };
-		96196A9A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A27244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3 */; };
-		96196A9B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A28244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3 */; };
-		96196A9C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A29244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3 */; };
-		96196A9D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3 */; };
-		96196A9E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3 */; };
-		96196A9F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg */; };
-		96196AA0244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a */; };
-		96196AA1244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png */; };
-		96196AA2244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A2F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png */; };
-		96196AA3244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A30244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png */; };
-		96196AA4244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A31244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png */; };
-		96196AA5244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A32244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3 */; };
-		96196AA6244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A33244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png */; };
-		96196AA7244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A34244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3 */; };
-		96196AA8244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A35244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg */; };
-		96196AA9244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A36244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3 */; };
-		96196AAA244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A37244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3 */; };
-		96196AAB244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A38244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png */; };
-		96196AAC244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A39244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg */; };
-		96196AAD244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3 */; };
-		96196AAE244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a */; };
-		96196AAF244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg */; };
-		96196AB0244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png */; };
-		96196AB1244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3 */; };
-		96196AB2244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A3F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png */; };
-		96196AB3244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A40244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3 */; };
-		96196AB4244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196A41244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg */; };
-		96196AB5244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A42244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3 */; };
-		96196AB6244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A43244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3 */; };
-		96196AB7244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A44244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png */; };
-		96196AB8244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 96196A45244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3 */; };
-		96196AB9244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A46244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png */; };
-		96196ABA244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196A47244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png */; };
+		96196B0A2446ECB300DC2A72 /* scenes.json in Resources */ = {isa = PBXBuildFile; fileRef = 96196ABC2446ECB300DC2A72 /* scenes.json */; };
+		96196B0B2446ECB300DC2A72 /* meditations.json in Resources */ = {isa = PBXBuildFile; fileRef = 96196ABD2446ECB300DC2A72 /* meditations.json */; };
+		96196B0C2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ABE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png */; };
+		96196B0D2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ABF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png */; };
+		96196B0E2446ECB300DC2A72 /* sound_categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC02446ECB300DC2A72 /* sound_categories.json */; };
+		96196B0F2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png */; };
+		96196B102446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg */; };
+		96196B112446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png */; };
+		96196B122446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf */; };
+		96196B132446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png */; };
+		96196B142446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a */; };
+		96196B152446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf */; };
+		96196B162446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png */; };
+		96196B172446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AC92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png */; };
+		96196B182446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg */; };
+		96196B192446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png */; };
+		96196B1A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png */; };
+		96196B1B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png */; };
+		96196B1C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png */; };
+		96196B1D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196ACF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a */; };
+		96196B1E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg */; };
+		96196B1F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf */; };
+		96196B202446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png */; };
+		96196B212446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png */; };
+		96196B222446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg */; };
+		96196B232446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf */; };
+		96196B242446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf */; };
+		96196B252446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png */; };
+		96196B262446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a */; };
+		96196B272446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AD92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png */; };
+		96196B282446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg */; };
+		96196B292446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg */; };
+		96196B2A2446ECB400DC2A72 /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADC2446ECB300DC2A72 /* stories.json */; };
+		96196B2B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg */; };
+		96196B2C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg */; };
+		96196B2D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196ADF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg */; };
+		96196B2E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png */; };
+		96196B2F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg */; };
+		96196B302446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg */; };
+		96196B312446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png */; };
+		96196B322446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */; };
+		96196B332446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png */; };
+		96196B342446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg */; };
+		96196B352446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png */; };
+		96196B362446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png */; };
+		96196B372446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AE92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg */; };
+		96196B382446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AEA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png */; };
+		96196B392446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AEB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png */; };
+		96196B3A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AEC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg */; };
+		96196B3B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AED2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png */; };
+		96196B3C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AEE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png */; };
+		96196B3D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AEF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png */; };
+		96196B3E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png */; };
+		96196B3F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png */; };
+		96196B402446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg */; };
+		96196B412446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png */; };
+		96196B422446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png */; };
+		96196B432446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png */; };
+		96196B442446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png */; };
+		96196B452446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png */; };
+		96196B462446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png */; };
+		96196B472446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AF92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg */; };
+		96196B482446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg */; };
+		96196B492446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png */; };
+		96196B4A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png */; };
+		96196B4B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png */; };
+		96196B4C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg */; };
+		96196B4D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196AFF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png */; };
+		96196B4E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196B002446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf */; };
+		96196B4F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B012446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png */; };
+		96196B502446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96196B022446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg */; };
+		96196B512446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B032446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png */; };
+		96196B522446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 96196B042446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a */; };
+		96196B532446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B052446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png */; };
+		96196B542446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B062446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png */; };
+		96196B552446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B072446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png */; };
+		96196B562446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96196B082446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf */; };
+		96196B572446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96196B092446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png */; };
 		961FDA3723D4ED8D001920CA /* UIDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */; };
 		9623D336239885EF0040CB43 /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D335239885EF0040CB43 /* TextAttributes.swift */; };
 		9623D33823988A510040CB43 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623D33723988A510040CB43 /* Fonts.swift */; };
@@ -522,121 +485,84 @@
 		86F98CD123646A9C00B0F5EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		89D8D71B2F2541C4E3C2AE33 /* Pods-SleepWell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWell.debug.xcconfig"; path = "Target Support Files/Pods-SleepWell/Pods-SleepWell.debug.xcconfig"; sourceTree = "<group>"; };
 		961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAttributionsDetails.swift; sourceTree = "<group>"; };
-		961969D5244658D900DC2A72 /* scenes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scenes.json; sourceTree = "<group>"; };
-		961969D6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3"; sourceTree = "<group>"; };
-		961969D7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3"; sourceTree = "<group>"; };
-		961969D8244658D900DC2A72 /* meditations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meditations.json; sourceTree = "<group>"; };
-		961969D9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg"; sourceTree = "<group>"; };
-		961969DA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg"; sourceTree = "<group>"; };
-		961969DB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg"; sourceTree = "<group>"; };
-		961969DC244658D900DC2A72 /* sound_categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_categories.json; sourceTree = "<group>"; };
-		961969DD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png"; sourceTree = "<group>"; };
-		961969DE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png"; sourceTree = "<group>"; };
-		961969DF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg"; sourceTree = "<group>"; };
-		961969E0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png"; sourceTree = "<group>"; };
-		961969E1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png"; sourceTree = "<group>"; };
-		961969E2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3"; sourceTree = "<group>"; };
-		961969E3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3"; sourceTree = "<group>"; };
-		961969E4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png"; sourceTree = "<group>"; };
-		961969E5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a"; sourceTree = "<group>"; };
-		961969E6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg"; sourceTree = "<group>"; };
-		961969E7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png"; sourceTree = "<group>"; };
-		961969E8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png"; sourceTree = "<group>"; };
-		961969E9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png"; sourceTree = "<group>"; };
-		961969EA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg"; sourceTree = "<group>"; };
-		961969EB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png"; sourceTree = "<group>"; };
-		961969EC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3"; sourceTree = "<group>"; };
-		961969ED244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3"; sourceTree = "<group>"; };
-		961969EE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3"; sourceTree = "<group>"; };
-		961969EF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3"; sourceTree = "<group>"; };
-		961969F0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png"; sourceTree = "<group>"; };
-		961969F1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3"; sourceTree = "<group>"; };
-		961969F2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png"; sourceTree = "<group>"; };
-		961969F3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3"; sourceTree = "<group>"; };
-		961969F4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png"; sourceTree = "<group>"; };
-		961969F5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3"; sourceTree = "<group>"; };
-		961969F6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3"; sourceTree = "<group>"; };
-		961969F7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3"; sourceTree = "<group>"; };
-		961969F8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png"; sourceTree = "<group>"; };
-		961969F9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png"; sourceTree = "<group>"; };
-		961969FA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg"; sourceTree = "<group>"; };
-		961969FB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3"; sourceTree = "<group>"; };
-		961969FC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3"; sourceTree = "<group>"; };
-		961969FD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png"; sourceTree = "<group>"; };
-		961969FE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a"; sourceTree = "<group>"; };
-		961969FF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3"; sourceTree = "<group>"; };
-		96196A00244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png"; sourceTree = "<group>"; };
-		96196A01244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg"; sourceTree = "<group>"; };
-		96196A02244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png"; sourceTree = "<group>"; };
-		96196A03244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3"; sourceTree = "<group>"; };
-		96196A04244658D900DC2A72 /* stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
-		96196A05244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png"; sourceTree = "<group>"; };
-		96196A06244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3"; sourceTree = "<group>"; };
-		96196A07244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png"; sourceTree = "<group>"; };
-		96196A08244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3"; sourceTree = "<group>"; };
-		96196A09244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3"; sourceTree = "<group>"; };
-		96196A0A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3"; sourceTree = "<group>"; };
-		96196A0B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg"; sourceTree = "<group>"; };
-		96196A0C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3"; sourceTree = "<group>"; };
-		96196A0D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3"; sourceTree = "<group>"; };
-		96196A0E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3"; sourceTree = "<group>"; };
-		96196A0F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3"; sourceTree = "<group>"; };
-		96196A10244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png"; sourceTree = "<group>"; };
-		96196A11244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3"; sourceTree = "<group>"; };
-		96196A12244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png"; sourceTree = "<group>"; };
-		96196A13244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg"; sourceTree = "<group>"; };
-		96196A14244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png"; sourceTree = "<group>"; };
-		96196A15244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg"; sourceTree = "<group>"; };
-		96196A16244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3"; sourceTree = "<group>"; };
-		96196A17244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png"; sourceTree = "<group>"; };
-		96196A18244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3"; sourceTree = "<group>"; };
-		96196A19244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg"; sourceTree = "<group>"; };
-		96196A1A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3"; sourceTree = "<group>"; };
-		96196A1B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png"; sourceTree = "<group>"; };
-		96196A1C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png"; sourceTree = "<group>"; };
-		96196A1D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3"; sourceTree = "<group>"; };
-		96196A1E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov"; sourceTree = "<group>"; };
-		96196A1F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3"; sourceTree = "<group>"; };
-		96196A20244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png"; sourceTree = "<group>"; };
-		96196A21244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3"; sourceTree = "<group>"; };
-		96196A22244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png"; sourceTree = "<group>"; };
-		96196A23244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg"; sourceTree = "<group>"; };
-		96196A24244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png"; sourceTree = "<group>"; };
-		96196A25244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg"; sourceTree = "<group>"; };
-		96196A26244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3"; sourceTree = "<group>"; };
-		96196A27244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3"; sourceTree = "<group>"; };
-		96196A28244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3"; sourceTree = "<group>"; };
-		96196A29244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3"; sourceTree = "<group>"; };
-		96196A2A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3"; sourceTree = "<group>"; };
-		96196A2B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3"; sourceTree = "<group>"; };
-		96196A2C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg"; sourceTree = "<group>"; };
-		96196A2D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a"; sourceTree = "<group>"; };
-		96196A2E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png"; sourceTree = "<group>"; };
-		96196A2F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png"; sourceTree = "<group>"; };
-		96196A30244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png"; sourceTree = "<group>"; };
-		96196A31244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png"; sourceTree = "<group>"; };
-		96196A32244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3"; sourceTree = "<group>"; };
-		96196A33244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png"; sourceTree = "<group>"; };
-		96196A34244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3"; sourceTree = "<group>"; };
-		96196A35244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg"; sourceTree = "<group>"; };
-		96196A36244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3"; sourceTree = "<group>"; };
-		96196A37244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3"; sourceTree = "<group>"; };
-		96196A38244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png"; sourceTree = "<group>"; };
-		96196A39244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg"; sourceTree = "<group>"; };
-		96196A3A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3"; sourceTree = "<group>"; };
-		96196A3B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a"; sourceTree = "<group>"; };
-		96196A3C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg"; sourceTree = "<group>"; };
-		96196A3D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png"; sourceTree = "<group>"; };
-		96196A3E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3"; sourceTree = "<group>"; };
-		96196A3F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png"; sourceTree = "<group>"; };
-		96196A40244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3"; sourceTree = "<group>"; };
-		96196A41244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg"; sourceTree = "<group>"; };
-		96196A42244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3"; sourceTree = "<group>"; };
-		96196A43244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3"; sourceTree = "<group>"; };
-		96196A44244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png"; sourceTree = "<group>"; };
-		96196A45244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3"; sourceTree = "<group>"; };
-		96196A46244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png"; sourceTree = "<group>"; };
-		96196A47244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png"; sourceTree = "<group>"; };
+		96196ABC2446ECB300DC2A72 /* scenes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scenes.json; sourceTree = "<group>"; };
+		96196ABD2446ECB300DC2A72 /* meditations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meditations.json; sourceTree = "<group>"; };
+		96196ABE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png"; sourceTree = "<group>"; };
+		96196ABF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png"; sourceTree = "<group>"; };
+		96196AC02446ECB300DC2A72 /* sound_categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_categories.json; sourceTree = "<group>"; };
+		96196AC12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png"; sourceTree = "<group>"; };
+		96196AC22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg"; sourceTree = "<group>"; };
+		96196AC32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png"; sourceTree = "<group>"; };
+		96196AC42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf"; sourceTree = "<group>"; };
+		96196AC52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png"; sourceTree = "<group>"; };
+		96196AC62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a"; sourceTree = "<group>"; };
+		96196AC72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf"; sourceTree = "<group>"; };
+		96196AC82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png"; sourceTree = "<group>"; };
+		96196AC92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png"; sourceTree = "<group>"; };
+		96196ACA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg"; sourceTree = "<group>"; };
+		96196ACB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png"; sourceTree = "<group>"; };
+		96196ACC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png"; sourceTree = "<group>"; };
+		96196ACD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png"; sourceTree = "<group>"; };
+		96196ACE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png"; sourceTree = "<group>"; };
+		96196ACF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a"; sourceTree = "<group>"; };
+		96196AD02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg"; sourceTree = "<group>"; };
+		96196AD12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf"; sourceTree = "<group>"; };
+		96196AD22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png"; sourceTree = "<group>"; };
+		96196AD32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png"; sourceTree = "<group>"; };
+		96196AD42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg"; sourceTree = "<group>"; };
+		96196AD52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf"; sourceTree = "<group>"; };
+		96196AD62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf"; sourceTree = "<group>"; };
+		96196AD72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png"; sourceTree = "<group>"; };
+		96196AD82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a"; sourceTree = "<group>"; };
+		96196AD92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png"; sourceTree = "<group>"; };
+		96196ADA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg"; sourceTree = "<group>"; };
+		96196ADB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg"; sourceTree = "<group>"; };
+		96196ADC2446ECB300DC2A72 /* stories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
+		96196ADD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg"; sourceTree = "<group>"; };
+		96196ADE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg"; sourceTree = "<group>"; };
+		96196ADF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg"; sourceTree = "<group>"; };
+		96196AE02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png"; sourceTree = "<group>"; };
+		96196AE12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg"; sourceTree = "<group>"; };
+		96196AE22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg"; sourceTree = "<group>"; };
+		96196AE32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png"; sourceTree = "<group>"; };
+		96196AE42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov"; sourceTree = "<group>"; };
+		96196AE52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png"; sourceTree = "<group>"; };
+		96196AE62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg"; sourceTree = "<group>"; };
+		96196AE72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png"; sourceTree = "<group>"; };
+		96196AE82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png"; sourceTree = "<group>"; };
+		96196AE92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg"; sourceTree = "<group>"; };
+		96196AEA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png"; sourceTree = "<group>"; };
+		96196AEB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png"; sourceTree = "<group>"; };
+		96196AEC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg"; sourceTree = "<group>"; };
+		96196AED2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png"; sourceTree = "<group>"; };
+		96196AEE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png"; sourceTree = "<group>"; };
+		96196AEF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png"; sourceTree = "<group>"; };
+		96196AF02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png"; sourceTree = "<group>"; };
+		96196AF12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png"; sourceTree = "<group>"; };
+		96196AF22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg"; sourceTree = "<group>"; };
+		96196AF32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png"; sourceTree = "<group>"; };
+		96196AF42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png"; sourceTree = "<group>"; };
+		96196AF52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png"; sourceTree = "<group>"; };
+		96196AF62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png"; sourceTree = "<group>"; };
+		96196AF72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png"; sourceTree = "<group>"; };
+		96196AF82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png"; sourceTree = "<group>"; };
+		96196AF92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg"; sourceTree = "<group>"; };
+		96196AFA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg"; sourceTree = "<group>"; };
+		96196AFB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png"; sourceTree = "<group>"; };
+		96196AFC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png"; sourceTree = "<group>"; };
+		96196AFD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png"; sourceTree = "<group>"; };
+		96196AFE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg"; sourceTree = "<group>"; };
+		96196AFF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png"; sourceTree = "<group>"; };
+		96196B002446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf"; sourceTree = "<group>"; };
+		96196B012446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png"; sourceTree = "<group>"; };
+		96196B022446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg"; sourceTree = "<group>"; };
+		96196B032446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png"; sourceTree = "<group>"; };
+		96196B042446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a"; sourceTree = "<group>"; };
+		96196B052446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png"; sourceTree = "<group>"; };
+		96196B062446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png"; sourceTree = "<group>"; };
+		96196B072446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png"; sourceTree = "<group>"; };
+		96196B082446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf"; sourceTree = "<group>"; };
+		96196B092446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png"; sourceTree = "<group>"; };
 		961FDA3623D4ED8D001920CA /* UIDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceUtils.swift; sourceTree = "<group>"; };
 		9623D335239885EF0040CB43 /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		9623D33723988A510040CB43 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -1168,124 +1094,87 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		961969D4244658D900DC2A72 /* cache */ = {
+		96196ABB2446ECB300DC2A72 /* cache */ = {
 			isa = PBXGroup;
 			children = (
-				961969D5244658D900DC2A72 /* scenes.json */,
-				961969D6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3 */,
-				961969D7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3 */,
-				961969D8244658D900DC2A72 /* meditations.json */,
-				961969D9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg */,
-				961969DA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg */,
-				961969DB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg */,
-				961969DC244658D900DC2A72 /* sound_categories.json */,
-				961969DD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png */,
-				961969DE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png */,
-				961969DF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg */,
-				961969E0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png */,
-				961969E1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png */,
-				961969E2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3 */,
-				961969E3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3 */,
-				961969E4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png */,
-				961969E5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a */,
-				961969E6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg */,
-				961969E7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png */,
-				961969E8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png */,
-				961969E9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png */,
-				961969EA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg */,
-				961969EB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png */,
-				961969EC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3 */,
-				961969ED244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3 */,
-				961969EE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3 */,
-				961969EF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3 */,
-				961969F0244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png */,
-				961969F1244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3 */,
-				961969F2244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png */,
-				961969F3244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3 */,
-				961969F4244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png */,
-				961969F5244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3 */,
-				961969F6244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3 */,
-				961969F7244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3 */,
-				961969F8244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png */,
-				961969F9244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png */,
-				961969FA244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg */,
-				961969FB244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3 */,
-				961969FC244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3 */,
-				961969FD244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png */,
-				961969FE244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a */,
-				961969FF244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3 */,
-				96196A00244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png */,
-				96196A01244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg */,
-				96196A02244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png */,
-				96196A03244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3 */,
-				96196A04244658D900DC2A72 /* stories.json */,
-				96196A05244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png */,
-				96196A06244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3 */,
-				96196A07244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png */,
-				96196A08244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3 */,
-				96196A09244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3 */,
-				96196A0A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3 */,
-				96196A0B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg */,
-				96196A0C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3 */,
-				96196A0D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3 */,
-				96196A0E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3 */,
-				96196A0F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3 */,
-				96196A10244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png */,
-				96196A11244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3 */,
-				96196A12244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png */,
-				96196A13244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg */,
-				96196A14244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png */,
-				96196A15244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg */,
-				96196A16244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3 */,
-				96196A17244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png */,
-				96196A18244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3 */,
-				96196A19244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg */,
-				96196A1A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3 */,
-				96196A1B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png */,
-				96196A1C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png */,
-				96196A1D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3 */,
-				96196A1E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov */,
-				96196A1F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3 */,
-				96196A20244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png */,
-				96196A21244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3 */,
-				96196A22244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png */,
-				96196A23244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg */,
-				96196A24244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png */,
-				96196A25244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg */,
-				96196A26244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3 */,
-				96196A27244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3 */,
-				96196A28244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3 */,
-				96196A29244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3 */,
-				96196A2A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3 */,
-				96196A2B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3 */,
-				96196A2C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg */,
-				96196A2D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a */,
-				96196A2E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png */,
-				96196A2F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png */,
-				96196A30244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png */,
-				96196A31244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png */,
-				96196A32244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3 */,
-				96196A33244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png */,
-				96196A34244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3 */,
-				96196A35244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg */,
-				96196A36244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3 */,
-				96196A37244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3 */,
-				96196A38244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png */,
-				96196A39244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg */,
-				96196A3A244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3 */,
-				96196A3B244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a */,
-				96196A3C244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg */,
-				96196A3D244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png */,
-				96196A3E244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3 */,
-				96196A3F244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png */,
-				96196A40244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3 */,
-				96196A41244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg */,
-				96196A42244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3 */,
-				96196A43244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3 */,
-				96196A44244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png */,
-				96196A45244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3 */,
-				96196A46244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png */,
-				96196A47244658D900DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png */,
+				96196ABC2446ECB300DC2A72 /* scenes.json */,
+				96196ABD2446ECB300DC2A72 /* meditations.json */,
+				96196ABE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png */,
+				96196ABF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png */,
+				96196AC02446ECB300DC2A72 /* sound_categories.json */,
+				96196AC12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png */,
+				96196AC22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg */,
+				96196AC32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png */,
+				96196AC42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf */,
+				96196AC52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png */,
+				96196AC62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a */,
+				96196AC72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf */,
+				96196AC82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png */,
+				96196AC92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png */,
+				96196ACA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg */,
+				96196ACB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png */,
+				96196ACC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png */,
+				96196ACD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png */,
+				96196ACE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png */,
+				96196ACF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a */,
+				96196AD02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg */,
+				96196AD12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf */,
+				96196AD22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png */,
+				96196AD32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png */,
+				96196AD42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg */,
+				96196AD52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf */,
+				96196AD62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf */,
+				96196AD72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png */,
+				96196AD82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a */,
+				96196AD92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png */,
+				96196ADA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg */,
+				96196ADB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg */,
+				96196ADC2446ECB300DC2A72 /* stories.json */,
+				96196ADD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg */,
+				96196ADE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg */,
+				96196ADF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg */,
+				96196AE02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png */,
+				96196AE12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg */,
+				96196AE22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg */,
+				96196AE32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png */,
+				96196AE42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov */,
+				96196AE52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png */,
+				96196AE62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg */,
+				96196AE72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png */,
+				96196AE82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png */,
+				96196AE92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg */,
+				96196AEA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png */,
+				96196AEB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png */,
+				96196AEC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg */,
+				96196AED2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png */,
+				96196AEE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png */,
+				96196AEF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png */,
+				96196AF02446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png */,
+				96196AF12446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png */,
+				96196AF22446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg */,
+				96196AF32446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png */,
+				96196AF42446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png */,
+				96196AF52446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png */,
+				96196AF62446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png */,
+				96196AF72446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png */,
+				96196AF82446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png */,
+				96196AF92446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg */,
+				96196AFA2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg */,
+				96196AFB2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png */,
+				96196AFC2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png */,
+				96196AFD2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png */,
+				96196AFE2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg */,
+				96196AFF2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png */,
+				96196B002446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf */,
+				96196B012446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png */,
+				96196B022446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg */,
+				96196B032446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png */,
+				96196B042446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a */,
+				96196B052446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png */,
+				96196B062446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png */,
+				96196B072446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png */,
+				96196B082446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf */,
+				96196B092446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -1533,7 +1422,7 @@
 		96C29EDD236259E300E93CB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				961969D4244658D900DC2A72 /* cache */,
+				96196ABB2446ECB300DC2A72 /* cache */,
 				96C29EC82362564000E93CB1 /* AppDelegate.swift */,
 				96C29EDE23625A4900E93CB1 /* Storyboards */,
 				96C29F112362649100E93CB1 /* Strings */,
@@ -2030,181 +1919,144 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96196A85244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895775i_s_012.png in Resources */,
+				96196B172446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_78_1586745696i_Snd_Nature_09@3x.png in Resources */,
+				96196B1F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745879delta waves.wav.caf in Resources */,
 				86BC57EC23CB8A5F00AA909B /* ViewportView.xib in Resources */,
-				96196A8F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895778i_s_003.png in Resources */,
-				96196AA4244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895778i_s_003.png in Resources */,
 				9623D34023990C720040CB43 /* OpenSans-Regular.ttf in Resources */,
 				9623D33E23990B800040CB43 /* Montserrat-Regular.ttf in Resources */,
-				96196A63244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_1586895776i_s_008.png in Resources */,
-				96196A8A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895778i_s_005.png in Resources */,
 				9623D33923990A850040CB43 /* OpenSans-Semibold.ttf in Resources */,
-				96196AB2244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_1586895775i_s_006.png in Resources */,
-				96196A78244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895775i_s_004.png in Resources */,
-				96196AB7244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_92_1586895775i_s_006.png in Resources */,
-				96196AB6244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_72_15868958301579494670tibetan bowls (intense).mp3 in Resources */,
 				96D8E9C023E0D9FC00835459 /* SoundsMenuView.xib in Resources */,
-				96196A58244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_15868958161575894442whales.m4a in Resources */,
-				96196AA2244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895778i_s_006.png in Resources */,
-				96196A7C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_15868958301579494670tibetan bowls (light).mp3 in Resources */,
-				96196A97244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_28_1586895778i_s_012.png in Resources */,
-				96196A71244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958151575894402echoes of the stars.m4a in Resources */,
-				96196A7E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_74_1586895772Card_14@jpg.jpg in Resources */,
+				96196B362446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_71_1586745695i_Snd_Noise_04@3x.png in Resources */,
 				9623D33B23990A850040CB43 /* OpenSans-Light.ttf in Resources */,
-				96196A60244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_15868958311579494907camp fire (huge).mp3 in Resources */,
-				96196A95244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_06_1586895775i_s_002.png in Resources */,
+				96196B332446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_63_1586745698i_Snd_Melodies_04@3x.png in Resources */,
+				96196B4D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Nature_10@3x.png in Resources */,
+				96196B562446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_41_1586745881white noise.wav.caf in Resources */,
+				96196B232446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_12_1586745882vinyl crackle.wav.caf in Resources */,
 				9623D33C23990A850040CB43 /* OpenSans-Italic.ttf in Resources */,
-				96196A6B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_1586895776i_s_007.png in Resources */,
+				96196B462446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_49_1586745698i_Snd_Melodies_07@3x.png in Resources */,
+				96196B432446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745695i_Snd_Asmr_08@3x.png in Resources */,
+				96196B292446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745692Card_16@jpg.jpg in Resources */,
 				9623D33D23990A850040CB43 /* OpenSans-Bold.ttf in Resources */,
-				96196A86244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_88_1586895772Card_19@jpg.jpg in Resources */,
+				96196B2D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_18@jpg.jpg in Resources */,
 				86C848BA2367001000BC6EDA /* StoriesScreen.storyboard in Resources */,
-				96196AA5244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_62_15868958321579494907camp fire (small).mp3 in Resources */,
+				96196B352446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745696i_Snd_Nature_11@3x.png in Resources */,
 				96DC8CA523684D15004DC76A /* Poppins-Bold.ttf in Resources */,
-				96196A9C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_15868958291579494295camp fire (huge).mp3 in Resources */,
-				96196AAA244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958301579494295space voices.mp3 in Resources */,
+				96196B342446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745691Card_07@jpg.jpg in Resources */,
 				868B5E4023C0C605007BC301 /* SoundsListView.xib in Resources */,
-				96196A4C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895772Card_13@jpg.jpg in Resources */,
+				96196B372446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_02_1586745691Card_09@jpg.jpg in Resources */,
 				96DC8CA623684D15004DC76A /* Poppins-Light.ttf in Resources */,
-				96196A5E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_14_1586895775i_s_009.png in Resources */,
-				96196A5A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895777i_s_008.png in Resources */,
+				96196B1C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_95_1586745690reader4.png in Resources */,
+				96196B512446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader3.png in Resources */,
 				86F6E53523CD1A9D00353F8D /* NoiseView.xib in Resources */,
-				96196A93244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_78_1586895777i_s_007.png in Resources */,
-				96196A4A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579494950highway (intense).mp3 in Resources */,
-				96196A83244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_1586895775i_s_003.png in Resources */,
-				96196A57244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_1586895776i_s_003.png in Resources */,
-				96196A8E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_17_1586895776i_s_012.png in Resources */,
 				86836C66236ED0E500D50C32 /* sf-pro-text-heavy.ttf in Resources */,
 				86A7D69F2385DA710087CE87 /* ScenesScreen.storyboard in Resources */,
-				96196A72244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_84_15868958241579414839delta waves.mp3 in Resources */,
-				96196A66244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958321579495008diesel car idling (outside car).mp3 in Resources */,
-				96196A48244658DA00DC2A72 /* scenes.json in Resources */,
+				96196B1E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_18_1586745692Card_17@jpg.jpg in Resources */,
+				96196B4F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_44_1586745698i_Snd_Melodies_05@3x.png in Resources */,
+				96196B0F2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_1586745696i_Snd_Noise_02@3x.png in Resources */,
+				96196B0A2446ECB300DC2A72 /* scenes.json in Resources */,
+				96196B2F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745691Card_06@jpg.jpg in Resources */,
+				96196B4A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_81_1586745699i_Snd_Asmr_01@3x.png in Resources */,
+				96196B502446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_32_1586745692Card_20@jpg.jpg in Resources */,
+				96196B4C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_05_1586745691Card_02@jpg.jpg in Resources */,
 				86836C65236ED0E300D50C32 /* sf-pro-text-bold.ttf in Resources */,
-				96196A52244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_09@jpg.jpg in Resources */,
-				96196AB9244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895778i_s_005.png in Resources */,
-				96196A75244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895777i_s_002.png in Resources */,
-				96196AAD244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_15868958281579415642whales.mp3 in Resources */,
-				96196A74244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_13_1586895772Card_20@jpg.jpg in Resources */,
-				96196A53244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_57_1586895777i_s_011.png in Resources */,
-				96196A76244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_15868958251579414882brown noise.mp3 in Resources */,
-				96196A8B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494767river (huge stream).mp3 in Resources */,
-				96196A8D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958281579415763mysterious owls.mp3 in Resources */,
 				844F025B23777002004C062B /* VolumeScreen.storyboard in Resources */,
 				9623D34E2399878E0040CB43 /* GoogleService-Info.plist in Resources */,
+				96196B0D2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Nature_07@3x.png in Resources */,
+				96196B532446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_33_1586745695i_Snd_Noise_01@3x.png in Resources */,
+				96196B492446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745698i_Snd_Mech_02@3x.png in Resources */,
+				96196B302446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_17_1586745695card12.jpg in Resources */,
 				86A69BFE23C0766A00B07168 /* SoundsScreen.storyboard in Resources */,
+				96196B242446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745885music box.wav.caf in Resources */,
 				96DC8CA723684D15004DC76A /* Poppins-Medium.ttf in Resources */,
-				96196AAB244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_07_1586895775i_s_008.png in Resources */,
 				96DC8CA823684D15004DC76A /* Poppins-Regular.ttf in Resources */,
-				96196A6C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_49_1586895778i_s_010.png in Resources */,
+				96196B182446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745691Card_04@jpg.jpg in Resources */,
 				86836C67236ED0E700D50C32 /* sf-pro-text-light.ttf in Resources */,
 				96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */,
-				96196A88244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_94_1586895772Card_15@jpg.jpg in Resources */,
-				96196AAF244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_27_1586895771Card_03@jpg.jpg in Resources */,
-				96196A87244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_1586895770reader.png in Resources */,
-				96196A84244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958271579415446vinyl crackle.mp3 in Resources */,
-				96196A89244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_38_15868958311579494767river (small stream).mp3 in Resources */,
-				96196A4B244658DA00DC2A72 /* meditations.json in Resources */,
-				96196AAE244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_98_15868958161575894430space voices.m4a in Resources */,
-				96196AB8244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958271579415341dishwasher.mp3 in Resources */,
-				96196A5F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494808rain inside house.mp3 in Resources */,
+				96196B0C2446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_35_1586745696i_Snd_Nature_01@3x.png in Resources */,
 				96DC8C8423675D6B004DC76A /* ErrorView.xib in Resources */,
+				96196B312446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_01_1586745696i_Snd_Nature_04@3x.png in Resources */,
 				868B5E5123C0D36A007BC301 /* SoundGroupCell.xib in Resources */,
-				96196A6A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495112rustling grass (light).mp3 in Resources */,
-				96196A9F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_40_1586895772Card_18@jpg.jpg in Resources */,
-				96196AB0244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_70_1586895778i_s_013.png in Resources */,
-				96196AA8244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_68_1586895771Card_04@jpg.jpg in Resources */,
+				96196B212446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745690reader.png in Resources */,
 				96DC8C8C236763FF004DC76A /* OnboardingStartView.xib in Resources */,
-				96196A94244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_75_15868958321579494950highway (light).mp3 in Resources */,
+				96196B552446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_25_1586745696i_Snd_Noise_03@3x.png in Resources */,
+				96196B1B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_59_1586745698i_Snd_Melodies_01@3x.png in Resources */,
+				96196B452446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_40_1586745698i_Snd_Nature_02@3x.png in Resources */,
+				96196B4E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745885guitar.wav.caf in Resources */,
+				96196B402446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745692Card_11@jpg.jpg in Resources */,
+				96196B262446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_10_15868673341575894479space sonar.m4a in Resources */,
+				96196B132446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_31_1586745696i_Snd_Mech_08@3x.png in Resources */,
+				96196B252446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_56_1586745699i_Snd_Asmr_06@3x.png in Resources */,
+				96196B142446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_91_15868673331575894430space voices.m4a in Resources */,
 				9685528D23690F5C00A22E21 /* OnboardingBedtimeView.xib in Resources */,
-				96196A54244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_93_1586895771reader4.png in Resources */,
-				96196A5B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_1586895770reader3.png in Resources */,
-				96196A7B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_30_15868958351579495142ice cubes (intense).mp3 in Resources */,
+				96196B3D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_14_1586745696i_Snd_Mech_03@3x.png in Resources */,
 				86836C69236ED0EC00D50C32 /* sf-pro-text-regular.ttf in Resources */,
-				96196A8C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_1586895772Card_16@jpg.jpg in Resources */,
-				96196AA6244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_1586895777i_s_009.png in Resources */,
-				96196A6F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_15868958241579414774pink noise.mp3 in Resources */,
-				96196A73244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_1586895778i_s_011.png in Resources */,
-				96196A9B244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958261579415307drone engine.mp3 in Resources */,
-				96196A69244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958231579412722white noise.mp3 in Resources */,
 				84FC708D23834431000AD9AE /* SceneSettingsScreen.storyboard in Resources */,
-				96196AA7244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_15868958291579480020https___test.s1eep.app_sounds_2020_01_1578485594121335__cityrocker__air-traffic-3.mp3 in Resources */,
-				96196AAC244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_96_1586895771Card_07@jpg.jpg in Resources */,
-				96196A5D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_24_1586895772Card_12@jpg.jpg in Resources */,
-				96196A99244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_81_15868958311579494865cicada (light).mp3 in Resources */,
-				96196A9A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_55_15868958311579494808rain outside house.mp3 in Resources */,
 				96C29ED52362564200E93CB1 /* LaunchScreen.storyboard in Resources */,
-				96196A56244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_21_15868958281579415731night bird.mp3 in Resources */,
 				8441FB86236374CA001DC085 /* PlayerScreen.storyboard in Resources */,
-				96196AA9244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_85_15868958251579415244keyboard typing.mp3 in Resources */,
+				96196B272446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_36_1586745699i_Snd_Nature_06@3x.png in Resources */,
+				96196B2C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_80_1586745692Card_13@jpg.jpg in Resources */,
 				86F98CC5236463AE00B0F5EA /* MeditateTagCell.xib in Resources */,
+				96196B442446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745690reader2.png in Resources */,
 				86A70294238C6F50005C877B /* ScrollTabBarView.xib in Resources */,
-				96196AB5244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_86_15868958281579415698space voices.mp3 in Resources */,
+				96196B572446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_07_1586745699i_Snd_Asmr_03@3x.png in Resources */,
+				96196B382446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_06_1586745697i_Snd_Mech_05@3x.png in Resources */,
 				868B5E4D23C0CCBD007BC301 /* SoundGroupView.xib in Resources */,
-				96196A9D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_05_15868958351579495142ice cubes (light).mp3 in Resources */,
 				86836C68236ED0EA00D50C32 /* sf-pro-text-medium.ttf in Resources */,
-				96196A7F244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958251579415159spaceship.mp3 in Resources */,
-				96196A6D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_15_1586895771Card_10@jpg.jpg in Resources */,
-				96196A59244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_76_1586895771Card_06@jpg.jpg in Resources */,
-				96196AB1244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_42_15868958301579494712wind chimes (light).mp3 in Resources */,
-				96196A90244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_60_15868958281579415670spring birds.mp3 in Resources */,
-				96196A4E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_10_1586895771Card_08@jpg.jpg in Resources */,
-				96196A61244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_90_15868958251579415131submarine.mp3 in Resources */,
-				96196A65244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_09_1586895777i_s_011.png in Resources */,
-				96196AB3244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_04_15868958361579495174dried wood (light).mp3 in Resources */,
-				96196A6E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_15868958321579495008diesel car idling (inside car).mp3 in Resources */,
-				96196A62244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_71_15868958341579495112rustling grass (intense).mp3 in Resources */,
-				96196AA0244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958161575894479space sonar.m4a in Resources */,
+				96196B102446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_52_1586745692Card_19@jpg.jpg in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
+				96196B4B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745699i_Snd_Asmr_05@3x.png in Resources */,
 				86F98CC0236460CD00B0F5EA /* MeditateHeaderView.xib in Resources */,
-				96196AB4244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_01@jpg.jpg in Resources */,
 				968552842368878000A22E21 /* OnboardingPersonalDataView.xib in Resources */,
-				96196A50244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_61_1586895778i_s_006.png in Resources */,
-				96196AA1244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_34_1586895775i_s_003.png in Resources */,
 				96C29F6D2363527100E93CB1 /* PaygateScreen.storyboard in Resources */,
+				96196B112446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745695i_Snd_Asmr_02@3x.png in Resources */,
+				96196B202446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_1586745698i_Snd_Mech_06@3x.png in Resources */,
+				96196B122446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_00_1586745895snowy steps (hard).wav.caf in Resources */,
+				96196B482446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_70_1586745691Card_08@jpg.jpg in Resources */,
 				96C29F14236264B600E93CB1 /* Localizable.strings in Resources */,
-				96196A4D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895772Card_17@jpg.jpg in Resources */,
+				96196B522446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_93_15868673351578936114echos of the stars.m4a in Resources */,
+				96196B1A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_30_1586745698i_Snd_Nature_08@3x.png in Resources */,
+				96196B3A2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_57_1586745692Card_14@jpg.jpg in Resources */,
+				96196B152446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_24_1586745895snowy steps (light).wav.caf in Resources */,
 				96C29F6F2363535100E93CB1 /* OnboardingScreen.storyboard in Resources */,
 				868B5E4923C0C864007BC301 /* SoundCell.xib in Resources */,
 				96C29F102362633200E93CB1 /* SplashScreen.storyboard in Resources */,
 				86C848B32366F13900BC6EDA /* HeaderTitleView.xib in Resources */,
 				86F98CD023646A3500B0F5EA /* MeditateCell.xib in Resources */,
+				96196B412446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_43_1586745699i_Snd_Mech_01@3x.png in Resources */,
 				86C848C32367008A00BC6EDA /* StoriesHeaderView.xib in Resources */,
+				96196B392446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_28_1586745696i_Snd_Mech_07@3x.png in Resources */,
+				96196B222446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_98_1586745691Card_03@jpg.jpg in Resources */,
+				96196B0E2446ECB300DC2A72 /* sound_categories.json in Resources */,
+				96196B472446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_83_1586745691Card_01@jpg.jpg in Resources */,
 				86F98CB723645C3B00B0F5EA /* MeditateScreen.storyboard in Resources */,
-				96196A9E244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_01_15868958341579495078snowy steps (light).mp3 in Resources */,
 				86B2BFF823663C7000AF2B33 /* PremiumUnlockCell.xib in Resources */,
-				96196A49244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_89_15868958251579415210space sonar.mp3 in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
+				96196B2E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745699i_Snd_Mech_04@3x.png in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
 				86E1052C2393ECD20092B194 /* MiniPlayerView.xib in Resources */,
-				96196A4F244658DA00DC2A72 /* sound_categories.json in Resources */,
-				96196A68244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_25_15868958361579495206boiling water (small).mp3 in Resources */,
-				96196A77244658DA00DC2A72 /* stories.json in Resources */,
-				96196A92244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_02_15868958261579415278hairdryer.mp3 in Resources */,
-				96196A7D244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_15868958311579494865cicada (intense).mp3 in Resources */,
-				96196A5C244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_56_1586895775i_s_008.png in Resources */,
-				96196A79244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958241579414806green noise.mp3 in Resources */,
+				96196B542446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_42_1586745695i_Snd_Asmr_07@3x.png in Resources */,
+				96196B0B2446ECB300DC2A72 /* meditations.json in Resources */,
+				96196B282446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_16_1586745691Card_10@jpg.jpg in Resources */,
 				86C848C82367027900BC6EDA /* StoryCell.xib in Resources */,
 				86836C6A236ED0EE00D50C32 /* sf-pro-text-semibold.ttf in Resources */,
 				84DD743D23908E8000B10777 /* SceneTimerScreen.storyboard in Resources */,
-				96196A67244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_73_1586895775i_s_007.png in Resources */,
-				96196ABA244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_19_1586895776i_s_013.png in Resources */,
-				96196A55244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_48_15868958351579495174dried wood (intense).mp3 in Resources */,
-				96196A91244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895774Whales_1080p.mov in Resources */,
-				96196A96244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_95_1586895771Card_02@jpg.jpg in Resources */,
+				96196B3C2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_45_1586745696i_Snd_Mech_09@3x.png in Resources */,
+				96196B2B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_65_1586745692Card_15@jpg.jpg in Resources */,
+				96196B3B2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_1586745696i_Snd_Noise_05@3x.png in Resources */,
+				96196B422446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_48_1586745698i_Snd_Melodies_03@3x.png in Resources */,
 				96DC8C9823679974004DC76A /* OnboardingAimTableCell.xib in Resources */,
+				96196B3E2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_69_1586745698i_Snd_Melodies_02@3x.png in Resources */,
+				96196B162446ECB300DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_77_1586745696i_Snd_Nature_03@3x.png in Resources */,
+				96196B3F2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_55_1586745699i_Snd_Asmr_04@3x.png in Resources */,
 				86A7D69B2385DA510087CE87 /* SceneImageCell.xib in Resources */,
-				96196AA3244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_77_1586895777i_s_008.png in Resources */,
-				96196A80244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_67_15868958301579494712wind chimes (intense).mp3 in Resources */,
+				96196B1D2446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_13_15868673341575894442whales.m4a in Resources */,
 				96C29ED22362564200E93CB1 /* Assets.xcassets in Resources */,
+				96196B192446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_51_1586745698i_Snd_Melodies_06@3x.png in Resources */,
+				96196B2A2446ECB400DC2A72 /* stories.json in Resources */,
 				96C29F71236353E300E93CB1 /* MainScreen.storyboard in Resources */,
+				96196B322446ECB400DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_88_1586745694https___www.s1eep.app_scenes_2019_12_1576413828Whales_1080p.mov in Resources */,
 				96DC8C9123679025004DC76A /* OnboardingAimsView.xib in Resources */,
-				96196A64244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_35_15868958341579495078snowy steps (intense).mp3 in Resources */,
-				96196A81244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_20_15868958271579415415writing with a pencil .mp3 in Resources */,
-				96196A70244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_80_1586895770reader2.png in Resources */,
-				96196A82244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_11_15868958361579495206boiling water (large).mp3 in Resources */,
-				96196A51244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_63_1586895775i_s_002.png in Resources */,
-				96196A7A244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_79_1586895776i_s_008.png in Resources */,
-				96196A98244658DA00DC2A72 /* https___406515.selcdn.ru_APPS_SLEEP_test_82_1586895771Card_11@jpg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
