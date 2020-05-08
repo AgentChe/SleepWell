@@ -222,7 +222,7 @@ extension SoundsViewController: BindsToViewModel {
         
         return selectedCellModel
             .filter { !$0.paid }
-            .map { _ in MainRoute.paygate }
+            .map { _ in MainRoute.paygate(.sounds) }
             .asSignal(onErrorSignalWith: .never())
     }
 }

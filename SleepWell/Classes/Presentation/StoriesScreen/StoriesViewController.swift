@@ -102,7 +102,7 @@ extension StoriesViewController: BindsToViewModel {
             
             guard case let .story(story) = cellType else {
                 AmplitudeAnalytics.shared.log(with: .unlockPremiumStoriesPaygateScr)
-                return Signal.just(.paygate)
+                return Signal.just(.paygate(.stories))
             }
             
             return viewModel
@@ -112,11 +112,11 @@ extension StoriesViewController: BindsToViewModel {
                     case .paygate:
                         if id == 1 { AmplitudeAnalytics.shared.log(with: .blockedRandomStoryPaygateScr) }
                         if id == 2 { AmplitudeAnalytics.shared.log(with: .blockedStoryPaygateScr) }
-                        return .paygate
+                        return .paygate(.stories)
                     case let .detail(detail):
                         guard let recording = detail else {
                             assertionFailure(" ⚠️ Пустая запись ⚠️")
-                            return .paygate
+                            return .paygate(.stories)
                         }
                         return .play(recording)
                     }

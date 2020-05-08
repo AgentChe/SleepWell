@@ -96,7 +96,7 @@ extension MeditateViewController: BindsToViewModel {
             .flatMapFirst { cellType -> Signal<MainRoute> in
                 guard case let .meditate(meditate) = cellType else {
                     AmplitudeAnalytics.shared.log(with: .unlockPremiumMeditationsPaygateScr)
-                    return Signal.just(.paygate)
+                    return Signal.just(.paygate(.meditations))
                 }
                 
                 return viewModel
@@ -105,11 +105,11 @@ extension MeditateViewController: BindsToViewModel {
                         switch action {
                         case .paygate:
                             AmplitudeAnalytics.shared.log(with: .blockedMeditationPaygateScr)
-                            return .paygate
+                            return .paygate(.meditations)
                         case let .detail(detail):
                             guard let recording = detail else {
                                 assertionFailure(" ⚠️ Пустая запись ⚠️")
-                                return .paygate
+                                return .paygate(.meditations)
                             }
                             return .play(recording)
                         }

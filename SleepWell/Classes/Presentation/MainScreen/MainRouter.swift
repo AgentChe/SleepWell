@@ -9,12 +9,6 @@
 import UIKit
 
 final class MainRouter: Routing {
-    enum Route {
-        case meditate
-        case stories(Bool)
-        case scenes
-    }
-    
     private let router: Router
     
     init(transitionHandler: UIViewController) {
@@ -39,10 +33,10 @@ final class MainRouter: Routing {
         )
     }
     
-    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
+    func showPaygateScreen(from: PaygateViewModel.PaygateOpenedFrom, completion: ((PaygateCompletionResult) -> (Void))?) {
         router.present(
             type: PaygateAssembly.self,
-            input: (openedFrom: .paidContent, completion: completion)
+            input: (openedFrom: from, completion: completion)
         )
     }
 }

@@ -17,7 +17,7 @@ protocol MainViewModelInterface {
         didStartPlaying: @escaping (String) -> Void,
         didPause: @escaping () -> Void
     )
-    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?)
+    func showPaygateScreen(from: PaygateViewModel.PaygateOpenedFrom, completion: ((PaygateCompletionResult) -> (Void))?)
     func monitorSubscriptionExpiration(triggers: [Observable<Void>]) -> Signal<Bool>
     var isPlaying: Driver<Bool> { get }
     func playRecording(style: PlayAndPauseStyle) -> Signal<Void>
@@ -82,8 +82,8 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
         )
     }
     
-    func showPaygateScreen(completion: ((PaygateCompletionResult) -> (Void))?) {
-        router.showPaygateScreen(completion: completion)
+    func showPaygateScreen(from: PaygateViewModel.PaygateOpenedFrom, completion: ((PaygateCompletionResult) -> (Void))?) {
+        router.showPaygateScreen(from: from, completion: completion)
     }
     
     var isPlaying: Driver<Bool> {

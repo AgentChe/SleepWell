@@ -9,10 +9,11 @@
 import RxSwift
 
 final class PaygateService {
-    func paygete() -> Single<Paygate?> {
+    func paygete(from screen: String? = nil) -> Single<Paygate?> {
         let request = GetPaygateRequest(userToken: SessionService.userToken,
                                         locale: UIDevice.deviceLanguageCode,
-                                        version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1")
+                                        version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1",
+                                        screen: screen)
         
         return RestAPITransport()
             .callServerApi(requestBody: request)

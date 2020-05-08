@@ -12,11 +12,13 @@ struct GetPaygateRequest: APIRequestBody {
     private let userToken: String?
     private let locale: String?
     private let version: String
+    private let screen: String?
     
-    init(userToken: String?, locale: String?, version: String) {
+    init(userToken: String?, locale: String?, version: String, screen: String?) {
         self.userToken = userToken
         self.locale = locale
         self.version = version
+        self.screen = screen
     }
     
     var url: String {
@@ -39,6 +41,10 @@ struct GetPaygateRequest: APIRequestBody {
         
         if let locale = self.locale {
             params["locale"] = locale
+        }
+        
+        if let screen = self.screen {
+            params["screen"] = screen
         }
         
         return params

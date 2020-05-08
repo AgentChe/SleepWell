@@ -28,10 +28,13 @@ protocol PaygateViewModelInterface {
 }
 
 final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
-    enum PaygateOpenedFrom {
-        case onboarding
-        case paidContent
-        case promotionInApp
+    enum PaygateOpenedFrom: String {
+        case onboarding = "onboarding"
+        case meditations = "meditations"
+        case stories = "stories"
+        case scenes = "scenes"
+        case sounds = "sounds"
+        case promotionInApp = "promotionInApp"
     }
     
     typealias Interface = PaygateViewModelInterface
@@ -54,7 +57,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     
     func paygate() -> Driver<Paygate?> {
         return dependencies.paygateService
-            .paygete()
+            .paygete(from: openedFrom.rawValue)
             .do(onSuccess: { [weak self] paygate in
                 self?.productId.accept(paygate?.productId)
             })
@@ -81,7 +84,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
                         switch openedFrom! {
                         case .onboarding:
                             return .just(Void())
-                        case .paidContent:
+                        case .meditations, .stories, .scenes, .sounds:
                             return dependencies.personalDataService
                                 .sendPersonalData()
                                 .catchErrorJustReturn(Void())
@@ -111,7 +114,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
                         switch openedFrom! {
                         case .onboarding:
                             return .just(Void())
-                        case .paidContent:
+                        case .meditations, .stories, .scenes, .sounds:
                             return dependencies.personalDataService
                                 .sendPersonalData()
                                 .catchErrorJustReturn(Void())

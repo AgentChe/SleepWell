@@ -146,9 +146,9 @@ extension ScenesViewController: BindsToViewModel {
                 guard case .paygate = $0 else { return false  }
                 return true
             }
-            .map { _ in MainRoute.paygate }
+            .map { _ in MainRoute.paygate(.scenes) }
             .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .blockedScenePaygateScr) })
-            .asSignal(onErrorJustReturn: .paygate)
+            .asSignal(onErrorJustReturn: .paygate(.scenes))
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
             .asDriver(onErrorDriveWith: .empty())
