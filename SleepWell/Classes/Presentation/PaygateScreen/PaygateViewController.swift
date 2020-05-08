@@ -18,6 +18,9 @@ final class PaygateViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var freeAccessLabel: UILabel!
     @IBOutlet weak var errorView: ErrorView!
+    @IBOutlet weak var feature1Label: UILabel!
+    @IBOutlet weak var feature2Label: UILabel!
+    @IBOutlet weak var feature3Label: UILabel!
     
     @IBOutlet weak var logoImageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var title1ContainerViewTopConstraint: NSLayoutConstraint!
@@ -84,6 +87,12 @@ extension PaygateViewController: BindsToViewModel {
                 self?.buyButton.setTitle(paygate?.buyButtonText, for: .normal)
                 self?.priceLabel.text = paygate?.postBuyButtonInfo
                 self?.freeAccessLabel.text = paygate?.preBuyButtonInfo
+                
+                let features = paygate?.features ?? []
+                [self?.feature1Label, self?.feature2Label, self?.feature3Label]
+                    .prefix(features.count)
+                    .enumerated()
+                    .forEach { $1?.text = features[$0] }
             })
             .disposed(by: disposeBag)
         

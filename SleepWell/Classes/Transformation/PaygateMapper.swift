@@ -6,7 +6,13 @@
 //  Copyright © 2019 Andrey Chernyshev. All rights reserved.
 //
 
-typealias Paygate = (productId: PaygateMapper.PaygateProductId, preBuyButtonInfo: String?, postBuyButtonInfo: String?, buyButtonText: String?)
+struct Paygate {
+    let productId: PaygateMapper.PaygateProductId
+    let preBuyButtonInfo: String?
+    let postBuyButtonInfo: String?
+    let buyButtonText: String?
+    let features: [String]
+}
 
 class PaygateMapper {
     typealias PaygateResponse = (info: PaygateInfo, productId: PaygateProductId)
@@ -22,7 +28,8 @@ class PaygateMapper {
             "pre_button": data["pre_button"] as? String as Any,
             "post_button": data["post_button"] as? String as Any,
             "button": data["button"] as? String as Any,
-            "product_id": productId
+            "product_id": productId,
+            "features": data["features"] as? [String] ?? ""
         ] as [String : Any]
         
         return (info: info, productId: productId)
@@ -42,6 +49,10 @@ class PaygateMapper {
         let buyButtonTextOriginal = info["button"] as? String ?? ""
         let buyButtonText = buyButtonTextOriginal.replacingOccurrences(of: "@price", with: productPrice ?? "")
 
-        return (productId, preBuyButtonInfo, postBuyButtonInfo, buyButtonText)
+        return Paygate(productId: productId,
+                       preBuyButtonInfo: preBuyButtonInfo,
+                       postBuyButtonInfo: postBuyButtonInfo,
+                       buyButtonText: buyButtonText,
+                       features: info["features"] as? [String] ?? [])
     }
 }
