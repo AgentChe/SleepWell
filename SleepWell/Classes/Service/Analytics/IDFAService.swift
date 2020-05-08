@@ -43,7 +43,7 @@ final class IDFAService {
             let request = AppRegisterRequest(idfa: idfa,
                                              randomKey: randomKey,
                                              version: version,
-                                             attributions: SearchAttributionsDetails.isTest(attributionsDetails: attributionsDetails) ? nil : attributionsDetails)
+                                             attributions: attributionsDetails)
 
             _ = RestAPITransport().callServerApi(requestBody: request)
                 .subscribe(onSuccess: { _ in
@@ -92,7 +92,7 @@ final class IDFAService {
                 }
             }
             .flatMapLatest { attributionsDetails -> Single<Any> in
-                guard !SearchAttributionsDetails.isTest(attributionsDetails: attributionsDetails), let userToken = SessionService.userToken else {
+                guard let userToken = SessionService.userToken else {
                     return .never()
                 }
 
