@@ -21,13 +21,9 @@ final class SceneAudio: ReactiveCompatible {
     }
     
     func prepareToPlay() {
-        
-        players.forEach {
-            $0.player.volume = 0.75
-        }
         let volumes = players.reduce([Int: Float]()) { result, player in
             var result = result
-            result[player.id] = 0.75
+            result[player.id] = player.player.volume
             return result
         }
         _currentScenePlayersVolume.accept(volumes)
