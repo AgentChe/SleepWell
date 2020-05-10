@@ -13,6 +13,7 @@ struct SceneSound: Sound {
     let name: String
     let soundUrl: URL
     let soundSecs: Int
+    let defaultVolume: Int
 }
 
 extension SceneSound {
@@ -21,6 +22,7 @@ extension SceneSound {
         case name
         case soundUrl = "sounds_url"
         case soundSecs = "sound_secs"
+        case defaultVolume = "default_volume"
     }
     
     enum Error: Swift.Error {
@@ -41,5 +43,6 @@ extension SceneSound {
         }
         self.soundUrl = soundURL
         self.soundSecs = try container.decode(Int.self, forKey: .soundSecs)
+        self.defaultVolume = try container.decode(Int.self, forKey: .defaultVolume)
     }
 }

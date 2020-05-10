@@ -89,7 +89,7 @@ class RealmDBTransport {
     }
     
     private static let realmConfiguration = Realm.Configuration(
-        schemaVersion: 1,
+        schemaVersion: 2,
         deleteRealmIfMigrationNeeded: true
     )
 }

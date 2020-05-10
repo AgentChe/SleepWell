@@ -26,6 +26,7 @@ struct SceneCellModelFields {
     let id: Int
     let url: URL
     let paid: Bool
+    let placeholderUrl: String
 }
 
 extension SceneCellModel {
@@ -33,7 +34,8 @@ extension SceneCellModel {
         let sceneCellModelFields = SceneCellModelFields(
             id: scene.id,
             url: scene.url,
-            paid: isActiveSubscription ? true : !scene.paid
+            paid: isActiveSubscription ? true : !scene.paid,
+            placeholderUrl: scene.placeholderUrl
         )
         self = scene.mime.isVideo
             ? .video(sceneCellModelFields)
