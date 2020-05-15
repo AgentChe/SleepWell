@@ -27,6 +27,15 @@ struct SceneCellModelFields {
     let url: URL
     let paid: Bool
     let placeholderUrl: String
+
+    func makePaid() -> Self {
+        Self(
+            id: id,
+            url: url,
+            paid: true,
+            placeholderUrl: placeholderUrl
+        )
+    }
 }
 
 extension SceneCellModel {

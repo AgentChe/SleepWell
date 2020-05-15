@@ -82,8 +82,16 @@ extension ScenesViewController: BindsToViewModel {
         
         let elements = viewModel.elements(subscription: input.subscription)
 
-        let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
-            .compactMap { $0?.fields }
+        let modelSelected = Observable
+            .combineLatest(
+                input.subscription.distinctUntilChanged(),
+                collectionView.rx.modelCentered(SceneCellModel.self)
+                    .compactMap { $0?.fields }
+            )
+            .map { isActive, scene in
+                isActive ? scene.makePaid() : scene
+            }
+            .share(replay: 1, scope: .whileConnected)
 
         let visibleCellSignal = collectionView.rx.itemCentered
             .compactMap { $0?.row }
