@@ -203,6 +203,7 @@ extension ScenesViewController: BindsToViewModel {
         let playSceneBySwipe = sceneDetail.skip(1)
             .filter { $0 != nil }
             .map { $0! }
+            .debounce(.seconds(1))
             .withLatestFrom(viewModel.isScenePlaying) { ($0, $1) }
             .filter { $1 }
             .map { $0.0 }
@@ -237,7 +238,7 @@ extension ScenesViewController: BindsToViewModel {
         let playScene = Observable
             .merge(
                 initialScene,
-                playSceneBySwipe.debounce(.seconds(1), scheduler: MainScheduler.instance),
+                playSceneBySwipe,
                 playSceneByOpeningSettings,
                 didTapPlayScene
             )
