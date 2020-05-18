@@ -39,15 +39,23 @@ class PaygateMapper {
         guard let productId = info["product_id"] as? String else {
             return nil
         }
+        
+        guard let productPrice = productPrice else {
+            return Paygate(productId: productId,
+                           preBuyButtonInfo: nil,
+                           postBuyButtonInfo: nil,
+                           buyButtonText: nil,
+                           features: info["features"] as? [String] ?? [])
+        }
                 
         let preBuyButtonInfoOriginal = info["pre_button"] as? String ?? ""
-        let preBuyButtonInfo = preBuyButtonInfoOriginal.replacingOccurrences(of: "@price", with: productPrice ?? "")
+        let preBuyButtonInfo = preBuyButtonInfoOriginal.replacingOccurrences(of: "@price", with: productPrice)
         
         let postBuyButtonInfoOriginal = info["post_button"] as? String ?? ""
-        let postBuyButtonInfo = postBuyButtonInfoOriginal.replacingOccurrences(of: "@price", with: productPrice ?? "")
+        let postBuyButtonInfo = postBuyButtonInfoOriginal.replacingOccurrences(of: "@price", with: productPrice)
         
         let buyButtonTextOriginal = info["button"] as? String ?? ""
-        let buyButtonText = buyButtonTextOriginal.replacingOccurrences(of: "@price", with: productPrice ?? "")
+        let buyButtonText = buyButtonTextOriginal.replacingOccurrences(of: "@price", with: productPrice)
 
         return Paygate(productId: productId,
                        preBuyButtonInfo: preBuyButtonInfo,

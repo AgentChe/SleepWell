@@ -29,4 +29,23 @@ final class PaygateService {
                     }
             }
     }
+    
+    func getPaygate(from screen: String? = nil) -> Single<PaygateMapper.PaygateResponse?> {
+        let request = GetPaygateRequest(userToken: SessionService.userToken,
+                                        locale: UIDevice.deviceLanguageCode,
+                                        version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1",
+                                        screen: screen)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { PaygateMapper.parse(response: $0) }
+    }
+    
+    func getProductPrice(response: PaygateMapper.PaygateResponse) -> Single<Paygate?> {
+        return PurchaseService()
+            .productPrice(productId: response.productId)
+            .map { price -> Paygate? in
+                PaygateMapper.create(info: response.info, productPrice: price)
+            }
+    }
 }

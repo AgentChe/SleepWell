@@ -64,21 +64,14 @@ extension PaygateViewController: BindsToViewModel {
         var vm = viewModel
         vm.openedFrom = input.openedFrom
         
-        viewModel.paygateLoading
+        
+        Driver.merge([viewModel.paygateLoading, viewModel.paymentLoading.asDriver()])
             .drive(onNext: { [weak self] loading in
                 loading ? self?.preloaderView.startAnimating() : self?.preloaderView.stopAnimating()
                 self?.buyButton.isEnabled = !loading
                 self?.restorePurchaseButton.isEnabled = !loading
                 self?.priceLabel.isHidden = loading
                 self?.freeAccessLabel.isHidden = loading
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.paymentLoading
-            .drive(onNext: { [weak self] loading in
-                self?.closeButton.isEnabled = !loading
-                self?.buyButton.isEnabled = !loading
-                self?.restorePurchaseButton.isEnabled = !loading
             })
             .disposed(by: disposeBag)
         

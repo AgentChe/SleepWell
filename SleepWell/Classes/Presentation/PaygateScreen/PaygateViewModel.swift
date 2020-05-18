@@ -14,7 +14,7 @@ enum PaygateCompletionResult {
 }
 
 protocol PaygateViewModelInterface {
-    var paygateLoading: RxActivityIndicator { get }
+    var paygateLoading: Driver<Bool> { get }
     var paymentLoading: RxActivityIndicator { get }
     
     var openedFrom: PaygateViewModel.PaygateOpenedFrom! { get set }
@@ -48,7 +48,9 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
         let personalDataService: PersonalDataService
     }
     
-    let paygateLoading = RxActivityIndicator()
+    private(set) lazy var paygateLoading = _paygateLoading.asDriver(onErrorJustReturn: false)
+    let _paygateLoading = PublishRelay<Bool>()
+    
     let paymentLoading = RxActivityIndicator()
     
     var openedFrom: PaygateViewModel.PaygateOpenedFrom!
@@ -56,13 +58,33 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     private let productId = BehaviorRelay<String?>(value: nil)
     
     func paygate() -> Driver<Paygate?> {
-        return dependencies.paygateService
-            .paygete(from: openedFrom.rawValue)
-            .do(onSuccess: { [weak self] paygate in
+        _paygateLoading.accept(true)
+        
+        let response = dependencies.paygateService
+            .getPaygate(from: openedFrom.rawValue)
+            .asDriver(onErrorJustReturn: nil)
+            
+        let price = response
+            .flatMapLatest { [unowned self] response -> Driver<Paygate?> in
+                guard let response = response else {
+                    return .just(nil)
+                }
+                
+                return self.dependencies.paygateService
+                    .getProductPrice(response: response)
+                    .asDriver(onErrorJustReturn: nil)
+            }
+            .do(onNext: { [weak self] _ in
+                self?._paygateLoading.accept(false)
+            })
+        
+        let info = response
+            .map { PaygateMapper.create(info: $0?.info ?? [:], productPrice: nil) }
+            .do(onNext: { [weak self] paygate in
                 self?.productId.accept(paygate?.productId)
             })
-            .trackActivity(paygateLoading)
-            .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.concat([info, price])
     }
     
     func dismiss() {
@@ -95,7 +117,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
             }
         
         return purchase
-            .trackActivity(paygateLoading)
+            .trackActivity(paymentLoading)
             .map { true }
             .asDriver(onErrorJustReturn: false)
     }
@@ -125,7 +147,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
             }
         
         return purchase
-            .trackActivity(paygateLoading)
+            .trackActivity(paymentLoading)
             .map { true }
             .asDriver(onErrorJustReturn: false)
     }

@@ -65,7 +65,7 @@ final class MainViewModel: BindableViewModel, MainViewModelInterface {
         return dependencies.personalDataService
             .sendPersonalData()
             .map { true }
-            .asSignal(onErrorSignalWith: .never())
+            .asSignal(onErrorJustReturn: true)
     }
     
     func showPlayerScreen(
