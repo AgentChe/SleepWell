@@ -72,3 +72,7 @@
 "local_notify_body_9" = "before going down to sleep for a better day tomorrow";
 "local_notify_title_10" = "Fatigue is the best pillow, 🛌🥱🤤";
 "local_notify_body_10" = "a good story is the best sleeping pill. Take one!";
+
+// Paygate
+"Paygate.FailedPurchase" = "Failed to make a purchase";
+"Paygate.FailedRestore" = "Failed to restore purchase";

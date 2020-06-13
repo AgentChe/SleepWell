@@ -30,6 +30,19 @@ final class IDFAService {
         ASIdentifierManager.shared().isAdvertisingTrackingEnabled
     }
     
+    func getRandomKey() -> String {
+        let udKey = "app_random_key"
+        
+        if let randomKey = UserDefaults.standard.string(forKey: udKey) {
+            return randomKey
+        } else {
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            let randomKey = String((0..<128).map{ _ in letters.randomElement()! })
+            UserDefaults.standard.set(randomKey, forKey: udKey)
+            return randomKey
+        }
+    }
+    
     private func appRegister() {
         if UserDefaults.standard.bool(forKey: appRegisteredKey) {
             return
@@ -103,18 +116,5 @@ final class IDFAService {
                     .catchError { _ in .never() }
                 }
             .subscribe()
-    }
-    
-    private func getRandomKey() -> String {
-        let udKey = "app_random_key"
-        
-        if let randomKey = UserDefaults.standard.string(forKey: udKey) {
-            return randomKey
-        } else {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            let randomKey = String((0..<128).map{ _ in letters.randomElement()! })
-            UserDefaults.standard.set(randomKey, forKey: udKey)
-            return randomKey
-        }
     }
 }

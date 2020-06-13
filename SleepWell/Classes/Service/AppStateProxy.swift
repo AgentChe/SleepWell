@@ -15,6 +15,7 @@ final class AppStateProxy {
     }
     
     struct ApplicationProxy {
+        static let willResignActive = PublishRelay<Void>()
         static let didBecomeActive = PublishRelay<Void>()
         static let completeTransactions = PublishRelay<Void>()
     }
