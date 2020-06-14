@@ -30,7 +30,7 @@ final class IDFAService {
         ASIdentifierManager.shared().isAdvertisingTrackingEnabled
     }
     
-    func getRandomKey() -> String {
+    func getAppKey() -> String {
         let udKey = "app_random_key"
         
         if let randomKey = UserDefaults.standard.string(forKey: udKey) {
@@ -49,7 +49,7 @@ final class IDFAService {
         }
 
         let idfa = getIDFA()
-        let randomKey = getRandomKey()
+        let randomKey = getAppKey()
         let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
 
         SearchAttributionsDetails.request { attributionsDetails in
@@ -80,7 +80,7 @@ final class IDFAService {
                                          timezone: TimeZone.current.identifier,
                                          idfa: self.getIDFA(),
                                          isAdvertisingTrackingEnabled: self.isAdvertisingTrackingEnabled(),
-                                         randomKey: self.getRandomKey(),
+                                         randomKey: self.getAppKey(),
                                          storeCountry: Locale.current.currencyCode ?? "")
 
                 return RestAPITransport()

@@ -17,7 +17,8 @@ extension PaygateService {
         let request = GetPaygateRequest(userToken: SessionService.userToken,
                                         locale: UIDevice.deviceLanguageCode ?? "en",
                                         version: UIDevice.appVersion ?? "1",
-                                        screen: screen)
+                                        screen: screen,
+                                        appKey: IDFAService.shared.getAppKey())
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
@@ -44,7 +45,7 @@ extension PaygateService {
 extension PaygateService {
     func ping() -> Single<Void> {
         RestAPITransport()
-            .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getRandomKey()))
+            .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getAppKey()))
             .map { _ in Void() }
     }
 }
