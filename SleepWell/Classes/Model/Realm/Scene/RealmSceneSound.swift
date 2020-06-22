@@ -13,20 +13,23 @@ class RealmSceneSound: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var soundUrl: String = ""
     @objc dynamic var soundSecs: Int = 0
+    @objc dynamic var defaultVolume: Int = 0
     
     convenience init(id: Int,
                      name: String,
                      soundUrl: URL,
-                     soundSecs: Int) {
+                     soundSecs: Int,
+                     defaultVolume: Int) {
         self.init()
         
         self.id = id
         self.name = name
         self.soundUrl = soundUrl.absoluteString
         self.soundSecs = soundSecs
+        self.defaultVolume = defaultVolume
     }
     
     @objc open override class func primaryKey() -> String? {
-        return "id"
+        "id"
     }
 }

@@ -12,9 +12,9 @@ struct AppRegisterRequest: APIRequestBody {
     private let idfa: String
     private let randomKey: String
     private let version: String
-    private let attributions: [String: NSObject]?
+    private let attributions: [String: Any]?
     
-    init(idfa: String, randomKey: String, version: String, attributions: [String: NSObject]?) {
+    init(idfa: String, randomKey: String, version: String, attributions: [String: Any]?) {
         self.idfa = idfa
         self.randomKey = randomKey
         self.version = version
@@ -31,9 +31,9 @@ struct AppRegisterRequest: APIRequestBody {
     
     var parameters: Parameters? {
         var result = attributions ?? [:]
-        result["idfa"] = idfa as NSObject
-        result["random_string"] = randomKey as NSObject
-        result["version"] = version as NSObject
+        result["idfa"] = idfa
+        result["random_string"] = randomKey
+        result["version"] = version
         return result
     }
 }

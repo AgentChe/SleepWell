@@ -15,7 +15,7 @@ enum MainScreenBehave {
 }
 
 enum MainRoute {
-    case paygate
+    case paygate(PaygateViewModel.PaygateOpenedFrom)
     case play(RecordingDetail)
 }
 
@@ -143,8 +143,8 @@ extension MainViewController: BindsToViewModel {
             }
             .emit(to: Binder(self) { base, route in
                 switch route {
-                case .paygate:
-                    viewModel.showPaygateScreen(completion: { paygateRelay.accept($0) })
+                case .paygate(let from):
+                    viewModel.showPaygateScreen(from: from, completion: { paygateRelay.accept($0) })
                 case .play(let detail):
                     base.hideTabBar(isHidden: true)
                     viewModel.showPlayerScreen(

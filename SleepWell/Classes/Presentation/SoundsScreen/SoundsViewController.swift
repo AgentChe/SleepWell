@@ -43,7 +43,7 @@ extension SoundsViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> Output {
-        Analytics.shared.log(with: .soundsScr)
+        AmplitudeAnalytics.shared.log(with: .soundsScr)
         
         let elements = viewModel.sounds()
         
@@ -222,7 +222,7 @@ extension SoundsViewController: BindsToViewModel {
         
         return selectedCellModel
             .filter { !$0.paid }
-            .map { _ in MainRoute.paygate }
+            .map { _ in MainRoute.paygate(.sounds) }
             .asSignal(onErrorSignalWith: .never())
     }
 }

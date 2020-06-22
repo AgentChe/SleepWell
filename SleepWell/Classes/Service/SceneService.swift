@@ -11,6 +11,9 @@ import RxSwift
 final class SceneService {
     func scenes() -> Single<[Scene]> {
         return RealmDBTransport().loadData(realmType: RealmScene.self, map: { SceneRealmMapper.map(from: $0) })
+            .do(onSuccess: { scenes in
+                print()
+            })
     }
     
     func scene(by id: Int) -> Single<SceneDetail?> {

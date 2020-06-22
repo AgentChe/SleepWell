@@ -42,7 +42,9 @@ enum AnalyticEvent {
     
     case settingsScr
     
-    case searcgAdsClickAd
+    case searchAdsInstall
+    case firstLaunch
+    case userIdSynced
 }
 
 extension AnalyticEvent {
@@ -112,19 +114,29 @@ extension AnalyticEvent {
         case .settingsScr:
             return "Settings scr"
             
-        case .searcgAdsClickAd:
-            return "SearchAds Ad Click"
+        case .searchAdsInstall:
+            return "Search Ads Install"
+        case .firstLaunch:
+            return "First Launch"
+        case .userIdSynced:
+            return "UserIDSynced"
         }
     }
     
-    var params: [AnyHashable: Any]? {
+    var params: [AnyHashable: Any] {
+        var result: [AnyHashable: Any] = [
+            "app": GlobalDefinitions.appNameForAmplitude
+        ]
+        
         switch self {
         case .soundAdded(let name):
-            return ["sound_name": name]
+            result["sound_name"] = name
         case .soundRemoved(let name):
-            return ["sound_name": name]
+            result["sound_name"] = name
         default:
-            return nil
+            break
         }
+        
+        return result 
     }
 }

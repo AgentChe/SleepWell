@@ -36,7 +36,7 @@ class OnboardingStartView: UIView {
     }
     
     func show() {
-        Analytics.shared.log(with: .welcomeScr)
+        AmplitudeAnalytics.shared.log(with: .welcomeScr)
         
         isHidden = false
         alpha = 0

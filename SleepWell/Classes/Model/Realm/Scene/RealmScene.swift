@@ -15,6 +15,7 @@ class RealmScene: Object {
     @objc dynamic var hashCode: String = ""
     @objc dynamic var mimeValue: Int = -1
     @objc dynamic var sort: Int = 0
+    @objc dynamic var placeholderUrl: String = ""
     
     convenience init(
         id: Int,
@@ -22,7 +23,8 @@ class RealmScene: Object {
         url: URL,
         hash: String,
         mimeValue: Int,
-        sort: Int
+        sort: Int,
+        placeholderUrl: String
     ) {
         self.init()
         
@@ -31,10 +33,11 @@ class RealmScene: Object {
         self.url = url.absoluteString
         self.hashCode = hash
         self.mimeValue = mimeValue
-        self.sort = sort 
+        self.sort = sort
+        self.placeholderUrl = placeholderUrl
     }
     
     @objc open override class func primaryKey() -> String? {
-        return "id"
+        "id"
     }
 }

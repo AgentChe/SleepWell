@@ -84,6 +84,9 @@ final class AudioPlayerService: ReactiveCompatible {
                         assertionFailure("There is no local file")
                         return nil
                     }
+                    
+                    player.volume = Float(detail.defaultVolume) / 100 
+                    
                     return AudioPlayer(
                         player: player,
                         id: detail.id

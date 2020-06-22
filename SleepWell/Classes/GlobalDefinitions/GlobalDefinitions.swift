@@ -5,9 +5,14 @@
 import UIKit
 
 final class GlobalDefinitions {
-    static let domainUrl = "https://www.s1eep.app" // https://www.s1eep.app - prod, https://test.s1eep.app - dev
-    static let apiKey = "xPh20WC5EYuboYQ" // xPh20WC5EYuboYQ - prod, 1yyl1WBNrlD2MVK - dev
-    static let analyticsAPIKey = "a498c18db5e8a94d8de1d7bb7178dc9e"
+    static let domainUrl = "https://www.s1eep.app" //prod
+//    static let domainUrl = "https://test.s1eep.app" // dev
+    
+    static let apiKey = "xPh20WC5EYuboYQ" // prod
+//    static let apiKey = "1yyl1WBNrlD2MVK" // dev
+    
+    static let amplitudeAPIKey = "b503251969f4b1d7901d2f7d1388d476" // prod
+//    static let amplitudeAPIKey = "dde6c038a32c3082b6debe249fad5d34" // dev
     
     static let privacyPolicyUrl = "https://www.s1eep.app/legal/policy"
     static let termsOfServiceUrl = "https://www.s1eep.app/legal/terms"
@@ -16,4 +21,6 @@ final class GlobalDefinitions {
     
     static let tabBarHeight = CGFloat(155)
     static let tableBottomInsert = CGFloat(85)
+    
+    static let appNameForAmplitude = "SLEEP"
 }

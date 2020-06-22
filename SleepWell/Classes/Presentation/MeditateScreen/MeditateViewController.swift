@@ -60,7 +60,7 @@ extension MeditateViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: MeditateViewModelInterface, with input: Input) -> Output {
-        Analytics.shared.log(with: .meditateScr)
+        AmplitudeAnalytics.shared.log(with: .meditateScr)
         
         input.scrollToTop.emit(to: tableView.rx.scrollToTop)
             .disposed(by: disposeBag)
@@ -95,8 +95,8 @@ extension MeditateViewController: BindsToViewModel {
             .asSignal()
             .flatMapFirst { cellType -> Signal<MainRoute> in
                 guard case let .meditate(meditate) = cellType else {
-                    Analytics.shared.log(with: .unlockPremiumMeditationsPaygateScr)
-                    return Signal.just(.paygate)
+                    AmplitudeAnalytics.shared.log(with: .unlockPremiumMeditationsPaygateScr)
+                    return Signal.just(.paygate(.meditations))
                 }
                 
                 return viewModel
@@ -104,12 +104,12 @@ extension MeditateViewController: BindsToViewModel {
                     .map { action -> MainRoute in
                         switch action {
                         case .paygate:
-                            Analytics.shared.log(with: .blockedMeditationPaygateScr)
-                            return .paygate
+                            AmplitudeAnalytics.shared.log(with: .blockedMeditationPaygateScr)
+                            return .paygate(.meditations)
                         case let .detail(detail):
                             guard let recording = detail else {
                                 assertionFailure(" ⚠️ Пустая запись ⚠️")
-                                return .paygate
+                                return .paygate(.meditations)
                             }
                             return .play(recording)
                         }

@@ -61,8 +61,8 @@ private final class CacheMeditations: Copy {
     private let copyImagesService = CopyImagesService()
     
     var wasCopied: Bool {
-        set { UserDefaults.standard.set(true, forKey: "meditations_was_copied_in_db_key") }
-        get { return UserDefaults.standard.bool(forKey: "meditations_was_copied_in_db_key") }
+        set { UserDefaults.standard.set(true, forKey: "meditations_was_copied_in_db_key_v2") }
+        get { return UserDefaults.standard.bool(forKey: "meditations_was_copied_in_db_key_v2") }
     }
     
     func copyMeditations() -> Observable<Void> {
@@ -84,11 +84,9 @@ private final class CacheMeditations: Copy {
                 return Observable
                     .combineLatest(saveMeditations.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages)
-                            ?? .just(())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true
                         CacheHashCodes.meditationsHashCode = data.meditationsHashCode
                     })
@@ -184,8 +182,8 @@ private final class CacheStories: Copy {
     private let copyImagesService = CopyImagesService()
     
     var wasCopied: Bool {
-        set { UserDefaults.standard.set(true, forKey: "stories_was_copied_in_db_key") }
-        get { return UserDefaults.standard.bool(forKey: "stories_was_copied_in_db_key") }
+        set { UserDefaults.standard.set(true, forKey: "stories_was_copied_in_db_key_v2") }
+        get { return UserDefaults.standard.bool(forKey: "stories_was_copied_in_db_key_v2") }
     }
     
     func copyStories() -> Observable<Void> {
@@ -207,10 +205,9 @@ private final class CacheStories: Copy {
                 return Observable
                     .combineLatest(saveStories.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true
                         CacheHashCodes.storiesHashCode = data.storiesHashCode
                     })
@@ -291,8 +288,8 @@ private final class CacheScenes: Copy {
     private let copyImagesService = CopyImagesService()
     
     var wasCopied: Bool {
-        set { UserDefaults.standard.set(true, forKey: "scenes_was_copied_in_db_key") }
-        get { return UserDefaults.standard.bool(forKey: "scenes_was_copied_in_db_key") }
+        set { UserDefaults.standard.set(true, forKey: "scenes_was_copied_in_db_key_v2") }
+        get { return UserDefaults.standard.bool(forKey: "scenes_was_copied_in_db_key_v2") }
     }
     
     func copyScenes() -> Observable<Void> {
@@ -314,10 +311,9 @@ private final class CacheScenes: Copy {
                 return Observable
                     .combineLatest(saveScenes.asObservable(),
                                    saveDetails.asObservable())
-                    .flatMap { [weak self] _ -> Single<Void> in
-                        return self?.copyImagesService.copyImages(copingLocalImages: data.copingLocalImages) ?? .just(Void())
-                    }
+                    .map { _ in Void() }
                     .do(onNext: { [weak self] in
+                        self?.copyImagesService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                         self?.wasCopied = true 
                         CacheHashCodes.scenesHashCode = data.scenesHashCode
                     })
@@ -403,8 +399,8 @@ private final class CacheNoise: Copy {
     private let copyImageService = CopyImagesService()
     
     var wasCopied: Bool {
-        set { UserDefaults.standard.set(true, forKey: "noises_was_copied_in_db_key") }
-        get { UserDefaults.standard.bool(forKey: "noises_was_copied_in_db_key") }
+        set { UserDefaults.standard.set(true, forKey: "noises_was_copied_in_db_key_v2") }
+        get { UserDefaults.standard.bool(forKey: "noises_was_copied_in_db_key_v2") }
     }
     
     func copyNoises() -> Observable<Void> {
@@ -422,10 +418,8 @@ private final class CacheNoise: Copy {
 
                 return RealmDBTransport()
                     .saveData(entities: data.noiseCategories, map: { NoiseCategoryRealmMapper.map(from: $0) })
-                    .flatMap { [unowned self] _ -> Single<Void> in
-                        return self.copyImageService.copyImages(copingLocalImages: data.copingLocalImages)
-                }
                 .do(onSuccess: { [unowned self] in
+                    self.copyImageService.backgroundCopyImages(copingLocalImages: data.copingLocalImages)
                     self.wasCopied = true
                     CacheHashCodes.noiseCategoriesHashCode = data.noisesHashCode
                 })
@@ -494,11 +488,11 @@ private final class CacheNoise: Copy {
 }
 
 private final class CacheHashCodes {
-    private static let meditationsHashCodeKey = "meditations_hash_code_key"
-    private static let storiesHashCodeKey = "stories_hash_code_key"
-    private static let scenesHashCodeKey = "scenes_hash_code_key"
-    private static let meditationTagsHashCodeKey = "meditation_tags_hash_code_key"
-    private static let noiseCategoriesHashCodeKey = "noise_categories_hash_code_key"
+    private static let meditationsHashCodeKey = "meditations_hash_code_key_v2"
+    private static let storiesHashCodeKey = "stories_hash_code_key_v2"
+    private static let scenesHashCodeKey = "scenes_hash_code_key_v2"
+    private static let meditationTagsHashCodeKey = "meditation_tags_hash_code_key_v2"
+    private static let noiseCategoriesHashCodeKey = "noise_categories_hash_code_key_v2"
     
     static var meditationsHashCode: String? {
         set(hashCode) {

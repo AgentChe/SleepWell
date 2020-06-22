@@ -14,24 +14,37 @@ enum PaygateCompletionResult {
 }
 
 protocol PaygateViewModelInterface {
-    var paygateLoading: RxActivityIndicator { get }
-    var paymentLoading: RxActivityIndicator { get }
+    var purchaseProcessing: RxActivityIndicator { get }
+    var restoreProcessing: RxActivityIndicator { get }
+    var retrieveCompleted: BehaviorRelay<Bool> { get }
+    
+    var startPing: PublishRelay<Void> { get }
+    var stopPing: PublishRelay<Void> { get }
+    func ping() -> Driver<Void>
     
     var openedFrom: PaygateViewModel.PaygateOpenedFrom! { get set }
     
-    func paygate() -> Driver<Paygate?>
+    func retrieve() -> Driver<(Paygate?, Bool)>
     
-    func buy() -> Driver<Bool>
-    func restore() -> Driver<Bool>
+    var buySubscription: PublishRelay<String> { get }
+    var restoreSubscription: PublishRelay<String> { get }
+    
+    var purchaseCompleted: Signal<Void> { get }
+    var restoredCompleted: Signal<Void> { get }
+    
+    var error: Driver<String> { get }
     
     func dismiss()
 }
 
 final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
-    enum PaygateOpenedFrom {
-        case onboarding
-        case paidContent
-        case promotionInApp
+    enum PaygateOpenedFrom: String {
+        case onboarding = "onboarding"
+        case meditations = "meditations"
+        case stories = "stories"
+        case scenes = "scenes"
+        case sounds = "sounds"
+        case promotionInApp = "promotionInApp"
     }
     
     typealias Interface = PaygateViewModelInterface
@@ -45,85 +58,153 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
         let personalDataService: PersonalDataService
     }
     
-    let paygateLoading = RxActivityIndicator()
-    let paymentLoading = RxActivityIndicator()
+    let purchaseProcessing = RxActivityIndicator()
+    let restoreProcessing = RxActivityIndicator()
+    let retrieveCompleted = BehaviorRelay<Bool>(value: false)
+    
+    let startPing = PublishRelay<Void>()
+    let stopPing = PublishRelay<Void>()
+    
+    let buySubscription = PublishRelay<String>()
+    let restoreSubscription = PublishRelay<String>()
+    
+    lazy var purchaseCompleted = buy()
+    lazy var restoredCompleted = restore()
+    
+    lazy var error = _error.asDriver(onErrorDriveWith: .never())
+    private var _error = PublishRelay<String>()
     
     var openedFrom: PaygateViewModel.PaygateOpenedFrom!
-    
-    private let productId = BehaviorRelay<String?>(value: nil)
-    
-    func paygate() -> Driver<Paygate?> {
-        return dependencies.paygateService
-            .paygete()
-            .do(onSuccess: { [weak self] paygate in
-                self?.productId.accept(paygate?.productId)
-            })
-            .trackActivity(paygateLoading)
-            .asDriver(onErrorJustReturn: nil)
-    }
     
     func dismiss() {
         router.dismiss()
     }
-    
-    func buy() -> Driver<Bool> {
-        guard let productId = self.productId.value else {
-            return .just(false)
-        }
+}
+
+// MARK: Get paygate content
+
+extension PaygateViewModel {
+    func retrieve() -> Driver<(Paygate?, Bool)> {
+        let paygate = dependencies
+            .paygateService
+            .retrievePaygate(screen: openedFrom.rawValue)
+            .asDriver(onErrorJustReturn: nil)
         
-        let purchase = dependencies.purchaseService
-            .buySubscription(productId: productId)
-            .do(onSuccess: { _ in Analytics.shared.logFBAboutPurchase() })
-            .flatMap { [dependencies, openedFrom] _ -> Single<Void> in
-                return dependencies.purchaseService
-                    .paymentValidate()
-                    .flatMap { _ -> Single<Void> in
-                        switch openedFrom! {
-                        case .onboarding:
-                            return .just(Void())
-                        case .paidContent:
-                            return dependencies.personalDataService
-                                .sendPersonalData()
-                                .catchErrorJustReturn(Void())
-                        case .promotionInApp:
-                            return .just(Void())
-                        }
-                    }
+        let prices = paygate
+            .flatMapLatest { [weak self] response -> Driver<PaygateMapper.PaygateResponse?> in
+                guard let `self` = self, let response = response else {
+                    return .deferred { .just(nil) }
+                }
+                
+                return self.dependencies
+                    .paygateService
+                    .prepareProductsPrices(for: response)
+                    .asDriver(onErrorJustReturn: nil)
+            }
+        
+        return Driver
+            .merge([paygate.map { ($0?.paygate, false) },
+                    prices.map { ($0?.paygate, true) }])
+                .do(onNext: { [weak self] stub in
+                    self?.retrieveCompleted.accept(stub.1)
+                })
+    }
+}
+
+// MARK: Ping
+
+extension PaygateViewModel {
+    func ping() -> Driver<Void> {
+        let startTrigger = startPing
+            .takeUntil(stopPing)
+            .flatMapLatest { [weak self] _ -> Observable<Void> in
+                guard let `self` = self else {
+                    return .empty()
+                }
+                
+                return Observable<Int>
+                    .interval(RxTimeInterval.seconds(1), scheduler: SerialDispatchQueueScheduler.init(qos: .background))
+                    .takeUntil(self.stopPing.asObservable())
+                    .flatMapLatest { _ in self.dependencies.paygateService.ping().catchError { _ in .never() } }
+            }
+
+        let stopTrigger = stopPing
+            .flatMapLatest { _ -> Observable<Void> in .empty() }
+
+        return Observable
+            .merge(startTrigger, stopTrigger)
+            .asDriver(onErrorDriveWith: .never())
+    }
+}
+
+// MARK: Make purchase
+
+private extension PaygateViewModel {
+    func buy() -> Signal<Void> {
+        let purchase = buySubscription
+            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+                dependencies.purchaseService
+                    .buySubscription(productId: productId)
+                    .flatMap {
+                        dependencies.purchaseService
+                            .paymentValidate()
+                            .flatMap { _ -> Single<Void> in
+                             switch openedFrom! {
+                             case .onboarding:
+                                    return .just(Void())
+                             case .meditations, .stories, .scenes, .sounds:
+                                    return dependencies.personalDataService
+                                        .sendPersonalData()
+                                        .catchErrorJustReturn(Void())
+                             case .promotionInApp:
+                                    return .just(Void())
+                                }
+                            }
+                }
+                .do(onSuccess: { _ in
+                    FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
+                }, onError: { [weak self] _ in
+                    self?._error.accept("Paygate.FailedPurchase".localized)
+                })
+                .catchError { _ in .never() }
             }
         
         return purchase
-            .trackActivity(paygateLoading)
-            .map { true }
-            .asDriver(onErrorJustReturn: false)
+            .trackActivity(purchaseProcessing)
+            .asSignal(onErrorSignalWith: .never())
     }
     
-    func restore() -> Driver<Bool> {
-        guard let productId = self.productId.value else {
-            return .just(false)
-        }
-        
-        let purchase = dependencies.purchaseService
-            .restoreSubscription(productId: productId)
-            .flatMap { [dependencies, openedFrom] _ -> Single<Void> in
-                return dependencies.purchaseService
-                    .paymentValidate()
-                    .flatMap { _ -> Single<Void> in
-                        switch openedFrom! {
-                        case .onboarding:
-                            return .just(Void())
-                        case .paidContent:
-                            return dependencies.personalDataService
-                                .sendPersonalData()
-                                .catchErrorJustReturn(Void())
-                        case .promotionInApp:
-                            return .just(Void())
-                        }
+    func restore() -> Signal<Void> {
+        let purchase = restoreSubscription
+            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+                dependencies.purchaseService
+                    .restoreSubscription(productId: productId)
+                    .flatMap {
+                        dependencies.purchaseService
+                            .paymentValidate()
+                            .flatMap { _ -> Single<Void> in
+                                switch openedFrom! {
+                                case .onboarding:
+                                    return .just(Void())
+                                case .meditations, .stories, .scenes, .sounds:
+                                    return dependencies.personalDataService
+                                        .sendPersonalData()
+                                        .catchErrorJustReturn(Void())
+                                case .promotionInApp:
+                                    return .just(Void())
+                                }
+                            }
                     }
+                    .do(onSuccess: { _ in
+                        FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
+                    }, onError: { [weak self] _ in
+                        self?._error.accept("Paygate.FailedRestore".localized)
+                    })
+                    .catchError { _ in .never() }
             }
         
         return purchase
-            .trackActivity(paygateLoading)
-            .map { true }
-            .asDriver(onErrorJustReturn: false)
+            .trackActivity(restoreProcessing)
+            .asSignal(onErrorSignalWith: .never())
     }
 }

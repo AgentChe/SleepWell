@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PushMessagesService.shared.configure()
         FirebaseApp.configure()
         RateManager.incrementRun()
-        Analytics.shared.configure()
+        AmplitudeAnalytics.shared.configure()
+        FacebookAnalytics.shared.configure()
+        IDFAService.shared.configure()
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -42,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppStateProxy.PushNotificationsProxy.notifyAboutPushMessageArrived.accept(userInfo)
 
         completionHandler(.noData)
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        AppStateProxy.ApplicationProxy.willResignActive.accept(Void())
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {

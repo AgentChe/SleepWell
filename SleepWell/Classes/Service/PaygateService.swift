@@ -8,24 +8,44 @@
 
 import RxSwift
 
-final class PaygateService {
-    func paygete() -> Single<Paygate?> {
+final class PaygateService {}
+
+// MARK: Retrieve
+
+extension PaygateService {
+    func retrievePaygate(screen: String) -> Single<PaygateMapper.PaygateResponse?> {
         let request = GetPaygateRequest(userToken: SessionService.userToken,
-                                        locale: UIDevice.deviceLanguageCode,
-                                        version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1")
+                                        locale: UIDevice.deviceLanguageCode ?? "en",
+                                        version: UIDevice.appVersion ?? "1",
+                                        screen: screen,
+                                        appKey: IDFAService.shared.getAppKey())
         
         return RestAPITransport()
             .callServerApi(requestBody: request)
-            .map { PaygateMapper.parse(response: $0) }
-            .flatMap { paygateInfo -> Single<Paygate?> in
-                guard let info = paygateInfo else {
-                    return .just(nil)
-                }
-                
-                return PurchaseService().productPrice(productId: info.productId)
-                    .map { price -> Paygate? in
-                        return PaygateMapper.create(info: info.info, productPrice: price)
-                    }
-            }
+            .map { PaygateMapper.parse(response: $0, productsPrices: nil) }
+    }
+}
+
+// MARK: Prepare prices
+
+extension PaygateService {
+    func prepareProductsPrices(for paygate: PaygateMapper.PaygateResponse) -> Single<PaygateMapper.PaygateResponse?> {
+        guard !paygate.productsIds.isEmpty else {
+            return .deferred { .just(paygate) }
+        }
+        
+        return PurchaseService
+            .productsPrices(ids: paygate.productsIds)
+            .map { PaygateMapper.parse(response: paygate.json, productsPrices: $0.retrievedPrices) }
+    }
+}
+
+// MARK: Ping
+
+extension PaygateService {
+    func ping() -> Single<Void> {
+        RestAPITransport()
+            .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getAppKey()))
+            .map { _ in Void() }
     }
 }

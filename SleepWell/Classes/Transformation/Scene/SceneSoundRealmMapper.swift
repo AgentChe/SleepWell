@@ -13,13 +13,15 @@ struct SceneSoundRealmMapper {
         return RealmSceneSound(id: entity.id,
                                name: entity.name,
                                soundUrl: entity.soundUrl,
-                               soundSecs: entity.soundSecs)
+                               soundSecs: entity.soundSecs,
+                               defaultVolume: entity.defaultVolume)
     }
     
     static func map(from realm: RealmSceneSound) -> SceneSound {
         return SceneSound(id: realm.id,
                           name: realm.name,
                           soundUrl: URL(string: realm.soundUrl)!,
-                          soundSecs: realm.soundSecs)
+                          soundSecs: realm.soundSecs,
+                          defaultVolume: realm.defaultVolume)
     }
 }

@@ -22,18 +22,42 @@ final class IDFAService {
         setAttributionsWhenUserTokenUpdated()
     }
     
+    func getIDFA() -> String {
+        ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }
+    
+    func isAdvertisingTrackingEnabled() -> Bool {
+        ASIdentifierManager.shared().isAdvertisingTrackingEnabled
+    }
+    
+    func getAppKey() -> String {
+        let udKey = "app_random_key"
+        
+        if let randomKey = UserDefaults.standard.string(forKey: udKey) {
+            return randomKey
+        } else {
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            let randomKey = String((0..<128).map{ _ in letters.randomElement()! })
+            UserDefaults.standard.set(randomKey, forKey: udKey)
+            return randomKey
+        }
+    }
+    
     private func appRegister() {
         if UserDefaults.standard.bool(forKey: appRegisteredKey) {
             return
         }
-        
-        let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-        let randomKey = getRandomKey()
+
+        let idfa = getIDFA()
+        let randomKey = getAppKey()
         let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        
-        AttributionAPIService.shared.getAttributionDetails { attributions in
-            let request = AppRegisterRequest(idfa: idfa, randomKey: randomKey, version: version, attributions: attributions)
-            
+
+        SearchAttributionsDetails.request { attributionsDetails in
+            let request = AppRegisterRequest(idfa: idfa,
+                                             randomKey: randomKey,
+                                             version: version,
+                                             attributions: attributionsDetails)
+
             _ = RestAPITransport().callServerApi(requestBody: request)
                 .subscribe(onSuccess: { _ in
                     UserDefaults.standard.set(true, forKey: self.appRegisteredKey)
@@ -49,17 +73,14 @@ final class IDFAService {
                 guard let userToken = SessionService.userToken else {
                     return .never()
                 }
-
-                let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-                let isAdvertisingTrackingEnabled = ASIdentifierManager.shared().isAdvertisingTrackingEnabled
                 
                 let request = SetRequest(userToken: userToken,
                                          locale: UIDevice.deviceLanguageCode ?? "en",
                                          version: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1",
                                          timezone: TimeZone.current.identifier,
-                                         idfa: idfa,
-                                         isAdvertisingTrackingEnabled: isAdvertisingTrackingEnabled,
-                                         randomKey: self.getRandomKey(),
+                                         idfa: self.getIDFA(),
+                                         isAdvertisingTrackingEnabled: self.isAdvertisingTrackingEnabled(),
+                                         randomKey: self.getAppKey(),
                                          storeCountry: Locale.current.currencyCode ?? "")
 
                 return RestAPITransport()
@@ -74,39 +95,26 @@ final class IDFAService {
             .merge(AppStateProxy.UserTokenProxy.didUpdatedUserToken.asObservable(),
                    AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
             .flatMapLatest {
-                return Observable<[String: NSObject]?>.create { observer in
-                    AttributionAPIService.shared.getAttributionDetails { attributions in
-                        observer.onNext(attributions)
+                Observable<[String: Any]>.create { observer in
+                    SearchAttributionsDetails.request { attributionsDetails in
+                        observer.onNext(attributionsDetails)
                         observer.onCompleted()
                     }
-                    
+
                     return Disposables.create()
                 }
             }
-            .flatMapLatest { attributions -> Single<Any> in
-                guard let attr = attributions, let userToken = SessionService.userToken else {
+            .flatMapLatest { attributionsDetails -> Single<Any> in
+                guard let userToken = SessionService.userToken else {
                     return .never()
                 }
-            
-                let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attr)
-                
+
+                let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attributionsDetails)
+
                 return RestAPITransport()
                     .callServerApi(requestBody: request)
                     .catchError { _ in .never() }
                 }
             .subscribe()
-    }
-    
-    private func getRandomKey() -> String {
-        let udKey = "app_random_key"
-        
-        if let randomKey = UserDefaults.standard.string(forKey: udKey) {
-            return randomKey
-        } else {
-            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            let randomKey = String((0..<128).map{ _ in letters.randomElement()! })
-            UserDefaults.standard.set(randomKey, forKey: udKey)
-            return randomKey
-        }
     }
 }

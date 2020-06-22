@@ -78,12 +78,20 @@ extension ScenesViewController: BindsToViewModel {
     @objc func didBecomeActive() {}
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
-        Analytics.shared.log(with: .sceneScr)
+        AmplitudeAnalytics.shared.log(with: .sceneScr)
         
         let elements = viewModel.elements(subscription: input.subscription)
 
-        let modelSelected = collectionView.rx.modelCentered(SceneCellModel.self)
-            .compactMap { $0?.fields }
+        let modelSelected = Observable
+            .combineLatest(
+                input.subscription.distinctUntilChanged(),
+                collectionView.rx.modelCentered(SceneCellModel.self)
+                    .compactMap { $0?.fields }
+            )
+            .map { isActive, scene in
+                isActive ? scene.makePaid() : scene
+            }
+            .share(replay: 1, scope: .whileConnected)
 
         let visibleCellSignal = collectionView.rx.itemCentered
             .compactMap { $0?.row }
@@ -146,9 +154,9 @@ extension ScenesViewController: BindsToViewModel {
                 guard case .paygate = $0 else { return false  }
                 return true
             }
-            .map { _ in MainRoute.paygate }
-            .do(onNext: { _ in Analytics.shared.log(with: .blockedScenePaygateScr) })
-            .asSignal(onErrorJustReturn: .paygate)
+            .map { _ in MainRoute.paygate(.scenes) }
+            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .blockedScenePaygateScr) })
+            .asSignal(onErrorJustReturn: .paygate(.scenes))
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
             .asDriver(onErrorDriveWith: .empty())
@@ -195,6 +203,7 @@ extension ScenesViewController: BindsToViewModel {
         let playSceneBySwipe = sceneDetail.skip(1)
             .filter { $0 != nil }
             .map { $0! }
+            .debounce(.seconds(1))
             .withLatestFrom(viewModel.isScenePlaying) { ($0, $1) }
             .filter { $1 }
             .map { $0.0 }
@@ -229,7 +238,7 @@ extension ScenesViewController: BindsToViewModel {
         let playScene = Observable
             .merge(
                 initialScene,
-                playSceneBySwipe.debounce(.seconds(1), scheduler: MainScheduler.instance),
+                playSceneBySwipe,
                 playSceneByOpeningSettings,
                 didTapPlayScene
             )
@@ -294,8 +303,8 @@ extension ScenesViewController: BindsToViewModel {
         
         let actions = Signal
             .merge(
-                pauseButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
-                playButton.rx.tap.asSignal().do(onNext: { Analytics.shared.log(with: .scenePlayPauseTap) }),
+                pauseButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
+                playButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
                 settingsButton.rx.tap.asSignal(),
                 tapGesture.rx.event.asSignal()
                     .map { _ in () },
