@@ -142,7 +142,7 @@ extension PaygateViewModel {
 private extension PaygateViewModel {
     func buy() -> Signal<Void> {
         let purchase = buySubscription
-            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+            .flatMapLatest { [dependencies, openedFrom, purchaseProcessing] productId -> Observable<Void> in
                 dependencies.purchaseService
                     .buySubscription(productId: productId)
                     .flatMap {
@@ -161,7 +161,8 @@ private extension PaygateViewModel {
                                 }
                             }
                 }
-                .do(onSuccess: { _ in
+                .trackActivity(purchaseProcessing)
+                .do(onNext: { _ in
                     FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
                 }, onError: { [weak self] _ in
                     self?._error.accept("Paygate.FailedPurchase".localized)
@@ -170,13 +171,12 @@ private extension PaygateViewModel {
             }
         
         return purchase
-            .trackActivity(purchaseProcessing)
             .asSignal(onErrorSignalWith: .never())
     }
     
     func restore() -> Signal<Void> {
         let purchase = restoreSubscription
-            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+            .flatMapLatest { [dependencies, openedFrom, restoreProcessing] productId -> Observable<Void> in
                 dependencies.purchaseService
                     .restoreSubscription(productId: productId)
                     .flatMap {
@@ -195,7 +195,8 @@ private extension PaygateViewModel {
                                 }
                             }
                     }
-                    .do(onSuccess: { _ in
+                    .trackActivity(restoreProcessing)
+                    .do(onNext: { _ in
                         FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
                     }, onError: { [weak self] _ in
                         self?._error.accept("Paygate.FailedRestore".localized)
@@ -204,7 +205,6 @@ private extension PaygateViewModel {
             }
         
         return purchase
-            .trackActivity(restoreProcessing)
             .asSignal(onErrorSignalWith: .never())
     }
 }

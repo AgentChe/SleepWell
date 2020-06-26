@@ -419,6 +419,7 @@
 		96C29F9323638F3900E93CB1 /* SceneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9223638F3900E93CB1 /* SceneService.swift */; };
 		96C29F9523638F5A00E93CB1 /* MeditationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9423638F5A00E93CB1 /* MeditationService.swift */; };
 		96C29F9723638F7000E93CB1 /* StoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C29F9623638F7000E93CB1 /* StoryService.swift */; };
+		96C989A524A53A9500600621 /* BranchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C989A424A53A9500600621 /* BranchService.swift */; };
 		96CEEB442433249B0031317C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CEEB432433249B0031317C /* DictionaryExtension.swift */; };
 		96D8E9BE23E0D14100835459 /* SoundsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */; };
 		96D8E9C023E0D9FC00835459 /* SoundsMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */; };
@@ -860,6 +861,7 @@
 		96C29F9223638F3900E93CB1 /* SceneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneService.swift; sourceTree = "<group>"; };
 		96C29F9423638F5A00E93CB1 /* MeditationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationService.swift; sourceTree = "<group>"; };
 		96C29F9623638F7000E93CB1 /* StoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryService.swift; sourceTree = "<group>"; };
+		96C989A424A53A9500600621 /* BranchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchService.swift; sourceTree = "<group>"; };
 		96CEEB432433249B0031317C /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsMenuView.swift; sourceTree = "<group>"; };
 		96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundsMenuView.xib; sourceTree = "<group>"; };
@@ -2131,6 +2133,7 @@
 				96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */,
 				96D9150D24307CD2008B101F /* FacebookAnalytics.swift */,
 				961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */,
+				96C989A424A53A9500600621 /* BranchService.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2536,6 +2539,7 @@
 				9699A65D23C91D4200CADE8B /* NoiseMapper.swift in Sources */,
 				962FB445239665AB00B88FFC /* RealmMeditationSound.swift in Sources */,
 				96C29F4323633B2F00E93CB1 /* CheckResponseForNeedPaymentError.swift in Sources */,
+				96C989A524A53A9500600621 /* BranchService.swift in Sources */,
 				86A85479239317AA006A0CB1 /* TabItem.swift in Sources */,
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
 				960DE48B2493E82B00EAE21F /* Paygate.swift in Sources */,
