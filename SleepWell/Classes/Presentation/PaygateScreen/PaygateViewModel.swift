@@ -53,7 +53,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     lazy var dependencies: Dependencies = deferred()
     
     struct Dependencies {
-        let paygateService: PaygateService
+        let paygateManager: PaygateManager
         let purchaseService: PurchaseService
         let personalDataService: PersonalDataService
     }
@@ -86,7 +86,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
 extension PaygateViewModel {
     func retrieve() -> Driver<(Paygate?, Bool)> {
         let paygate = dependencies
-            .paygateService
+            .paygateManager
             .retrievePaygate(screen: openedFrom.rawValue)
             .asDriver(onErrorJustReturn: nil)
         
@@ -97,7 +97,7 @@ extension PaygateViewModel {
                 }
                 
                 return self.dependencies
-                    .paygateService
+                    .paygateManager
                     .prepareProductsPrices(for: response)
                     .asDriver(onErrorJustReturn: nil)
             }
@@ -125,7 +125,7 @@ extension PaygateViewModel {
                 return Observable<Int>
                     .interval(RxTimeInterval.seconds(1), scheduler: SerialDispatchQueueScheduler.init(qos: .background))
                     .takeUntil(self.stopPing.asObservable())
-                    .flatMapLatest { _ in self.dependencies.paygateService.ping().catchError { _ in .never() } }
+                    .flatMapLatest { _ in self.dependencies.paygateManager.ping().catchError { _ in .never() } }
             }
 
         let stopTrigger = stopPing

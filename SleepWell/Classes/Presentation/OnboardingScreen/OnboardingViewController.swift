@@ -39,9 +39,21 @@ extension OnboardingViewController: BindsToViewModel {
         
         startView.nextUp
             .subscribe(onNext: { [weak self] in
-                viewModel.goToPaygate { result in
-                    paygateResult = result
-                    
+                let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+                
+                switch flow {
+                case .paygateUponRequest:
+                    viewModel.goToPaygate { result in
+                        paygateResult = result
+                        
+                        self?.startView.hide {
+                            switch input.behave {
+                            case .requirePersonalData:
+                                self?.aimsView.show()
+                            }
+                        }
+                    }
+                case .blockOnboarding:
                     self?.startView.hide {
                         switch input.behave {
                         case .requirePersonalData:
@@ -89,8 +101,21 @@ extension OnboardingViewController: BindsToViewModel {
                     .asObservable()
             )
             .subscribe(onNext: { [weak self] in
-                self?.bedtimeView.hide {
-                    self?.welcomeView.show()
+                let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+                
+                switch flow {
+                case .paygateUponRequest:
+                    self?.bedtimeView.hide {
+                        self?.welcomeView.show()
+                    }
+                case .blockOnboarding:
+                    viewModel.goToPaygate { result in
+                        paygateResult = result
+                        
+                        self?.bedtimeView.hide {
+                            self?.welcomeView.show()
+                        }
+                    }
                 }
             })
             .disposed(by: disposeBag)

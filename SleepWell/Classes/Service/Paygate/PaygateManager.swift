@@ -1,5 +1,5 @@
 //
-//  PaygateService.swift
+//  PaygateManager.swift
 //  SleepWell
 //
 //  Created by Andrey Chernyshev on 28/10/2019.
@@ -8,11 +8,17 @@
 
 import RxSwift
 
-final class PaygateService {}
+final class PaygateManager {
+    static let shared = PaygateManager()
+    
+    private var flow: PaygateFlow?
+    
+    private init() {}
+}
 
 // MARK: Retrieve
 
-extension PaygateService {
+extension PaygateManager {
     func retrievePaygate(screen: String) -> Single<PaygateMapper.PaygateResponse?> {
         let request = GetPaygateRequest(userToken: SessionService.userToken,
                                         locale: UIDevice.deviceLanguageCode ?? "en",
@@ -28,7 +34,7 @@ extension PaygateService {
 
 // MARK: Prepare prices
 
-extension PaygateService {
+extension PaygateManager {
     func prepareProductsPrices(for paygate: PaygateMapper.PaygateResponse) -> Single<PaygateMapper.PaygateResponse?> {
         guard !paygate.productsIds.isEmpty else {
             return .deferred { .just(paygate) }
@@ -42,10 +48,27 @@ extension PaygateService {
 
 // MARK: Ping
 
-extension PaygateService {
+extension PaygateManager {
     func ping() -> Single<Void> {
         RestAPITransport()
             .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getAppKey()))
             .map { _ in Void() }
+    }
+}
+
+// MARK: Flow
+
+extension PaygateManager {
+    static func retrieveFlow() -> Single<PaygateFlow?> {
+        RestAPITransport()
+            .callServerApi(requestBody: GetPaygateFlowRequest(version: UIDevice.appVersion ?? "1"))
+            .map { PaygateFlowMapper.map(response: $0) }
+            .do(onSuccess: {
+                shared.flow = $0
+            })
+    }
+    
+    func getFlow() -> PaygateFlow? {
+        flow
     }
 }

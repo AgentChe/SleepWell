@@ -24,11 +24,12 @@ class SplashViewModel {
     private let cacheService = CacheService()
     
     private func updateCacheAndCreateStep() -> Single<Step> {
-        return cacheService
-        .update()
-        .flatMap { [weak self] in
-            return self?.createStep() ?? .never()
-        }
+        Single
+            .zip(cacheService.update(),
+                 PaygateManager.retrieveFlow().catchErrorJustReturn(nil))
+            .flatMap { [weak self] _ in
+                self?.createStep() ?? .never()
+            }
     }
     
     private func createStep() -> Single<Step> {

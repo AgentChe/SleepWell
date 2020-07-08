@@ -11,7 +11,7 @@ final class PaygateAssembly: ScreenAssembly {
     
     func assembleDependencies() -> VC.ViewModel.Dependencies {
         return VC.ViewModel.Dependencies(
-            paygateService: PaygateService(),
+            paygateManager: PaygateManager.shared,
             purchaseService: PurchaseService(),
             personalDataService: PersonalDataService()
         )

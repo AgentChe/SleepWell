@@ -66,6 +66,7 @@ extension PaygateViewController: BindsToViewModel {
         self.viewModel = vm 
         
         paygateView.mainView.setup(design: input.openedFrom)
+        paygateView.closeButton.isHidden = true
         
         addMainOptionsSelection(viewModel: viewModel)
         
@@ -81,6 +82,9 @@ extension PaygateViewController: BindsToViewModel {
                 guard let `self` = self, let paygate = paygate else {
                     return
                 }
+                
+                let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+                self.paygateView.closeButton.isHidden = flow == PaygateFlow.blockOnboarding && paygate.specialOffer == nil
                 
                 self.paygateView.mainView.setup(paygate: paygate.main)
                 
@@ -110,6 +114,9 @@ extension PaygateViewController: BindsToViewModel {
                     viewModel.dismiss()
                 case .main:
                     if paygate?.specialOffer != nil {
+                        let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+                        self.paygateView.closeButton.isHidden = flow == PaygateFlow.blockOnboarding
+                            
                         self.animateMoveToSpecialOfferView()
                         self.currentScene = .specialOffer
                     } else {
@@ -230,8 +237,8 @@ extension PaygateViewController: BindsToViewModel {
 
 // MARK: Private
 
-extension PaygateViewController {
-    fileprivate static var isFirstOpening: Bool {
+private extension PaygateViewController {
+    static var isFirstOpening: Bool {
         set {
             UserDefaults.standard.set(true, forKey: "paygate_was_opened")
         }
@@ -241,7 +248,11 @@ extension PaygateViewController {
         }
     }
     
-    private func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
+    func updateCloseButtonVisible(paygate: Paygate) {
+        
+    }
+    
+    func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
         let leftOptionTapGesture = UITapGestureRecognizer()
         paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)
         
@@ -279,7 +290,7 @@ extension PaygateViewController {
             .disposed(by: disposeBag)
     }
     
-    private func animateShowMainContent(isLoading: Bool) {
+    func animateShowMainContent(isLoading: Bool) {
         UIView.animate(withDuration: 1, animations: { [weak self] in
             self?.paygateView.mainView.greetingLabel.alpha = 1
             self?.paygateView.mainView.iconView.alpha = 1
@@ -292,7 +303,7 @@ extension PaygateViewController {
         })
     }
     
-    private func animateMoveToSpecialOfferView() {
+    func animateMoveToSpecialOfferView() {
         paygateView.specialOfferView.isHidden = false
         paygateView.specialOfferView.alpha = 0
         
