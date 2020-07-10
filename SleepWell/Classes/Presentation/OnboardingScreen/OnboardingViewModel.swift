@@ -74,6 +74,9 @@ final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface
                     .asSignal(onErrorSignalWith: .never())
             case .closed:
                 return storePersonalData
+                    .flatMap {
+                        PersonalDataService.create().map { _ in Void() }
+                    }
                     .map { MainScreenBehave.withoutActiveSubscription }
                     .asSignal(onErrorSignalWith: .never())
             }

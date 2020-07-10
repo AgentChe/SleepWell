@@ -98,3 +98,32 @@ extension PersonalDataService {
         return downloadPersonalData()
     }
 }
+
+// MARK: Anonymous
+
+extension PersonalDataService {
+    static func create() -> Single<Bool> {
+        guard let personalData = cachedPersonalData() else {
+            return .deferred { .just(false) }
+        }
+        
+        return create(anonymous: personalData)
+    }
+    
+    static func create(anonymous: PersonalData) -> Single<Bool> {
+        guard let pushToken = anonymous.pushToken else {
+            return .deferred { .just(false) }
+        }
+        
+        let request = CreateAnonymousRequest(gender: anonymous.gender.rawValue,
+                                             pushToken: pushToken,
+                                             locale: UIDevice.deviceLanguageCode ?? "en",
+                                             version: UIDevice.appVersion ?? "1",
+                                             appKey: IDFAService.shared.getAppKey())
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { try CheckResponseForCodeError.isError(jsonResponse: $0) }
+            .map { !$0 }
+    }
+}
