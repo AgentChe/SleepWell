@@ -18,10 +18,6 @@ protocol PaygateViewModelInterface {
     var restoreProcessing: RxActivityIndicator { get }
     var retrieveCompleted: BehaviorRelay<Bool> { get }
     
-    var startPing: PublishRelay<Void> { get }
-    var stopPing: PublishRelay<Void> { get }
-    func ping() -> Driver<Void>
-    
     var openedFrom: PaygateViewModel.PaygateOpenedFrom! { get set }
     
     func retrieve() -> Driver<(Paygate?, Bool)>
@@ -61,9 +57,6 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     let purchaseProcessing = RxActivityIndicator()
     let restoreProcessing = RxActivityIndicator()
     let retrieveCompleted = BehaviorRelay<Bool>(value: false)
-    
-    let startPing = PublishRelay<Void>()
-    let stopPing = PublishRelay<Void>()
     
     let buySubscription = PublishRelay<String>()
     let restoreSubscription = PublishRelay<String>()
@@ -108,32 +101,6 @@ extension PaygateViewModel {
                 .do(onNext: { [weak self] stub in
                     self?.retrieveCompleted.accept(stub.1)
                 })
-    }
-}
-
-// MARK: Ping
-
-extension PaygateViewModel {
-    func ping() -> Driver<Void> {
-        let startTrigger = startPing
-            .takeUntil(stopPing)
-            .flatMapLatest { [weak self] _ -> Observable<Void> in
-                guard let `self` = self else {
-                    return .empty()
-                }
-                
-                return Observable<Int>
-                    .interval(RxTimeInterval.seconds(1), scheduler: SerialDispatchQueueScheduler.init(qos: .background))
-                    .takeUntil(self.stopPing.asObservable())
-                    .flatMapLatest { _ in self.dependencies.paygateManager.ping().catchError { _ in .never() } }
-            }
-
-        let stopTrigger = stopPing
-            .flatMapLatest { _ -> Observable<Void> in .empty() }
-
-        return Observable
-            .merge(startTrigger, stopTrigger)
-            .asDriver(onErrorDriveWith: .never())
     }
 }
 

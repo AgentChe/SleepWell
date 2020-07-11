@@ -46,16 +46,6 @@ extension PaygateManager {
     }
 }
 
-// MARK: Ping
-
-extension PaygateManager {
-    func ping() -> Single<Void> {
-        RestAPITransport()
-            .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getAppKey()))
-            .map { _ in Void() }
-    }
-}
-
 // MARK: Flow
 
 extension PaygateManager {

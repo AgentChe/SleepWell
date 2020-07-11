@@ -39,14 +39,8 @@ final class PaygateViewController: UIViewController {
         if PaygateViewController.isFirstOpening {
             PaygateViewController.isFirstOpening = false
 
-            viewModel?.startPing.accept(Void())
+            PaygatePingManager.shared.start()
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        viewModel?.stopPing.accept(Void())
     }
 }
 
@@ -69,11 +63,6 @@ extension PaygateViewController: BindsToViewModel {
         paygateView.closeButton.isHidden = true
         
         addMainOptionsSelection(viewModel: viewModel)
-        
-        AppStateProxy.ApplicationProxy
-            .willResignActive
-            .bind(to: viewModel.stopPing)
-            .disposed(by: disposeBag)
         
         let retrieved = viewModel.retrieve()
         
@@ -225,19 +214,12 @@ extension PaygateViewController: BindsToViewModel {
                 viewModel.dismiss()
             })
             .disposed(by: disposeBag)
-        
-        // MARK: Not emitted
-        
-        viewModel
-            .ping()
-            .drive()
-            .disposed(by: disposeBag)
     }
 }
 
-// MARK: Private
+// MARK: Static info
 
-private extension PaygateViewController {
+extension PaygateViewController {
     static var isFirstOpening: Bool {
         set {
             UserDefaults.standard.set(true, forKey: "paygate_was_opened")
@@ -247,11 +229,11 @@ private extension PaygateViewController {
             !UserDefaults.standard.bool(forKey: "paygate_was_opened")
         }
     }
-    
-    func updateCloseButtonVisible(paygate: Paygate) {
-        
-    }
-    
+}
+
+// MARK: Private
+
+private extension PaygateViewController {
     func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
         let leftOptionTapGesture = UITapGestureRecognizer()
         paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)

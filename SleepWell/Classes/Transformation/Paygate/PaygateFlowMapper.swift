@@ -16,6 +16,8 @@ final class PaygateFlowMapper {
             return nil
         }
         
+        return .paygateUponRequest
+        
         switch flow {
         case 1:
             return .paygateUponRequest

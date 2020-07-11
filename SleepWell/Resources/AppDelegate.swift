@@ -57,12 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        AppStateProxy.ApplicationProxy.willResignActive.accept(Void())
-    }
-    
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStateProxy.ApplicationProxy.didBecomeActive.accept(Void())
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        AppStateProxy.ApplicationProxy.didEnterBackground.accept(Void())
     }
     
     private var router: Router?
