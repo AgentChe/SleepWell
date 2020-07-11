@@ -15,6 +15,7 @@ protocol OnboardingViewModelInterface {
     
     func buildPersonalData() -> Signal<PersonalData>
     func complete(with paygateResult: PaygateCompletionResult, behave: OnboardingViewModel.Behave) -> Signal<MainScreenBehave>
+    func createAnonymous() -> Signal<Bool>
     
     var setAims: PublishRelay<[Aim]> { get }
     var setGender: PublishRelay<Gender> { get }
@@ -81,6 +82,16 @@ final class OnboardingViewModel: BindableViewModel, OnboardingViewModelInterface
                     .asSignal(onErrorSignalWith: .never())
             }
         }
+    }
+    
+    func createAnonymous() -> Signal<Bool> {
+        guard let personalData = self.personalData else {
+            return .just(false)
+        }
+        
+        return PersonalDataService
+            .create(anonymous: personalData)
+            .asSignal(onErrorJustReturn: false)
     }
     
     func buildPersonalData() -> Signal<PersonalData> {

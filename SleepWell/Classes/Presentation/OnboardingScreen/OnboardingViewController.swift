@@ -33,7 +33,7 @@ extension OnboardingViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: OnboardingViewModelInterface, with input: Input) -> () {
-        var paygateResult: PaygateCompletionResult?
+        var paygateResult = PaygateCompletionResult.closed
         
         startView.show()
         
@@ -101,21 +101,33 @@ extension OnboardingViewController: BindsToViewModel {
                     .asObservable()
             )
             .subscribe(onNext: { [weak self] in
+                guard let `self` = self else {
+                    return
+                }
+                
                 let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
                 
                 switch flow {
                 case .paygateUponRequest:
-                    self?.bedtimeView.hide {
-                        self?.welcomeView.show()
+                    self.bedtimeView.hide {
+                        self.welcomeView.show()
                     }
                 case .blockOnboarding:
-                    viewModel.goToPaygate { result in
-                        paygateResult = result
-                        
-                        self?.bedtimeView.hide {
-                            self?.welcomeView.show()
-                        }
-                    }
+                    viewModel.createAnonymous()
+                        .emit(onNext: { success in
+                            guard success else {
+                                return
+                            }
+                            
+                            viewModel.goToPaygate { result in
+                                paygateResult = result
+                                
+                                self.bedtimeView.hide {
+                                    self.welcomeView.show()
+                                }
+                            }
+                        })
+                        .disposed(by: self.disposeBag)
                 }
             })
             .disposed(by: disposeBag)
@@ -123,7 +135,7 @@ extension OnboardingViewController: BindsToViewModel {
         welcomeView.nextUpWithSwipeDirection
             .subscribe(onNext: { [weak self] swipeDirection in
                 self?.welcomeView.hide(swipeDirection: swipeDirection) {
-                    viewModel.complete(with: paygateResult!, behave: input.behave)
+                    viewModel.complete(with: paygateResult, behave: input.behave)
                         .emit(onNext: { behave in
                             viewModel.goToMainScreen(behave: behave)
                         })
