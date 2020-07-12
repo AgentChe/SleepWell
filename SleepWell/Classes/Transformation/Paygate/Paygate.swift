@@ -9,7 +9,7 @@
 import Foundation.NSAttributedString
 
 struct Paygate {
-    let main: PaygateMain
+    let main: PaygateMain?
     let specialOffer: PaygateSpecialOffer?
 }
 

@@ -21,9 +21,7 @@ final class PaygateMapper {
         }
         
         let mainJSON = data["main"] as? [String: Any]
-        guard let main = map(main: mainJSON, productsPrices: productsPrices) else {
-            return nil 
-        }
+        let main = map(main: mainJSON, productsPrices: productsPrices)
         
         let specialOfferJSON = data["special_offer"] as? [String: Any]
         let specialOffer = map(specialOffer: specialOfferJSON, productsPrices: productsPrices)

@@ -60,7 +60,6 @@ extension PaygateViewController: BindsToViewModel {
         self.viewModel = vm 
         
         paygateView.mainView.setup(design: input.openedFrom)
-        paygateView.closeButton.isHidden = true
         
         addMainOptionsSelection(viewModel: viewModel)
         
@@ -72,17 +71,30 @@ extension PaygateViewController: BindsToViewModel {
                     return
                 }
                 
-                let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
-                self.paygateView.closeButton.isHidden = flow == PaygateFlow.blockOnboarding && paygate.specialOffer == nil
+                self.updateCloseButtonVisible(paygate: paygate)
                 
-                self.paygateView.mainView.setup(paygate: paygate.main)
+                self.paygateView.mainView.isHidden = paygate.main == nil
+                
+                if paygate.main == nil {
+                    self.paygateView.specialOfferView.isHidden = paygate.specialOffer == nil
+                } else {
+                    self.paygateView.specialOfferView.isHidden = true
+                }
+                
+                if let main = paygate.main {
+                    self.paygateView.mainView.setup(paygate: main)
+                }
                 
                 if let specialOffer = paygate.specialOffer {
                     self.paygateView.specialOfferView.setup(paygate: specialOffer)
                 }
                 
                 if completed {
-                    self.currentScene = .main
+                    if paygate.main != nil {
+                        self.currentScene = .main
+                    } else if paygate.main == nil && paygate.specialOffer != nil {
+                        self.currentScene = .specialOffer
+                    }
                 }
                 
                 self.animateShowMainContent(isLoading: !completed)
@@ -234,6 +246,22 @@ extension PaygateViewController {
 // MARK: Private
 
 private extension PaygateViewController {
+    private func updateCloseButtonVisible(paygate: Paygate) {
+        let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+        
+        var count = 0
+        
+        if paygate.main != nil {
+            count += 1
+        }
+        
+        if paygate.specialOffer != nil {
+            count += 1
+        }
+        
+        paygateView.closeButton.isHidden = flow == .blockOnboarding && count <= 1
+    }
+    
     func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
         let leftOptionTapGesture = UITapGestureRecognizer()
         paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)

@@ -115,10 +115,6 @@ extension OnboardingViewController: BindsToViewModel {
                 case .blockOnboarding:
                     viewModel.createAnonymous()
                         .emit(onNext: { success in
-                            guard success else {
-                                return
-                            }
-                            
                             viewModel.goToPaygate { result in
                                 paygateResult = result
                                 
