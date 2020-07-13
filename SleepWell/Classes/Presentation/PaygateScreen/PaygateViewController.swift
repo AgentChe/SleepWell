@@ -222,6 +222,7 @@ extension PaygateViewController: BindsToViewModel {
             .merge(viewModel.purchaseCompleted.map { PaygateCompletionResult.purchased },
                    viewModel.restoredCompleted.map { PaygateCompletionResult.restored })
             .emit(onNext: { result in
+                PaygatePingManager.shared.stop()
                 input.completion?(result)
                 viewModel.dismiss()
             })
