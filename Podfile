@@ -14,6 +14,7 @@ target 'SleepWell' do
   pod 'InfiniteLayout/Rx'
   pod 'FacebookSDK'
   pod 'Amplitude-iOS'
+  pod 'Branch'
 end
 
 post_install do |installer|

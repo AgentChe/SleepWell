@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AmplitudeAnalytics.shared.configure()
         FacebookAnalytics.shared.configure()
         IDFAService.shared.configure()
+        BranchService.shared.application(didFinishLaunchingWithOptions: launchOptions)
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -33,7 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return ApplicationDelegate.shared.application(app, open: url, options: options)
+        BranchService.shared.application(app, open: url, options: options)
+        ApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -41,17 +45,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        BranchService.shared.application(didReceiveRemoteNotification: userInfo)
         AppStateProxy.PushNotificationsProxy.notifyAboutPushMessageArrived.accept(userInfo)
 
         completionHandler(.noData)
     }
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        AppStateProxy.ApplicationProxy.willResignActive.accept(Void())
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        BranchService.shared.application(continue: userActivity)
+        
+        return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStateProxy.ApplicationProxy.didBecomeActive.accept(Void())
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        AppStateProxy.ApplicationProxy.didEnterBackground.accept(Void())
     }
     
     private var router: Router?

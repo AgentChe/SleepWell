@@ -187,7 +187,7 @@ private extension PaygateSpecialOfferView {
             lockImageView.widthAnchor.constraint(equalToConstant: 12.scale),
             lockImageView.heightAnchor.constraint(equalToConstant: 16.scale),
             lockImageView.trailingAnchor.constraint(equalTo: termsOfferLabel.leadingAnchor, constant: -10.scale),
-            lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -108.scale : -38.scale)
+            lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -49.scale : -10.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -323,7 +323,7 @@ private extension PaygateSpecialOfferView {
     func makePreloaderView() -> UIActivityIndicatorView {
         let view = UIActivityIndicatorView()
         view.hidesWhenStopped = true
-        view.style = .gray
+        view.style = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

@@ -39,14 +39,8 @@ final class PaygateViewController: UIViewController {
         if PaygateViewController.isFirstOpening {
             PaygateViewController.isFirstOpening = false
 
-            viewModel?.startPing.accept(Void())
+            PaygatePingManager.shared.start()
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        viewModel?.stopPing.accept(Void())
     }
 }
 
@@ -69,11 +63,6 @@ extension PaygateViewController: BindsToViewModel {
         
         addMainOptionsSelection(viewModel: viewModel)
         
-        AppStateProxy.ApplicationProxy
-            .willResignActive
-            .bind(to: viewModel.stopPing)
-            .disposed(by: disposeBag)
-        
         let retrieved = viewModel.retrieve()
         
         retrieved
@@ -82,17 +71,31 @@ extension PaygateViewController: BindsToViewModel {
                     return
                 }
                 
-                self.paygateView.mainView.setup(paygate: paygate.main)
+                self.updateCloseButtonVisible(paygate: paygate)
+                
+                if paygate.main != nil {
+                    self.animateShowMainView()
+                } else {
+                    if paygate.specialOffer != nil {
+                        self.animateMoveToSpecialOfferView()
+                    }
+                }
+                
+                if let main = paygate.main {
+                    self.paygateView.mainView.setup(paygate: main)
+                }
                 
                 if let specialOffer = paygate.specialOffer {
                     self.paygateView.specialOfferView.setup(paygate: specialOffer)
                 }
                 
                 if completed {
-                    self.currentScene = .main
+                    if paygate.main != nil {
+                        self.currentScene = .main
+                    } else if paygate.main == nil && paygate.specialOffer != nil {
+                        self.currentScene = .specialOffer
+                    }
                 }
-                
-                self.animateShowMainContent(isLoading: !completed)
             })
             .disposed(by: disposeBag)
         
@@ -110,6 +113,9 @@ extension PaygateViewController: BindsToViewModel {
                     viewModel.dismiss()
                 case .main:
                     if paygate?.specialOffer != nil {
+                        let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+                        self.paygateView.closeButton.isHidden = flow == PaygateFlow.blockOnboarding
+                            
                         self.animateMoveToSpecialOfferView()
                         self.currentScene = .specialOffer
                     } else {
@@ -214,24 +220,18 @@ extension PaygateViewController: BindsToViewModel {
             .merge(viewModel.purchaseCompleted.map { PaygateCompletionResult.purchased },
                    viewModel.restoredCompleted.map { PaygateCompletionResult.restored })
             .emit(onNext: { result in
+                PaygatePingManager.shared.stop()
                 input.completion?(result)
                 viewModel.dismiss()
             })
             .disposed(by: disposeBag)
-        
-        // MARK: Not emitted
-        
-        viewModel
-            .ping()
-            .drive()
-            .disposed(by: disposeBag)
     }
 }
 
-// MARK: Private
+// MARK: Static info
 
 extension PaygateViewController {
-    fileprivate static var isFirstOpening: Bool {
+    static var isFirstOpening: Bool {
         set {
             UserDefaults.standard.set(true, forKey: "paygate_was_opened")
         }
@@ -240,8 +240,28 @@ extension PaygateViewController {
             !UserDefaults.standard.bool(forKey: "paygate_was_opened")
         }
     }
+}
+
+// MARK: Private
+
+private extension PaygateViewController {
+    private func updateCloseButtonVisible(paygate: Paygate) {
+        let flow = PaygateManager.shared.getFlow() ?? PaygateFlow.paygateUponRequest
+        
+        var count = 0
+        
+        if paygate.main != nil {
+            count += 1
+        }
+        
+        if paygate.specialOffer != nil {
+            count += 1
+        }
+        
+        paygateView.closeButton.isHidden = flow == .blockOnboarding && count <= 1
+    }
     
-    private func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
+    func addMainOptionsSelection(viewModel: PaygateViewModelInterface) {
         let leftOptionTapGesture = UITapGestureRecognizer()
         paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)
         
@@ -279,7 +299,9 @@ extension PaygateViewController {
             .disposed(by: disposeBag)
     }
     
-    private func animateShowMainContent(isLoading: Bool) {
+    func animateShowMainView() {
+        paygateView.mainView.isHidden = false
+        
         UIView.animate(withDuration: 1, animations: { [weak self] in
             self?.paygateView.mainView.greetingLabel.alpha = 1
             self?.paygateView.mainView.iconView.alpha = 1
@@ -292,7 +314,7 @@ extension PaygateViewController {
         })
     }
     
-    private func animateMoveToSpecialOfferView() {
+    func animateMoveToSpecialOfferView() {
         paygateView.specialOfferView.isHidden = false
         paygateView.specialOfferView.alpha = 0
         

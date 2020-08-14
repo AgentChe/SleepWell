@@ -60,6 +60,7 @@ final class PaygateView: UIView {
     
     private func makeCloseButton() -> UIButton {
         let view = UIButton()
+        view.isHidden = true
         view.setImage(UIImage(named: "paygate_main_close"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
@@ -68,6 +69,7 @@ final class PaygateView: UIView {
     
     private func makeMainView() -> PaygateMainView {
         let view = PaygateMainView()
+        view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

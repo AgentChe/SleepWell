@@ -18,10 +18,6 @@ protocol PaygateViewModelInterface {
     var restoreProcessing: RxActivityIndicator { get }
     var retrieveCompleted: BehaviorRelay<Bool> { get }
     
-    var startPing: PublishRelay<Void> { get }
-    var stopPing: PublishRelay<Void> { get }
-    func ping() -> Driver<Void>
-    
     var openedFrom: PaygateViewModel.PaygateOpenedFrom! { get set }
     
     func retrieve() -> Driver<(Paygate?, Bool)>
@@ -53,7 +49,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     lazy var dependencies: Dependencies = deferred()
     
     struct Dependencies {
-        let paygateService: PaygateService
+        let paygateManager: PaygateManager
         let purchaseService: PurchaseService
         let personalDataService: PersonalDataService
     }
@@ -61,9 +57,6 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     let purchaseProcessing = RxActivityIndicator()
     let restoreProcessing = RxActivityIndicator()
     let retrieveCompleted = BehaviorRelay<Bool>(value: false)
-    
-    let startPing = PublishRelay<Void>()
-    let stopPing = PublishRelay<Void>()
     
     let buySubscription = PublishRelay<String>()
     let restoreSubscription = PublishRelay<String>()
@@ -86,7 +79,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
 extension PaygateViewModel {
     func retrieve() -> Driver<(Paygate?, Bool)> {
         let paygate = dependencies
-            .paygateService
+            .paygateManager
             .retrievePaygate(screen: openedFrom.rawValue)
             .asDriver(onErrorJustReturn: nil)
         
@@ -97,7 +90,7 @@ extension PaygateViewModel {
                 }
                 
                 return self.dependencies
-                    .paygateService
+                    .paygateManager
                     .prepareProductsPrices(for: response)
                     .asDriver(onErrorJustReturn: nil)
             }
@@ -111,38 +104,12 @@ extension PaygateViewModel {
     }
 }
 
-// MARK: Ping
-
-extension PaygateViewModel {
-    func ping() -> Driver<Void> {
-        let startTrigger = startPing
-            .takeUntil(stopPing)
-            .flatMapLatest { [weak self] _ -> Observable<Void> in
-                guard let `self` = self else {
-                    return .empty()
-                }
-                
-                return Observable<Int>
-                    .interval(RxTimeInterval.seconds(1), scheduler: SerialDispatchQueueScheduler.init(qos: .background))
-                    .takeUntil(self.stopPing.asObservable())
-                    .flatMapLatest { _ in self.dependencies.paygateService.ping().catchError { _ in .never() } }
-            }
-
-        let stopTrigger = stopPing
-            .flatMapLatest { _ -> Observable<Void> in .empty() }
-
-        return Observable
-            .merge(startTrigger, stopTrigger)
-            .asDriver(onErrorDriveWith: .never())
-    }
-}
-
 // MARK: Make purchase
 
 private extension PaygateViewModel {
     func buy() -> Signal<Void> {
         let purchase = buySubscription
-            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+            .flatMapLatest { [dependencies, openedFrom, purchaseProcessing] productId -> Observable<Void> in
                 dependencies.purchaseService
                     .buySubscription(productId: productId)
                     .flatMap {
@@ -161,7 +128,8 @@ private extension PaygateViewModel {
                                 }
                             }
                 }
-                .do(onSuccess: { _ in
+                .trackActivity(purchaseProcessing)
+                .do(onNext: { _ in
                     FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
                 }, onError: { [weak self] _ in
                     self?._error.accept("Paygate.FailedPurchase".localized)
@@ -170,13 +138,12 @@ private extension PaygateViewModel {
             }
         
         return purchase
-            .trackActivity(purchaseProcessing)
             .asSignal(onErrorSignalWith: .never())
     }
     
     func restore() -> Signal<Void> {
         let purchase = restoreSubscription
-            .flatMapLatest { [dependencies, openedFrom] productId -> Single<Void> in
+            .flatMapLatest { [dependencies, openedFrom, restoreProcessing] productId -> Observable<Void> in
                 dependencies.purchaseService
                     .restoreSubscription(productId: productId)
                     .flatMap {
@@ -195,7 +162,8 @@ private extension PaygateViewModel {
                                 }
                             }
                     }
-                    .do(onSuccess: { _ in
+                    .trackActivity(restoreProcessing)
+                    .do(onNext: { _ in
                         FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
                     }, onError: { [weak self] _ in
                         self?._error.accept("Paygate.FailedRestore".localized)
@@ -204,7 +172,6 @@ private extension PaygateViewModel {
             }
         
         return purchase
-            .trackActivity(restoreProcessing)
             .asSignal(onErrorSignalWith: .never())
     }
 }

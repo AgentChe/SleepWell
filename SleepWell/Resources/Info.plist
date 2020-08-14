@@ -85,5 +85,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>branch_key</key>
+	<string>key_live_ccI3bHHlfkWsykIrbF06MpoouyluXZ9i</string>
 </dict>
 </plist>
