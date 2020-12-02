@@ -78,7 +78,9 @@ extension ScenesViewController: BindsToViewModel {
     @objc func didBecomeActive() {}
     
     func bind(to viewModel: ScenesViewModelInterface, with input: Input) -> Output {
-        AmplitudeAnalytics.shared.log(with: .sceneScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Scene scr", parameters: [:])
         
         let elements = viewModel.elements(subscription: input.subscription)
 
@@ -155,7 +157,11 @@ extension ScenesViewController: BindsToViewModel {
                 return true
             }
             .map { _ in MainRoute.paygate(.scenes) }
-            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .blockedScenePaygateScr) })
+            .do(onNext: { _ in
+                SDKStorage.shared
+                    .amplitudeManager
+                    .logEvent(name: "Blocked scene paygate scr", parameters: [:])
+            })
             .asSignal(onErrorJustReturn: .paygate(.scenes))
         
         let sceneDetail = sceneAction.map { $0.sceneDetail }
@@ -303,8 +309,16 @@ extension ScenesViewController: BindsToViewModel {
         
         let actions = Signal
             .merge(
-                pauseButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
-                playButton.rx.tap.asSignal().do(onNext: { AmplitudeAnalytics.shared.log(with: .scenePlayPauseTap) }),
+                pauseButton.rx.tap.asSignal().do(onNext: {
+                                                    SDKStorage.shared
+                                                        .amplitudeManager
+                                                        .logEvent(name: "Scene play/pause tap", parameters: [:])
+                }),
+                playButton.rx.tap.asSignal().do(onNext: {
+                                                    SDKStorage.shared
+                                                        .amplitudeManager
+                                                        .logEvent(name: "Scene play/pause tap", parameters: [:])
+                }),
                 settingsButton.rx.tap.asSignal(),
                 tapGesture.rx.event.asSignal()
                     .map { _ in () },

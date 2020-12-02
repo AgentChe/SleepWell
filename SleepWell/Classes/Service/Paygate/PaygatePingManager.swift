@@ -39,8 +39,9 @@ private extension PaygatePingManager {
         Observable<Int>
             .interval(RxTimeInterval.seconds(2), scheduler: SerialDispatchQueueScheduler.init(qos: .background))
             .flatMapLatest { _ in
-                RestAPITransport()
-                    .callServerApi(requestBody: PaygatePingRequest(randomKey: IDFAService.shared.getAppKey()))
+                SDKStorage.shared
+                    .restApiTransport
+                    .callServerApi(requestBody: PaygatePingRequest(randomKey: SDKStorage.shared.applicationAnonymousID))
                     .map { _ in Void() }
                     .catchError { _ in .never() }
             }

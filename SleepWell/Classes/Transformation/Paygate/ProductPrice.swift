@@ -2,7 +2,7 @@
 //  ProductPrice.swift
 //  SleepWell
 //
-//  Created by Andrey Chernyshev on 12/06/2020.
+//  Created by Andrey Chernyshev on 02.12.2020.
 //  Copyright © 2020 Andrey Chernyshev. All rights reserved.
 //
 
@@ -17,7 +17,6 @@ struct ProductPrice {
 }
 
 // MARK: Make
-
 extension ProductPrice {
     init(product: SKProduct) {
         id = product.productIdentifier

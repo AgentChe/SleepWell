@@ -201,13 +201,6 @@ extension PaygateViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        viewModel
-            .error
-            .drive(onNext: { [weak self] error in
-                self?.paygateView.errorBanner.show(with: error)
-            })
-            .disposed(by: disposeBag)
-        
         paygateView
             .errorBanner
             .tapForHide
@@ -216,13 +209,31 @@ extension PaygateViewController: BindsToViewModel {
             })
             .disposed(by: disposeBag)
         
-        Signal
-            .merge(viewModel.purchaseCompleted.map { PaygateCompletionResult.purchased },
-                   viewModel.restoredCompleted.map { PaygateCompletionResult.restored })
-            .emit(onNext: { result in
-                PaygatePingManager.shared.stop()
-                input.completion?(result)
-                viewModel.dismiss()
+        viewModel
+            .buied()
+            .emit(onNext: { [weak self] success in
+                switch success {
+                case true:
+                    PaygatePingManager.shared.stop()
+                    input.completion?(.purchased)
+                    viewModel.dismiss()
+                case false:
+                    self?.paygateView.errorBanner.show(with: "Paygate.FailedPurchase".localized)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .restored()
+            .emit(onNext: { [weak self] success in
+                switch success {
+                case true:
+                    PaygatePingManager.shared.stop()
+                    input.completion?(.restored)
+                    viewModel.dismiss()
+                case false:
+                    self?.paygateView.errorBanner.show(with: "Paygate.FailedRestore".localized)
+                }
             })
             .disposed(by: disposeBag)
     }

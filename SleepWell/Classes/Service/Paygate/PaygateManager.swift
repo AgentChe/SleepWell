@@ -20,13 +20,14 @@ final class PaygateManager {
 
 extension PaygateManager {
     func retrievePaygate(screen: String) -> Single<PaygateMapper.PaygateResponse?> {
-        let request = GetPaygateRequest(userToken: SessionService.userToken,
+        let request = GetPaygateRequest(userToken: SessionService.session?.userToken,
                                         locale: UIDevice.deviceLanguageCode ?? "en",
                                         version: UIDevice.appVersion ?? "1",
                                         screen: screen,
-                                        appKey: IDFAService.shared.getAppKey())
+                                        appKey: SDKStorage.shared.applicationAnonymousID)
         
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: request)
             .map { PaygateMapper.parse(response: $0, productsPrices: nil) }
     }
@@ -40,9 +41,15 @@ extension PaygateManager {
             return .deferred { .just(paygate) }
         }
         
-        return PurchaseService
-            .productsPrices(ids: paygate.productsIds)
-            .map { PaygateMapper.parse(response: paygate.json, productsPrices: $0.retrievedPrices) }
+        return SDKStorage.shared
+            .iapManager
+            .obtainProducts(ids: paygate.productsIds)
+            .map { products -> [ProductPrice] in
+                products.map { ProductPrice(product: $0.product) }
+            }
+            .map {
+                PaygateMapper.parse(response: paygate.json, productsPrices: $0)
+            }
     }
 }
 
@@ -50,7 +57,8 @@ extension PaygateManager {
 
 extension PaygateManager {
     static func retrieveFlow() -> Single<PaygateFlow?> {
-        RestAPITransport()
+        SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: GetPaygateFlowRequest(version: UIDevice.appVersion ?? "1"))
             .map { PaygateFlowMapper.map(response: $0) }
             .do(onSuccess: {

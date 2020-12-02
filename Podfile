@@ -3,18 +3,12 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'SleepWell' do
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'Alamofire'
   pod 'lottie-ios'
-  pod 'SwiftyStoreKit'
   pod 'RealmSwift'
   pod 'Kingfisher'
-  pod 'Firebase/Messaging'
   pod 'InfiniteLayout/Rx'
-  pod 'FacebookSDK'
-  pod 'Amplitude-iOS'
-  pod 'Branch'
+  
+  pod ‘RushSDK’, :git => "https://github.com/AgentChe/rushSDK.git"
 end
 
 post_install do |installer|

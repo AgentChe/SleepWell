@@ -15,7 +15,10 @@ class SplashViewModel {
         case onboarding(OnboardingViewModel.Behave)
     }
     
-    lazy var step = updateCacheAndCreateStep()
+    let makeStep = PublishRelay<Void>()
+    
+    lazy var step = makeStep
+        .flatMap { self.updateCacheAndCreateStep() }
     
     private let sessionService = SessionService()
     private let purchaseService = PurchaseService()
@@ -33,7 +36,7 @@ class SplashViewModel {
     }
     
     private func createStep() -> Single<Step> {
-        if let userToken = SessionService.userToken {
+        if let userToken = SessionService.session?.userToken {
             return check(userToken: userToken)
         } else {
             return validate()
@@ -53,21 +56,13 @@ class SplashViewModel {
     }
     
     private func validate() -> Single<Step> {
-        return purchaseService.receipt
-            .flatMap { [unowned self] receipt -> Single<Step> in
-                if let receipt = receipt {
-                    return self.purchaseService
-                        .paymentValidate(receipt: receipt)
-                        .catchErrorJustReturn(nil)
-                        .map { session -> Step in
-                            if session?.userToken != nil {
-                                return .main(session?.activeSubscription == true ? .withActiveSubscription : .withoutActiveSubscription)
-                            } else {
-                                return self.checkPersonalData()
-                            }
-                        }
+        return Single
+            .deferred { .just(SessionService.session) }
+            .map { session -> Step in
+                if session?.userToken != nil {
+                    return .main(session?.activeSubscription == true ? .withActiveSubscription : .withoutActiveSubscription)
                 } else {
-                    return .just(self.checkPersonalData())
+                    return self.checkPersonalData()
                 }
             }
     }

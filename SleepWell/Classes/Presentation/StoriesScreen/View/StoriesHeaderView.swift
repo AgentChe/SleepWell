@@ -38,7 +38,11 @@ class StoriesHeaderView: UIView {
 extension StoriesHeaderView {
     var didTapRandom: Signal<Void> {
         randomButton.rx.tap.asSignal()
-            .do(onNext: { AmplitudeAnalytics.shared.log(with: .playRandomStoryTap) })
+            .do(onNext: {
+                    SDKStorage.shared
+                        .amplitudeManager
+                        .logEvent(name: "Play random story tap", parameters: [:])
+            })
     }
     
     var didTapMenu: Signal<Void> {

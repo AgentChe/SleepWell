@@ -44,7 +44,9 @@ extension SceneSettingsViewController: BindsToViewModel {
     }
 
     func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) -> Output {
-        AmplitudeAnalytics.shared.log(with: .sceneSettingsScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Scene settings scr", parameters: [:])
         
         let soundsCount = input.sceneDetail.sounds.count
         let maxHeight = view.frame.height - 304
@@ -79,13 +81,21 @@ extension SceneSettingsViewController: BindsToViewModel {
         let defaultTapGesture = UITapGestureRecognizer()
         defaultView.addGestureRecognizer(defaultTapGesture)
         let defaultVolumes = defaultTapGesture.rx.event.asSignal()
-            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .sceneDefaultTap) })
+            .do(onNext: { _ in
+                    SDKStorage.shared
+                        .amplitudeManager
+                        .logEvent(name: "Scene default tap", parameters: [:])
+            })
             .map { _ in Float(0.75) }
         
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
         let randomVolumes = randomTapGesture.rx.event.asSignal()
-            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .sceneRandomTap) })
+            .do(onNext: { _ in
+                    SDKStorage.shared
+                        .amplitudeManager
+                        .logEvent(name: "Scene random tap", parameters: [:])
+            })
         
         let sleepTimerTapGesture = UITapGestureRecognizer()
         sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
@@ -94,7 +104,9 @@ extension SceneSettingsViewController: BindsToViewModel {
             .do(onNext: { [weak self] _ in
                 self?.view.alpha = 0
                 
-                AmplitudeAnalytics.shared.log(with: .sceneSleepTimerTap)
+                SDKStorage.shared
+                    .amplitudeManager
+                    .logEvent(name: "Scene sleep timer tap", parameters: [:])
             })
             .map { _ in
                 viewModel.showSleepTimerScreen(sceneDetail: input.sceneDetail)

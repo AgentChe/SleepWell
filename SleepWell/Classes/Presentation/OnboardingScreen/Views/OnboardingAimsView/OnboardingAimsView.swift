@@ -57,7 +57,9 @@ final class OnboardingAimsView: UIView, UITableViewDataSource, UITableViewDelega
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .helpYouWithScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Help you with scr", parameters: [:])
         
         isHidden = false
         alpha = 0

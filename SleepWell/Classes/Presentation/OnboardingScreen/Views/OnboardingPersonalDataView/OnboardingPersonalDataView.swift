@@ -100,7 +100,9 @@ class OnboardingPersonalDataView: UIView {
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .genderAngAgeScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Gender and age scr", parameters: [:])
         
         isHidden = false
         alpha = 0

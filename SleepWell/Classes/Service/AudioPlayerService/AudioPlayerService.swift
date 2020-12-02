@@ -289,7 +289,12 @@ final class AudioPlayerService: ReactiveCompatible {
                 sceneRelay.asDriver(),
                 audioRelay.asDriver(),
                 noiseRelay.asDriver()
-            ) { $0 == nil && $1 == nil && $2 == nil }
+            ) {
+                let sceneEmpty = ($0 == nil)
+                let audioEmpty = ($1 == nil)
+                let noiseEmpty = ($2 == nil)
+                return sceneEmpty && audioEmpty && noiseEmpty
+            }
             .filter { $0 }
             .map { _ in AudioType.none }
         

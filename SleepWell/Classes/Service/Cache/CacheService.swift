@@ -94,7 +94,8 @@ private final class CacheMeditations: Copy {
     }
     
     func updateMeditations() -> Observable<Void> {
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: FullMeditationsListRequest(hashCode: CacheHashCodes.meditationsHashCode))
             .asObservable()
             .map { MeditationsMapper.fullMeditations(response: $0) }
@@ -162,7 +163,8 @@ private final class CacheMeditations: Copy {
     }
     
     func updateTags() -> Observable<Void> {
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: MeditationTagsRequest(hashCode: CacheHashCodes.meditationTagsHashCode))
             .asObservable()
             .map { TagsMapper.parse(response: $0) }
@@ -215,7 +217,8 @@ private final class CacheStories: Copy {
     }
     
     func update() -> Observable<Void> {
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: FullStoriesListRequest(hashCode: CacheHashCodes.storiesHashCode))
             .asObservable()
             .map { StoriesMapper.fullStories(response: $0) }
@@ -321,7 +324,8 @@ private final class CacheScenes: Copy {
     }
     
     func update() -> Observable<Void> {
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: FullScenesListRequest(hashCode: CacheHashCodes.scenesHashCode))
             .asObservable()
             .map { ScenesMapper.fullScenes(response: $0) }
@@ -427,7 +431,8 @@ private final class CacheNoise: Copy {
     }
     
     func update() -> Observable<Void> {
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: GetNoiseCategoriesRequest(hashCode: CacheHashCodes.noiseCategoriesHashCode))
             .asObservable()
             .map { NoiseMapper.fullNoises(response: $0) }

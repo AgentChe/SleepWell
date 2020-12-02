@@ -8,54 +8,58 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
+import RxCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
+    let sdkProvider = SDKProvider()
+    
+    private let generateStepSignal = PublishRelay<Void>()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        PurchaseService.register()
-        PushMessagesService.shared.configure()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "SplashScreen", bundle: .main)
+        let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
+        splashViewController.generateStepSignal = generateStepSignal.asSignal()
+        window?.rootViewController = splashViewController
+        window?.makeKeyAndVisible()
+        
         FirebaseApp.configure()
         RateManager.incrementRun()
-        AmplitudeAnalytics.shared.configure()
-        FacebookAnalytics.shared.configure()
-        IDFAService.shared.configure()
-        
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        UniversalLinksService.shared.register(didFinishLaunchingWithOptions: launchOptions)
-        BranchService.shared.application(didFinishLaunchingWithOptions: launchOptions)
-        
-        navigate()
         
         PushMessagesService.shared.updateLocalNotification()
+        
+        addDelegates()
+        
+        startSDKProvider(on: splashViewController.view)
+        
+        sdkProvider.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        BranchService.shared.application(app, open: url, options: options)
-        ApplicationDelegate.shared.application(app, open: url, options: options)
-        UniversalLinksService.shared.register(with: url, options: options)
+        sdkProvider.application(app, open: url, options: options)
         
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        AppStateProxy.PushNotificationsProxy.notifyAboutPushTokenHasArrived?()
+        sdkProvider.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        sdkProvider.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        BranchService.shared.application(didReceiveRemoteNotification: userInfo)
-        AppStateProxy.PushNotificationsProxy.notifyAboutPushMessageArrived.accept(userInfo)
-
-        completionHandler(.noData)
+        sdkProvider.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        BranchService.shared.application(continue: userActivity)
-        UniversalLinksService.shared.register(with: userActivity)
+        sdkProvider.application(application, continue: userActivity, restorationHandler: restorationHandler)
         
         return true
     }
@@ -67,15 +71,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         AppStateProxy.ApplicationProxy.didEnterBackground.accept(Void())
     }
+}
+
+// MARK: SDKPurchaseMediatorDelegate
+extension AppDelegate: SDKPurchaseMediatorDelegate {
+    func purchaseMediatorDidValidateReceipt(response: ReceiptValidateResponse?) {
+        guard let response = response else {
+            return
+        }
+        
+        let session = Session(userToken: response.userToken,
+                              activeSubscription: response.activeSubscription,
+                              userId: response.userId)
+        
+        SessionService.store(session: session)
+    }
+}
+
+// MARK: Private
+private extension AppDelegate {
+    func startSDKProvider(on view: UIView) {
+        let sdkSettings = SDKSettings(backendBaseUrl: GlobalDefinitions.sdkDomainUrl,
+                                      backendApiKey: GlobalDefinitions.sdkApiKey,
+                                      amplitudeApiKey: GlobalDefinitions.amplitudeAPIKey,
+                                      facebookActive: true,
+                                      branchActive: true,
+                                      firebaseActive: true,
+                                      applicationTag: GlobalDefinitions.appNameForAmplitude,
+                                      userToken: SessionService.session?.userToken,
+                                      userId: SessionService.session?.userId,
+                                      view: view,
+                                      shouldAddStorePayment: true,
+                                      isTest: false)
+        
+        sdkProvider.initialize(settings: sdkSettings) { [weak self] in
+            self?.generateStepSignal.accept(Void())
+        }
+    }
     
-    private var router: Router?
-    private func navigate() {
-        _ = AppStateProxy.NavigateProxy.openPaygateAtPromotionInApp
-            .subscribe(onNext: {
-                if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-                    self.router = Router(transitionHandler: rootVC)
-                    self.router?.present(type: PaygateAssembly.self, input: PaygateViewController.Input(openedFrom: .promotionInApp, completion: nil))
-                }
-            })
+    func addDelegates() {
+        SDKStorage.shared.purchaseMediator.add(delegate: self)
     }
 }

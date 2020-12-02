@@ -23,4 +23,7 @@ final class GlobalDefinitions {
     static let tableBottomInsert = CGFloat(85)
     
     static let appNameForAmplitude = "SLEEP"
+    
+    static let sdkDomainUrl = "https://analytics.korrekted.com"
+    static let sdkApiKey = "9jT3ESSkF4hk2W4n"
 }

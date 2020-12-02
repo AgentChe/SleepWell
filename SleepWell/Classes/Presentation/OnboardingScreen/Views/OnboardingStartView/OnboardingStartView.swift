@@ -36,7 +36,9 @@ class OnboardingStartView: UIView {
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .welcomeScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Welcome scr", parameters: [:])
         
         isHidden = false
         alpha = 0

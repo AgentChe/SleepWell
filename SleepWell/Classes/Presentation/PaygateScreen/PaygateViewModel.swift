@@ -25,10 +25,8 @@ protocol PaygateViewModelInterface {
     var buySubscription: PublishRelay<String> { get }
     var restoreSubscription: PublishRelay<String> { get }
     
-    var purchaseCompleted: Signal<Void> { get }
-    var restoredCompleted: Signal<Void> { get }
-    
-    var error: Driver<String> { get }
+    func buied() -> Signal<Bool>
+    func restored() -> Signal<Bool>
     
     func dismiss()
 }
@@ -61,13 +59,9 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     let buySubscription = PublishRelay<String>()
     let restoreSubscription = PublishRelay<String>()
     
-    lazy var purchaseCompleted = buy()
-    lazy var restoredCompleted = restore()
-    
-    lazy var error = _error.asDriver(onErrorDriveWith: .never())
-    private var _error = PublishRelay<String>()
-    
     var openedFrom: PaygateViewModel.PaygateOpenedFrom!
+    
+    private let purchaseInteractor = SDKStorage.shared.purchaseInteractor
     
     func dismiss() {
         router.dismiss()
@@ -106,72 +100,76 @@ extension PaygateViewModel {
 
 // MARK: Make purchase
 
-private extension PaygateViewModel {
-    func buy() -> Signal<Void> {
-        let purchase = buySubscription
-            .flatMapLatest { [dependencies, openedFrom, purchaseProcessing] productId -> Observable<Void> in
-                dependencies.purchaseService
-                    .buySubscription(productId: productId)
-                    .flatMap {
-                        dependencies.purchaseService
-                            .paymentValidate()
-                            .flatMap { _ -> Single<Void> in
-                             switch openedFrom! {
-                             case .onboarding:
-                                    return .just(Void())
-                             case .meditations, .stories, .scenes, .sounds:
-                                    return dependencies.personalDataService
-                                        .sendPersonalData()
-                                        .catchErrorJustReturn(Void())
-                             case .promotionInApp:
-                                    return .just(Void())
-                                }
-                            }
+extension PaygateViewModel {
+    func buied() -> Signal<Bool> {
+        buySubscription
+            .flatMapLatest { [weak self] productId -> Observable<Bool> in
+                guard let this = self else {
+                    return .empty()
                 }
-                .trackActivity(purchaseProcessing)
-                .do(onNext: { _ in
-                    FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
-                }, onError: { [weak self] _ in
-                    self?._error.accept("Paygate.FailedPurchase".localized)
-                })
-                .catchError { _ in .never() }
+                
+                return this.purchaseInteractor
+                    .makeActiveSubscriptionByBuy(productId: productId)
+                    .asObservable()
+                    .flatMap { result -> Single<Bool> in
+                        switch result {
+                        case .cancelled:
+                            return .just(false)
+                        case .completed(let response):
+                            guard response != nil else {
+                                return .just(false)
+                            }
+                            
+                            switch this.openedFrom! {
+                            case .onboarding, .promotionInApp:
+                                   return .just(true)
+                            case .meditations, .stories, .scenes, .sounds:
+                                return this.dependencies.personalDataService
+                                        .sendPersonalData()
+                                        .map { true }
+                                        .catchErrorJustReturn(true)
+                            }
+                        }
+                    }
+                    .catchErrorJustReturn(false)
+                    .trackActivity(this.purchaseProcessing)
             }
-        
-        return purchase
-            .asSignal(onErrorSignalWith: .never())
+            .asSignal(onErrorJustReturn: false)
     }
     
-    func restore() -> Signal<Void> {
-        let purchase = restoreSubscription
-            .flatMapLatest { [dependencies, openedFrom, restoreProcessing] productId -> Observable<Void> in
-                dependencies.purchaseService
-                    .restoreSubscription(productId: productId)
-                    .flatMap {
-                        dependencies.purchaseService
-                            .paymentValidate()
-                            .flatMap { _ -> Single<Void> in
-                                switch openedFrom! {
-                                case .onboarding:
-                                    return .just(Void())
-                                case .meditations, .stories, .scenes, .sounds:
-                                    return dependencies.personalDataService
-                                        .sendPersonalData()
-                                        .catchErrorJustReturn(Void())
-                                case .promotionInApp:
-                                    return .just(Void())
-                                }
+    func restored() -> Signal<Bool> {
+        restoreSubscription
+            .flatMapLatest { [weak self] productId -> Observable<Bool> in
+                guard let this = self else {
+                    return .empty()
+                }
+                
+                return this.purchaseInteractor
+                    .makeActiveSubscriptionByRestore()
+                    .asObservable()
+                    .flatMap { result -> Single<Bool> in
+                        switch result {
+                        case .cancelled:
+                            return .just(false)
+                        case .completed(let response):
+                            guard response != nil else {
+                                return .just(false)
                             }
+                            
+                            switch this.openedFrom! {
+                            case .onboarding, .promotionInApp:
+                                   return .just(true)
+                            case .meditations, .stories, .scenes, .sounds:
+                                return this.dependencies.personalDataService
+                                        .sendPersonalData()
+                                        .map { true }
+                                        .catchErrorJustReturn(true)
+                            }
+                        }
                     }
-                    .trackActivity(restoreProcessing)
-                    .do(onNext: { _ in
-                        FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
-                    }, onError: { [weak self] _ in
-                        self?._error.accept("Paygate.FailedRestore".localized)
-                    })
-                    .catchError { _ in .never() }
+                    .catchErrorJustReturn(false)
+                    .trackActivity(this.restoreProcessing)
             }
-        
-        return purchase
-            .asSignal(onErrorSignalWith: .never())
+            .asSignal(onErrorJustReturn: false)
     }
 }

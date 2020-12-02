@@ -8,8 +8,11 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SplashViewController: UIViewController {
+    var generateStepSignal: Signal<Void>!
+    
     private lazy var router = Router(transitionHandler: self)
     private let viewModel = SplashViewModel()
     
@@ -19,8 +22,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel.step
-            .delaySubscription(RxTimeInterval.seconds(2), scheduler: MainScheduler.asyncInstance)
-            .subscribe(onSuccess: { [weak self] step in
+            .subscribe(onNext: { [weak self] step in
                 switch step {
                 case .main(let behave):
                     self?.goToMainScreen(behave: behave)
@@ -28,6 +30,10 @@ class SplashViewController: UIViewController {
                     self?.goToOnboardingScreen(behave: behave)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        generateStepSignal
+            .emit(to: viewModel.makeStep)
             .disposed(by: disposeBag)
     }
     

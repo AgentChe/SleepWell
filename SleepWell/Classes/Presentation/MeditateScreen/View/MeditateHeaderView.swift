@@ -60,7 +60,10 @@ extension MeditateHeaderView {
 
 extension MeditateHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AmplitudeAnalytics.shared.log(with: .tagTap)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Tag tap", parameters: [:])
+        
         didTapCell.accept(_elements[indexPath.row].id)
     }
     

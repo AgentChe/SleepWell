@@ -68,9 +68,13 @@ extension SceneTimerViewController: BindsToViewModel {
             .do(onNext: { _ in
                 switch input {
                 case .scene:
-                    AmplitudeAnalytics.shared.log(with: .sceneSleepTimerSet)
+                    SDKStorage.shared
+                        .amplitudeManager
+                        .logEvent(name: "Scene sleep timer set", parameters: [:])
                 case .sounds:
-                    AmplitudeAnalytics.shared.log(with: .soundsTimerOn)
+                    SDKStorage.shared
+                        .amplitudeManager
+                        .logEvent(name: "Sounds timer on", parameters: [:])
                 }
             })
             .emit(to: viewModel.setTimer)

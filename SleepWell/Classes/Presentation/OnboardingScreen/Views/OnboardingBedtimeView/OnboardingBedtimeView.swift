@@ -24,6 +24,10 @@ class OnboardingBedtimeView: UIView {
     let nextUpWithTimeAndPushToken = PublishRelay<(time: String, pushToken: String)>()
     let nextUpWithout = PublishRelay<Void>()
     
+    private let pushTokenTrigger = PublishRelay<String?>()
+    
+    let manager = SDKStorage.shared.pushNotificationsManager
+    
     private lazy var hoursSource: [String] = {
         var array: [String] = []
         
@@ -98,29 +102,46 @@ class OnboardingBedtimeView: UIView {
             .bind(to: nextUpWithout)
             .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        let nextTapped = nextButton.rx.tap
             .take(1)
+        
+        nextTapped
             .subscribe(onNext: { [weak self] in
+                self?.manager.requestAuthorization()
+            })
+            .disposed(by: disposeBag)
+        
+        let time = nextTapped
+            .compactMap { [weak self] void -> String? in
                 guard let hour = self?.selectedHour, let minute = self?.selectedMinute else {
-                    return
+                    return nil
                 }
                 
-                let time = String(format: "%@:%@", hour, minute)
+                return String(format: "%@:%@", hour, minute)
+            }
+        
+        Observable
+            .zip(time, pushTokenTrigger.asObservable())
+            .subscribe(onNext: { [weak self] stub in
+                let (time, token) = stub
                 
-                PushMessagesService.shared.register { isRegisteredForRemoteNotifications, token in
-                    if isRegisteredForRemoteNotifications {
-                        self?.nextUpWithTimeAndPushToken.accept((time, token ?? ""))
-                        PushMessagesService.shared.addLocalNotification(time: time)
-                    } else {
-                        self?.nextUpWithout.accept(Void())
-                    }
+                if let pushToken = token {
+                    self?.nextUpWithTimeAndPushToken.accept((time, pushToken))
+                    
+                    PushMessagesService.shared.addLocalNotification(time: time)
+                } else {
+                    self?.nextUpWithout.accept(Void())
                 }
             })
             .disposed(by: disposeBag)
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .bedtimeScr)
+        manager.add(observer: self)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Bedtime scr", parameters: [:])
         
         isHidden = false
         alpha = 0
@@ -131,6 +152,8 @@ class OnboardingBedtimeView: UIView {
     }
     
     func hide(completion: @escaping () -> ()) {
+        manager.remove(observer: self)
+        
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.alpha = 0
         }, completion: { [weak self] _ in
@@ -157,5 +180,12 @@ class OnboardingBedtimeView: UIView {
             .textColor(UIColor.white)
         
         subtitleLabel.attributedText = "bedtime_info".localized.attributed(with: subtitleAttr)
+    }
+}
+
+// MARK: PushNotificationsManagerDelegate
+extension OnboardingBedtimeView: PushNotificationsManagerDelegate {
+    func pushNotificationsManagerDidReceive(token: String?) {
+        pushTokenTrigger.accept(token)
     }
 }

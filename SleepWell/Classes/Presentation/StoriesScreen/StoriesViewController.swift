@@ -59,7 +59,9 @@ extension StoriesViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: StoriesViewModelInterface, with input: Input) -> Output {
-        AmplitudeAnalytics.shared.log(with: .storiesScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Stories scr", parameters: [:])
         
         input.scrollToTop.emit(to: tableView.rx.scrollToTop)
             .disposed(by: disposeBag)
@@ -101,7 +103,10 @@ extension StoriesViewController: BindsToViewModel {
             let (cellType, id) = stub
             
             guard case let .story(story) = cellType else {
-                AmplitudeAnalytics.shared.log(with: .unlockPremiumStoriesPaygateScr)
+                SDKStorage.shared
+                    .amplitudeManager
+                    .logEvent(name: "Unlock premium stories paygate scr", parameters: [:])
+                
                 return Signal.just(.paygate(.stories))
             }
             
@@ -110,8 +115,16 @@ extension StoriesViewController: BindsToViewModel {
                 .map { action -> MainRoute in
                     switch action {
                     case .paygate:
-                        if id == 1 { AmplitudeAnalytics.shared.log(with: .blockedRandomStoryPaygateScr) }
-                        if id == 2 { AmplitudeAnalytics.shared.log(with: .blockedStoryPaygateScr) }
+                        if id == 1 {
+                            SDKStorage.shared
+                                .amplitudeManager
+                                .logEvent(name: "Blocked random story paygate scr", parameters: [:])
+                        }
+                        if id == 2 {
+                            SDKStorage.shared
+                                .amplitudeManager
+                                .logEvent(name: "Blocked story paygate scr", parameters: [:])
+                        }
                         return .paygate(.stories)
                     case let .detail(detail):
                         guard let recording = detail else {

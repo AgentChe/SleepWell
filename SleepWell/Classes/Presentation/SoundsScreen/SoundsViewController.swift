@@ -43,7 +43,9 @@ extension SoundsViewController: BindsToViewModel {
     }
     
     func bind(to viewModel: SoundsViewModelInterface, with input: Input) -> Output {
-        AmplitudeAnalytics.shared.log(with: .soundsScr)
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Sounds scr", parameters: [:])
         
         let elements = viewModel.sounds()
         

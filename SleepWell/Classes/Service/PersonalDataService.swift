@@ -34,11 +34,12 @@ extension PersonalDataService {
             return .error(RxError.noElements)
         }
         
-        guard let userToken = SessionService.userToken else {
+        guard let userToken = SessionService.session?.userToken else {
             return .error(RxError.noElements)
         }
         
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: SetRequest(userToken: userToken,
                                                    personalData: personalData,
                                                    locale: UIDevice.deviceLanguageCode,
@@ -79,13 +80,14 @@ extension PersonalDataService {
     }
     
     static func downloadPersonalData() -> Single<PersonalData?> {
-        guard let userToken = SessionService.userToken else {
+        guard let userToken = SessionService.session?.userToken else {
             return .just(nil)
         }
         
         let request = GetPersonalDataRequest(userToken: userToken)
         
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: request)
             .map { try? PersonalData(response: $0) }
     }
@@ -119,9 +121,10 @@ extension PersonalDataService {
                                              pushToken: pushToken,
                                              locale: UIDevice.deviceLanguageCode ?? "en",
                                              version: UIDevice.appVersion ?? "1",
-                                             appKey: IDFAService.shared.getAppKey())
+                                             appKey: SDKStorage.shared.applicationAnonymousID)
         
-        return RestAPITransport()
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: request)
             .map { try CheckResponseForCodeError.isError(jsonResponse: $0) }
             .map { !$0 }
