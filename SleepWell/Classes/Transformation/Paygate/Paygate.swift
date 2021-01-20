@@ -29,6 +29,7 @@ struct PaygateOption {
     let subCaption: NSAttributedString?
     let save: NSAttributedString?
     let bottomLine: NSAttributedString?
+    let isTrial: Bool
 }
 
 struct PaygateSpecialOffer {

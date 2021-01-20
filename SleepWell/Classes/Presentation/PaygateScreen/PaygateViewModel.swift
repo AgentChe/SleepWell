@@ -22,7 +22,7 @@ protocol PaygateViewModelInterface {
     
     func retrieve() -> Driver<(Paygate?, Bool)>
     
-    var buySubscription: PublishRelay<String> { get }
+    var buySubscription: PublishRelay<(String, Bool)> { get }
     var restoreSubscription: PublishRelay<String> { get }
     
     var purchaseCompleted: Signal<Void> { get }
@@ -58,7 +58,7 @@ final class PaygateViewModel: BindableViewModel, PaygateViewModelInterface {
     let restoreProcessing = RxActivityIndicator()
     let retrieveCompleted = BehaviorRelay<Bool>(value: false)
     
-    let buySubscription = PublishRelay<String>()
+    let buySubscription = PublishRelay<(String, Bool)>()
     let restoreSubscription = PublishRelay<String>()
     
     lazy var purchaseCompleted = buy()
@@ -109,8 +109,10 @@ extension PaygateViewModel {
 private extension PaygateViewModel {
     func buy() -> Signal<Void> {
         let purchase = buySubscription
-            .flatMapLatest { [dependencies, openedFrom, purchaseProcessing] productId -> Observable<Void> in
-                dependencies.purchaseService
+            .flatMapLatest { [dependencies, openedFrom, purchaseProcessing] stub -> Observable<Void> in
+                let (productId, isTrial) = stub
+                
+                return dependencies.purchaseService
                     .buySubscription(productId: productId)
                     .flatMap {
                         dependencies.purchaseService
@@ -131,6 +133,10 @@ private extension PaygateViewModel {
                 .trackActivity(purchaseProcessing)
                 .do(onNext: { _ in
                     FacebookAnalytics.shared.logPurchase(amount: 0, currency: "USD")
+                    
+                    if isTrial {
+                        AppsFlyerAnalytics.shared.logEvent(name: "Start Trial")
+                    }
                 }, onError: { [weak self] _ in
                     self?._error.accept("Paygate.FailedPurchase".localized)
                 })

@@ -25,6 +25,7 @@ final class PaygateOptionView: UIView {
     var onlyWhiteViews = [UIView]()
     
     private(set) var productId: String?
+    private(set) var isTrial: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -38,6 +39,7 @@ final class PaygateOptionView: UIView {
     
     func setup(option: PaygateOption) {
         self.productId = option.productId
+        self.isTrial = option.isTrial
         
         updateContent(at: option)
         updateColors()

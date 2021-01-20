@@ -62,6 +62,8 @@ private extension PaygateMapper {
             return nil
         }
         
+        let isTrial = option["is_trial"] as? Bool ?? false
+        
         let title = (option["title"] as? String)?
             .attributed(with: TextAttributes()
                 .font(Font.Poppins.bold(size: 20.scale))
@@ -85,7 +87,8 @@ private extension PaygateMapper {
                                  caption: nil,
                                  subCaption: subCaption,
                                  save: save,
-                                 bottomLine: nil)
+                                 bottomLine: nil,
+                                 isTrial: isTrial)
         }
         
         let div = option["div"] as? Int ?? 1
@@ -143,7 +146,8 @@ private extension PaygateMapper {
                              caption: captionAttrs,
                              subCaption: subCaption,
                              save: save,
-                             bottomLine: bottomLineAttrs)
+                             bottomLine: bottomLineAttrs,
+                             isTrial: isTrial)
     }
     
     static func map(specialOffer: [String: Any]?, productsPrices: [ProductPrice]?) -> PaygateSpecialOffer? {

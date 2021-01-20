@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         UniversalLinksService.shared.register(didFinishLaunchingWithOptions: launchOptions)
         BranchService.shared.application(didFinishLaunchingWithOptions: launchOptions)
+        AppsFlyerAnalytics.shared.applicationDidFinishLaunchingWithOptions()
+        QonversionAnalytics.shared.applicationdidFinishLaunchingWithOptions()
         
         navigate()
         
@@ -61,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStateProxy.ApplicationProxy.didBecomeActive.accept(Void())
+        AppsFlyerAnalytics.shared.applicationDidBecomeActive()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

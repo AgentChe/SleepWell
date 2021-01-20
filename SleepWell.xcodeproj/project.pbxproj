@@ -160,6 +160,8 @@
 		962A777B236A08A7000E2683 /* OnboardingWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */; };
 		962A777D236A2A09000E2683 /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777C236A2A09000E2683 /* SetRequest.swift */; };
 		962A777F236A33BC000E2683 /* CheckResponseForCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */; };
+		962AEAE225B837BE0032E7C3 /* AppsFlyerAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEAE125B837BE0032E7C3 /* AppsFlyerAnalytics.swift */; };
+		962AEAE525B838B00032E7C3 /* QonversionAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEAE425B838B00032E7C3 /* QonversionAnalytics.swift */; };
 		962FB445239665AB00B88FFC /* RealmMeditationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB444239665AB00B88FFC /* RealmMeditationSound.swift */; };
 		962FB447239668BF00B88FFC /* RealmMeditationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB446239668BF00B88FFC /* RealmMeditationDetail.swift */; };
 		962FB44A23966BDD00B88FFC /* MeditationSoundRealmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FB44923966BDD00B88FFC /* MeditationSoundRealmMapper.swift */; };
@@ -606,6 +608,8 @@
 		962A777A236A08A7000E2683 /* OnboardingWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeView.swift; sourceTree = "<group>"; };
 		962A777C236A2A09000E2683 /* SetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRequest.swift; sourceTree = "<group>"; };
 		962A777E236A33BC000E2683 /* CheckResponseForCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckResponseForCodeError.swift; sourceTree = "<group>"; };
+		962AEAE125B837BE0032E7C3 /* AppsFlyerAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerAnalytics.swift; sourceTree = "<group>"; };
+		962AEAE425B838B00032E7C3 /* QonversionAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QonversionAnalytics.swift; sourceTree = "<group>"; };
 		962FB444239665AB00B88FFC /* RealmMeditationSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditationSound.swift; sourceTree = "<group>"; };
 		962FB446239668BF00B88FFC /* RealmMeditationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMeditationDetail.swift; sourceTree = "<group>"; };
 		962FB44923966BDD00B88FFC /* MeditationSoundRealmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationSoundRealmMapper.swift; sourceTree = "<group>"; };
@@ -2167,6 +2171,8 @@
 				961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */,
 				96C989A424A53A9500600621 /* BranchService.swift */,
 				966C846A2517B25A0094784C /* UniversalLinksService.swift */,
+				962AEAE125B837BE0032E7C3 /* AppsFlyerAnalytics.swift */,
+				962AEAE425B838B00032E7C3 /* QonversionAnalytics.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2712,6 +2718,7 @@
 				847127CD237212CD0005E84E /* VolumeSliderView.swift in Sources */,
 				868B5E3D23C0C5CC007BC301 /* SoundsListView.swift in Sources */,
 				86F98CCF23646A3500B0F5EA /* MeditateCell.swift in Sources */,
+				962AEAE525B838B00032E7C3 /* QonversionAnalytics.swift in Sources */,
 				962FB45623967BE400B88FFC /* StoryDetailRealmMapper.swift in Sources */,
 				86A69C0023C0766A00B07168 /* SoundsViewController.swift in Sources */,
 				86A69C0223C0766A00B07168 /* SoundsViewModel.swift in Sources */,
@@ -2755,6 +2762,7 @@
 				96DC8C8A2367639F004DC76A /* OnboardingStartView.swift in Sources */,
 				86A7D69D2385DA510087CE87 /* ScenesViewController.swift in Sources */,
 				9685528623688C1100A22E21 /* CheckView.swift in Sources */,
+				962AEAE225B837BE0032E7C3 /* AppsFlyerAnalytics.swift in Sources */,
 				84E1BC6623E1A71100822CD6 /* UITableViewExtension.swift in Sources */,
 				962FB45123967AB400B88FFC /* RealmStoryDetail.swift in Sources */,
 				86B0C3132379BBEF00C60158 /* RealmMeditation.swift in Sources */,

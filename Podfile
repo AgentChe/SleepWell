@@ -14,6 +14,8 @@ target 'SleepWell' do
   pod 'InfiniteLayout/Rx'
   pod 'FacebookSDK'
   pod 'Branch'
+  pod 'Qonversion'
+  pod 'AppsFlyerFramework'
 end
 
 post_install do |installer|

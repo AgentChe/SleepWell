@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.9.0)
+  - AppsFlyerFramework (6.1.3):
+    - AppsFlyerFramework/Main (= 6.1.3)
+  - AppsFlyerFramework/Main (6.1.3)
   - Branch (0.34.0)
   - Differentiator (4.0.1)
   - FacebookSDK (5.11.0):
@@ -87,6 +90,7 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.10.0)
+  - Qonversion (2.8.0)
   - Realm (3.20.0):
     - Realm/Headers (= 3.20.0)
   - Realm/Headers (3.20.0)
@@ -106,12 +110,14 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AppsFlyerFramework
   - Branch
   - FacebookSDK
   - Firebase/Messaging
   - InfiniteLayout/Rx
   - Kingfisher
   - lottie-ios
+  - Qonversion
   - RealmSwift
   - RxCocoa
   - RxSwift
@@ -120,6 +126,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppsFlyerFramework
     - Branch
     - Differentiator
     - FacebookSDK
@@ -140,6 +147,7 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - Protobuf
+    - Qonversion
     - Realm
     - RealmSwift
     - RxCocoa
@@ -150,6 +158,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  AppsFlyerFramework: 4c735cfe40cd4dd809eba4e288e80f5fbde39d02
   Branch: 446aeb832102f56f04edf5fa7cb0a752dc392ca7
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FacebookSDK: b15ad4ed9bcbefaa04bdcb8bdddfc269a9d2d221
@@ -170,6 +179,7 @@ SPEC CHECKSUMS:
   lottie-ios: 496ac5cea1bbf1a7bd1f1f472f3232eb1b8d744b
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  Qonversion: a10cf4fd27ee7f835359007751f46cc3d0c64f10
   Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
   RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
@@ -178,6 +188,6 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: 2a9fb3377862c2437cce2baf7f7fdafd749afcc9
+PODFILE CHECKSUM: e5dd6b8598b3b240e17c58cf8d0ef1ac37b47c33
 
 COCOAPODS: 1.10.0.rc.1

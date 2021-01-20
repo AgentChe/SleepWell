@@ -133,17 +133,18 @@ extension PaygateViewController: BindsToViewModel {
         paygateView
             .mainView
             .continueButton.rx.tap
-            .map { [unowned self] in
-                [self.paygateView.mainView.leftOptionView, self.paygateView.mainView.rightOptionView]
-                    .first(where: { $0.isSelected })?
-                    .productId
-            }
-            .subscribe(onNext: { productId in
-                guard let productId = productId else {
-                    return
+            .compactMap { [unowned self] _ -> (String, Bool)? in
+                let view = [self.paygateView.mainView.leftOptionView, self.paygateView.mainView.rightOptionView]
+                    .first(where: { $0.isSelected })
+                
+                guard let productId = view?.productId, let isTrial = view?.isTrial else {
+                    return nil
                 }
                 
-                viewModel.buySubscription.accept(productId)
+                return (productId, isTrial)
+            }
+            .subscribe(onNext: { stub in
+                viewModel.buySubscription.accept(stub)
             })
             .disposed(by: disposeBag)
         
@@ -170,7 +171,7 @@ extension PaygateViewController: BindsToViewModel {
                     return
                 }
                 
-                viewModel.buySubscription.accept(productId)
+                viewModel.buySubscription.accept((productId, false))
             })
             .disposed(by: disposeBag)
         
@@ -268,7 +269,7 @@ private extension PaygateViewController {
         leftOptionTapGesture.rx.event
             .subscribe(onNext: { [unowned self] _ in
                 if let productId = self.paygateView.mainView.leftOptionView.productId {
-                    viewModel.buySubscription.accept(productId)
+                    viewModel.buySubscription.accept((productId, self.paygateView.mainView.leftOptionView.isTrial))
                 }
                 
                 guard !self.paygateView.mainView.leftOptionView.isSelected else {
@@ -286,7 +287,7 @@ private extension PaygateViewController {
         rightOptionTapGesture.rx.event
             .subscribe(onNext: { [unowned self] _ in
                 if let productId = self.paygateView.mainView.rightOptionView.productId {
-                    viewModel.buySubscription.accept(productId)
+                    viewModel.buySubscription.accept((productId, self.paygateView.mainView.rightOptionView.isTrial))
                 }
                 
                 guard !self.paygateView.mainView.rightOptionView.isSelected else {
