@@ -37,6 +37,14 @@ extension BranchService {
     }
 }
 
+// MARK: API
+
+extension BranchService {
+    func getLastAttributions() -> [AnyHashable: Any]? {
+        Branch.getInstance().getLatestReferringParams()
+    }
+}
+
 // MARK: Listening
 
 extension BranchService {

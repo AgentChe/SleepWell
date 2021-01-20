@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AmplitudeAnalytics.shared.configure()
         FacebookAnalytics.shared.configure()
         IDFAService.shared.configure()
-        BranchService.shared.application(didFinishLaunchingWithOptions: launchOptions)
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        UniversalLinksService.shared.register(didFinishLaunchingWithOptions: launchOptions)
+        BranchService.shared.application(didFinishLaunchingWithOptions: launchOptions)
         
         navigate()
         
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         BranchService.shared.application(app, open: url, options: options)
         ApplicationDelegate.shared.application(app, open: url, options: options)
+        UniversalLinksService.shared.register(with: url, options: options)
         
         return true
     }
@@ -53,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         BranchService.shared.application(continue: userActivity)
+        UniversalLinksService.shared.register(with: userActivity)
         
         return true
     }

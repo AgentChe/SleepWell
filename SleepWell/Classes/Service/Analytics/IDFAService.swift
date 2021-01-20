@@ -19,7 +19,6 @@ final class IDFAService {
     func configure() {
         appRegister()
         setIDFAWhenUserTokenUpdated()
-        setAttributionsWhenUserTokenUpdated()
     }
     
     func getIDFA() -> String {
@@ -87,34 +86,6 @@ final class IDFAService {
                     .callServerApi(requestBody: request)
                     .catchError { _ in .never() }
             }
-            .subscribe()
-    }
-    
-    private func setAttributionsWhenUserTokenUpdated() {
-        _ = Observable
-            .merge(AppStateProxy.UserTokenProxy.didUpdatedUserToken.asObservable(),
-                   AppStateProxy.UserTokenProxy.userTokenCheckedWithSuccessResult.asObservable())
-            .flatMapLatest {
-                Observable<[String: Any]>.create { observer in
-                    SearchAttributionsDetails.request { attributionsDetails in
-                        observer.onNext(attributionsDetails)
-                        observer.onCompleted()
-                    }
-
-                    return Disposables.create()
-                }
-            }
-            .flatMapLatest { attributionsDetails -> Single<Any> in
-                guard let userToken = SessionService.userToken else {
-                    return .never()
-                }
-
-                let request = AddSearchAdsInfoRequest(userToken: userToken, attributions: attributionsDetails)
-
-                return RestAPITransport()
-                    .callServerApi(requestBody: request)
-                    .catchError { _ in .never() }
-                }
             .subscribe()
     }
 }

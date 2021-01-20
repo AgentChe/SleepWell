@@ -4,5 +4,11 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:www.s1eep.app</string>
+		<string>sleepwell.app.link</string>
+		<string>sleepwell-alternate.app.link</string>
+	</array>
 </dict>
 </plist>

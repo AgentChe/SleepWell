@@ -33,7 +33,17 @@ final class FacebookAnalytics {
         AppEvents.logPurchase(amount, currency: currency)
     }
     
-    private func setInitialProperties() {
+    func fetchDeferredLink(handler: @escaping ((URL?) -> Void)) {
+        AppLinkUtility.fetchDeferredAppLink { url, _ in
+            handler(url)
+        }
+    }
+}
+
+// MARK: Private
+
+private extension FacebookAnalytics {
+    func setInitialProperties() {
         guard !UserDefaults.standard.bool(forKey: "facebook_initial_properties_is_set") else {
             return
         }
@@ -43,7 +53,7 @@ final class FacebookAnalytics {
         UserDefaults.standard.set(true, forKey: "facebook_initial_properties_is_set")
     }
     
-    private func syncedUserPropertiesWithUserId() {
+    func syncedUserPropertiesWithUserId() {
         guard !UserDefaults.standard.bool(forKey: "facebook_initial_properties_is_synced") else {
             return
         }

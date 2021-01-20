@@ -332,6 +332,9 @@
 		963F58C024B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_66_15921038591587551432vinyl crackle.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 963F582724B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_66_15921038591587551432vinyl crackle.aifc */; };
 		963F58C124B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_98_1592103829electric organ.png in Resources */ = {isa = PBXBuildFile; fileRef = 963F582824B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_98_1592103829electric organ.png */; };
 		965ABE7123A023780069307E /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ABE7023A023770069307E /* SizeUtils.swift */; };
+		966C846B2517B25A0094784C /* UniversalLinksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C846A2517B25A0094784C /* UniversalLinksService.swift */; };
+		966C846D2517B36D0094784C /* UniversalLinkAttributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C846C2517B36D0094784C /* UniversalLinkAttributions.swift */; };
+		966C846F2517B4D70094784C /* SetUniversalLinkAttributionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C846E2517B4D70094784C /* SetUniversalLinkAttributionsRequest.swift */; };
 		9672BB8224B5C3AD005E2A78 /* GetPaygateFlowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672BB8124B5C3AD005E2A78 /* GetPaygateFlowRequest.swift */; };
 		9672BB8624B5C504005E2A78 /* PaygateFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672BB8524B5C504005E2A78 /* PaygateFlow.swift */; };
 		9672BB8824B5C877005E2A78 /* PaygateFlowMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672BB8724B5C877005E2A78 /* PaygateFlowMapper.swift */; };
@@ -450,7 +453,6 @@
 		96DC8CA923684D15004DC76A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96DC8CA223684CFC004DC76A /* Poppins-SemiBold.ttf */; };
 		96E5EE8523B64B7000E01F96 /* AppRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */; };
 		96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8723B64C3000E01F96 /* IDFAService.swift */; };
-		96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */; };
 		96E5EE8F23B6583300E01F96 /* AnalyticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */; };
 		96E5EE9523B65FA700E01F96 /* GetPersonalDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */; };
 /* End PBXBuildFile section */
@@ -777,6 +779,9 @@
 		963F582724B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_66_15921038591587551432vinyl crackle.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "https___406515.selcdn.ru_APPS_SLEEP_66_15921038591587551432vinyl crackle.aifc"; sourceTree = "<group>"; };
 		963F582824B9B5CE0063D615 /* https___406515.selcdn.ru_APPS_SLEEP_98_1592103829electric organ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "https___406515.selcdn.ru_APPS_SLEEP_98_1592103829electric organ.png"; sourceTree = "<group>"; };
 		965ABE7023A023770069307E /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
+		966C846A2517B25A0094784C /* UniversalLinksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinksService.swift; sourceTree = "<group>"; };
+		966C846C2517B36D0094784C /* UniversalLinkAttributions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLinkAttributions.swift; sourceTree = "<group>"; };
+		966C846E2517B4D70094784C /* SetUniversalLinkAttributionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUniversalLinkAttributionsRequest.swift; sourceTree = "<group>"; };
 		9672BB8124B5C3AD005E2A78 /* GetPaygateFlowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPaygateFlowRequest.swift; sourceTree = "<group>"; };
 		9672BB8524B5C504005E2A78 /* PaygateFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaygateFlow.swift; sourceTree = "<group>"; };
 		9672BB8724B5C877005E2A78 /* PaygateFlowMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaygateFlowMapper.swift; sourceTree = "<group>"; };
@@ -902,7 +907,6 @@
 		96DC8CA423684CFC004DC76A /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegisterRequest.swift; sourceTree = "<group>"; };
 		96E5EE8723B64C3000E01F96 /* IDFAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFAService.swift; sourceTree = "<group>"; };
-		96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchAdsInfoRequest.swift; sourceTree = "<group>"; };
 		96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticEvent.swift; sourceTree = "<group>"; };
 		96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPersonalDataRequest.swift; sourceTree = "<group>"; };
 		B7551E34A24BD99FE8727722 /* Pods_SleepWell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepWell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1949,12 +1953,12 @@
 				86A7D6A02385E1EB0087CE87 /* FullScenesListRequest.swift */,
 				9623D349239967C70040CB43 /* CheckActiveSubscriptionRequest.swift */,
 				96E5EE8423B64B7000E01F96 /* AppRegisterRequest.swift */,
-				96E5EE8B23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift */,
 				96E5EE9423B65FA700E01F96 /* GetPersonalDataRequest.swift */,
 				9699A66023C9241500CADE8B /* GetNoiseCategoriesRequest.swift */,
 				960DE49E24940CC000EAE21F /* PaygatePingRequest.swift */,
 				9672BB8124B5C3AD005E2A78 /* GetPaygateFlowRequest.swift */,
 				963F537424B854A20063D615 /* CreateAnonymousRequest.swift */,
+				966C846E2517B4D70094784C /* SetUniversalLinkAttributionsRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -2165,6 +2169,7 @@
 				96D9150D24307CD2008B101F /* FacebookAnalytics.swift */,
 				961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */,
 				96C989A424A53A9500600621 /* BranchService.swift */,
+				966C846A2517B25A0094784C /* UniversalLinksService.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -2173,6 +2178,7 @@
 			isa = PBXGroup;
 			children = (
 				96E5EE8E23B6583300E01F96 /* AnalyticEvent.swift */,
+				966C846C2517B36D0094784C /* UniversalLinkAttributions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2575,7 +2581,6 @@
 				86C848B02366F11C00BC6EDA /* HeaderTitleView.swift in Sources */,
 				960DE48B2493E82B00EAE21F /* Paygate.swift in Sources */,
 				86ED928A23E0D8D700443EF2 /* LoadingView.swift in Sources */,
-				96E5EE8C23B64EEE00E01F96 /* AddSearchAdsInfoRequest.swift in Sources */,
 				960DE4912493FA0200EAE21F /* Gender.swift in Sources */,
 				96DC8C9623679960004DC76A /* OnboardingAimTableCell.swift in Sources */,
 				96C29F77236386BF00E93CB1 /* Scene.swift in Sources */,
@@ -2621,6 +2626,7 @@
 				963F0E4423D4ADA600FD39CA /* SoundCellElement.swift in Sources */,
 				8480340723CE7B7C00078442 /* NoiseAudio.swift in Sources */,
 				9699A65823C912C000CADE8B /* NoiseSound.swift in Sources */,
+				966C846F2517B4D70094784C /* SetUniversalLinkAttributionsRequest.swift in Sources */,
 				960DE49F24940CC000EAE21F /* PaygatePingRequest.swift in Sources */,
 				96C29F6723634D8300E93CB1 /* MainViewModel.swift in Sources */,
 				960DE4992494065800EAE21F /* ProductPrice.swift in Sources */,
@@ -2657,6 +2663,7 @@
 				86B7A98923701501007A36BA /* MeditationTagsRequest.swift in Sources */,
 				86A7D6A62385EBAA0087CE87 /* SceneCellModel.swift in Sources */,
 				9623D336239885EF0040CB43 /* TextAttributes.swift in Sources */,
+				966C846D2517B36D0094784C /* UniversalLinkAttributions.swift in Sources */,
 				96C29F1D236264D900E93CB1 /* ViewModel.swift in Sources */,
 				962FB45E2396823C00B88FFC /* RealmSceneDetail.swift in Sources */,
 				96C29F3F236339B400E93CB1 /* Model.swift in Sources */,
@@ -2744,6 +2751,7 @@
 				86B0C3192379DB7300C60158 /* RealmMeditationTag.swift in Sources */,
 				962FB44C23966DD000B88FFC /* MeditationDetailRealmMapper.swift in Sources */,
 				84DD743B23908CEA00B10777 /* SceneTimerViewController.swift in Sources */,
+				966C846B2517B25A0094784C /* UniversalLinksService.swift in Sources */,
 				968552822368877000A22E21 /* OnboardingPersonalDataView.swift in Sources */,
 				96C29F0E2362631800E93CB1 /* SplashViewController.swift in Sources */,
 				9672BB8224B5C3AD005E2A78 /* GetPaygateFlowRequest.swift in Sources */,
@@ -2901,7 +2909,7 @@
 				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2909,7 +2917,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.33;
+				MARKETING_VERSION = 1.34;
 				PRODUCT_BUNDLE_IDENTIFIER = com.li.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "SleepWell Development";
@@ -2926,7 +2934,7 @@
 				CODE_SIGN_ENTITLEMENTS = SleepWell/SleepWell.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = SC7MZ85J68;
 				INFOPLIST_FILE = "$(SRCROOT)/SleepWell/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2934,7 +2942,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.33;
+				MARKETING_VERSION = 1.34;
 				PRODUCT_BUNDLE_IDENTIFIER = com.li.sleepwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "SleepWell AppStore";
