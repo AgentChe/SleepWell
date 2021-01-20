@@ -107,8 +107,6 @@ class OnboardingWelcomeView: UIView {
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .slideScr)
-        
         isHidden = false
         alpha = 0
         

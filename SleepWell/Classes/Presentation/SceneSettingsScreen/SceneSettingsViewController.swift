@@ -44,8 +44,6 @@ extension SceneSettingsViewController: BindsToViewModel {
     }
 
     func bind(to viewModel: SceneSettingsViewModelInterface, with input: Input) -> Output {
-        AmplitudeAnalytics.shared.log(with: .sceneSettingsScr)
-        
         let soundsCount = input.sceneDetail.sounds.count
         let maxHeight = view.frame.height - 304
         let defaultHeight = CGFloat(soundsCount * 48 + (soundsCount - 1) * 24)
@@ -79,13 +77,11 @@ extension SceneSettingsViewController: BindsToViewModel {
         let defaultTapGesture = UITapGestureRecognizer()
         defaultView.addGestureRecognizer(defaultTapGesture)
         let defaultVolumes = defaultTapGesture.rx.event.asSignal()
-            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .sceneDefaultTap) })
             .map { _ in Float(0.75) }
         
         let randomTapGesture = UITapGestureRecognizer()
         randomView.addGestureRecognizer(randomTapGesture)
         let randomVolumes = randomTapGesture.rx.event.asSignal()
-            .do(onNext: { _ in AmplitudeAnalytics.shared.log(with: .sceneRandomTap) })
         
         let sleepTimerTapGesture = UITapGestureRecognizer()
         sleepTimerView.addGestureRecognizer(sleepTimerTapGesture)
@@ -93,8 +89,6 @@ extension SceneSettingsViewController: BindsToViewModel {
         let showSleepTimer = sleepTimerTapGesture.rx.event.asSignal()
             .do(onNext: { [weak self] _ in
                 self?.view.alpha = 0
-                
-                AmplitudeAnalytics.shared.log(with: .sceneSleepTimerTap)
             })
             .map { _ in
                 viewModel.showSleepTimerScreen(sceneDetail: input.sceneDetail)

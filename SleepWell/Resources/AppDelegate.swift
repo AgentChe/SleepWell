@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PushMessagesService.shared.configure()
         FirebaseApp.configure()
         RateManager.incrementRun()
-        AmplitudeAnalytics.shared.configure()
         FacebookAnalytics.shared.configure()
         IDFAService.shared.configure()
         

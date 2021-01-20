@@ -13,7 +13,6 @@ target 'SleepWell' do
   pod 'Firebase/Messaging'
   pod 'InfiniteLayout/Rx'
   pod 'FacebookSDK'
-  pod 'Amplitude-iOS'
   pod 'Branch'
 end
 

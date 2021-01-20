@@ -120,8 +120,6 @@ class OnboardingBedtimeView: UIView {
     }
     
     func show() {
-        AmplitudeAnalytics.shared.log(with: .bedtimeScr)
-        
         isHidden = false
         alpha = 0
         

@@ -431,7 +431,6 @@
 		96CEEB442433249B0031317C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CEEB432433249B0031317C /* DictionaryExtension.swift */; };
 		96D8E9BE23E0D14100835459 /* SoundsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */; };
 		96D8E9C023E0D9FC00835459 /* SoundsMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */; };
-		96D9150C243079C2008B101F /* AmplitudeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */; };
 		96D9150E24307CD2008B101F /* FacebookAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D9150D24307CD2008B101F /* FacebookAnalytics.swift */; };
 		96DC8C582366352E004DC76A /* PersonalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C572366352E004DC76A /* PersonalDataService.swift */; };
 		96DC8C7923674B37004DC76A /* GetPaygateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DC8C7823674B37004DC76A /* GetPaygateRequest.swift */; };
@@ -880,7 +879,6 @@
 		96CEEB432433249B0031317C /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		96D8E9BD23E0D14100835459 /* SoundsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsMenuView.swift; sourceTree = "<group>"; };
 		96D8E9BF23E0D9FC00835459 /* SoundsMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundsMenuView.xib; sourceTree = "<group>"; };
-		96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalytics.swift; sourceTree = "<group>"; };
 		96D9150D24307CD2008B101F /* FacebookAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAnalytics.swift; sourceTree = "<group>"; };
 		96DC8C572366352E004DC76A /* PersonalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataService.swift; sourceTree = "<group>"; };
 		96DC8C69236745C2004DC76A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -2165,7 +2163,6 @@
 			children = (
 				96E5EE8D23B6581C00E01F96 /* Model */,
 				96E5EE8723B64C3000E01F96 /* IDFAService.swift */,
-				96D9150B243079C2008B101F /* AmplitudeAnalytics.swift */,
 				96D9150D24307CD2008B101F /* FacebookAnalytics.swift */,
 				961969D22446529800DC2A72 /* SearchAttributionsDetails.swift */,
 				96C989A424A53A9500600621 /* BranchService.swift */,
@@ -2675,7 +2672,6 @@
 				96DC8C7B23674CB3004DC76A /* PaygateManager.swift in Sources */,
 				96E5EE8823B64C3000E01F96 /* IDFAService.swift in Sources */,
 				96C29F8F23638C0900E93CB1 /* Recording.swift in Sources */,
-				96D9150C243079C2008B101F /* AmplitudeAnalytics.swift in Sources */,
 				96C29F9123638CC200E93CB1 /* RecordingDetail.swift in Sources */,
 				962FB447239668BF00B88FFC /* RealmMeditationDetail.swift in Sources */,
 				844F025723776E4F004C062B /* VolumeRouter.swift in Sources */,

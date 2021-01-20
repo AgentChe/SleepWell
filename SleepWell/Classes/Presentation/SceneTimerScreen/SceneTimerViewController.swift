@@ -65,14 +65,6 @@ extension SceneTimerViewController: BindsToViewModel {
                    thirtyMinTapGesture.rx.event.asSignal().map { _ in 30 * 60 },
                    fortyFiveMinTapGesture.rx.event.asSignal().map { _ in 45 * 60 },
                    sixtyMinTapGesture.rx.event.asSignal().map { _ in 60 * 60 })
-            .do(onNext: { _ in
-                switch input {
-                case .scene:
-                    AmplitudeAnalytics.shared.log(with: .sceneSleepTimerSet)
-                case .sounds:
-                    AmplitudeAnalytics.shared.log(with: .soundsTimerOn)
-                }
-            })
             .emit(to: viewModel.setTimer)
             .disposed(by: disposeBag)
         
